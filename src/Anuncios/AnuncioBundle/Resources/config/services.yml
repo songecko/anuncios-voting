@@ -1,0 +1,7 @@
+parameters:
+#    anuncios_anuncio.example.class: Anuncios\AnuncioBundle\Example
+
+services:
+#    anuncios_anuncio.example:
+#        class: %anuncios_anuncio.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
