@@ -1,0 +1,5 @@
+{% for anuncio in anuncios %}
+	{{ anuncio.image }}
+	<br />
+	<a href="{{ path('anuncio_show', {'id': anuncio.id}) }}">{{ anuncio.name }}</a>
+{% endfor %}

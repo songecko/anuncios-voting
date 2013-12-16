@@ -1,0 +1,64 @@
+Anuncios\AnuncioBundle\Entity\Anuncio:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        agency:
+            type: string
+            length: 255
+        advertiser:
+            type: string
+            length: 255
+        product:
+            type: string
+            length: 255
+        brand:
+            type: string
+            length: 255
+        sector:
+            type: string
+            length: 255
+        clientContact:
+            type: string
+            length: 255
+            column: client_contact
+        creativeTeam:
+            type: string
+            length: 255
+            column: creative_team
+        businessDirection:
+            type: string
+            length: 255
+            column: business_direction
+        mediaAgency:
+            type: string
+            length: 255
+            column: media_agency
+        producer:
+            type: string
+            length: 255
+        director:
+            type: string
+            length: 255
+        soundStudio:
+            type: string
+            length: 255
+            column: sound_studio
+        piece:
+            type: string
+            length: 255
+        title:
+            type: string
+            length: 255
+        image:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

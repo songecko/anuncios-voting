@@ -1,3 +1,11 @@
-anuncios_anuncio_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: AnunciosAnuncioBundle:Default:index }
+anuncio_create:
+    path:  /anuncio/create
+    defaults: { _controller: AnunciosAnuncioBundle:Anuncio:create }
+    
+anuncio_list:
+    path:  /
+    defaults: { _controller: AnunciosAnuncioBundle:Anuncio:list }
+    
+anuncio_show:
+    path:  /anuncio/show/{id}
+    defaults: { _controller: AnunciosAnuncioBundle:Anuncio:show }
