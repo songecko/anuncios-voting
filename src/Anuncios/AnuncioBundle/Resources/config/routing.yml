@@ -1,9 +1,13 @@
 anuncio_create:
     path:  /anuncio/create
     defaults: { _controller: AnunciosAnuncioBundle:Anuncio:create }
+
+anuncio_index:
+    path:  /
+    defaults: { _controller: AnunciosAnuncioBundle:Anuncio:index }
     
 anuncio_list:
-    path:  /
+    path:  /anuncio/category/{id}
     defaults: { _controller: AnunciosAnuncioBundle:Anuncio:list }
     
 anuncio_show:

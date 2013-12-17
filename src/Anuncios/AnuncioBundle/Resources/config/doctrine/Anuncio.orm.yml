@@ -61,4 +61,11 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
         image:
             type: string
             length: 255
+    manyToOne:
+        category:
+            targetEntity: Category
+            inversedBy: anuncios
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

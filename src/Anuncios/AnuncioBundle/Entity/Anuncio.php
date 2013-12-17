@@ -472,4 +472,32 @@ class Anuncio
     {
         return $this->image;
     }
+    /**
+     * @var \Anuncios\AnuncioBundle\Entity\Category
+     */
+    private $category;
+
+
+    /**
+     * Set category
+     *
+     * @param \Anuncios\AnuncioBundle\Entity\Category $category
+     * @return Anuncio
+     */
+    public function setCategory(\Anuncios\AnuncioBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Anuncios\AnuncioBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }
