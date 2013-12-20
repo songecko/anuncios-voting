@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Anuncio
 {
+
     /**
      * @var integer
      */
@@ -42,57 +43,17 @@ class Anuncio
     /**
      * @var string
      */
-    private $sector;
-
-    /**
-     * @var string
-     */
-    private $clientContact;
-
-    /**
-     * @var string
-     */
-    private $creativeTeam;
-
-    /**
-     * @var string
-     */
-    private $businessDirection;
-
-    /**
-     * @var string
-     */
-    private $mediaAgency;
-
-    /**
-     * @var string
-     */
-    private $producer;
-
-    /**
-     * @var string
-     */
-    private $director;
-
-    /**
-     * @var string
-     */
-    private $soundStudio;
-
-    /**
-     * @var string
-     */
-    private $piece;
-
-    /**
-     * @var string
-     */
-    private $title;
+    private $otherFields;
 
     /**
      * @var string
      */
     private $image;
+
+    /**
+     * @var \Anuncios\AnuncioBundle\Entity\Category
+     */
+    private $category;
 
 
     /**
@@ -221,233 +182,26 @@ class Anuncio
     }
 
     /**
-     * Set sector
+     * Set otherFields
      *
-     * @param string $sector
+     * @param string $otherFields
      * @return Anuncio
      */
-    public function setSector($sector)
+    public function setOtherFields($otherFields)
     {
-        $this->sector = $sector;
+        $this->otherFields = $otherFields;
 
         return $this;
     }
 
     /**
-     * Get sector
+     * Get otherFields
      *
      * @return string 
      */
-    public function getSector()
+    public function getOtherFields()
     {
-        return $this->sector;
-    }
-
-    /**
-     * Set clientContact
-     *
-     * @param string $clientContact
-     * @return Anuncio
-     */
-    public function setClientContact($clientContact)
-    {
-        $this->clientContact = $clientContact;
-
-        return $this;
-    }
-
-    /**
-     * Get clientContact
-     *
-     * @return string 
-     */
-    public function getClientContact()
-    {
-        return $this->clientContact;
-    }
-
-    /**
-     * Set creativeTeam
-     *
-     * @param string $creativeTeam
-     * @return Anuncio
-     */
-    public function setCreativeTeam($creativeTeam)
-    {
-        $this->creativeTeam = $creativeTeam;
-
-        return $this;
-    }
-
-    /**
-     * Get creativeTeam
-     *
-     * @return string 
-     */
-    public function getCreativeTeam()
-    {
-        return $this->creativeTeam;
-    }
-
-    /**
-     * Set businessDirection
-     *
-     * @param string $businessDirection
-     * @return Anuncio
-     */
-    public function setBusinessDirection($businessDirection)
-    {
-        $this->businessDirection = $businessDirection;
-
-        return $this;
-    }
-
-    /**
-     * Get businessDirection
-     *
-     * @return string 
-     */
-    public function getBusinessDirection()
-    {
-        return $this->businessDirection;
-    }
-
-    /**
-     * Set mediaAgency
-     *
-     * @param string $mediaAgency
-     * @return Anuncio
-     */
-    public function setMediaAgency($mediaAgency)
-    {
-        $this->mediaAgency = $mediaAgency;
-
-        return $this;
-    }
-
-    /**
-     * Get mediaAgency
-     *
-     * @return string 
-     */
-    public function getMediaAgency()
-    {
-        return $this->mediaAgency;
-    }
-
-    /**
-     * Set producer
-     *
-     * @param string $producer
-     * @return Anuncio
-     */
-    public function setProducer($producer)
-    {
-        $this->producer = $producer;
-
-        return $this;
-    }
-
-    /**
-     * Get producer
-     *
-     * @return string 
-     */
-    public function getProducer()
-    {
-        return $this->producer;
-    }
-
-    /**
-     * Set director
-     *
-     * @param string $director
-     * @return Anuncio
-     */
-    public function setDirector($director)
-    {
-        $this->director = $director;
-
-        return $this;
-    }
-
-    /**
-     * Get director
-     *
-     * @return string 
-     */
-    public function getDirector()
-    {
-        return $this->director;
-    }
-
-    /**
-     * Set soundStudio
-     *
-     * @param string $soundStudio
-     * @return Anuncio
-     */
-    public function setSoundStudio($soundStudio)
-    {
-        $this->soundStudio = $soundStudio;
-
-        return $this;
-    }
-
-    /**
-     * Get soundStudio
-     *
-     * @return string 
-     */
-    public function getSoundStudio()
-    {
-        return $this->soundStudio;
-    }
-
-    /**
-     * Set piece
-     *
-     * @param string $piece
-     * @return Anuncio
-     */
-    public function setPiece($piece)
-    {
-        $this->piece = $piece;
-
-        return $this;
-    }
-
-    /**
-     * Get piece
-     *
-     * @return string 
-     */
-    public function getPiece()
-    {
-        return $this->piece;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Anuncio
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
+        return $this->otherFields;
     }
 
     /**
@@ -472,11 +226,6 @@ class Anuncio
     {
         return $this->image;
     }
-    /**
-     * @var \Anuncios\AnuncioBundle\Entity\Category
-     */
-    private $category;
-
 
     /**
      * Set category

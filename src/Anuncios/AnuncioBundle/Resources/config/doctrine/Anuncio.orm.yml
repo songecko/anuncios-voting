@@ -23,41 +23,9 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
         brand:
             type: string
             length: 255
-        sector:
-            type: string
-            length: 255
-        clientContact:
-            type: string
-            length: 255
-            column: client_contact
-        creativeTeam:
-            type: string
-            length: 255
-            column: creative_team
-        businessDirection:
-            type: string
-            length: 255
-            column: business_direction
-        mediaAgency:
-            type: string
-            length: 255
-            column: media_agency
-        producer:
-            type: string
-            length: 255
-        director:
-            type: string
-            length: 255
-        soundStudio:
-            type: string
-            length: 255
-            column: sound_studio
-        piece:
-            type: string
-            length: 255
-        title:
-            type: string
-            length: 255
+        otherFields:
+            type: text
+            column: other_fields
         image:
             type: string
             length: 255
