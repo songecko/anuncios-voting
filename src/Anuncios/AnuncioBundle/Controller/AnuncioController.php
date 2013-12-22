@@ -35,7 +35,8 @@ class AnuncioController extends Controller
     		->find($id);
     	
     	$category = $anuncio->getCategory();
+    	$resources = $anuncio->getResources();
     	
-    	return $this->render('AnunciosAnuncioBundle:Anuncio:show.html.twig', array('anuncio' => $anuncio, 'category' => $category));
+    	return $this->render('AnunciosAnuncioBundle:Anuncio:show.html.twig', array('anuncio' => $anuncio, 'category' => $category, 'resources' => $resources));
     }
 }

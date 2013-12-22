@@ -36,4 +36,8 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+    oneToMany:
+        resources:
+            targetEntity: Resource
+            mappedBy: anuncio
     lifecycleCallbacks: {  }

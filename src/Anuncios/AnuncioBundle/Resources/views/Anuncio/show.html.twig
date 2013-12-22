@@ -12,22 +12,19 @@ Producto: {{ anuncio.product }}
 <br />
 Marca: {{ anuncio.brand }}
 <br />
-Sector: {{ anuncio.sector }}
+Otros campos: {{ anuncio.otherFields }}
 <br />
-Contacto del cliente: {{ anuncio.clientContact }}
+Imagen: {{ anuncio.image }}
 <br />
-Equipo creativo: {{ anuncio.creativeTeam }}
 <br />
-Dirección de negocio: {{ anuncio.businessDirection }}
-<br />
-Agencia de medios: {{ anuncio.mediaAgency }}
-<br />
-Productora: {{ anuncio.producer }}
-<br />
-Director: {{ anuncio.director }}
-<br />
-Estudio de sonido: {{ anuncio.soundStudio }}
-<br />
-Pieza: {{ anuncio.piece }}
-<br />
-Título: {{ anuncio.title }}
+{% for resource in resources %}
+	{% if resource.type == 'video' %}
+		<a href="{{ resource.link }}">Ver Pieza</a>
+	{% endif %}
+	{% if resource.type == 'radio' %}
+		<a href="{{ resource.link }}">Ver Pieza</a>
+	{% endif %}
+	{% if resource.type == 'imagen' %}
+		<img src="{{ resource.link }}">Ver Pieza</a>
+	{% endif %}
+{% endfor %}
