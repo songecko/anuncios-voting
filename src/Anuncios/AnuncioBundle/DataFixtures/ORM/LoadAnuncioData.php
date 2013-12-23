@@ -52,13 +52,20 @@ class LoadUserData implements FixtureInterface
 	    	$anuncio->setOtherFields($this->faker->text);
 	    	$anuncio->setImage('prueba.jpg');
 	    	
-	    	$resource = new Resource();
-	    	$resource->setAnuncio($anuncio);
-	    	$resource->setType('video');
-	    	$resource->setLink('http://vstream.websharecontent.es/vdispatcher.aspx?id=hF2WNob3ogChruEEIN6oTA%3D%3D');
-	    	$resource->setName($this->faker->word);
+	    	$resource1 = new Resource();
+	    	$resource1->setAnuncio($anuncio);
+	    	$resource1->setType('video');
+	    	$resource1->setLink('http://vstream.websharecontent.es/vdispatcher.aspx?id=hF2WNob3ogChruEEIN6oTA%3D%3D');
+	    	$resource1->setName($this->faker->word);
 	    	
-	    	$manager->persist($resource);
+	    	$resource2 = new Resource();
+	    	$resource2->setAnuncio($anuncio);
+	    	$resource2->setType('image');
+	    	$resource2->setLink('http://recursos.anuncios.com/files/470/92.jpg');
+	    	$resource2->setName($this->faker->word);
+	    	
+	    	$manager->persist($resource1);
+	    	$manager->persist($resource2);
 	    	$manager->persist($anuncio);
     	}
         

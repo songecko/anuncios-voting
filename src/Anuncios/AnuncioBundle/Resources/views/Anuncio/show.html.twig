@@ -18,13 +18,5 @@ Imagen: {{ anuncio.image }}
 <br />
 <br />
 {% for resource in resources %}
-	{% if resource.type == 'video' %}
-		<a href="{{ resource.link }}">Ver Pieza</a>
-	{% endif %}
-	{% if resource.type == 'radio' %}
-		<a href="{{ resource.link }}">Ver Pieza</a>
-	{% endif %}
-	{% if resource.type == 'imagen' %}
-		<img src="{{ resource.link }}">Ver Pieza</a>
-	{% endif %}
+	<a href="{{ resource.link }}">Ver Pieza</a>
 {% endfor %}
