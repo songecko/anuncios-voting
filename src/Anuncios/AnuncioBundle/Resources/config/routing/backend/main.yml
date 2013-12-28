@@ -1,0 +1,3 @@
+anuncios_anuncio_backend_anuncio:
+    resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/anuncio.yml
+    prefix: /anuncios

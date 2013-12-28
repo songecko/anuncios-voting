@@ -1,0 +1,19 @@
+{{ form_errors(form) }}
+<div class="row">
+    <div class="col-md-6 row-split">
+		{{ form_row(form.name) }}
+		<br>
+        {{ form_row(form.agency) }}
+        <br>        
+        {{ form_row(form.advertiser) }}
+        <br>        
+        {{ form_row(form.product) }}
+        <br>
+        {{ form_row(form.brand) }}
+        <br>        
+        {{ form_row(form.otherFields) }}
+        <br>        
+        {#{ form_row(form.image) }#}
+    </div>
+</div>
+{{ form_rest(form) }}

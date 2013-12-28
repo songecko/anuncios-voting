@@ -1,4 +1,8 @@
+gecko_backend:
+    resource: "@GeckoBackendBundle/Resources/config/routing/main.yml"
+    prefix:   /admin
+
 anuncios_anuncio:
-    resource: "@AnunciosAnuncioBundle/Resources/config/routing.yml"
+    resource: "@AnunciosAnuncioBundle/Resources/config/routing/main.yml"
     prefix:   /
 

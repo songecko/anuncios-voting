@@ -5,3 +5,20 @@ services:
 #    anuncios_anuncio.example:
 #        class: %anuncios_anuncio.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    anuncios_anuncio.backend.menu_builder:
+        class: Anuncios\AnuncioBundle\Menu\BackendMenuBuilder
+        arguments: ["@knp_menu.factory"]
+        
+    anuncios_anuncio.backend.menu.main:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: anuncios_anuncio.backend.menu_builder
+        factory_method: createMainMenu
+        arguments: ["@request"]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: backend_main_menu } # The alias is what is used to retrieve the menu
+            
+    anuncios.form.type.anuncio:
+        class: Anuncios\AnuncioBundle\Form\Type\AnuncioType
+        tags:
+            - { name: form.type, alias: anuncios_anuncio }

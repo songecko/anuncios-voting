@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [GeckoBackendBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -67,3 +67,10 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    
+sylius_resource:
+    resources:
+        anuncios.anuncio:
+            driver: doctrine/orm
+            classes:
+                model: Anuncios\AnuncioBundle\Entity\Anuncio

@@ -24,4 +24,5 @@ Anuncios\AnuncioBundle\Entity\Resource:
             joinColumn:
                 name: anuncio_id
                 referencedColumnName: id
+                onDelete: CASCADE
     lifecycleCallbacks: {  }

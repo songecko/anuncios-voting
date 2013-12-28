@@ -1,0 +1,10 @@
+anuncios_anuncio_frontend:
+    resource: @AnunciosAnuncioBundle/Resources/config/routing/frontend/main.yml
+    
+anuncios_anuncio_backend:
+    resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/main.yml
+    prefix:   /admin
+    
+#_imagine:
+#    resource: .
+#    type:     imagine
