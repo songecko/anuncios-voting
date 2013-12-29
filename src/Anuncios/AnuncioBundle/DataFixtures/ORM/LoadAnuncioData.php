@@ -5,6 +5,7 @@ namespace Anuncios\AnuncioBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory as FakerFactory;
+use Anuncios\AnuncioBundle\Entity\Campaign;
 use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Resource;
@@ -23,6 +24,12 @@ class LoadUserData implements FixtureInterface
 	
     public function load(ObjectManager $manager)
     {
+    	$campaign = new Campaign();
+    	$campaign->setName('Campaña 1');
+    	$campaign->setIsActive(true);
+    	
+    	$manager->persist($campaign);
+    	
     	$categories1 = new Category();
     	$categories2 = new Category();
     	$categories3 = new Category();
@@ -43,6 +50,7 @@ class LoadUserData implements FixtureInterface
     	for($i=1;$i<=5;$i++)
     	{
 	        $anuncio = new Anuncio();
+	        $anuncio->setCampaign($campaign);
 	    	$anuncio->setCategory($category[$i]);
 	    	$anuncio->setName($this->faker->word);
 	    	$anuncio->setAgency($this->faker->word);

@@ -29,10 +29,16 @@ class BackendMenuBuilder
             'labelAttributes'    => array('class' => 'nav-header')
         );
 
+        $menu->addChild('campaign', array(
+        		'route' => 'anuncios_anuncio_backend_campaign_index',
+        		'labelAttributes' => array('icon' => 'icon-barcode'),
+        ))->setLabel("Campañas");
+        
         $menu->addChild('anuncio', array(
             'route' => 'anuncios_anuncio_backend_anuncio_index',
             'labelAttributes' => array('icon' => 'icon-barcode'),
         ))->setLabel("Anuncios");
+        
         
         return $menu;
     }

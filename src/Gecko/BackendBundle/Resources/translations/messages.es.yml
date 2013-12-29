@@ -26,7 +26,6 @@ gecko.backend:
     id:               "ID"
     name:             "Nombre"
     title:            "Título"
-    orderNumber:      "Número de orden"
     created_at:       "Creado el"
     
     alert:
@@ -43,22 +42,22 @@ gecko.backend:
     breadcrumb:
         new:           "Nuevo"
         edit:          "Editar"
+        campaign.index:   "Campañas"
         anuncio.index:   "Anuncios"
-        subbrand.index:   "Sub Marcas"
         business.index: "Empresas"
         newitem.index:   "Noticias"
         slider.index:   "Slider de Inicio"
         sv.index:   "Valores Compartidos"
         
+    campaign:
+        index_header:  "Campañas"
+        update_header: "Editar campaña"
+        create_header: "Nueva campaña"
+        
     anuncio:
         index_header:  "Anuncios"
         update_header: "Editar anuncio"
         create_header: "Nuevo anuncio"
-
-    subbrand:
-        index_header:  "Sub Marcas"
-        update_header: "Editar sub marca"
-        create_header: "Nueva sub marca"
         
     business:
         index_header:  "Empresas"

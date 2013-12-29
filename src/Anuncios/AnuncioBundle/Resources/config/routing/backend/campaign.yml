@@ -1,0 +1,34 @@
+anuncios_anuncio_backend_campaign_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: anuncios.controller.campaign:indexAction
+        _sylius:
+            template: AnunciosAnuncioBundle:Backend/Campaign:index.html.twig
+            paginate: 100
+            
+anuncios_anuncio_backend_campaign_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: anuncios.controller.campaign:createAction
+        _sylius:
+            template: AnunciosAnuncioBundle:Backend/Campaign:create.html.twig
+            redirect: anuncios_anuncio_backend_campaign_update
+
+anuncios_anuncio_backend_campaign_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: anuncios.controller.campaign:updateAction
+        _sylius:
+            template: AnunciosAnuncioBundle:Backend/Campaign:update.html.twig
+            redirect: anuncios_anuncio_backend_campaign_update
+
+anuncios_anuncio_backend_campaign_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: anuncios.controller.campaign:deleteAction
+        _sylius:
+            redirect: anuncios_anuncio_backend_campaign_index

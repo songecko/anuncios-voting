@@ -1,0 +1,20 @@
+Anuncios\AnuncioBundle\Entity\Campaign:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        isActive:
+            type: boolean
+            column: is_active
+    oneToMany:
+        anuncios:
+            targetEntity: Anuncio
+            mappedBy: campaign
+    lifecycleCallbacks: {  }

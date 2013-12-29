@@ -294,4 +294,32 @@ class Anuncio
     {
         return $this->resources;
     }
+    /**
+     * @var \Anuncios\AnuncioBundle\Entity\Campaign
+     */
+    private $campaign;
+
+
+    /**
+     * Set campaign
+     *
+     * @param \Anuncios\AnuncioBundle\Entity\Campaign $campaign
+     * @return Anuncio
+     */
+    public function setCampaign(\Anuncios\AnuncioBundle\Entity\Campaign $campaign = null)
+    {
+        $this->campaign = $campaign;
+    
+        return $this;
+    }
+
+    /**
+     * Get campaign
+     *
+     * @return \Anuncios\AnuncioBundle\Entity\Campaign 
+     */
+    public function getCampaign()
+    {
+        return $this->campaign;
+    }
 }

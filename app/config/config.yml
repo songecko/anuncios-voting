@@ -70,6 +70,10 @@ swiftmailer:
     
 sylius_resource:
     resources:
+        anuncios.campaign:
+            driver: doctrine/orm
+            classes:
+                model: Anuncios\AnuncioBundle\Entity\Campaign
         anuncios.anuncio:
             driver: doctrine/orm
             classes:

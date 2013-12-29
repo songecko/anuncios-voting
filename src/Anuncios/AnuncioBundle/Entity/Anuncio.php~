@@ -249,4 +249,49 @@ class Anuncio
     {
         return $this->category;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $resources;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add resources
+     *
+     * @param \Anuncios\AnuncioBundle\Entity\Resource $resources
+     * @return Anuncio
+     */
+    public function addResource(\Anuncios\AnuncioBundle\Entity\Resource $resources)
+    {
+        $this->resources[] = $resources;
+
+        return $this;
+    }
+
+    /**
+     * Remove resources
+     *
+     * @param \Anuncios\AnuncioBundle\Entity\Resource $resources
+     */
+    public function removeResource(\Anuncios\AnuncioBundle\Entity\Resource $resources)
+    {
+        $this->resources->removeElement($resources);
+    }
+
+    /**
+     * Get resources
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResources()
+    {
+        return $this->resources;
+    }
 }

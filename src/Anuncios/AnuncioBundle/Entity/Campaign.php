@@ -5,9 +5,9 @@ namespace Anuncios\AnuncioBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
+ * Campaign
  */
-class Category
+class Campaign
 {
     /**
      * @var integer
@@ -18,6 +18,11 @@ class Category
      * @var string
      */
     private $name;
+
+    /**
+     * @var boolean
+     */
+    private $isActive;
 
 
     /**
@@ -34,12 +39,12 @@ class Category
      * Set name
      *
      * @param string $name
-     * @return Category
+     * @return Campaign
      */
     public function setName($name)
     {
         $this->name = $name;
-
+    
         return $this;
     }
 
@@ -51,6 +56,29 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return Campaign
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -64,17 +92,17 @@ class Category
     {
         $this->anuncios = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Add anuncios
      *
      * @param \Anuncios\AnuncioBundle\Entity\Anuncio $anuncios
-     * @return Category
+     * @return Campaign
      */
     public function addAnuncio(\Anuncios\AnuncioBundle\Entity\Anuncio $anuncios)
     {
         $this->anuncios[] = $anuncios;
-
+    
         return $this;
     }
 

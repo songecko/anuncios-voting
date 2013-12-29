@@ -108,4 +108,32 @@ class Resource
     {
         return $this->name;
     }
+    /**
+     * @var \Anuncios\AnuncioBundle\Entity\Anuncio
+     */
+    private $anuncio;
+
+
+    /**
+     * Set anuncio
+     *
+     * @param \Anuncios\AnuncioBundle\Entity\Anuncio $anuncio
+     * @return Resource
+     */
+    public function setAnuncio(\Anuncios\AnuncioBundle\Entity\Anuncio $anuncio = null)
+    {
+        $this->anuncio = $anuncio;
+
+        return $this;
+    }
+
+    /**
+     * Get anuncio
+     *
+     * @return \Anuncios\AnuncioBundle\Entity\Anuncio 
+     */
+    public function getAnuncio()
+    {
+        return $this->anuncio;
+    }
 }

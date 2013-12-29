@@ -22,3 +22,8 @@ services:
         class: Anuncios\AnuncioBundle\Form\Type\AnuncioType
         tags:
             - { name: form.type, alias: anuncios_anuncio }
+            
+    anuncios.form.type.campaign:
+        class: Anuncios\AnuncioBundle\Form\Type\CampaignType
+        tags:
+            - { name: form.type, alias: anuncios_campaign }
