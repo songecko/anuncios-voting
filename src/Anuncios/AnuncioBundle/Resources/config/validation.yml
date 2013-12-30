@@ -1,0 +1,16 @@
+Anuncios\AnuncioBundle\Entity\Anuncio:
+    properties:
+        name:
+            - NotBlank: ~
+        agency:
+            - NotBlank: ~
+        advertiser:
+            - NotBlank: ~
+        product:
+            - NotBlank: ~
+        brand:
+            - NotBlank: ~
+        otherFields:
+            - NotBlank: ~
+        image:
+            - NotBlank: ~

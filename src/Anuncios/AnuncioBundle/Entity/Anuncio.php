@@ -3,11 +3,13 @@
 namespace Anuncios\AnuncioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Anuncios\AnuncioBundle\Model\ImageInterface;
+use 
 
 /**
  * Anuncio
  */
-class Anuncio
+class Anuncio implements ImageInterface
 {
 
     /**

@@ -23,6 +23,7 @@ class AppKernel extends Kernel
         	new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
         	new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
         	new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+        	new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Anuncios\AnuncioBundle\AnunciosAnuncioBundle(),
             new Gecko\BackendBundle\GeckoBackendBundle(),
         );

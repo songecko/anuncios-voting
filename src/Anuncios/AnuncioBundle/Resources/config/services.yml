@@ -1,10 +1,30 @@
 parameters:
 #    anuncios_anuncio.example.class: Anuncios\AnuncioBundle\Example
+    gecko.image_uploader.class: Anuncios\AnuncioBundle\Uploader\ImageUploader
+    gecko.listener.image_upload.class: Anuncios\AnuncioBundle\EventListener\ImageUploadListener
 
 services:
 #    anuncios_anuncio.example:
 #        class: %anuncios_anuncio.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    gecko.knp_gaufrette.filesystem:
+        class: Gaufrette\Filesystem
+        factory_service:  knp_gaufrette.filesystem_map
+        factory_method:   get
+        arguments: [ "gecko_image" ]
+    
+    gecko.image_uploader:
+        class: %gecko.image_uploader.class%
+        arguments: ["@gecko.knp_gaufrette.filesystem"]
+        
+    gecko.listener.image_upload:
+        class: %gecko.listener.image_upload.class%
+        arguments: ["@gecko.image_uploader"]
+        tags:
+            - { name: kernel.event_listener, event: anuncios.anuncio.pre_create, method: uploadImage }
+            - { name: kernel.event_listener, event: anuncios.anuncio.pre_update, method: uploadImage }
+    
     anuncios_anuncio.backend.menu_builder:
         class: Anuncios\AnuncioBundle\Menu\BackendMenuBuilder
         arguments: ["@knp_menu.factory"]

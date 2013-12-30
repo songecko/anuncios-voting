@@ -11,7 +11,7 @@ framework:
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation:      { enable_annotations: false }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -67,6 +67,16 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+knp_gaufrette:
+    adapters:
+        gecko_image:
+            local:
+                directory:  %kernel.root_dir%/../web/media/image
+                create:     true
+    filesystems:
+        gecko_image:
+            adapter: gecko_image
     
 sylius_resource:
     resources:

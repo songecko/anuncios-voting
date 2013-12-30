@@ -23,7 +23,9 @@
         "fzaninotto/faker": "1.2.*",
 		"sylius/resource-bundle": "0.5.*",
 		"raulfraile/ladybug-bundle": "dev-master",
-		"knplabs/knp-menu-bundle": "1.*"
+		"knplabs/knp-menu-bundle": "1.*",
+		"knplabs/gaufrette": "dev-master",
+        "knplabs/knp-gaufrette-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
