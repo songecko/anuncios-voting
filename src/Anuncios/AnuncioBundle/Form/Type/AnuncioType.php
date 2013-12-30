@@ -11,6 +11,14 @@ class AnuncioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        ->add('campaign', 'entity', array(
+        		'class'    => 'AnunciosAnuncioBundle:Campaign',
+        		'label'    => 'Campaña'
+        ))
+        ->add('category', 'entity', array(
+        		'class'    => 'AnunciosAnuncioBundle:Category',
+        		'label'    => 'Categoria'
+        ))
         ->add('name', 'text', array(
         		'required' => true,
         		'label'    => 'Nombre'
@@ -35,8 +43,7 @@ class AnuncioType extends AbstractType
         		'required' => true,
         		'label'    => 'Otros Campos'
         ))
-        ->add('image', 'file', array(
-        		'required' => true,
+        ->add('file', 'file', array(
         		'label' => 'Imagen'
         ));
     }

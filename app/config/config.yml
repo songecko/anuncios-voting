@@ -77,6 +77,19 @@ knp_gaufrette:
     filesystems:
         gecko_image:
             adapter: gecko_image
+
+liip_imagine:
+    data_root: %kernel.root_dir%/../web/media/image
+    filter_sets:
+        gecko_image_business:
+            filters:
+                thumbnail: { size: [76, 60], mode: outbound }
+        gecko_image_90x60:
+            filters:
+                thumbnail: { size: [90, 60], mode: outbound }
+        gecko_gallery:
+            filters:
+                thumbnail: { size: [250, 250], mode: outbound }
     
 sylius_resource:
     resources:
