@@ -13,7 +13,7 @@ app/config/parameters.ini
 app/config/parameters.yml
 
 # eclipse
-*.externalToolBuilders
-*.settings
-*.buildpath
-*.project
+.externalToolBuilders
+.settings
+.buildpath
+.project
