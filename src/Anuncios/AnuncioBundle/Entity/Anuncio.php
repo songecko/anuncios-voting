@@ -121,7 +121,12 @@ class Anuncio implements ImageInterface
 
     public function setOtherFields($otherFields)
     {
-        $this->otherFields = $otherFields;
+        $this->otherFields = array();
+
+        foreach ($otherFields as $otherField)
+        {
+            $this->addOtherFields($otherField);
+        }
 
         return $this;
     }
@@ -129,6 +134,27 @@ class Anuncio implements ImageInterface
     public function getOtherFields()
     {
         return $this->otherFields;
+    }
+    
+    public function addOtherFields($campo, $valor)
+    {
+    	/*if (!in_array($otherFields, $this->otherFields, true))
+    	{
+    		$this->otherFields[] = $otherFields;
+    	}*/
+    	$this->otherFields[$campo] = $valor;
+    
+    	return $this;
+    }
+    
+    public function removeOtherFields($otherFields)
+    {
+    	if (false !== $key = array_search(strtoupper($otherFields), $this->otherFields, true)) {
+    		unset($this->otherFields[$key]);
+    		$this->otherFields = array_values($this->otherFields);
+    	}
+    
+    	return $this;
     }
 
     public function setImage($image)
@@ -158,6 +184,7 @@ class Anuncio implements ImageInterface
     public function __construct()
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->otherFields = array();
     }
 
     public function addResource(\Anuncios\AnuncioBundle\Entity\Resource $resources)

@@ -17,6 +17,11 @@ class CampaignType extends AbstractType
         ))
         ->add('isActive', 'checkbox', array(
         		'label'    => 'Activo?'
+        ))
+        ->add('file', 'file', array(
+        		'mapped'   => false,
+        		'required' => true,
+        		'label'    => 'Anuncios'
         ));
     }
 

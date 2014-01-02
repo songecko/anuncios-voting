@@ -12,3 +12,8 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
             - NotBlank: ~
         otherFields:
             - NotBlank: ~
+
+Anuncios\AnuncioBundle\Entity\Campaign:
+    properties:
+        name:
+            - NotBlank: ~

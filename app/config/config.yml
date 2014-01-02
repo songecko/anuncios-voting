@@ -97,6 +97,7 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Anuncios\AnuncioBundle\Entity\Campaign
+                controller: Anuncios\AnuncioBundle\Controller\Backend\CampaignController
         anuncios.anuncio:
             driver: doctrine/orm
             classes:

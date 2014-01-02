@@ -12,9 +12,17 @@ Producto: {{ anuncio.product }}
 <br />
 Marca: {{ anuncio.brand }}
 <br />
-Otros campos: {{ anuncio.otherFields }}
+Otros campos:
 <br />
-Imagen: {{ anuncio.image }}
+<br />
+{% for key, value in anuncio.otherFields %}
+{{ key }}:{{ value }}
+<br />
+{% endfor %}
+<br />
+Imagen: 
+<br />
+<img src="{{ anuncio.image }}" />
 <br />
 <br />
 {% for resource in resources %}

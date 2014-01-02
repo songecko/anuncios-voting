@@ -35,7 +35,7 @@ class LoadUserData implements FixtureInterface
     	$categories3 = new Category();
     	$categories4 = new Category();
     	$categories5 = new Category();
-    	$category[1] = $categories1->setName('Television');
+    	$category[1] = $categories1->setName('Televisión');
     	$category[2] = $categories2->setName('Revistas');
     	$category[3] = $categories3->setName('Radio');
     	$category[4] = $categories4->setName('Exterior');
@@ -57,7 +57,7 @@ class LoadUserData implements FixtureInterface
 	    	$anuncio->setAdvertiser($this->faker->word);
 	    	$anuncio->setProduct($this->faker->word);
 	    	$anuncio->setBrand($this->faker->word);
-	    	$anuncio->setOtherFields($this->faker->text);
+	    	$anuncio->addOtherFields('prueba1', 'texto1');
 	    	$anuncio->setImage('prueba.jpg');
 	    	
 	    	$resource1 = new Resource();
