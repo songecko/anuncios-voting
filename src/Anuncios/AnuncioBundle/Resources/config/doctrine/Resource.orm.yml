@@ -1,6 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Resource:
     type: entity
-    table: null
+    table: resource
     id:
         id:
             type: integer

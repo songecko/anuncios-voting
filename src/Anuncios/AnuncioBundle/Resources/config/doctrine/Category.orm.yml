@@ -1,7 +1,7 @@
 Anuncios\AnuncioBundle\Entity\Category:
     type: entity
     repositoryClass: Anuncios\AnuncioBundle\Entity\CategoryRepository
-    table: null
+    table: category
     id:
         id:
             type: integer
