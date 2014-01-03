@@ -14,5 +14,5 @@ Anuncios\AnuncioBundle\Entity\Sector:
     oneToMany:
         anuncios:
             targetEntity: Anuncio
-            mappedBy: anuncio
+            mappedBy: sector
     lifecycleCallbacks: {  }

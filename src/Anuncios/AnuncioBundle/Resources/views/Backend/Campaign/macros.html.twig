@@ -10,6 +10,7 @@
         <tr>
             <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.name'|trans) }}</th>
+            <th>{{ sylius_resource_sort('name', 'gecko.backend.is_active'|trans) }}</th>
             <th></th>
         </tr>
     </thead>
@@ -18,6 +19,11 @@
         <tr id="{{ campaign.id }}">
             <td>{{ campaign.id }}</td>
             <td>{{ campaign.name }}</td>
+            {% if campaign.isActive %}
+            	<td>Si</td>
+            {% else %}
+            	<td>No</td>
+            {% endif %}
             <td>
                 <div class="pull-right">
                     {{ buttons.edit(path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id})) }}

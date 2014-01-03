@@ -2,76 +2,65 @@
 
 namespace Anuncios\AnuncioBundle\Entity;
 
+use SplFileInfo;
 use Doctrine\ORM\Mapping as ORM;
+use Anuncios\AnuncioBundle\Model\ImageInterface;
 
 /**
  * Anuncio
  */
-class Anuncio
+class Anuncio implements ImageInterface
 {
-
-    /**
-     * @var integer
-     */
     private $id;
-
-    /**
-     * @var string
-     */
     private $name;
-
-    /**
-     * @var string
-     */
     private $agency;
-
-    /**
-     * @var string
-     */
     private $advertiser;
-
-    /**
-     * @var string
-     */
     private $product;
-
-    /**
-     * @var string
-     */
     private $brand;
-
-    /**
-     * @var string
-     */
     private $otherFields;
-
-    /**
-     * @var string
-     */
     private $image;
-
-    /**
-     * @var \Anuncios\AnuncioBundle\Entity\Category
-     */
+    private $file;
     private $category;
+    private $campaign;
+    private $resources;
+    private $votoJurado;
+    private $votoUsuario;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Anuncio
-     */
+    public function hasFile()
+    {
+    	return null !== $this->file;
+    }
+    
+    public function getFile()
+    {
+    	return $this->file;
+    }
+    
+    public function setFile(SplFileInfo $file)
+    {
+    	$this->file = $file;
+    }
+    
+    public function hasPath()
+    {
+    	return null !== $this->image;
+    }
+    
+    public function getPath()
+    {
+    	return $this->image;
+    }
+    
+    public function setPath($image)
+    {
+    	$this->image = $image;
+    }
+
     public function setName($name)
     {
         $this->name = $name;
@@ -79,22 +68,11 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * Set agency
-     *
-     * @param string $agency
-     * @return Anuncio
-     */
     public function setAgency($agency)
     {
         $this->agency = $agency;
@@ -102,22 +80,11 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Get agency
-     *
-     * @return string 
-     */
     public function getAgency()
     {
         return $this->agency;
     }
 
-    /**
-     * Set advertiser
-     *
-     * @param string $advertiser
-     * @return Anuncio
-     */
     public function setAdvertiser($advertiser)
     {
         $this->advertiser = $advertiser;
@@ -125,22 +92,11 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Get advertiser
-     *
-     * @return string 
-     */
     public function getAdvertiser()
     {
         return $this->advertiser;
     }
 
-    /**
-     * Set product
-     *
-     * @param string $product
-     * @return Anuncio
-     */
     public function setProduct($product)
     {
         $this->product = $product;
@@ -148,22 +104,11 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Get product
-     *
-     * @return string 
-     */
     public function getProduct()
     {
         return $this->product;
     }
 
-    /**
-     * Set brand
-     *
-     * @param string $brand
-     * @return Anuncio
-     */
     public function setBrand($brand)
     {
         $this->brand = $brand;
@@ -171,45 +116,49 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Get brand
-     *
-     * @return string 
-     */
     public function getBrand()
     {
         return $this->brand;
     }
 
-    /**
-     * Set otherFields
-     *
-     * @param string $otherFields
-     * @return Anuncio
-     */
     public function setOtherFields($otherFields)
     {
-        $this->otherFields = $otherFields;
+        $this->otherFields = array();
+
+        foreach ($otherFields as $otherField)
+        {
+            $this->addOtherFields($otherField);
+        }
 
         return $this;
     }
 
-    /**
-     * Get otherFields
-     *
-     * @return string 
-     */
     public function getOtherFields()
     {
         return $this->otherFields;
     }
+    
+    public function addOtherFields($campo, $valor)
+    {
+    	/*if (!in_array($otherFields, $this->otherFields, true))
+    	{
+    		$this->otherFields[] = $otherFields;
+    	}*/
+    	$this->otherFields[$campo] = $valor;
+    
+    	return $this;
+    }
+    
+    public function removeOtherFields($otherFields)
+    {
+    	if (false !== $key = array_search(strtoupper($otherFields), $this->otherFields, true)) {
+    		unset($this->otherFields[$key]);
+    		$this->otherFields = array_values($this->otherFields);
+    	}
+    
+    	return $this;
+    }
 
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return Anuncio
-     */
     public function setImage($image)
     {
         $this->image = $image;
@@ -217,22 +166,11 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Get image
-     *
-     * @return string 
-     */
     public function getImage()
     {
         return $this->image;
     }
 
-    /**
-     * Set category
-     *
-     * @param \Anuncios\AnuncioBundle\Entity\Category $category
-     * @return Anuncio
-     */
     public function setCategory(\Anuncios\AnuncioBundle\Entity\Category $category = null)
     {
         $this->category = $category;
@@ -240,34 +178,17 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Get category
-     *
-     * @return \Anuncios\AnuncioBundle\Entity\Category 
-     */
     public function getCategory()
     {
         return $this->category;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $resources;
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->otherFields = array();
     }
 
-    /**
-     * Add resources
-     *
-     * @param \Anuncios\AnuncioBundle\Entity\Resource $resources
-     * @return Anuncio
-     */
     public function addResource(\Anuncios\AnuncioBundle\Entity\Resource $resources)
     {
         $this->resources[] = $resources;
@@ -275,23 +196,49 @@ class Anuncio
         return $this;
     }
 
-    /**
-     * Remove resources
-     *
-     * @param \Anuncios\AnuncioBundle\Entity\Resource $resources
-     */
     public function removeResource(\Anuncios\AnuncioBundle\Entity\Resource $resources)
     {
         $this->resources->removeElement($resources);
     }
 
-    /**
-     * Get resources
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
     public function getResources()
     {
         return $this->resources;
+    }
+
+    public function setCampaign(\Anuncios\AnuncioBundle\Entity\Campaign $campaign = null)
+    {
+        $this->campaign = $campaign;
+    
+        return $this;
+    }
+
+    public function getCampaign()
+    {
+        return $this->campaign;
+    }
+
+    public function setVotoJurado($votoJurado)
+    {
+        $this->votoJurado = $votoJurado;
+    
+        return $this;
+    }
+
+    public function getVotoJurado()
+    {
+        return $this->votoJurado;
+    }
+
+    public function setVotoUsuario($votoUsuario)
+    {
+        $this->votoUsuario = $votoUsuario;
+    
+        return $this;
+    }
+
+    public function getVotoUsuario()
+    {
+        return $this->votoUsuario;
     }
 }

@@ -23,6 +23,8 @@ class Anuncio implements ImageInterface
     private $category;
     private $campaign;
     private $resources;
+    private $votoJurado;
+    private $votoUsuario;
 
     public function getId()
     {
@@ -214,5 +216,29 @@ class Anuncio implements ImageInterface
     public function getCampaign()
     {
         return $this->campaign;
+    }
+
+    public function setVotoJurado($votoJurado)
+    {
+        $this->votoJurado = $votoJurado;
+    
+        return $this;
+    }
+
+    public function getVotoJurado()
+    {
+        return $this->votoJurado;
+    }
+
+    public function setVotoUsuario($votoUsuario)
+    {
+        $this->votoUsuario = $votoUsuario;
+    
+        return $this;
+    }
+
+    public function getVotoUsuario()
+    {
+        return $this->votoUsuario;
     }
 }

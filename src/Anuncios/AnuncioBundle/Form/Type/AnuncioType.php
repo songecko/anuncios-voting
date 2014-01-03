@@ -39,10 +39,6 @@ class AnuncioType extends AbstractType
         		'required' => true,
         		'label'    => 'Marca'
         ))
-        ->add('otherFields', 'textarea', array(
-        		'required' => true,
-        		'label'    => 'Otros Campos'
-        ))
         ->add('file', 'file', array(
         		'label' => 'Imagen'
         ));
