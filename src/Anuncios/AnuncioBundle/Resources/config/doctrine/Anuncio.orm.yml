@@ -1,6 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Anuncio:
     type: entity
-    table: null
+    table: anuncio
     id:
         id:
             type: integer

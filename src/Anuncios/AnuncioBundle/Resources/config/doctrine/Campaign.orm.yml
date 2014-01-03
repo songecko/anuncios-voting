@@ -1,6 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Campaign:
     type: entity
-    table: null
+    table: campaign
     fields:
         id:
             type: integer

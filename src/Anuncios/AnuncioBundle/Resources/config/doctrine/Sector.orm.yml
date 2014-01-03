@@ -1,6 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Sector:
     type: entity
-    table: null
+    table: sector
     id:
         id:
             type: integer

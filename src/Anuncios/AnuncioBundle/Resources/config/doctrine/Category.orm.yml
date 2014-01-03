@@ -1,6 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Category:
     type: entity
-    table: null
+    table: category
     id:
         id:
             type: integer
