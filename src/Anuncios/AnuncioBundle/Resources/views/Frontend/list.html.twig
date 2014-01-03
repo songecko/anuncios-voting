@@ -1,6 +1,0 @@
-{{ category.name }}
-<br />
-<br />
-{% for anuncio in anuncios %}
-	<a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}">{{ anuncio.name }}</a>
-{% endfor %}

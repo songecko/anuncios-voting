@@ -10,7 +10,7 @@ use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Resource;
 
-class LoadUserData implements FixtureInterface
+class LoadAnuncioData implements FixtureInterface
 {
 	protected $faker;
         

@@ -1,5 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Anuncio:
     type: entity
+    repositoryClass: Anuncios\AnuncioBundle\Entity\AnuncioRepository
     table: anuncio
     id:
         id:
@@ -29,6 +30,12 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
         image:
             type: string
             length: 255
+        votoJurado:
+            type: integer
+            nullable: true
+        votoUsuario:
+            type: integer
+            nullable: true
     manyToOne:
         category:
             targetEntity: Category

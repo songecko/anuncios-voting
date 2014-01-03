@@ -2,9 +2,13 @@ anuncios_anuncio_index:
     pattern:  /
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:index }
     
-anuncios_anuncio_list:
-    pattern:  /anuncio/category/{id}
-    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:list }
+anuncios_anuncio_home:
+    pattern:  /home
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:home }
+    
+anuncios_anuncio_category:
+    pattern:  /category/{id}
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:category }
     
 anuncios_anuncio_show:
     pattern:  /anuncio/show/{id}

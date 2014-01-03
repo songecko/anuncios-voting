@@ -8,16 +8,22 @@ use Anuncios\AnuncioBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends Controller
-{ 
-    public function indexAction()
+{
+	public function indexAction()
+	{
+		return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig');
+	}
+	
+    public function homeAction()
     {
     	$categories = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
     		->findAll();
     		
-    	return $this->render('AnunciosAnuncioBundle:Frontend:index.html.twig', array('categories' => $categories));
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:home.html.twig', array('categories' => $categories));
     }
-    public function listAction($id)
+    
+    public function categoryAction($id)
     {
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
@@ -25,7 +31,7 @@ class MainController extends Controller
     	
     	$anuncios = $category->getAnuncios();
     	
-    	return $this->render('AnunciosAnuncioBundle:Frontend:list.html.twig', array('category' => $category, 'anuncios' => $anuncios));
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array('category' => $category, 'anuncios' => $anuncios));
     }
     
 	public function showAction($id)
@@ -37,6 +43,6 @@ class MainController extends Controller
     	$category = $anuncio->getCategory();
     	$resources = $anuncio->getResources();
     	
-    	return $this->render('AnunciosAnuncioBundle:Frontend:show.html.twig', array('anuncio' => $anuncio, 'category' => $category, 'resources' => $resources));
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array('anuncio' => $anuncio, 'category' => $category, 'resources' => $resources));
     }
 }
