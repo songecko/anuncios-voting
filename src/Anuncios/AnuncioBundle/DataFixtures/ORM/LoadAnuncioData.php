@@ -9,6 +9,7 @@ use Anuncios\AnuncioBundle\Entity\Campaign;
 use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Resource;
+use Anuncios\AnuncioBundle\Entity\Sector;
 
 class LoadAnuncioData implements FixtureInterface
 {
@@ -41,11 +42,22 @@ class LoadAnuncioData implements FixtureInterface
     	$category[4] = $categories4->setName('Exterior');
     	$category[5] = $categories5->setName('Internet');
     	
+    	$sector1 = new Sector();
+    	$sector2 = new Sector();
+    	$sector3 = new Sector();
+    	$sector[1] = $sector1->setName('Administración/Organismos públicos');
+    	$sector[2] = $sector2->setName('Agricultura');
+    	$sector[3] = $sector3->setName('Alimentación');
+    	
     	$manager->persist($category[1]);
     	$manager->persist($category[2]);
     	$manager->persist($category[3]);
     	$manager->persist($category[4]);
     	$manager->persist($category[5]);
+    	
+    	$manager->persist($sector[1]);
+    	$manager->persist($sector[2]);
+    	$manager->persist($sector[3]);
     	
     	for($i=1;$i<=5;$i++)
     	{

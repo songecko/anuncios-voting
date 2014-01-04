@@ -1,0 +1,41 @@
+{% macro list(sector) %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'GeckoBackendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'GeckoBackendBundle:Macros:misc.html.twig' as misc %}
+
+{% if sector|length > 0 %}
+<table id="users" class="table">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
+            <th>{{ sylius_resource_sort('name', 'gecko.backend.name'|trans) }}</th>
+            <th>{{ sylius_resource_sort('name', 'gecko.backend.is_active'|trans) }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sector in sectors %}
+        <tr id="{{ sector.id }}">
+            <td>{{ sector.id }}</td>
+            <td>{{ sector.name }}</td>
+            {% if sector.isActive %}
+            	<td>Si</td>
+            {% else %}
+            	<td>No</td>
+            {% endif %}
+            <td>
+                <div class="pull-right">
+                    {{ buttons.edit(path('anuncios_anuncio_backend_sector_update', {'id': sector.id})) }}
+                    {{ buttons.delete(path('anuncios_anuncio_backend_sector_delete', {'id': sector.id})) }}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+{{ alerts.info('gecko.backend.no_results'|trans) }}
+{% endif %}
+
+{% endmacro %}

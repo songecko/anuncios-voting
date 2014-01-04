@@ -39,6 +39,10 @@ class BackendMenuBuilder
             'labelAttributes' => array('icon' => 'icon-barcode'),
         ))->setLabel("Anuncios");
         
+        $menu->addChild('sector', array(
+        		'route' => 'anuncios_anuncio_backend_sector_index',
+        		'labelAttributes' => array('icon' => 'icon-barcode'),
+        ))->setLabel("Sector");
         
         return $menu;
     }
