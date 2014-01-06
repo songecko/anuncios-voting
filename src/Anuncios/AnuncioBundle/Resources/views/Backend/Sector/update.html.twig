@@ -16,7 +16,7 @@
 
 {{ form_errors(form) }}
 
-<form action="{{ path('anuncios_anuncio_backend_sector_update', {'id': campaign.id}) }}" method="post" class="form-horizontal" enctype="multipart/form-data" novalidate>
+<form action="{{ path('anuncios_anuncio_backend_sector_update', {'id': sector.id}) }}" method="post" class="form-horizontal" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="_method" value="PUT">
     {% include 'AnunciosAnuncioBundle:Backend/Sector:_form.html.twig' %}
     {{ update() }}
