@@ -33,9 +33,11 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
         votoJurado:
             type: integer
             nullable: true
+            column: voto_jurado
         votoUsuario:
             type: integer
             nullable: true
+            column: voto_usuario
     manyToOne:
         category:
             targetEntity: Category

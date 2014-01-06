@@ -106,3 +106,8 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Anuncios\AnuncioBundle\Entity\Sector
+                
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Anuncios\AnuncioBundle\Entity\User

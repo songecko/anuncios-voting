@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends Controller
 {
@@ -44,5 +45,33 @@ class MainController extends Controller
     	$resources = $anuncio->getResources();
     	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array('anuncio' => $anuncio, 'category' => $category, 'resources' => $resources));
+    }
+    
+    public function voteAction($id)
+    {
+    	$manager = $this->getDoctrine()->getManager();
+    	
+    	$anuncio = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+    		->find($id);
+    	
+    	$votoJurado = $anuncio->getVotoJurado() + 1;
+    	$votoUsuario = $anuncio->getVotoUsuario() + 1;
+    	
+    	$anuncio->setVotoJurado($votoJurado);
+    	$anuncio->setVotoUsuario($votoUsuario);
+    	
+    	$manager->persist($anuncio);
+    	
+    	$manager->flush();
+    	
+    	$this->get('session')->getFlashBag()->add(
+    			'notice',
+    			'Se ha votado correctamente.'
+    	);
+    	
+    	return $this->forward('AnunciosAnuncioBundle:Frontend/Main:show', array(
+    			'id'  => $id
+    	));
     }
 }

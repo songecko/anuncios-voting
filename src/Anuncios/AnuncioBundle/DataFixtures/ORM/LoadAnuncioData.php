@@ -24,7 +24,7 @@ class LoadAnuncioData implements FixtureInterface
     }
 	
     public function load(ObjectManager $manager)
-    {
+    {    	
     	$campaign = new Campaign();
     	$campaign->setName('CampaÃ±a 1');
     	$campaign->setIsActive(true);
@@ -45,9 +45,9 @@ class LoadAnuncioData implements FixtureInterface
     	$sector1 = new Sector();
     	$sector2 = new Sector();
     	$sector3 = new Sector();
-    	$sector[1] = $sector1->setName('Administración/Organismos públicos');
+    	$sector[1] = $sector1->setName('Administraciï¿½n/Organismos pï¿½blicos');
     	$sector[2] = $sector2->setName('Agricultura');
-    	$sector[3] = $sector3->setName('Alimentación');
+    	$sector[3] = $sector3->setName('Alimentaciï¿½n');
     	
     	$manager->persist($category[1]);
     	$manager->persist($category[2]);

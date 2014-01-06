@@ -1,3 +1,9 @@
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div style="color:red" class="flash-notice">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+<br />
 {{ category.name }}
 <br>
 <br>
@@ -28,3 +34,6 @@ Imagen:
 {% for resource in resources %}
 	<a href="{{ resource.link }}">Ver Pieza</a>
 {% endfor %}
+<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}">Votar</a>
+<br />
+Votos: {{ anuncio.votoJurado+anuncio.votoUsuario }}
