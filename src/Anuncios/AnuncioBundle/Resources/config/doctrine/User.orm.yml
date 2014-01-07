@@ -14,4 +14,8 @@ Anuncios\AnuncioBundle\Entity\User:
         isUsuario:
             type: boolean
             column: is_usuario
+    oneToMany:
+        voting:
+            targetEntity: Voting
+            mappedBy: user
     lifecycleCallbacks: {  }

@@ -34,6 +34,10 @@ Imagen:
 {% for resource in resources %}
 	<a href="{{ resource.link }}">Ver Pieza</a>
 {% endfor %}
-<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}">Votar</a>
+{% if(hasVoting) %}
+	Votado
+{% else %}
+	<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}">Votar</a>
+{% endif %}
 <br />
 Votos: {{ anuncio.votoJurado+anuncio.votoUsuario }}

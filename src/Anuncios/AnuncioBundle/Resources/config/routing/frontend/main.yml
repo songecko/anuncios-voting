@@ -7,13 +7,13 @@ anuncios_anuncio_home:
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:home }
     
 anuncios_anuncio_category:
-    pattern:  /home/category/{id}
+    pattern:  /category/{id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:category }
     
 anuncios_anuncio_show:
-    pattern:  /home/anuncio/show/{id}
+    pattern:  /anuncio/show/{id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:show }
     
 anuncios_anuncio_vote:
-    pattern: /home/anuncio/{id}/vote
+    pattern: /anuncio/{id}/vote
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:vote }

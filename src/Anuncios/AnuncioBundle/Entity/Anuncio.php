@@ -23,6 +23,7 @@ class Anuncio implements ImageInterface
     private $category;
     private $campaign;
     private $resources;
+    private $voting;
     private $votoJurado;
     private $votoUsuario;
 
@@ -240,5 +241,22 @@ class Anuncio implements ImageInterface
     public function getVotoUsuario()
     {
         return $this->votoUsuario;
+    }
+
+    public function addVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
+    {
+        $this->voting[] = $voting;
+    
+        return $this;
+    }
+
+    public function removeVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
+    {
+        $this->voting->removeElement($voting);
+    }
+
+    public function getVoting()
+    {
+        return $this->voting;
     }
 }

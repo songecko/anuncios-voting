@@ -57,4 +57,7 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
         resources:
             targetEntity: Resource
             mappedBy: anuncio
+        voting:
+            targetEntity: Voting
+            mappedBy: anuncio
     lifecycleCallbacks: {  }

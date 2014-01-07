@@ -1,0 +1,26 @@
+Anuncios\AnuncioBundle\Entity\Voting:
+    type: entity
+    repositoryClass: Anuncios\AnuncioBundle\Entity\VotingRepository
+    table: voting
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: voting
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+                onDelete: CASCADE
+        anuncio:
+            targetEntity: Anuncio
+            inversedBy: voting
+            joinColumn:
+                name: anuncio_id
+                referencedColumnName: id
+                onDelete: CASCADE
+    lifecycleCallbacks: {  }

@@ -241,4 +241,42 @@ class Anuncio implements ImageInterface
     {
         return $this->votoUsuario;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $voting;
+
+
+    /**
+     * Add voting
+     *
+     * @param \Anuncios\AnuncioBundle\Entity\Voting $voting
+     * @return Anuncio
+     */
+    public function addVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
+    {
+        $this->voting[] = $voting;
+    
+        return $this;
+    }
+
+    /**
+     * Remove voting
+     *
+     * @param \Anuncios\AnuncioBundle\Entity\Voting $voting
+     */
+    public function removeVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
+    {
+        $this->voting->removeElement($voting);
+    }
+
+    /**
+     * Get voting
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVoting()
+    {
+        return $this->voting;
+    }
 }

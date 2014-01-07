@@ -5,6 +5,7 @@ namespace Anuncios\AnuncioBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory as FakerFactory;
+use Anuncios\AnuncioBundle\Entity\User;
 use Anuncios\AnuncioBundle\Entity\Campaign;
 use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
@@ -24,7 +25,40 @@ class LoadAnuncioData implements FixtureInterface
     }
 	
     public function load(ObjectManager $manager)
-    {    	
+    {
+    	$userAdmin = new User();
+    	$userAdmin->setUsername('admin');
+    	$userAdmin->setEmail('admin@anuncio.com');
+    	$userAdmin->setPlainPassword('123456');
+    	$userAdmin->setEnabled(true);
+    	$userAdmin->setRoles(array('ROLE_ADMIN'));
+    	$userAdmin->setIsJurado(false);
+    	$userAdmin->setIsUsuario(false);
+    	
+    	$manager->persist($userAdmin);
+    	
+    	$userJurado = new User();
+    	$userJurado->setUsername('jurado');
+    	$userJurado->setEmail('jurado@anuncio.com');
+    	$userJurado->setPlainPassword('123456');
+    	$userJurado->setEnabled(true);
+    	$userJurado->setRoles(array('ROLE_USER'));
+    	$userJurado->setIsJurado(true);
+    	$userJurado->setIsUsuario(false);
+    	 
+    	$manager->persist($userJurado);
+    	
+    	$userUsuario = new User();
+    	$userUsuario->setUsername('usuario');
+    	$userUsuario->setEmail('usuario@anuncio.com');
+    	$userUsuario->setPlainPassword('123456');
+    	$userUsuario->setEnabled(true);
+    	$userUsuario->setRoles(array('ROLE_USER'));
+    	$userUsuario->setIsJurado(false);
+    	$userUsuario->setIsUsuario(true);
+    	
+    	$manager->persist($userUsuario);
+    	
     	$campaign = new Campaign();
     	$campaign->setName('Campaña 1');
     	$campaign->setIsActive(true);

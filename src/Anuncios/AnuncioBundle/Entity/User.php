@@ -13,6 +13,7 @@ class User extends BaseUser
     protected $id;
     private $isJurado;
     private $isUsuario;
+    private $voting;
 
     public function getId()
     {
@@ -41,5 +42,29 @@ class User extends BaseUser
     public function getIsUsuario()
     {
         return $this->isUsuario;
+    }
+
+    public function __construct()
+    {
+        $this->voting = new \Doctrine\Common\Collections\ArrayCollection();
+        
+        parent::__construct();
+    }
+    
+    public function addVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
+    {
+        $this->voting[] = $voting;
+    
+        return $this;
+    }
+
+    public function removeVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
+    {
+        $this->voting->removeElement($voting);
+    }
+
+    public function getVoting()
+    {
+        return $this->voting;
     }
 }
