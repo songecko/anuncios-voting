@@ -22,6 +22,7 @@ class Anuncio implements ImageInterface
     private $file;
     private $category;
     private $campaign;
+    private $sector;
     private $resources;
     private $voting;
     private $votoJurado;
@@ -219,6 +220,18 @@ class Anuncio implements ImageInterface
         return $this->campaign;
     }
 
+    public function setSector(\Anuncios\AnuncioBundle\Entity\Sector $sector = null)
+    {
+    	$this->sector = $sector;
+    
+    	return $this;
+    }
+    
+    public function getSector()
+    {
+    	return $this->sector;
+    }
+    
     public function setVotoJurado($votoJurado)
     {
         $this->votoJurado = $votoJurado;

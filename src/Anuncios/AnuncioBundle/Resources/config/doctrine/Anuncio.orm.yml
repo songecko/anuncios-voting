@@ -53,6 +53,13 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
                 name: campaign_id
                 referencedColumnName: id
                 onDelete: CASCADE
+        sector:
+            targetEntity: Sector
+            inversedBy: anuncios
+            joinColumn:
+                name: sector_id
+                referencedColumnName: id
+                onDelete: CASCADE
     oneToMany:
         resources:
             targetEntity: Resource
