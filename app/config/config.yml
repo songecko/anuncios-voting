@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [GeckoBackendBundle]
+    bundles:        [GeckoBackendBundle, FOSUserBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -109,5 +109,5 @@ sylius_resource:
                 
 fos_user:
     db_driver: orm
-    firewall_name: main
+    firewall_name: admin
     user_class: Anuncios\AnuncioBundle\Entity\User

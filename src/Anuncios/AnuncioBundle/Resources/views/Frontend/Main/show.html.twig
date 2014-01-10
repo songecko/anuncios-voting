@@ -1,43 +1,49 @@
-{% for flashMessage in app.session.flashbag.get('notice') %}
-    <div style="color:red" class="flash-notice">
-        {{ flashMessage }}
-    </div>
-{% endfor %}
-<br />
-{{ category.name }}
-<br>
-<br>
-{{ anuncio.name }}
-<br />
-<br />
-Agencia: {{ anuncio.agency }}
-<br />
-Anunciante: {{ anuncio.advertiser }}
-<br />
-Producto: {{ anuncio.product }}
-<br />
-Marca: {{ anuncio.brand }}
-<br />
-Otros campos:
-<br />
-<br />
-{% for key, value in anuncio.otherFields %}
-{{ key }}:{{ value }}
-<br />
-{% endfor %}
-<br />
-Imagen: 
-<br />
-<img src="{{ anuncio.image }}" />
-<br />
-<br />
-{% for resource in resources %}
-	<a href="{{ resource.link }}">Ver Pieza</a>
-{% endfor %}
-{% if(hasVoting) %}
-	Votado
-{% else %}
-	<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}">Votar</a>
-{% endif %}
-<br />
-Votos: {{ anuncio.votoJurado+anuncio.votoUsuario }}
+{% extends 'AnunciosAnuncioBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+	{{ parent() }}
+	<br />
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+	    <div style="color:red" class="flash-notice">
+	        {{ flashMessage }}
+	    </div>
+	{% endfor %}
+	<br />
+	{{ category.name }}
+	<br>
+	<br>
+	{{ anuncio.name }}
+	<br />
+	<br />
+	Agencia: {{ anuncio.agency }}
+	<br />
+	Anunciante: {{ anuncio.advertiser }}
+	<br />
+	Producto: {{ anuncio.product }}
+	<br />
+	Marca: {{ anuncio.brand }}
+	<br />
+	Otros campos:
+	<br />
+	<br />
+	{% for key, value in anuncio.otherFields %}
+	{{ key }}:{{ value }}
+	<br />
+	{% endfor %}
+	<br />
+	Imagen: 
+	<br />
+	<img src="{{ anuncio.image }}" />
+	<br />
+	<br />
+	{% for resource in resources %}
+		<a href="{{ resource.link }}">Ver Pieza</a>
+	{% endfor %}
+	{% if(hasVoting) %}
+		Votado
+	{% else %}
+		<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}">Votar</a>
+	{% endif %}
+	<br />
+	Votos: {{ anuncio.votoJurado+anuncio.votoUsuario }}
+{% endblock %}

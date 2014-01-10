@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "298b69147aaea36450a5209ad41cfd9f",
+    "hash": "3872b82dea41d37b8d732eb987654ef1",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -43,7 +43,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -185,7 +185,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -646,7 +646,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1749,6 +1749,68 @@
                 "psr-3"
             ],
             "time": "2013-11-14 19:48:31"
+        },
+        {
+            "name": "noiselabs/nusoap-bundle",
+            "version": "dev-master",
+            "target-dir": "NoiseLabs/Bundle/NuSOAPBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/noiselabs/NoiselabsNuSOAPBundle.git",
+                "reference": "ff18964f6ff51e1f75ec5e7a486cc2dab8c97eea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/noiselabs/NoiselabsNuSOAPBundle/zipball/ff18964f6ff51e1f75ec5e7a486cc2dab8c97eea",
+                "reference": "ff18964f6ff51e1f75ec5e7a486cc2dab8c97eea",
+                "shasum": ""
+            },
+            "require": {
+                "nusphere/nusoap": "0.9.5",
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": ">=2.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "NoiseLabs\\Bundle\\NuSOAPBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vítor Brandão",
+                    "email": "noisebleed@noiselabs.org",
+                    "homepage": "http://blog.noiselabs.org"
+                }
+            ],
+            "description": "Symfony2 bundle for NuSOAP - SOAP Toolkit for PHP",
+            "homepage": "https://github.com/noiselabs/NoiselabsNuSOAPBundle",
+            "keywords": [
+                "noiselabs",
+                "soap",
+                "symfony"
+            ],
+            "time": "2013-11-26 00:12:48"
+        },
+        {
+            "name": "nusphere/nusoap",
+            "version": "0.9.5",
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.sourceforge.net/project/nusoap/nusoap/0.9.5/nusoap-0.9.5.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            }
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -3129,7 +3191,8 @@
     "stability-flags": {
         "raulfraile/ladybug-bundle": 20,
         "knplabs/gaufrette": 20,
-        "knplabs/knp-gaufrette-bundle": 20
+        "knplabs/knp-gaufrette-bundle": 20,
+        "noiselabs/nusoap-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -1,3 +1,11 @@
+anuncios_anuncio_login:
+    pattern: /login
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Security:login }
+    
+anuncios_anuncio_logout:
+    pattern: /logout
+    defaults: { _controller: FosUserBundle:Security:logout }
+
 anuncios_anuncio_index:
     pattern:  /
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:index }

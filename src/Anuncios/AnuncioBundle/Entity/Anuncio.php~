@@ -22,7 +22,9 @@ class Anuncio implements ImageInterface
     private $file;
     private $category;
     private $campaign;
+    private $sector;
     private $resources;
+    private $voting;
     private $votoJurado;
     private $votoUsuario;
 
@@ -218,6 +220,18 @@ class Anuncio implements ImageInterface
         return $this->campaign;
     }
 
+    public function setSector(\Anuncios\AnuncioBundle\Entity\Sector $sector = null)
+    {
+    	$this->sector = $sector;
+    
+    	return $this;
+    }
+    
+    public function getSector()
+    {
+    	return $this->sector;
+    }
+    
     public function setVotoJurado($votoJurado)
     {
         $this->votoJurado = $votoJurado;
@@ -241,18 +255,7 @@ class Anuncio implements ImageInterface
     {
         return $this->votoUsuario;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $voting;
 
-
-    /**
-     * Add voting
-     *
-     * @param \Anuncios\AnuncioBundle\Entity\Voting $voting
-     * @return Anuncio
-     */
     public function addVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
     {
         $this->voting[] = $voting;
@@ -260,21 +263,11 @@ class Anuncio implements ImageInterface
         return $this;
     }
 
-    /**
-     * Remove voting
-     *
-     * @param \Anuncios\AnuncioBundle\Entity\Voting $voting
-     */
     public function removeVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
     {
         $this->voting->removeElement($voting);
     }
 
-    /**
-     * Get voting
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
     public function getVoting()
     {
         return $this->voting;

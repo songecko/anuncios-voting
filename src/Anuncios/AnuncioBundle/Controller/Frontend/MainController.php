@@ -27,17 +27,25 @@ class MainController extends Controller
     
     public function categoryAction($id)
     {
+    	$categories = $this->getDoctrine()
+    	->getRepository('AnunciosAnuncioBundle:Category')
+    	->findAll();
+    	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
     		->find($id);
     	
     	$anuncios = $category->getAnuncios();
     	
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array('category' => $category, 'anuncios' => $anuncios));
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array('categories' => $categories, 'category' => $category, 'anuncios' => $anuncios));
     }
     
 	public function showAction($id)
     {
+    	$categories = $this->getDoctrine()
+    	->getRepository('AnunciosAnuncioBundle:Category')
+    	->findAll();
+    	
     	$user = $this->getUser();
     	
     	$manager = $this->getDoctrine()->getManager();
@@ -52,7 +60,7 @@ class MainController extends Controller
     	$hasVoting = $manager->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
     	    	
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array('anuncio' => $anuncio, 'category' => $category, 'resources' => $resources, 'hasVoting' => $hasVoting));
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array('categories' => $categories, 'anuncio' => $anuncio, 'category' => $category, 'resources' => $resources, 'hasVoting' => $hasVoting));
     }
     
     public function voteAction($id)
@@ -82,7 +90,7 @@ class MainController extends Controller
     	{
     		$anuncio->setVotoJurado($votoJurado);
     	}
-    	if($user->getIsUsuario())
+    	else
     	{
     		$anuncio->setVotoUsuario($votoUsuario);
     	}

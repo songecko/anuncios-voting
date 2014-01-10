@@ -33,7 +33,6 @@ class LoadAnuncioData implements FixtureInterface
     	$userAdmin->setEnabled(true);
     	$userAdmin->setRoles(array('ROLE_ADMIN'));
     	$userAdmin->setIsJurado(false);
-    	$userAdmin->setIsUsuario(false);
     	
     	$manager->persist($userAdmin);
     	
@@ -44,7 +43,6 @@ class LoadAnuncioData implements FixtureInterface
     	$userJurado->setEnabled(true);
     	$userJurado->setRoles(array('ROLE_USER'));
     	$userJurado->setIsJurado(true);
-    	$userJurado->setIsUsuario(false);
     	 
     	$manager->persist($userJurado);
     	
@@ -55,7 +53,6 @@ class LoadAnuncioData implements FixtureInterface
     	$userUsuario->setEnabled(true);
     	$userUsuario->setRoles(array('ROLE_USER'));
     	$userUsuario->setIsJurado(false);
-    	$userUsuario->setIsUsuario(true);
     	
     	$manager->persist($userUsuario);
     	

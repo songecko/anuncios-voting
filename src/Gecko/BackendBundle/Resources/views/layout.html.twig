@@ -13,7 +13,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('bundles/geckonestle/images/favicon.png') }}" />
         
         {% block stylesheets %}
-            {% stylesheets output='assets/compiled/backend.css' filter='cssrewrite'
+            {% stylesheets output='admin/css/backend.css' filter='cssrewrite'
                 '//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.css'
                 '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
                 '@GeckoBackendBundle/Resources/assets/css/backend.css'
@@ -69,7 +69,7 @@
 
         {# javascripts... #}
         {% block javascripts %}
-        {% javascripts output='assets/compiled/backend.js'
+        {% javascripts output='admin/css/backend.js'
             '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
             '//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js'
             '@GeckoBackendBundle/Resources/assets/js/jquery.blueimp-gallery.min.js'

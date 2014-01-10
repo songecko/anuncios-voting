@@ -1,3 +1,6 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    
 gecko_backend_index:
     pattern: /
     defaults:
@@ -12,6 +15,3 @@ gecko_backend_dashboard:
 #sylius_backend_settings:
 #    resource: @SyliusWebBundle/Resources/config/routing/backend/settings.yml
 #    prefix: /settings
-
-gecko_backend_security:
-    resource: @GeckoBackendBundle/Resources/config/routing/security.yml

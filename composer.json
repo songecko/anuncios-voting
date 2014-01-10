@@ -27,8 +27,25 @@
 		"knplabs/gaufrette": "dev-master",
         "knplabs/knp-gaufrette-bundle": "dev-master",
         "liip/imagine-bundle": "~0.9",
-        "friendsofsymfony/user-bundle": "~1.3"
+        "friendsofsymfony/user-bundle": "~1.3",
+        "noiselabs/nusoap-bundle": "dev-master"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "nusphere/nusoap",
+                "version": "0.9.5",
+                "dist": {
+                    "url": "http://downloads.sourceforge.net/project/nusoap/nusoap/0.9.5/nusoap-0.9.5.zip",
+                    "type": "zip"
+                },
+                "autoload": {
+                    "classmap": ["lib/"]
+                }
+            }
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",

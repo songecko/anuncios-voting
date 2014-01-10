@@ -26,6 +26,7 @@ class AppKernel extends Kernel
         	new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
         	new Liip\ImagineBundle\LiipImagineBundle(),
         	new FOS\UserBundle\FOSUserBundle(),
+        	new NoiseLabs\Bundle\NuSOAPBundle\NoiseLabsNuSOAPBundle(),
             new Anuncios\AnuncioBundle\AnunciosAnuncioBundle(),
             new Gecko\BackendBundle\GeckoBackendBundle(),
         );

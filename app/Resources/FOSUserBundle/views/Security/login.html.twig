@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+                {{ 'Admin Anuncios' }}
+            {% endblock %}
+        </title>
+        {% block stylesheets %}
+            {% stylesheets output='admin/css/backend.css' filter='cssrewrite'
+                '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'
+                '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
+                '@GeckoBackendBundle/Resources/assets/css/backend.css'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+            {% endstylesheets %}
+        {% endblock %}
+    </head>
+    <body class="signin">
+        <form method="post" action="{{ path('fos_user_security_check') }}" class="form-signin">
+            <img src="{{ asset('bundles/geckobackend/images/logo.png') }}" class="swan" />
+			
+			{% if error %}
+                <div class="alert alert-danger">
+					{{ error|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endif %}
+
+            <input type="text" name="_username" class="form-control input-lg" placeholder="{{ 'Usuario' }}"><br>
+            <input type="password" name="_password" class="form-control input-lg" placeholder="{{ 'Contraseña' }}">
+            <hr>
+            <button class="btn btn-block btn-lg btn-success" type="submit">{{ 'Entrar' }}</button>
+        </form>
+    </body>
+</html>

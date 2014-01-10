@@ -32,18 +32,6 @@ class User extends BaseUser
         return $this->isJurado;
     }
 
-    public function setIsUsuario($isUsuario)
-    {
-        $this->isUsuario = $isUsuario;
-    
-        return $this;
-    }
-
-    public function getIsUsuario()
-    {
-        return $this->isUsuario;
-    }
-
     public function __construct()
     {
         $this->voting = new \Doctrine\Common\Collections\ArrayCollection();
@@ -66,5 +54,89 @@ class User extends BaseUser
     public function getVoting()
     {
         return $this->voting;
+    }
+    /**
+     * @var integer
+     */
+    private $userId;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $surname;
+
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return User
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     * @return User
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+    
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string 
+     */
+    public function getSurname()
+    {
+        return $this->surname;
     }
 }
