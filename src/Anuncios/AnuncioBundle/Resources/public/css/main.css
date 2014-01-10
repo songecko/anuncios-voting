@@ -8,8 +8,8 @@
 
 #header ul.date {
 	float: left;
-	width: 290px;
-	margin: 25px 0 0 90px;
+	width: 270px;
+	margin: 25px 0 0 70px;
 	font-size: 12px;
 }
 
@@ -24,7 +24,7 @@
 
 #header ul.menu {
 	float: right;
-	margin-top: 25px;
+	margin-top: 27px;
 	font-size: 11px;
 }
 
@@ -62,4 +62,33 @@
 #mainMenu li:hover a {
 	color: #000000;
 	text-decoration: none;
+}
+
+#content .anunciosList {
+	margin-top: 30px;
+}
+
+#content .anunciosList .anuncio {
+	float: left;
+	width: 226px;
+	margin: 0 20px 35px 0;
+}
+
+#content .anunciosList .anuncio p.sector {
+	text-transform: uppercase;
+	margin-bottom: 3px;
+}
+
+#content .anunciosList .anuncio p.name {
+	font-size: 16px;
+	font-weight: bold;
+	margin: 10px 0 0 0;
+}
+
+#content .anunciosList .anuncio p.name a {
+	color: #000000;
+}
+
+#content .anunciosList .anuncio p.subname {
+	margin: 0;
 }

@@ -18,3 +18,6 @@ app/config/parameters.yml
 .settings
 .buildpath
 .project
+
+#Others
+.DS_Store

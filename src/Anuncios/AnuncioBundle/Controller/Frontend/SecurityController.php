@@ -96,7 +96,7 @@ class SecurityController extends Controller
 
 						$securityContext->setToken($token);
 						
-						return $this->redirect($this->generateUrl('anuncios_anuncio_home'));
+						return $this->redirect($this->generateUrl('anuncios_anuncio_index'));
 					}
 				}
 			}

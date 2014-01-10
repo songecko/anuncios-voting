@@ -13,17 +13,12 @@ class MainController extends Controller
 {
 	public function indexAction()
 	{		
-		return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig');
-	}
-	
-    public function homeAction()
-    {
-    	$categories = $this->getDoctrine()
+		$categories = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
     		->findAll();
     		
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:home.html.twig', array('categories' => $categories));
-    }
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array('categories' => $categories));
+	}
     
     public function categoryAction($id)
     {
