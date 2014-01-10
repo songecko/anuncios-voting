@@ -1,12 +1,17 @@
-{% extends 'AnunciosAnuncioBundle:Frontend:layout.html.twig' %}
+{% extends 'AnunciosAnuncioBundle:Frontend:layoutPortada.html.twig' %}
+
+{% block title %}Ingresar - Votación Anuncios.com{% endblock %}
 
 {% block content %}
-{% if(error) %}
-	{{ message }}
-{% endif %}
+	<img src="{{ asset('bundles/anunciosanuncio/images/portada-vota-ultimo-mes.jpg') }}" class="title img-responsive">
 	<form action="{{ path("anuncios_anuncio_login") }}" method="post">
-		<p>Email: <input type="text" name="username" value="pruebas@pruebas.es"></p>
-		<p>Password: <input type="password" name="password"></p>
-		<p><button type="submit" name="send">Enviar</button></p>
+		{% if(error) %}
+		<p class="error">{{ message }}</p>
+		{% endif %}
+		<fieldset>
+			<p><input type="text" name="username" placeholder="Usuario"></p>
+			<p><input type="password" name="password" placeholder="Contraseña"></p>	
+		</fieldset>
+		<button type="submit" name="send"></button>
 	</form>
 {% endblock %}

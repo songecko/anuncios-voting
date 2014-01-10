@@ -1,0 +1,87 @@
+html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #989898;
+}
+
+a, a:hover {
+	color: #989898;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus, button:focus {   
+	border-color: none;
+	box-shadow: 0;
+	outline: 0 none;
+}
+
+#header {
+	margin: 10px 0 25px 0;
+}
+
+#header .logo {
+	float: left;	
+}
+
+#header ul.date {
+	float: left;
+	width: 290px;
+	margin: 25px 0 0 90px;
+	font-size: 12px;
+}
+
+#header ul.date li {
+	float: left;
+	margin-right: 5px;
+}
+
+#header ul.date li:first-child {
+	margin: 2px 10px 0 0;
+}
+
+#header ul.menu {
+	float: right;
+	margin-top: 25px;
+	font-size: 11px;
+}
+
+#header ul.menu li {
+	float: left;
+	padding: 0 8px;
+	border-right: 1px solid #989898;
+}
+
+#header ul.menu li:last-child {
+	padding-right: 0;
+	border-right: none;
+}
+
+#mainMenu {
+	width: 100%;
+	border-top: 1px solid #989898;
+	border-bottom: 1px solid #989898;
+	padding: 0 8px;
+	font-size: 12px;
+}
+
+#mainMenu li {
+	float: left;
+	margin-right: 15px;
+	padding: 8px 0;
+	font-weight: bold;
+}
+
+#mainMenu li:hover {
+	border-bottom: 3px solid #000000;
+	padding-bottom: 5px;
+}
+
+#mainMenu li:hover a {
+	color: #000000;
+	text-decoration: none;
+}
