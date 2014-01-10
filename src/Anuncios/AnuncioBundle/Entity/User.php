@@ -11,8 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends BaseUser
 {
     protected $id;
+    private $userId;
+    private $name;
+    private $surname;
     private $isJurado;
-    private $isUsuario;
     private $voting;
 
     public function getId()
@@ -36,6 +38,8 @@ class User extends BaseUser
     {
         $this->voting = new \Doctrine\Common\Collections\ArrayCollection();
         
+        $this->isJurado = false;
+        
         parent::__construct();
     }
     
@@ -55,51 +59,19 @@ class User extends BaseUser
     {
         return $this->voting;
     }
-    /**
-     * @var integer
-     */
-    private $userId;
 
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $surname;
-
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return User
-     */
     public function setUserId($userId)
     {
         $this->userId = $userId;
     
         return $this;
     }
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
+    
     public function getUserId()
     {
         return $this->userId;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
     public function setName($name)
     {
         $this->name = $name;
@@ -107,22 +79,11 @@ class User extends BaseUser
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
     public function getName()
     {
         return $this->name;
     }
-
-    /**
-     * Set surname
-     *
-     * @param string $surname
-     * @return User
-     */
+    
     public function setSurname($surname)
     {
         $this->surname = $surname;
@@ -130,11 +91,6 @@ class User extends BaseUser
         return $this;
     }
 
-    /**
-     * Get surname
-     *
-     * @return string 
-     */
     public function getSurname()
     {
         return $this->surname;

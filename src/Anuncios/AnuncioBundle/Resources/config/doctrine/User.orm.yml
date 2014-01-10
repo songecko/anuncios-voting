@@ -14,12 +14,15 @@ Anuncios\AnuncioBundle\Entity\User:
         name:
             type: string
             length: 255
+            nullable: true
         surname:
             type: string
             length: 255
+            nullable: true
         isJurado:
             type: boolean
             column: is_jurado
+            default: false
     oneToMany:
         voting:
             targetEntity: Voting
