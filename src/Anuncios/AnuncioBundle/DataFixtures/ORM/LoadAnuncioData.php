@@ -27,6 +27,7 @@ class LoadAnuncioData implements FixtureInterface
     public function load(ObjectManager $manager)
     {
     	$userAdmin = new User();
+    	$userAdmin->setUserId(1);
     	$userAdmin->setUsername('admin');
     	$userAdmin->setEmail('admin@anuncio.com');
     	$userAdmin->setPlainPassword('123456');
@@ -37,6 +38,7 @@ class LoadAnuncioData implements FixtureInterface
     	$manager->persist($userAdmin);
     	
     	$userJurado = new User();
+    	$userJurado->setUserId(2);
     	$userJurado->setUsername('jurado');
     	$userJurado->setEmail('jurado@anuncio.com');
     	$userJurado->setPlainPassword('123456');
@@ -47,6 +49,7 @@ class LoadAnuncioData implements FixtureInterface
     	$manager->persist($userJurado);
     	
     	$userUsuario = new User();
+    	$userUsuario->setUserId(3);
     	$userUsuario->setUsername('usuario');
     	$userUsuario->setEmail('usuario@anuncio.com');
     	$userUsuario->setPlainPassword('123456');

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anuncios\AnuncioBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class SecurityController extends Controller
 {
@@ -63,21 +64,39 @@ class SecurityController extends Controller
 					}
 					else
 					{
-						$userid = $result->userID;
-						$name = $result->name;
-						$surname = $result->surname;
+						$userId = $result->userID;
+						$name = $result->Name;
+						$surname = $result->Surname;
 						
 						$user = $this->getDoctrine()
 							->getRepository('AnunciosAnuncioBundle:User')
-							->findOneByUserId($userid);
+							->findOneByUserId($userId);
 						
 						if(!$user)
 						{
 							$user = new User();
+							$user->setUserId($userId);
+							$user->setName($name);
+							$user->setSurname($surname);
+							$user->setUsername($_POST['username']);
+							$user->setEmail($_POST['username']);
+							$user->setPlainPassword($_POST['password']);
+							$user->setEnabled(true);
+							$user->setRoles(array('ROLE_USER'));
 							
+							$manager = $this->getDoctrine()->getManager();
+							$manager->persist($user);
+							$manager->flush();
 						}
 						
+						$providerKey = 'main';
+						$roles = $user->getRoles();
+						$securityContext = $this->get('security.context');
+						$token = new UsernamePasswordToken($user->getUsername(), $user->getPassword(), $providerKey, $roles);
+
+						$securityContext->setToken($token);
 						
+						return $this->redirect($this->generateUrl('anuncios_anuncio_home'));
 					}
 				}
 			}
