@@ -7,6 +7,7 @@ use Anuncios\AnuncioBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class SecurityController extends Controller
 {
@@ -92,9 +93,13 @@ class SecurityController extends Controller
 						$providerKey = 'main';
 						$roles = $user->getRoles();
 						$securityContext = $this->get('security.context');
-						$token = new UsernamePasswordToken($user->getUsername(), $user->getPassword(), $providerKey, $roles);
+						$token = new UsernamePasswordToken($user, null, $providerKey, $roles);
 
 						$securityContext->setToken($token);
+						
+						$request = $this->get("request");
+						$event = new InteractiveLoginEvent($request, $token);
+						$this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 						
 						return $this->redirect($this->generateUrl('anuncios_anuncio_index'));
 					}

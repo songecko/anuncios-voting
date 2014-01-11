@@ -41,6 +41,7 @@
 	{% endfor %}
 	{% if(hasVoting) %}
 		Votado
+		<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}">Desvotar</a>
 	{% else %}
 		<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}">Votar</a>
 	{% endif %}

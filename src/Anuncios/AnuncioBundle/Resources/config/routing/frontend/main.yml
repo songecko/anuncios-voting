@@ -21,3 +21,7 @@ anuncios_anuncio_show:
 anuncios_anuncio_vote:
     pattern: /anuncio/{id}/vote
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:vote }
+    
+anuncios_anuncio_desvote:
+    pattern: /anuncio/{id}/desvote
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:desvote }
