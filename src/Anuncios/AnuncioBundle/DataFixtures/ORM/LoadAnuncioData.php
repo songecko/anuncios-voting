@@ -79,9 +79,9 @@ class LoadAnuncioData implements FixtureInterface
     	$sector1 = new Sector();
     	$sector2 = new Sector();
     	$sector3 = new Sector();
-    	$sector[1] = $sector1->setName('Administraci�n/Organismos p�blicos');
+    	$sector[1] = $sector1->setName('Administración/Organismos públicos');
     	$sector[2] = $sector2->setName('Agricultura');
-    	$sector[3] = $sector3->setName('Alimentaci�n');
+    	$sector[3] = $sector3->setName('Alimentación');
     	
     	$manager->persist($category[1]);
     	$manager->persist($category[2]);

@@ -9,3 +9,7 @@ anuncios_anuncio_backend_anuncio:
 anuncios_anuncio_backend_sector:
     resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/sector.yml
     prefix: /sector
+
+anuncios_anuncio_backend_category:
+    resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/category.yml
+    prefix: /category

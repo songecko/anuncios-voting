@@ -1,0 +1,35 @@
+{% macro list(categories) %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'GeckoBackendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'GeckoBackendBundle:Macros:misc.html.twig' as misc %}
+
+{% if categories|length > 0 %}
+<table id="users" class="table">
+    <thead>
+        <tr>
+            <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
+            <th>{{ sylius_resource_sort('name', 'gecko.backend.name'|trans) }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr id="{{ category.id }}">
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td>
+                <div class="pull-right">
+                    {{ buttons.edit(path('anuncios_anuncio_backend_category_update', {'id': category.id})) }}
+                    {{ buttons.delete(path('anuncios_anuncio_backend_category_delete', {'id': category.id})) }}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+{{ alerts.info('gecko.backend.no_results'|trans) }}
+{% endif %}
+
+{% endmacro %}

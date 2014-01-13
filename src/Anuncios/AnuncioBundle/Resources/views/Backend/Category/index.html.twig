@@ -1,0 +1,26 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'GeckoBackendBundle:Macros:misc.html.twig' import pagination %}
+{% from 'AnunciosAnuncioBundle:Backend/Category:macros.html.twig' import list  %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li>{{ 'gecko.backend.breadcrumb.category.index'|trans }}</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="actions-menu">
+        {{ buttons.create(path('anuncios_anuncio_backend_category_create'), 'gecko.backend.create'|trans) }}
+    </div>
+    <h1><i class="icon-user"></i> {{ 'gecko.backend.category.index_header'|trans|raw }}</h1>
+</div>
+
+{#% render(url('sylius_backend_user_filter_form', {'criteria': app.request.query.get('criteria')})) %#}
+
+{{ list(categories)  }}
+{{ pagination(categories) }}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+anuncios_anuncio_backend_category_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: anuncios.controller.category:indexAction
+        _sylius:
+            template: AnunciosAnuncioBundle:Backend/Category:index.html.twig
+            paginate: 100
+            
+anuncios_anuncio_backend_category_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: anuncios.controller.category:createAction
+        _sylius:
+            template: AnunciosAnuncioBundle:Backend/Category:create.html.twig
+            redirect: anuncios_anuncio_backend_category_update
+
+anuncios_anuncio_backend_category_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: anuncios.controller.category:updateAction
+        _sylius:
+            template: AnunciosAnuncioBundle:Backend/Category:update.html.twig
+            redirect: anuncios_anuncio_backend_category_update
+
+anuncios_anuncio_backend_category_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: anuncios.controller.category:deleteAction
+        _sylius:
+            redirect: anuncios_anuncio_backend_category_index

@@ -44,8 +44,8 @@ gecko.backend:
         edit:          "Editar"
         campaign.index:   "Campañas"
         anuncio.index:   "Anuncios"
-        business.index: "Empresas"
-        newitem.index:   "Noticias"
+        sector.index:   "Sector"
+        category.index: "Categorias"
         slider.index:   "Slider de Inicio"
         sv.index:   "Valores Compartidos"
         
@@ -59,15 +59,15 @@ gecko.backend:
         update_header: "Editar anuncio"
         create_header: "Nuevo anuncio"
         
-    business:
-        index_header:  "Empresas"
-        update_header: "Editar empresa"
-        create_header: "Nueva empresa"
+    sector:
+        index_header:  "Sector"
+        update_header: "Editar sector"
+        create_header: "Nuevo sector"
 
-    newitem:
-        index_header:  "Noticias"
-        update_header: "Editar noticia"
-        create_header: "Nueva noticia"
+    category:
+        index_header:  "Categorias"
+        update_header: "Editar categoria"
+        create_header: "Nueva categoria"
 
     slider:
         index_header:  "Slider de Inicio"
