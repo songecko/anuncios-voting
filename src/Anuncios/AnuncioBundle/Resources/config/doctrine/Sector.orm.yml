@@ -11,6 +11,19 @@ Anuncios\AnuncioBundle\Entity\Sector:
         name:
             type: string
             length: 255
+        createdAt:
+            column: created_at
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: update
     oneToMany:
         anuncios:
             targetEntity: Anuncio

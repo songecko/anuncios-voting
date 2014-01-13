@@ -2,6 +2,7 @@
 
 namespace Anuncios\AnuncioBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,7 +13,14 @@ class Voting
     private $id;
     private $user;
     private $anuncio;
+    private $createdAt;
+    private $updatedAt;
 
+    public function __construct()
+    {
+    	$this->createdAt = new DateTime('now');
+    }
+    
     public function getId()
     {
         return $this->id;
@@ -40,5 +48,29 @@ class Voting
     public function getAnuncio()
     {
         return $this->anuncio;
+    }
+    
+    public function setCreatedAt($createdAt)
+    {
+    	$this->createdAt = $createdAt;
+    
+    	return $this;
+    }
+    
+    public function getCreatedAt()
+    {
+    	return $this->createdAt;
+    }
+    
+    public function setUpdatedAt($updatedAt)
+    {
+    	$this->updatedAt = $updatedAt;
+    
+    	return $this;
+    }
+    
+    public function getUpdatedAt()
+    {
+    	return $this->updatedAt;
     }
 }

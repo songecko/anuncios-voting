@@ -17,6 +17,19 @@ Anuncios\AnuncioBundle\Entity\Resource:
         name:
             type: string
             length: 255
+        createdAt:
+            column: created_at
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: update
     manyToOne:
         anuncio:
             targetEntity: Anuncio

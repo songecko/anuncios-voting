@@ -13,6 +13,19 @@ Anuncios\AnuncioBundle\Entity\Campaign:
         isActive:
             type: boolean
             column: is_active
+        createdAt:
+            column: created_at
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: update
     oneToMany:
         anuncios:
             targetEntity: Anuncio

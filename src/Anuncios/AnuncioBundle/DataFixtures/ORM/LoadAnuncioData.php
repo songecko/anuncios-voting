@@ -76,35 +76,42 @@ class LoadAnuncioData implements FixtureInterface
     	$category[4] = $categories4->setName('Exterior');
     	$category[5] = $categories5->setName('Internet');
     	
-    	$sector1 = new Sector();
-    	$sector2 = new Sector();
-    	$sector3 = new Sector();
-    	$sector[1] = $sector1->setName('Administración/Organismos públicos');
-    	$sector[2] = $sector2->setName('Agricultura');
-    	$sector[3] = $sector3->setName('Alimentación');
-    	
     	$manager->persist($category[1]);
     	$manager->persist($category[2]);
     	$manager->persist($category[3]);
     	$manager->persist($category[4]);
     	$manager->persist($category[5]);
     	
+    	$sector1 = new Sector();
+    	$sector2 = new Sector();
+    	$sector3 = new Sector();
+    	$sector4 = new Sector();
+    	$sector5 = new Sector();
+    	$sector[1] = $sector1->setName('Administración/Organismos públicos');
+    	$sector[2] = $sector2->setName('Agricultura');
+    	$sector[3] = $sector3->setName('Alimentación');
+    	$sector[4] = $sector4->setName('Automoción');
+    	$sector[5] = $sector5->setName('Bebidas');
+    	
     	$manager->persist($sector[1]);
     	$manager->persist($sector[2]);
     	$manager->persist($sector[3]);
+    	$manager->persist($sector[4]);
+    	$manager->persist($sector[5]);
     	
     	for($i=1;$i<=5;$i++)
     	{
 	        $anuncio = new Anuncio();
 	        $anuncio->setCampaign($campaign);
 	    	$anuncio->setCategory($category[$i]);
+	    	$anuncio->setSector($sector[$i]);
 	    	$anuncio->setName($this->faker->word);
 	    	$anuncio->setAgency($this->faker->word);
 	    	$anuncio->setAdvertiser($this->faker->word);
 	    	$anuncio->setProduct($this->faker->word);
 	    	$anuncio->setBrand($this->faker->word);
 	    	$anuncio->addOtherFields('prueba1', 'texto1');
-	    	$anuncio->setImage('prueba.jpg');
+	    	$anuncio->setImage('http://recursos.anuncios.com/files/470/92.jpg');
 	    	
 	    	$resource1 = new Resource();
 	    	$resource1->setAnuncio($anuncio);

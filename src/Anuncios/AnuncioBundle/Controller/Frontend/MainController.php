@@ -12,8 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 class MainController extends Controller
 {	
 	public function indexAction()
-	{		
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig');
+	{
+		$lastVotings = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Voting')
+			->getLastVoting(5);
+		
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array('lastVotings' => $lastVotings));
 	}
     
     public function categoryAction($id)
@@ -61,9 +65,9 @@ class MainController extends Controller
     	
     	if($hasVoting)
     	{
-    		return $this->forward('AnunciosAnuncioBundle:Frontend/Main:show', array(
+    		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
     				'id'  => $id
-    		));
+    		)));
     	}
     	
     	$votoJurado = $anuncio->getVotoJurado() + 1;
@@ -93,9 +97,9 @@ class MainController extends Controller
     			'Se ha votado correctamente.'
     	);
     	
-    	return $this->forward('AnunciosAnuncioBundle:Frontend/Main:show', array(
-    			'id'  => $id
-    	));
+    	return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
+    				'id'  => $id
+    	)));
     }
     
     public function desvoteAction($id)
@@ -113,9 +117,9 @@ class MainController extends Controller
     	 
     	if(!$hasVoting)
     	{
-    		return $this->forward('AnunciosAnuncioBundle:Frontend/Main:show', array(
+    		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
     				'id'  => $id
-    		));
+    		)));
     	}
     	
     	$votoJurado = $anuncio->getVotoJurado() - 1;
@@ -144,8 +148,8 @@ class MainController extends Controller
     			'Se ha desvotado correctamente.'
     	);
     	 
-    	return $this->forward('AnunciosAnuncioBundle:Frontend/Main:show', array(
-    			'id'  => $id
-    	));
+    	return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
+    				'id'  => $id
+    	)));
     }
 }

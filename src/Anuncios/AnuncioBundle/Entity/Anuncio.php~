@@ -189,6 +189,8 @@ class Anuncio implements ImageInterface
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
         $this->otherFields = array();
+        $this->votoJurado = 0;
+        $this->votoUsuario = 0;
     }
 
     public function addResource(\Anuncios\AnuncioBundle\Entity\Resource $resources)

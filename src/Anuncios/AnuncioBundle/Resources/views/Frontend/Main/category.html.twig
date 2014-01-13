@@ -1,11 +1,15 @@
 {% extends 'AnunciosAnuncioBundle:Frontend:layout.html.twig' %}
 
 {% block content %}
-	ANUNCIOS EN {{ category.name }}
-	<br />
-	<br />
+<div class="anunciosList clearfix">
+	<p style="font-size: 20px; color: red">ANUNCIOS EN {{ category.name }}</p>
 	{% for anuncio in anuncios %}
-		<img src="{{ anuncio.image }}" />
-		<a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}">{{ anuncio.name }}</a>
+	<div class="anuncio">
+		<p class="sector">{{ anuncio.sector }}</p>
+		<a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}"><img src="{{ anuncio.image }}"></a>
+		<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}">{{ anuncio.name }}</a></p>
+		<p class="subname">{{ anuncio.agency }}</p>
+	</div>
 	{% endfor %}
+</div>
 {% endblock %}

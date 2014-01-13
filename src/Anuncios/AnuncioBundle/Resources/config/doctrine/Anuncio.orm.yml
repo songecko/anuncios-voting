@@ -38,6 +38,19 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
             type: integer
             nullable: true
             column: voto_usuario
+        createdAt:
+            column: created_at
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: update
     manyToOne:
         category:
             targetEntity: Category

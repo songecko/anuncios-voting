@@ -16,11 +16,20 @@ class VotingRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 		->createQuery(
-				'SELECT v FROM AnunciosAnuncioBundle:Voting v WHERE v.user = :user AND v.anuncio = :anuncio'
+			'SELECT v FROM AnunciosAnuncioBundle:Voting v WHERE v.user = :user AND v.anuncio = :anuncio'
 		)->setParameters(array(
     		'user' => $user,
     		'anuncio'  => $anuncio
 		))	
+		->getResult();
+	}
+	
+	public function getLastVoting($limit)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+			'SELECT v FROM AnunciosAnuncioBundle:Voting v ORDER BY v.createdAt'
+		)->setMaxResults($limit)
 		->getResult();
 	}
 }

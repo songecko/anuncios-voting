@@ -11,17 +11,17 @@ anuncios_anuncio_index:
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:index }
 
 anuncios_anuncio_category:
-    pattern:  /category/{id}
+    pattern:  /categoria/{id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:category }
     
 anuncios_anuncio_show:
-    pattern:  /anuncio/show/{id}
+    pattern:  /anuncio/{id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:show }
     
 anuncios_anuncio_vote:
-    pattern: /anuncio/{id}/vote
+    pattern: /anuncio/{id}/votar
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:vote }
     
 anuncios_anuncio_desvote:
-    pattern: /anuncio/{id}/desvote
+    pattern: /anuncio/{id}/desvotar
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:desvote }

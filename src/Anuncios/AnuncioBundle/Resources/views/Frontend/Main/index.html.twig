@@ -2,12 +2,23 @@
 
 {% block content %}
 <div class="anunciosList clearfix">
-	{% for i in 0..20 %}
+	{% for i in 0..6 %}
 	<div class="anuncio">
 		<p class="sector">Internacional</p>
 		<a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/anuncio.jpg') }}"></a>
 		<p class="name"><a href="#">Lorem Ipsum</a></p>
 		<p class="subname">La querida publicidad</p>
+	</div>
+	{% endfor %}
+</div>
+<div class="anunciosList clearfix">
+<p style="font-size: 20px; color: red">ULTIMOS ANUNCIOS VOTADOS<p>
+	{% for lastVoting in lastVotings %}
+	<div class="anuncio">
+		<p class="sector">{{ lastVoting.anuncio.sector }}</p>
+		<a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}"><img src="{{ asset('bundles/anunciosanuncio/images/anuncio.jpg') }}"></a>
+		<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}">{{ lastVoting.anuncio.name }}</a></p>
+		<p class="subname">{{ lastVoting.anuncio.agency }}</p>
 	</div>
 	{% endfor %}
 </div>

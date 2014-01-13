@@ -3,6 +3,7 @@
 namespace Anuncios\AnuncioBundle\Entity;
 
 use SplFileInfo;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Anuncios\AnuncioBundle\Model\ImageInterface;
 
@@ -27,6 +28,8 @@ class Anuncio implements ImageInterface
     private $voting;
     private $votoJurado;
     private $votoUsuario;
+    private $createdAt;
+    private $updatedAt;
 
     public function getId()
     {
@@ -189,6 +192,9 @@ class Anuncio implements ImageInterface
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
         $this->otherFields = array();
+        $this->votoJurado = 0;
+        $this->votoUsuario = 0;
+        $this->createdAt = new DateTime('now');
     }
 
     public function addResource(\Anuncios\AnuncioBundle\Entity\Resource $resources)
@@ -271,5 +277,29 @@ class Anuncio implements ImageInterface
     public function getVoting()
     {
         return $this->voting;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    
+        return $this;
+    }
+    
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
