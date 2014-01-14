@@ -15,6 +15,8 @@ class ComponentController extends Controller
 		->getRepository('AnunciosAnuncioBundle:Category')
 		->findAll();
 	
-		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_menu.html.twig', array('categories' => $categories));
+		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_menu.html.twig', array(
+				'categories' => $categories
+		));
 	}
 }

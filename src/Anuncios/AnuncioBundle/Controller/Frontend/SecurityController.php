@@ -106,6 +106,8 @@ class SecurityController extends Controller
 				}
 			}
 		}
-		return $this->render('AnunciosAnuncioBundle:/Frontend/Security:login.html.twig', array('error' => $error, 'message' => $message));
+		return $this->render('AnunciosAnuncioBundle:/Frontend/Security:login.html.twig', array(
+				'error' => $error, 'message' => $message
+		));
     }
 }

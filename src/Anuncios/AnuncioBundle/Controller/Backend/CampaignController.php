@@ -41,10 +41,17 @@ class CampaignController extends ResourceController
 					$category = $this->getDoctrine()
     					->getRepository('AnunciosAnuncioBundle:Category')
     					->findOneByName($anuncioCategory);
-
+					
+					if(!$category)
+					{
+						$category = new Category();
+						$category->setName($anuncioCategory);
+					}
+					
 					$anuncio = new Anuncio();
 					$anuncio->setCampaign($anuncioCampaign);
 					$anuncio->setCategory($category);
+					$anuncio->setSector($anuncioSector);
 					$anuncio->setName($anuncioName);
 					$anuncio->setAgency($anuncioAgency);
 					$anuncio->setAdvertiser($anuncioAdvertiser);

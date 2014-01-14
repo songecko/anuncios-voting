@@ -13,11 +13,29 @@ class MainController extends Controller
 {	
 	public function indexAction()
 	{
-		$lastVotings = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Voting')
-			->getLastVoting(5);
 		
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array('lastVotings' => $lastVotings));
+		$leftAnunciosVoteByUser = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Anuncio')
+			->getLeftAnunciosVoteByUser($this->getUser(), 6);
+		
+		$lastAnunciosVote = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Anuncio')
+			->getLastAnunciosVote(5);
+		
+		$rankingJurado = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Anuncio')
+			->getAnunciosVoteByJurado(5);
+		
+		$rankingUsuario = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Anuncio')
+			->getAnunciosVoteByUsuario(5);
+		
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array(
+    			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
+    			'lastAnunciosVote'          => $lastAnunciosVote,
+    			'rankingJurado'             => $rankingJurado,
+    			'rankingUsuario'            => $rankingUsuario
+    	));
 	}
     
     public function categoryAction($id)
@@ -28,7 +46,15 @@ class MainController extends Controller
     	
     	$anuncios = $category->getAnuncios();
     	
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array('category' => $category, 'anuncios' => $anuncios));
+    	$lastAnunciosVoteByCategory = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+    		->getLastAnunciosVoteByCategory($category, 5);
+    	
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array(
+    			'category'                   => $category, 
+    			'anuncios'                   => $anuncios,
+    			'lastAnunciosVoteByCategory' => $lastAnunciosVoteByCategory
+    	));
     }
     
 	public function showAction($id)
@@ -47,7 +73,12 @@ class MainController extends Controller
     	$hasVoting = $manager->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
     	    	
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array('anuncio' => $anuncio, 'category' => $category, 'resources' => $resources, 'hasVoting' => $hasVoting));
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array(
+    			'anuncio' => $anuncio, 
+    			'category' => $category, 
+    			'resources' => $resources, 
+    			'hasVoting' => $hasVoting
+    	));
     }
     
     public function voteAction($id)
@@ -113,7 +144,7 @@ class MainController extends Controller
     		->find($id);
     	
     	$hasVoting = $manager->getRepository('AnunciosAnuncioBundle:Voting')
-    	->hasVoting($user->getId(), $anuncio->getId());
+    		->hasVoting($user->getId(), $anuncio->getId());
     	 
     	if(!$hasVoting)
     	{
