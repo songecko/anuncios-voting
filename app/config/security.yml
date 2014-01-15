@@ -23,7 +23,7 @@ security:
                 path: /admin/logout
                 target: /admin/login
             anonymous: true
-            context:   anuncios
+            context:   anuncios_admin
             
         main:
             pattern: /.*

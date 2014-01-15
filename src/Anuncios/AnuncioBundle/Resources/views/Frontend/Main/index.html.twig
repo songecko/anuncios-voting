@@ -1,25 +1,45 @@
 {% extends 'AnunciosAnuncioBundle:Frontend:layout.html.twig' %}
 
-{% block content %}
-<div class="anunciosList clearfix">
-	{% for i in 0..6 %}
-	<div class="anuncio">
-		<p class="sector">Internacional</p>
-		<a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/anuncio.jpg') }}"></a>
-		<p class="name"><a href="#">Lorem Ipsum</a></p>
-		<p class="subname">La querida publicidad</p>
+<section class="anunciosList clearfix">
+	<h2>ANUNCIOS POR VOTAR</h2>
+	
+	<div class="list">
+		{% for leftAnuncioVoteByUser in leftAnunciosVoteByUser %}
+		<div class="anuncio">
+			<p class="sector">{{ leftAnuncioVoteByUser.sector }}</p>
+			<a href="{{ path('anuncios_anuncio_show', {'id': leftAnuncioVoteByUser.id}) }}"><img src="{{ leftAnuncioVoteByUser.image }}"></a>
+			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': leftAnuncioVoteByUser.id}) }}">{{ leftAnuncioVoteByUser.name }}</a></p>
+			<p class="subname">{{ leftAnuncioVoteByUser.agency }}</p>
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
-</div>
-<div class="anunciosList clearfix">
-<p style="font-size: 20px; color: red">ULTIMOS ANUNCIOS VOTADOS<p>
-	{% for lastVoting in lastVotings %}
-	<div class="anuncio">
-		<p class="sector">{{ lastVoting.anuncio.sector }}</p>
-		<a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}"><img src="{{ asset('bundles/anunciosanuncio/images/anuncio.jpg') }}"></a>
-		<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}">{{ lastVoting.anuncio.name }}</a></p>
-		<p class="subname">{{ lastVoting.anuncio.agency }}</p>
+	
+	<h2>ULTIMOS ANUNCIOS VOTADOS</h2>
+	
+	<div class="list">
+		{% for lastVoting in lastVotings %}
+		<div class="anuncio">
+			<p class="sector">{{ lastVoting.anuncio.sector }}</p>
+			<a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}"><img src="{{ asset('bundles/anunciosanuncio/images/anuncio.jpg') }}"></a>
+			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}">{{ lastVoting.anuncio.name }}</a></p>
+			<p class="subname">{{ lastVoting.anuncio.agency }}</p>
+		</div>
+		{% endfor %}
 	</div>
+	
+	<h2>RANKING DE VOTANTES</h2>
+	
+	{% set i = 0 %}
+	{% for usuario in rankingUsuario %}
+		{% set i = i + 1 %}
+		<p><a href="{{ path('anuncios_anuncio_show', {'id': usuario.id}) }}">0{{ i }}. {{ usuario.name }} - {{ usuario.agency }}</a></p>
 	{% endfor %}
-</div>
+	
+	<h2>RANKING DE JURADO</h2>
+
+	{% set i = 0 %}
+	{% for jurado in rankingJurado %}
+		{% set i = i + 1 %}
+		<p><a href="{{ path('anuncios_anuncio_show', {'id': jurado.id}) }}">0{{ i }}. {{ jurado.name }} - {{ jurado.agency }}</a></p>
+	{% endfor %}
 {% endblock %}

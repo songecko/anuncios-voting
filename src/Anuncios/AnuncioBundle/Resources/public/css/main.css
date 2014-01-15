@@ -64,8 +64,19 @@
 	text-decoration: none;
 }
 
-#content .anunciosList {
+#content section {
 	margin-top: 30px;
+}
+
+#content section h2 {
+	margin: 0;
+	color: #d5242a;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#content .anunciosList .list {
+	margin-top: 20px;
 }
 
 #content .anunciosList .anuncio {
@@ -91,4 +102,90 @@
 
 #content .anunciosList .anuncio p.subname {
 	margin: 0;
+}
+
+#content .anuncioShow .picture {
+	width: 100%;
+	position: relative;
+}
+
+#content .anuncioShow .picture > img {
+	width: 100%;
+}
+
+#content .anuncioShow .picture .overlay {
+    display: none;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    opacity: 0;
+    z-index: 1;
+}
+
+#content .anuncioShow .picture:hover .overlay { opacity: 0.5; }
+
+#content .anuncioShow .picture .overlayContent {
+	position: absolute;
+	top: 40%;
+	width: 100%;
+	z-index: 2;
+	display: none;
+}
+
+#content .anuncioShow .picture .overlayContent .actions,
+#content .anuncioShow .picture .overlayContent .info {
+	width: 295px;
+	margin: 0 auto;
+}
+
+#content .anuncioShow .picture .overlayContent .actions > a {
+	display: block;
+	width: 140px;
+	height: 45px;
+	background: #d5242a;
+	line-height: 45px;
+	font-size: 20px;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	float: left;
+	margin-right: 15px;
+}
+
+#content .anuncioShow .picture .overlayContent .actions > a:hover {
+	text-decoration: none;
+}
+
+#content .anuncioShow .picture .overlayContent .actions > a:last-child {
+	margin-right: 0;
+}
+#content .anuncioShow .picture .overlayContent .actions > a.viewResourcesButton {
+	background: #8d8d8d;
+}
+#content .anuncioShow .picture .overlayContent .actions > a.votedButton {
+	background: #469c38;
+}
+
+#content .anuncioShow .picture .overlayContent .info {
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+#content .anuncioShow .picture .overlayContent .info p {
+	margin: 0 0 5px 0;
+}
+
+#content .anuncioShow .attributes p {	
+	margin: 0;
+	font-weight: bold;
+}
+
+#content .anuncioShow .attributes p span {
+	color: #000000;
 }
