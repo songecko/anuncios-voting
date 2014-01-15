@@ -1,6 +1,5 @@
 Anuncios\AnuncioBundle\Entity\Category:
     type: entity
-    repositoryClass: Anuncios\AnuncioBundle\Entity\CategoryRepository
     table: category
     id:
         id:

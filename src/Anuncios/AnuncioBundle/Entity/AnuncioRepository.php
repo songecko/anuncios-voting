@@ -12,4 +12,66 @@ use Doctrine\ORM\EntityRepository;
  */
 class AnuncioRepository extends EntityRepository
 {
+	public function getLeftAnunciosVoteByUser($user, $limit)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.id NOT IN (
+					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v WHERE v.user = :user
+				)'
+		)->setParameter('user', $user)
+		->setMaxResults($limit)
+		->getResult();
+	}
+	
+	public function getLastAnunciosVote($limit)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.id IN (
+					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v ORDER BY v.createdAt DESC
+				)'
+		)->setMaxResults($limit)
+		->getResult();
+	}
+	
+	public function getLastAnunciosVoteByCategory($category, $limit)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.category = :category AND a.id IN (
+					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v ORDER BY v.createdAt DESC
+				)'
+		)->setParameter('category', $category)
+		->setMaxResults($limit)
+		->getResult();
+	}
+	
+	public function getAnunciosVoteByJurado($limit)
+	{
+		return $this->getEntityManager()
+			->createQuery(
+				'SELECT a 
+				FROM AnunciosAnuncioBundle:Anuncio a 
+				ORDER BY a.votoJurado DESC'
+		)->setMaxResults($limit)
+		->getResult();
+	}
+	
+	public function getAnunciosVoteByUsuario($limit)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a 
+				ORDER BY a.votoUsuario DESC'
+		)->setMaxResults($limit)
+		->getResult();
+	}
 }

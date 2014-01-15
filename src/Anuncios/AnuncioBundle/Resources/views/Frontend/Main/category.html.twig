@@ -14,16 +14,19 @@
 		</div>
 		{% endfor %}
 	</div>
-</div>
-<div class="anunciosList clearfix">
-<p style="font-size: 20px; color: red">ULTIMOS ANUNCIOS EN {{ category.name|upper }} VOTADOS<p>
-	{% for lastAnuncioVoteByCategory in lastAnunciosVoteByCategory %}
-	<div class="anuncio">
-		<p class="sector">{{ lastAnuncioVoteByCategory.sector }}</p>
-		<a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByCategory.id}) }}"><img src="{{ lastAnuncioVoteByCategory.image }}"></a>
-		<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByCategory.id}) }}">{{ lastAnuncioVoteByCategory.name }}</a></p>
-		<p class="subname">{{ lastAnuncioVoteByCategory.agency }}</p>
+	
+	
+	<h2>ULTIMOS ANUNCIOS EN {{ category.name|upper }} VOTADOS</h2>
+	
+	<div class="list">
+		{% for lastAnuncioVoteByCategory in lastAnunciosVoteByCategory %}
+		<div class="anuncio">
+			<p class="sector">{{ lastAnuncioVoteByCategory.sector }}</p>
+			<a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByCategory.id}) }}"><img src="{{ lastAnuncioVoteByCategory.image }}"></a>
+			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByCategory.id}) }}">{{ lastAnuncioVoteByCategory.name }}</a></p>
+			<p class="subname">{{ lastAnuncioVoteByCategory.agency }}</p>
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
-</div>
+</section>
 {% endblock %}
