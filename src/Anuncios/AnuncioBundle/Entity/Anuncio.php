@@ -188,7 +188,7 @@ class Anuncio implements ImageInterface
         return $this->category;
     }
 
-    public function __construct($sector)
+    public function __construct()
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
         $this->otherFields = array();

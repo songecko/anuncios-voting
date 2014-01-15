@@ -13,22 +13,25 @@ class MainController extends Controller
 {	
 	public function indexAction()
 	{
+		$campaignActive = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Campaign')
+			->findOneByIsActive(true);
 		
 		$leftAnunciosVoteByUser = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getLeftAnunciosVoteByUser($this->getUser(), 6);
+			->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), 6);
 		
 		$lastAnunciosVote = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getLastAnunciosVote(5);
+			->getLastAnunciosVote($campaignActive, 5);
 		
 		$rankingJurado = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getAnunciosVoteByJurado(5);
+			->getAnunciosVoteByJurado($campaignActive, 5);
 		
 		$rankingUsuario = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getAnunciosVoteByUsuario(5);
+			->getAnunciosVoteByUsuario($campaignActive, 5);
 		
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array(
     			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
@@ -40,15 +43,21 @@ class MainController extends Controller
     
     public function categoryAction($id)
     {
+    	$campaignActive = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Campaign')
+    		->findOneByIsActive(true);
+    	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
     		->find($id);
     	
-    	$anuncios = $category->getAnuncios();
+    	$anuncios = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+    		->getAnunciosByCategory($campaignActive, $category);
     	
     	$lastAnunciosVoteByCategory = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->getLastAnunciosVoteByCategory($category, 5);
+    		->getLastAnunciosVoteByCategory($campaignActive, $category, 5);
     	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array(
     			'category'                   => $category, 
@@ -61,8 +70,6 @@ class MainController extends Controller
     {
     	$user = $this->getUser();
     	
-    	$manager = $this->getDoctrine()->getManager();
-    	
     	$anuncio = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->find($id);
@@ -70,12 +77,13 @@ class MainController extends Controller
     	$category = $anuncio->getCategory();
     	$resources = $anuncio->getResources();
     	
-    	$hasVoting = $manager->getRepository('AnunciosAnuncioBundle:Voting')
+    	$hasVoting = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
     	    	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array(
-    			'anuncio' => $anuncio, 
-    			'category' => $category, 
+    			'anuncio'   => $anuncio, 
+    			'category'  => $category, 
     			'resources' => $resources, 
     			'hasVoting' => $hasVoting
     	));
@@ -91,7 +99,8 @@ class MainController extends Controller
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->find($id);	
     	
-    	$hasVoting = $manager->getRepository('AnunciosAnuncioBundle:Voting')
+    	$hasVoting = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
     	
     	if($hasVoting)
@@ -143,7 +152,8 @@ class MainController extends Controller
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->find($id);
     	
-    	$hasVoting = $manager->getRepository('AnunciosAnuncioBundle:Voting')
+    	$hasVoting = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
     	 
     	if(!$hasVoting)
@@ -167,7 +177,8 @@ class MainController extends Controller
     	
     	$manager->persist($anuncio);
     	
-    	$hasVoting = $manager->getRepository('AnunciosAnuncioBundle:Voting')
+    	$hasVoting = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Voting')
     		->findOneBy(array('user'=>$user->getId(), 'anuncio'=>$anuncio->getId()));
     	
     	$manager->remove($hasVoting);
