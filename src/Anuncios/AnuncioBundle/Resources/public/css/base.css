@@ -20,6 +20,21 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	outline: 0 none;
 }
 
+.blueimp-gallery > .slides > .slide > .text-content {
+    overflow: hidden;
+    margin: 60px auto;
+    padding: 0 60px;
+    max-width: 920px;
+    text-align: center;
+}
+
+.blueimp-gallery > .slides > .slide > .text-content iframe {
+    height: 100%;
+	width: 484px;
+	margin: 0px auto;
+	border: 0px none;
+}
+
 #header {
 	margin: 10px 0 25px 0;
 }

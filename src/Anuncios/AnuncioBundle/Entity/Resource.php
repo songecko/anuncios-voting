@@ -99,4 +99,16 @@ class Resource
     {
     	return $this->updatedAt;
     }
+    
+    public function getResourceType()
+    {
+    	if($this->getType() == 'image')
+    	{
+    		return 'image/jpeg';
+    	}
+    	else
+    	{
+    		return 'text/html';
+    	}
+    }
 }

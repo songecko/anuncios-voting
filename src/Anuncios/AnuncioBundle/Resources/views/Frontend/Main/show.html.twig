@@ -38,6 +38,19 @@
 			<p><span>{{ key }}:</span> {{ value }}</p>
 			{% endfor %}
 		</div>
+		
+		<script type="text/javascript">
+			var resourcesItems = [
+			{% for resource in resources %}
+            	{
+                   title: '{{ resource.name }}',
+                   href: '{{ resource.link }}',
+                   type: '{{ resource.getResourceType }}',
+                   thumbnail: '{{ resource.link }}'
+                },
+            {% endfor %}
+            ];
+		</script>
 	</div>
 </section>
 {% endblock %}

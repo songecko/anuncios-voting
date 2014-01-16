@@ -13,6 +13,7 @@
         {% block stylesheets %}
         {% stylesheets output='css/frontend.min.css' filter='cssrewrite'
             'bundles/anunciosanuncio/css/bootstrap.min.css'
+            'bundles/anunciosanuncio/css/blueimp-gallery.min.css'
             'bundles/anunciosanuncio/css/base.css'
             'bundles/anunciosanuncio/css/main.css'
         %}
@@ -45,11 +46,17 @@
 	        </div>
         </div>
         
+		<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+		<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">	
+			{{ include('AnunciosAnuncioBundle:Frontend/Partial:_resourceGallery.html.twig') }}
+		</div>
+
 		{# javascripts... #}
         {% block javascripts %}
         {% javascripts output='js/frontend.min.js'
             '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery-1.10.1.min.js'
             '@AnunciosAnuncioBundle/Resources/assets/js/vendor/bootstrap.min.js'
+            '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery.blueimp-gallery.min.js'
             '@AnunciosAnuncioBundle/Resources/assets/js/main.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
