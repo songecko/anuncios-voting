@@ -19,12 +19,12 @@
 	<h2>ULTIMOS ANUNCIOS VOTADOS</h2>
 	
 	<div class="list">
-		{% for lastVoting in lastVotings %}
+		{% for lastVoting in lastAnunciosVote %}
 		<div class="anuncio">
-			<p class="sector">{{ lastVoting.anuncio.sector }}</p>
-			<a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}"><img src="{{ asset('bundles/anunciosanuncio/images/anuncio.jpg') }}"></a>
-			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.anuncio.id}) }}">{{ lastVoting.anuncio.name }}</a></p>
-			<p class="subname">{{ lastVoting.anuncio.agency }}</p>
+			<p class="sector">{{ lastVoting.sector }}</p>
+			<a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.id}) }}"><img src="{{ lastVoting.image }}"></a>
+			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.id}) }}">{{ lastVoting.name }}</a></p>
+			<p class="subname">{{ lastVoting.agency }}</p>
 		</div>
 		{% endfor %}
 	</div>
