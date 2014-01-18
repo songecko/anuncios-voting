@@ -69,6 +69,11 @@ gecko.backend:
         update_header: "Editar categoria"
         create_header: "Nueva categoria"
 
+    jury:
+        index_header:  "Jurados"
+        update_header: "Editar jurado"
+        create_header: "Nuevo jurado"
+
     slider:
         index_header:  "Slider de Inicio"
         update_header: "Editar slider"

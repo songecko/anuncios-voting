@@ -6,23 +6,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SectorType extends AbstractType
+class JuryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('id', 'text', array(
+        ->add('username', 'text', array(
         		'required' => true,
-        		'label'    => 'ID'
-        ))
-        ->add('name', 'text', array(
-        		'required' => true,
-        		'label'    => 'Nombre'
+        		'label'    => 'Username'
         ));
     }
 
     public function getName()
     {
-        return 'anuncios_sector';
+        return 'anuncios_jury';
     }
 }

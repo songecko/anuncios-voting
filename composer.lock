@@ -43,7 +43,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -731,17 +731,17 @@
         },
         {
             "name": "friendsofsymfony/rest-bundle",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "target-dir": "FOS/RestBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "5218769bda3de4c3ee35acf53518e2285b953ab4"
+                "reference": "7c81a1879c5d8a3727932674509e96b2bb7a796e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/5218769bda3de4c3ee35acf53518e2285b953ab4",
-                "reference": "5218769bda3de4c3ee35acf53518e2285b953ab4",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/7c81a1879c5d8a3727932674509e96b2bb7a796e",
+                "reference": "7c81a1879c5d8a3727932674509e96b2bb7a796e",
                 "shasum": ""
             },
             "require": {
@@ -804,7 +804,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2014-01-06 08:07:25"
+            "time": "2014-01-16 12:08:55"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1307,12 +1307,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "f69b4cc8eb3cdabe9b6f043931f86f9e188337c7"
+                "reference": "c7a66b00774b96a7743625bc1d3056599ee51404"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/f69b4cc8eb3cdabe9b6f043931f86f9e188337c7",
-                "reference": "f69b4cc8eb3cdabe9b6f043931f86f9e188337c7",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/c7a66b00774b96a7743625bc1d3056599ee51404",
+                "reference": "c7a66b00774b96a7743625bc1d3056599ee51404",
                 "shasum": ""
             },
             "require": {
@@ -1382,7 +1382,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2013-12-20 13:59:27"
+            "time": "2014-01-16 10:02:43"
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
@@ -2674,21 +2674,20 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.0",
+            "version": "v1.0.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72"
+                "reference": "cac3fdfb111adbe590155f491594636d45129783"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
-                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/cac3fdfb111adbe590155f491594636d45129783",
+                "reference": "cac3fdfb111adbe590155f491594636d45129783",
                 "shasum": ""
             },
             "require": {
-                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -2718,7 +2717,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-06-03 18:32:58"
+            "time": "2013-06-03 18:32:07"
         },
         {
             "name": "symfony/monolog-bundle",

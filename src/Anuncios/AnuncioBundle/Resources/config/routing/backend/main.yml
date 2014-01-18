@@ -13,3 +13,7 @@ anuncios_anuncio_backend_sector:
 anuncios_anuncio_backend_category:
     resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/category.yml
     prefix: /category
+
+anuncios_anuncio_backend_jury:
+    resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/jury.yml
+    prefix: /jury

@@ -6,7 +6,7 @@ Anuncios\AnuncioBundle\Entity\Sector:
             type: integer
             id: true
             generator:
-                strategy: AUTO
+                strategy: auto
     fields:
         name:
             type: string

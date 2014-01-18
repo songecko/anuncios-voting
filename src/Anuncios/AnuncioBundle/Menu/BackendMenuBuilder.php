@@ -47,7 +47,12 @@ class BackendMenuBuilder
         $menu->addChild('category', array(
         		'route' => 'anuncios_anuncio_backend_category_index',
         		'labelAttributes' => array('icon' => 'icon-barcode'),
-        ))->setLabel("Category");
+        ))->setLabel("Categorias");
+        
+        $menu->addChild('jury', array(
+        		'route' => 'anuncios_anuncio_backend_jury_index',
+        		'labelAttributes' => array('icon' => 'icon-barcode'),
+        ))->setLabel("Jurados");
         
         return $menu;
     }
