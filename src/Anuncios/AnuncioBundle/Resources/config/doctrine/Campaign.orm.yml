@@ -13,6 +13,12 @@ Anuncios\AnuncioBundle\Entity\Campaign:
         isActive:
             type: boolean
             column: is_active
+        month:
+            type: integer
+            nullable: true
+        year:
+            type: integer
+            nullable: true
         createdAt:
             column: created_at
             type: datetime

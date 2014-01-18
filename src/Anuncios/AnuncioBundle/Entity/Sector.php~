@@ -2,6 +2,7 @@
 
 namespace Anuncios\AnuncioBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,33 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Sector
 {
-    /**
-     * @var integer
-     */
     private $id;
-
-    /**
-     * @var string
-     */
     private $name;
 	private $anuncios;
+	private $createdAt;
+	private $updatedAt;
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Sector
-     */
     public function setName($name)
     {
         $this->name = $name;
@@ -43,11 +28,6 @@ class Sector
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
     public function getName()
     {
         return $this->name;
@@ -56,6 +36,7 @@ class Sector
     public function __construct()
     {
     	$this->anuncios = new \Doctrine\Common\Collections\ArrayCollection();
+    	$this->createdAt = new DateTime('now');
     }
     
     public function addAnuncio(\Anuncios\AnuncioBundle\Entity\Anuncio $anuncios)
@@ -78,5 +59,29 @@ class Sector
     public function __toString()
     {
     	return $this->getName();
+    }
+    
+    public function setCreatedAt($createdAt)
+    {
+    	$this->createdAt = $createdAt;
+    
+    	return $this;
+    }
+    
+    public function getCreatedAt()
+    {
+    	return $this->createdAt;
+    }
+    
+    public function setUpdatedAt($updatedAt)
+    {
+    	$this->updatedAt = $updatedAt;
+    
+    	return $this;
+    }
+    
+    public function getUpdatedAt()
+    {
+    	return $this->updatedAt;
     }
 }
