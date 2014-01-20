@@ -3,6 +3,7 @@
 namespace Anuncios\AnuncioBundle\Controller\Backend;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Resource;
 
@@ -65,7 +66,7 @@ class CampaignController extends ResourceController
 					{
 						//En el proyecto, parsear la respuesta
 						$xml = $result['GetXMLDocPremiosResult']['ArticleSet'];
-						$quantity = count($xml);
+						$quantity = count($xml['Article']);
 						for($i = 0; $i < $quantity; $i++) 
 						{
 							$anuncioCampaign = $form->getData();
@@ -86,11 +87,14 @@ class CampaignController extends ResourceController
 							$sector = $this->getDoctrine()
 								->getRepository('AnunciosAnuncioBundle:Sector')
 								->find($anuncioSector);
-							
+
 							if(!$category)
 							{
 								$category = new Category();
 								$category->setName($anuncioCategory);
+								
+								$manager->persist($category);
+								$manager->flush();
 							}
 							
 							$anuncio = new Anuncio();
@@ -193,7 +197,7 @@ class CampaignController extends ResourceController
 					{
 						//En el proyecto, parsear la respuesta
 						$xml = $result['GetXMLDocPremiosResult']['ArticleSet'];
-						$quantity = count($xml);
+						$quantity = count($xml['Article']);
 						for($i = 0; $i < $quantity; $i++) 
 						{
 							$anuncioCampaign = $form->getData();
@@ -219,6 +223,9 @@ class CampaignController extends ResourceController
 							{
 								$category = new Category();
 								$category->setName($anuncioCategory);
+								
+								$manager->persist($category);
+								$manager->flush();
 							}
 							
 							$anuncio = new Anuncio();
