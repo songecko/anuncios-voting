@@ -1,0 +1,12 @@
+{% extends 'AnunciosAnuncioBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+<section class="anunciosList clearfix">
+<h2>RANKING {{ category.name|upper }}</h2>
+	
+{% set i = 0 %}
+{% for usuario in rankingUsuario %}
+	{% set i = i + 1 %}
+	<p><a href="{{ path('anuncios_anuncio_show', {'id': usuario.id}) }}">0{{ i }}. {{ usuario.name }} - {{ usuario.agency }}</a></p>
+{% endfor %}
+{% endblock %}

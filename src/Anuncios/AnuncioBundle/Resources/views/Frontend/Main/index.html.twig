@@ -2,7 +2,7 @@
 
 {% block content %}
 <section class="anunciosList clearfix">
-	<h2>ANUNCIOS POR VOTAR</h2>
+	<h2>SECCIONES POR VOTAR</h2>
 	
 	<div class="list">
 		{% for leftAnuncioVoteByUser in leftAnunciosVoteByUser %}
@@ -16,15 +16,15 @@
 	</div>
 
 	
-	<h2>ULTIMOS ANUNCIOS VOTADOS</h2>
+	<h2>SECCIONES QUE HAS VOTADO</h2>
 	
 	<div class="list">
-		{% for lastVoting in lastAnunciosVote %}
+		{% for lastAnuncioVoteByUser in lastAnunciosVoteByUser %}
 		<div class="anuncio">
-			<p class="sector">{{ lastVoting.sector }}</p>
-			<a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.id}) }}"><img src="{{ lastVoting.image }}"></a>
-			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastVoting.id}) }}">{{ lastVoting.name }}</a></p>
-			<p class="subname">{{ lastVoting.agency }}</p>
+			<p class="sector">{{ lastAnuncioVoteByUser.sector }}</p>
+			<a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByUser.id}) }}"><img src="{{ lastAnuncioVoteByUser.image }}"></a>
+			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByUser.id}) }}">{{ lastAnuncioVoteByUser.name }}</a></p>
+			<p class="subname">{{ lastAnuncioVoteByUser.agency }}</p>
 		</div>
 		{% endfor %}
 	</div>
@@ -34,8 +34,10 @@
 	
 	{% set i = 0 %}
 	{% for usuario in rankingUsuario %}
-		{% set i = i + 1 %}
-		<p><a href="{{ path('anuncios_anuncio_show', {'id': usuario.id}) }}">0{{ i }}. {{ usuario.name }} - {{ usuario.agency }}</a></p>
+		{% if usuario != null %}
+			{% set i = i + 1 %}
+			<p><a href="{{ path('anuncios_anuncio_ranking_usuario', {'id': usuario.category.id}) }}">0{{ i }}. {{ usuario.name }} - {{ usuario.category.name }}</a></p>
+		{% endif %}
 	{% endfor %}
 	
 	
@@ -43,7 +45,9 @@
 
 	{% set i = 0 %}
 	{% for jurado in rankingJurado %}
-		{% set i = i + 1 %}
-		<p><a href="{{ path('anuncios_anuncio_show', {'id': jurado.id}) }}">0{{ i }}. {{ jurado.name }} - {{ jurado.agency }}</a></p>
+		{% if jurado != null %}
+			{% set i = i + 1 %}
+			<p><a href="{{ path('anuncios_anuncio_ranking_jurado', {'id': jurado.category.id}) }}">0{{ i }}. {{ jurado.name }} - {{ jurado.category.name }}</a></p>
+		{% endif %}
 	{% endfor %}
 {% endblock %}

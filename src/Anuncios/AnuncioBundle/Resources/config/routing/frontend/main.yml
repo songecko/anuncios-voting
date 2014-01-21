@@ -25,3 +25,11 @@ anuncios_anuncio_vote:
 anuncios_anuncio_desvote:
     pattern: /anuncio/{id}/desvotar
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:desvote }
+    
+anuncios_anuncio_ranking_usuario:
+    pattern: /ranking/usuario/{id}
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:rankingUsuario }
+    
+anuncios_anuncio_ranking_jurado:
+    pattern: /ranking/jurado/{id}
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:rankingJurado }

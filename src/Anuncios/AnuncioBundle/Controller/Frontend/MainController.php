@@ -17,25 +17,32 @@ class MainController extends Controller
 			->getRepository('AnunciosAnuncioBundle:Campaign')
 			->findOneByIsActive(true);
 		
+		$categories = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->findAll();
+		
 		$leftAnunciosVoteByUser = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
 			->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), 6);
 		
-		$lastAnunciosVote = $this->getDoctrine()
+		$lastAnunciosVoteByUser = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getLastAnunciosVote($campaignActive, 5);
+			->getLastAnunciosVoteByUser($campaignActive, $this->getUser(), 5);
 		
-		$rankingJurado = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getAnunciosVoteByJurado($campaignActive, 5);
-		
-		$rankingUsuario = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getAnunciosVoteByUsuario($campaignActive, 5);
+		foreach($categories as $category)
+		{
+			$rankingJurado[] = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAnunciosVoteByJurado($campaignActive, $category);
+			
+			$rankingUsuario[] = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAnunciosVoteByUsuario($campaignActive, $category);
+		}
 		
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array(
     			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
-    			'lastAnunciosVote'          => $lastAnunciosVote,
+    			'lastAnunciosVoteByUser'    => $lastAnunciosVoteByUser,
     			'rankingJurado'             => $rankingJurado,
     			'rankingUsuario'            => $rankingUsuario
     	));
@@ -193,5 +200,45 @@ class MainController extends Controller
     	return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
     				'id'  => $id
     	)));
+    }
+    
+    public function rankingJuradoAction($id)
+    {
+    	$campaignActive = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Campaign')
+    		->findOneByIsActive(true);
+    	
+    	$category = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Category')
+    		->find($id);
+    	
+    	$rankingJurado = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+    		->getAllAnunciosVoteByJurado($campaignActive, $category);
+    	
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingJurado.html.twig', array(
+    			'category'      => $category,
+    			'rankingJurado' => $rankingJurado
+    	));
+    }
+    
+    public function rankingUsuarioAction($id)
+    {
+    	$campaignActive = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Campaign')
+    		->findOneByIsActive(true);
+    	 
+    	$category = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Category')
+    		->find($id);
+    	 
+    	$rankingUsuario = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+    		->getAllAnunciosVoteByUsuario($campaignActive, $category);
+    	 
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingUsuario.html.twig', array(
+    			'category'       => $category,
+    			'rankingUsuario' => $rankingUsuario
+    	));
     }
 }

@@ -19,7 +19,7 @@ class AnuncioRepository extends EntityRepository
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
 				WHERE a.campaign = :campaign AND a.category = :category
-				ORDER BY a.createdAt DESC'
+				ORDER BY a.votoJurado+a.votoUsuario DESC, a.name'
 		)->setParameters(array(
 			'campaign' => $campaign,
 			'category' => $category
@@ -33,9 +33,14 @@ class AnuncioRepository extends EntityRepository
 		->createQuery(
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
-				WHERE a.campaign = :campaign AND a.id NOT IN (
+				WHERE a.campaign = :campaign AND a.category IN (
+					SELECT c.id FROM AnunciosAnuncioBundle:Category as c
+				)
+				AND a.id NOT IN (
 					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v WHERE v.user = :user
-				)'
+				)
+				GROUP BY a.category
+				ORDER BY a.name'
 		)->setParameters(array(
 				'campaign' => $campaign,
 				'user' => $user
@@ -44,16 +49,24 @@ class AnuncioRepository extends EntityRepository
 		->getResult();
 	}
 	
-	public function getLastAnunciosVote($campaign, $limit)
+	public function getLastAnunciosVoteByUser($campaign, $user, $limit)
 	{
 		return $this->getEntityManager()
 		->createQuery(
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
-				WHERE a.campaign = :campaign AND a.id IN (
-					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v ORDER BY v.createdAt DESC
-				)'
-		)->setParameter('campaign', $campaign)
+				WHERE a.campaign = :campaign AND a.category IN (
+					SELECT c.id FROM AnunciosAnuncioBundle:Category as c
+				)
+				AND a.id IN (
+					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v WHERE v.user = :user
+				)
+				GROUP BY a.category
+				ORDER BY a.name'
+		)->setParameters(array(
+				'campaign' => $campaign,
+				'user' => $user
+		))
 		->setMaxResults($limit)
 		->getResult();
 	}
@@ -75,29 +88,63 @@ class AnuncioRepository extends EntityRepository
 		->getResult();
 	}
 	
-	public function getAnunciosVoteByJurado($campaign, $limit)
+	public function getAnunciosVoteByJurado($campaign, $category)
 	{
 		return $this->getEntityManager()
 			->createQuery(
 				'SELECT a 
 				FROM AnunciosAnuncioBundle:Anuncio a
-				WHERE a.campaign = :campaign
+				WHERE a.campaign = :campaign AND a.category = :category
 				ORDER BY a.votoJurado DESC'
-		)->setParameter('campaign', $campaign)
-		->setMaxResults($limit)
-		->getResult();
+		)->setParameters(array(
+				'campaign' => $campaign,
+				'category' => $category
+		))->setMaxResults(1)
+		->getOneOrNullResult();
 	}
 	
-	public function getAnunciosVoteByUsuario($campaign, $limit)
+	public function getAnunciosVoteByUsuario($campaign, $category)
+	{
+		return $this->getEntityManager()
+			->createQuery(
+				'SELECT a 
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.campaign = :campaign AND a.category = :category
+				ORDER BY a.votoUsuario DESC'
+		)->setParameters(array(
+				'campaign' => $campaign,
+				'category' => $category
+		))->setMaxResults(1)
+		->getOneOrNullResult();
+	}
+	
+	public function getAllAnunciosVoteByJurado($campaign, $category)
 	{
 		return $this->getEntityManager()
 		->createQuery(
 				'SELECT a
-				FROM AnunciosAnuncioBundle:Anuncio a 
-				WHERE a.campaign = :campaign
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.campaign = :campaign AND a.category = :category
+				ORDER BY a.votoJurado DESC'
+		)->setParameters(array(
+				'campaign' => $campaign,
+				'category' => $category
+		))
+		->getResult();
+	}
+	
+	public function getAllAnunciosVoteByUsuario($campaign, $category)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.campaign = :campaign AND a.category = :category
 				ORDER BY a.votoUsuario DESC'
-		)->setParameter('campaign', $campaign)
-		->setMaxResults($limit)
+		)->setParameters(array(
+				'campaign' => $campaign,
+				'category' => $category
+		))
 		->getResult();
 	}
 }

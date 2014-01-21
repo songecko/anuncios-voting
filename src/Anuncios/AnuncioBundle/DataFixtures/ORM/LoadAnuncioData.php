@@ -103,7 +103,7 @@ class LoadAnuncioData implements FixtureInterface
     	{
 	        $anuncio = new Anuncio();
 	        $anuncio->setCampaign($campaign);
-	    	$anuncio->setCategory($category[$i]);
+	    	$anuncio->setCategory($category['1']);
 	    	$anuncio->setSector($sector[$i]);
 	    	$anuncio->setName($this->faker->word);
 	    	$anuncio->setAgency($this->faker->word);
@@ -115,13 +115,13 @@ class LoadAnuncioData implements FixtureInterface
 	    	
 	    	$resource1 = new Resource();
 	    	$resource1->setAnuncio($anuncio);
-	    	$resource1->setType('video');
+	    	$resource1->setType('Video MP4');
 	    	$resource1->setLink('http://vstream.websharecontent.es/vdispatcher.aspx?id=hF2WNob3ogChruEEIN6oTA%3D%3D');
 	    	$resource1->setName($this->faker->word);
 	    	
 	    	$resource2 = new Resource();
 	    	$resource2->setAnuncio($anuncio);
-	    	$resource2->setType('image');
+	    	$resource2->setType('Imagen');
 	    	$resource2->setLink('http://recursos.anuncios.com/files/470/92.jpg');
 	    	$resource2->setName($this->faker->word);
 	    	

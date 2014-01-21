@@ -195,6 +195,8 @@ class CampaignController extends ResourceController
 					} 
 					else 
 					{
+						/*print_r($result);
+						die;*/
 						//En el proyecto, parsear la respuesta
 						$xml = $result['GetXMLDocPremiosResult']['ArticleSet'];
 						$quantity = count($xml['Article']);
@@ -251,7 +253,22 @@ class CampaignController extends ResourceController
 							
 							$anuncio->setImage($anuncioImage);
 							
-							//$resources = new Resource();
+							/*$anuncioResources = $xml['Article']['0']['ArticleContent']['Resources'];
+							$quantityResources = count($anuncioResources['Resource']);
+							echo $quantityResources;
+							die;
+							foreach($anuncioResources as $anuncioResource)
+							{
+								print_r($anuncioResource);
+								die;
+								$resources = new Resource();
+								$resources->setAnuncio($anuncio);
+								$resources->setType($anuncioResource['ResourceTypeName']);
+								$resources->setLink($anuncioResource['ResourceURL']);
+								$resources->setName($anuncioResource['ResourceName']);
+								
+								$manager->persist($resources);
+							}*/
 							
 							$manager->persist($anuncio);
 						}
