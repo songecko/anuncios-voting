@@ -13,6 +13,8 @@ class Campaign
     private $id;
     private $name;
     private $isActive;
+    private $month;
+    private $year;
     private $anuncios;
     private $createdAt;
     private $updatedAt;
@@ -96,5 +98,29 @@ class Campaign
     public function getUpdatedAt()
     {
     	return $this->updatedAt;
+    }
+ 
+    public function setMonth($month)
+    {
+        $this->month = $month;
+    
+        return $this;
+    }
+
+    public function getMonth()
+    {
+        return $this->month;
+    }
+
+    public function setYear($year)
+    {
+        $this->year = $year;
+    
+        return $this;
+    }
+
+    public function getYear()
+    {
+        return $this->year;
     }
 }

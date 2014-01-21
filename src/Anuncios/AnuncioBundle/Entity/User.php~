@@ -2,6 +2,7 @@
 
 namespace Anuncios\AnuncioBundle\Entity;
 
+use DateTime;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,6 +17,8 @@ class User extends BaseUser
     private $surname;
     private $isJurado;
     private $voting;
+    private $createdAt;
+    private $updatedAt;
 
     public function getId()
     {
@@ -38,6 +41,7 @@ class User extends BaseUser
     {
         $this->voting = new \Doctrine\Common\Collections\ArrayCollection();
         
+        $this->createdAt = new DateTime('now');
         $this->isJurado = false;
         
         parent::__construct();
@@ -94,5 +98,29 @@ class User extends BaseUser
     public function getSurname()
     {
         return $this->surname;
+    }
+    
+    public function setCreatedAt($createdAt)
+    {
+    	$this->createdAt = $createdAt;
+    
+    	return $this;
+    }
+    
+    public function getCreatedAt()
+    {
+    	return $this->createdAt;
+    }
+    
+    public function setUpdatedAt($updatedAt)
+    {
+    	$this->updatedAt = $updatedAt;
+    
+    	return $this;
+    }
+    
+    public function getUpdatedAt()
+    {
+    	return $this->updatedAt;
     }
 }

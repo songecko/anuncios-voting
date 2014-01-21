@@ -3,6 +3,7 @@
 namespace Anuncios\AnuncioBundle\Controller\Backend;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Resource;
 
@@ -20,64 +21,110 @@ class CampaignController extends ResourceController
 		
 		if ($request->isMethod('POST') && $form->bind($request)->isValid())
 		{
-			if($form->get('file')->getData() != null)
+			if($form->get('month')->getData() != null && $form->get('year')->getData() != null)
 			{
-				$xmlPath = $form->get('file')->getData()->getPathname();
-				$xml = simplexml_load_file($xmlPath);
-				$quantity = count($xml->Article);
-				for($i = 0; $i < $quantity; $i++) 
+				date_default_timezone_set('America/Los_Angeles');
+				
+				$error = false;
+				$message = "Se produjo un error";
+				
+				$client = new \nusoap_client('http://wspremios.anuncios.com/SingleSingOn.asmx?WSDL', true);
+					
+				//En el proyecto indicar al usuario que hubo un problema
+				$err = $client->getError();
+				if ($err)
 				{
-					$anuncioCampaign = $form->getData();
-					$anuncioCategory = $xml->Article[$i]->strClassification;
-					$anuncioName = $xml->Article[$i]->strTitle;
-					$anuncioAgency = $xml->Article[$i]->ArticleCard->Agencia;
-					$anuncioAdvertiser = $xml->Article[$i]->ArticleCard->Anunciante;
-					$anuncioProduct = $xml->Article[$i]->ArticleCard->Producto;
-					$anuncioBrand = $xml->Article[$i]->ArticleCard->Marca;
-					$anuncioSector = $xml->Article[$i]->ArticleCard->Sector;
-					$anuncioOtherFields = $xml->Article[$i]->ArticleCard->OtherFields;
-					$anuncioImage = $xml->Article[$i]->ArticleHead->Resource->ResourceURL;
-					
-					$category = $this->getDoctrine()
-    					->getRepository('AnunciosAnuncioBundle:Category')
-    					->findOneByName($anuncioCategory);
-					
-					$sector = $this->getDoctrine()
-						->getRepository('AnunciosAnuncioBundle:Sector')
-						->find($anuncioSector);
-					
-					if(!$category)
+					$error = true;
+				}
+				
+				//Configuracion SOAP
+				$client->setUseCurl(true);
+				$client->setCredentials("wspremios", "v01KxO17my5WgaCiYxpD", 'ntlm');
+				//$client->useHTTPPersistentConnection();
+				//$client->setCurlOption(CURLOPT_USERPWD, 'wspremios:v01KxO17my5WgaCiYxpD');
+				$client->loadWSDL();
+				$result = $client->call('GetXMLDocPremios', array(
+						'Anyo' => $form->get('year')->getData(),
+						'Mes' => $form->get('month')->getData(),
+						'serviceID' => 'becht34p'
+				));
+				
+				//En el proyecto indicar al usuario que hubo un problema
+				if ($client->fault) 
+				{
+					$error = true;
+				} 
+				else 
+				{
+					// Check for errors
+					$err = $client->getError();
+					if ($err) 
 					{
-						$category = new Category();
-						$category->setName($anuncioCategory);
-					}
-					
-					$anuncio = new Anuncio();
-					$anuncio->setCampaign($anuncioCampaign);
-					$anuncio->setCategory($category);
-					$anuncio->setSector($sector);
-					$anuncio->setName($anuncioName);
-					$anuncio->setAgency($anuncioAgency);
-					$anuncio->setAdvertiser($anuncioAdvertiser);
-					$anuncio->setProduct($anuncioProduct);
-					$anuncio->setBrand($anuncioBrand);
-					
-					$j = 1;
-					$c = 'campo'.$j;
-					$v = 'valor'.$j;
-					while(isset($anuncioOtherFields->$c))
+						$error = true;
+					} 
+					else 
 					{
-						$anuncio->addOtherFields((string)$anuncioOtherFields->$c, (string)$anuncioOtherFields->$v);
-						$j++;
-						$c = 'campo'.$j;
-						$v = 'valor'.$j;
+						//En el proyecto, parsear la respuesta
+						$xml = $result['GetXMLDocPremiosResult']['ArticleSet'];
+						$quantity = count($xml['Article']);
+						for($i = 0; $i < $quantity; $i++) 
+						{
+							$anuncioCampaign = $form->getData();
+							$anuncioCategory = $xml['Article'][$i]['strClassification'];
+							$anuncioName = $xml['Article'][$i]['strTitle'];
+							$anuncioAgency = $xml['Article'][$i]['ArticleCard']['Agencia'];
+							$anuncioAdvertiser = $xml['Article'][$i]['ArticleCard']['Anunciante'];
+							$anuncioProduct = $xml['Article'][$i]['ArticleCard']['Producto'];
+							$anuncioBrand = $xml['Article'][$i]['ArticleCard']['Marca'];
+							$anuncioSector = $xml['Article'][$i]['ArticleCard']['Sector'];
+							$anuncioOtherFields = $xml['Article'][$i]['ArticleCard']['OtherFields'];
+							$anuncioImage = $xml['Article'][$i]['ArticleHead']['Resource']['ResourceURL'];
+							
+							$category = $this->getDoctrine()
+		    					->getRepository('AnunciosAnuncioBundle:Category')
+		    					->findOneByName($anuncioCategory);
+							
+							$sector = $this->getDoctrine()
+								->getRepository('AnunciosAnuncioBundle:Sector')
+								->find($anuncioSector);
+
+							if(!$category)
+							{
+								$category = new Category();
+								$category->setName($anuncioCategory);
+								
+								$manager->persist($category);
+								$manager->flush();
+							}
+							
+							$anuncio = new Anuncio();
+							$anuncio->setCampaign($anuncioCampaign);
+							$anuncio->setCategory($category);
+							$anuncio->setSector($sector);
+							$anuncio->setName($anuncioName);
+							$anuncio->setAgency($anuncioAgency);
+							$anuncio->setAdvertiser($anuncioAdvertiser);
+							$anuncio->setProduct($anuncioProduct);
+							$anuncio->setBrand($anuncioBrand);
+							
+							$j = 1;
+							$c = 'campo'.$j;
+							$v = 'valor'.$j;
+							while(isset($anuncioOtherFields[$c]))
+							{
+								$anuncio->addOtherFields(htmlentities($anuncioOtherFields[$c], ENT_SUBSTITUTE, 'ISO-8859-15'), htmlentities($anuncioOtherFields[$v], ENT_SUBSTITUTE, 'ISO-8859-15'));
+								$j++;
+								$c = 'campo'.$j;
+								$v = 'valor'.$j;
+							}
+							
+							$anuncio->setImage($anuncioImage);
+							
+							//$resources = new Resource();
+							
+							$manager->persist($anuncio);
+						}
 					}
-					
-					$anuncio->setImage($anuncioImage);
-					
-					//$resources = new Resource();
-					
-					$manager->persist($anuncio);
 				}
 			}
 		}
@@ -105,52 +152,110 @@ class CampaignController extends ResourceController
 	
 		if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->bind($request)->isValid())
 		{
-			if($form->get('file')->getData() != null)
+			if($form->get('month')->getData() != null && $form->get('year')->getData() != null)
 			{
-				$xmlPath = $form->get('file')->getData()->getPathname();
-				$xml = simplexml_load_file($xmlPath);
-				$quantity = count($xml->Article);
-	
-				for($i = 0; $i < $quantity; $i++)
+				date_default_timezone_set('America/Los_Angeles');
+				
+				$error = false;
+				$message = "Se produjo un error";
+				
+				$client = new \nusoap_client('http://wspremios.anuncios.com/SingleSingOn.asmx?WSDL', true);
+					
+				//En el proyecto indicar al usuario que hubo un problema
+				$err = $client->getError();
+				if ($err)
 				{
-					$anuncioCampaign = $form->getData();
-					$anuncioCategory = $xml->Article[$i]->strClassification;
-					$anuncioName = $xml->Article[$i]->strTitle;
-					$anuncioAgency = $xml->Article[$i]->ArticleCard->Agencia;
-					$anuncioAdvertiser = $xml->Article[$i]->ArticleCard->Anunciante;
-					$anuncioProduct = $xml->Article[$i]->ArticleCard->Producto;
-					$anuncioBrand = $xml->Article[$i]->ArticleCard->Marca;
-					$anuncioSector = $xml->Article[$i]->ArticleCard->Sector;
-					$anuncioOtherFields = $xml->Article[$i]->ArticleCard->OtherFields;
-					$anuncioImage = $xml->Article[$i]->ArticleHead->Resource->ResourceURL;
-						
-					$category = $this->getDoctrine()
-					->getRepository('AnunciosAnuncioBundle:Category')
-	    					->findOneByName($anuncioCategory);
-		
-		    		$anuncio = new Anuncio();
-		    		$anuncio->setCampaign($anuncioCampaign);
-					$anuncio->setCategory($category);
-					$anuncio->setName($anuncioName);
-					$anuncio->setAgency($anuncioAgency);
-					$anuncio->setAdvertiser($anuncioAdvertiser);
-					$anuncio->setProduct($anuncioProduct);
-					$anuncio->setBrand($anuncioBrand);
-						
-					$j = 1;
-					$c = 'campo'.$j;
-					$v = 'valor'.$j;
-					while(isset($anuncioOtherFields->$c))
+					$error = true;
+				}
+				
+				//Configuracion SOAP
+				$client->setUseCurl(true);
+				$client->setCredentials("wspremios", "v01KxO17my5WgaCiYxpD", 'ntlm');
+				//$client->useHTTPPersistentConnection();
+				//$client->setCurlOption(CURLOPT_USERPWD, 'wspremios:v01KxO17my5WgaCiYxpD');
+				$client->loadWSDL();
+				$result = $client->call('GetXMLDocPremios', array(
+						'Anyo' => $form->get('year')->getData(),
+						'Mes' => $form->get('month')->getData(),
+						'serviceID' => 'becht34p'
+				));
+				
+				//En el proyecto indicar al usuario que hubo un problema
+				if ($client->fault) 
+				{
+					$error = true;
+				} 
+				else 
+				{
+					// Check for errors
+					$err = $client->getError();
+					if ($err) 
 					{
-						$anuncio->addOtherFields((string)$anuncioOtherFields->$c, (string)$anuncioOtherFields->$v);
-						$j++;
-						$c = 'campo'.$j;
-						$v = 'valor'.$j;
+						$error = true;
+					} 
+					else 
+					{
+						//En el proyecto, parsear la respuesta
+						$xml = $result['GetXMLDocPremiosResult']['ArticleSet'];
+						$quantity = count($xml['Article']);
+						for($i = 0; $i < $quantity; $i++) 
+						{
+							$anuncioCampaign = $form->getData();
+							$anuncioCategory = $xml['Article'][$i]['strClassification'];
+							$anuncioName = $xml['Article'][$i]['strTitle'];
+							$anuncioAgency = $xml['Article'][$i]['ArticleCard']['Agencia'];
+							$anuncioAdvertiser = $xml['Article'][$i]['ArticleCard']['Anunciante'];
+							$anuncioProduct = $xml['Article'][$i]['ArticleCard']['Producto'];
+							$anuncioBrand = $xml['Article'][$i]['ArticleCard']['Marca'];
+							$anuncioSector = $xml['Article'][$i]['ArticleCard']['Sector'];
+							$anuncioOtherFields = $xml['Article'][$i]['ArticleCard']['OtherFields'];
+							$anuncioImage = $xml['Article'][$i]['ArticleHead']['Resource']['ResourceURL'];
+							
+							$category = $this->getDoctrine()
+		    					->getRepository('AnunciosAnuncioBundle:Category')
+		    					->findOneByName($anuncioCategory);
+							
+							$sector = $this->getDoctrine()
+								->getRepository('AnunciosAnuncioBundle:Sector')
+								->find($anuncioSector);
+							
+							if(!$category)
+							{
+								$category = new Category();
+								$category->setName($anuncioCategory);
+								
+								$manager->persist($category);
+								$manager->flush();
+							}
+							
+							$anuncio = new Anuncio();
+							$anuncio->setCampaign($anuncioCampaign);
+							$anuncio->setCategory($category);
+							$anuncio->setSector($sector);
+							$anuncio->setName($anuncioName);
+							$anuncio->setAgency($anuncioAgency);
+							$anuncio->setAdvertiser($anuncioAdvertiser);
+							$anuncio->setProduct($anuncioProduct);
+							$anuncio->setBrand($anuncioBrand);
+							
+							$j = 1;
+							$c = 'campo'.$j;
+							$v = 'valor'.$j;
+							while(isset($anuncioOtherFields[$c]))
+							{
+								$anuncio->addOtherFields(htmlentities($anuncioOtherFields[$c], ENT_SUBSTITUTE, 'ISO-8859-15'), htmlentities($anuncioOtherFields[$v], ENT_SUBSTITUTE, 'ISO-8859-15'));
+								$j++;
+								$c = 'campo'.$j;
+								$v = 'valor'.$j;
+							}
+							
+							$anuncio->setImage($anuncioImage);
+							
+							//$resources = new Resource();
+							
+							$manager->persist($anuncio);
+						}
 					}
-						
-					$anuncio->setImage($anuncioImage);
-						
-					$manager->persist($anuncio);
 				}
 			}
 		}
