@@ -57,8 +57,3 @@ services:
         class: Anuncios\AnuncioBundle\Form\Type\CategoryType
         tags:
             - { name: form.type, alias: anuncios_category }
-
-    anuncios.form.type.jury:
-        class: Anuncios\AnuncioBundle\Form\Type\JuryType
-        tags:
-            - { name: form.type, alias: anuncios_jury } 

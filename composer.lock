@@ -43,7 +43,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -1307,12 +1307,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "c7a66b00774b96a7743625bc1d3056599ee51404"
+                "reference": "a01503c7a95a84fe0fa10822876866e01a1bbeed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/c7a66b00774b96a7743625bc1d3056599ee51404",
-                "reference": "c7a66b00774b96a7743625bc1d3056599ee51404",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/a01503c7a95a84fe0fa10822876866e01a1bbeed",
+                "reference": "a01503c7a95a84fe0fa10822876866e01a1bbeed",
                 "shasum": ""
             },
             "require": {
@@ -1382,7 +1382,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2014-01-16 10:02:43"
+            "time": "2014-01-20 15:44:30"
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
@@ -1926,16 +1926,16 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "1c7e8016289d17d83ced49c56d0f266fd0568941"
+                "reference": "5d099bcf0393908bf4ad69cc47dafb785d51f7f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/1c7e8016289d17d83ced49c56d0f266fd0568941",
-                "reference": "1c7e8016289d17d83ced49c56d0f266fd0568941",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/5d099bcf0393908bf4ad69cc47dafb785d51f7f5",
+                "reference": "5d099bcf0393908bf4ad69cc47dafb785d51f7f5",
                 "shasum": ""
             },
             "require": {
@@ -1971,7 +1971,7 @@
                 "php",
                 "type"
             ],
-            "time": "2013-05-19 11:09:35"
+            "time": "2014-01-09 22:37:17"
         },
         {
             "name": "psr/log",
