@@ -9,14 +9,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ComponentController extends Controller
 {
-	public function menuAction()
+	public function menuAction($id)
 	{
 		$categories = $this->getDoctrine()
-		->getRepository('AnunciosAnuncioBundle:Category')
-		->findAll();
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->findAll();
 	
 		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_menu.html.twig', array(
-				'categories' => $categories
+				'categories' => $categories,
+				'id'         => $id
 		));
 	}
 }

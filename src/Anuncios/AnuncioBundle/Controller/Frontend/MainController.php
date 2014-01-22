@@ -84,15 +84,24 @@ class MainController extends Controller
     	$category = $anuncio->getCategory();
     	$resources = $anuncio->getResources();
     	
+    	$campaignActive = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Campaign')
+    		->findOneByIsActive(true);
+    	
     	$hasVoting = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
-    	    	
+
+    	$hasVotingByCategory = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:User')
+    		->hasVotingByCategory($campaignActive, $category);
+    	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array(
-    			'anuncio'   => $anuncio, 
-    			'category'  => $category, 
-    			'resources' => $resources, 
-    			'hasVoting' => $hasVoting
+    			'anuncio'             => $anuncio, 
+    			'category'            => $category, 
+    			'resources'           => $resources, 
+    			'hasVoting'           => $hasVoting,
+    			'hasVotingByCategory' => $hasVotingByCategory
     	));
     }
     

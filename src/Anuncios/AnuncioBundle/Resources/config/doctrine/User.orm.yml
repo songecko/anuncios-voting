@@ -1,5 +1,6 @@
 Anuncios\AnuncioBundle\Entity\User:
     type: entity
+    repositoryClass: Anuncios\AnuncioBundle\Entity\UserRepository
     table: fos_user
     id:
         id:

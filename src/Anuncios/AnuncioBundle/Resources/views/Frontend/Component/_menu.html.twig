@@ -1,3 +1,8 @@
 {% for category in categories %}
-    <li><a href="{{ path('anuncios_anuncio_category', {'id': category.id }) }}">{{ category.name }}</a></li>
+{% if id == category.id %}
+    <li class="active">
+{% else %}
+	<li>
+{% endif %}
+    <a href="{{ path('anuncios_anuncio_category', {'id': category.id }) }}">{{ category.name }}</a></li>
 {% endfor %}

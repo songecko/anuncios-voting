@@ -32,12 +32,12 @@
     			</ul>
     			<ul class="menu clearfix">
     				<li><a href="{{ path('anuncios_anuncio_logout') }}">Terminar sesión</a></li>
-    				<li><a href="#">Política de privacidad</a></li>
-    				<li><a href="#">Política de cookies</a></li>
+    				<li><a href="http://www.publicacionesprofesionales.es/politica-privacidad.htm" target="blank">Política de privacidad</a></li>
+    				<li><a href="http://www.publicacionesprofesionales.es/politica-cookies.htm" target="blank">Política de cookies</a></li>
     			</ul>
     		</div>
     		<ul id="mainMenu" class="clearfix">
-    			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:menu')) }}     
+    			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:menu', { 'id': app.request.get('id') })) }}     
     		</ul>
     		
     		<div id="content">

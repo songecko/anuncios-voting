@@ -14,9 +14,13 @@
 					<div class="actions clearfix">
 						<a href="#" class="viewResourcesButton">Ver Pieza</a>
 						{% if(hasVoting) %}
-						<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
+							<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
 						{% else %}
-						<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>
+							{% if(hasVotingByCategory >= 3) %}
+								<p style="color: red">Has llegado al limite de votos para esta categoria</p>
+							{% else %}
+								<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>
+							{% endif %}
 						{% endif %}
 					</div>
 					<div class="info">
