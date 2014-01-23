@@ -48,7 +48,7 @@ class CampaignController extends ResourceController
 						'Mes' => $form->get('month')->getData(),
 						'serviceID' => 'becht34p'
 				));
-				
+				ldd($client->response);
 				//En el proyecto indicar al usuario que hubo un problema
 				if ($client->fault) 
 				{
@@ -290,6 +290,6 @@ class CampaignController extends ResourceController
 	public function getWithEntities($string)
 	{
 		//return htmlentities($string, ENT_SUBSTITUTE, 'ISO-8859-15');
-		return htmlentities($string, ENT_SUBSTITUTE, 'ISO-8859-15');
+		return utf8_encode($string);
 	}
 }
