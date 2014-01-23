@@ -70,12 +70,12 @@ class CampaignController extends ResourceController
 						for($i = 0; $i < $quantity; $i++) 
 						{
 							$anuncioCampaign = $form->getData();
-							$anuncioCategory = $this->getWithEntities($xml['Article'][$i]['strClassification']);
-							$anuncioName = $this->getWithEntities($xml['Article'][$i]['strTitle']);
-							$anuncioAgency = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Agencia']);
-							$anuncioAdvertiser = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Anunciante']);
-							$anuncioProduct = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Producto']);
-							$anuncioBrand = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Marca']);
+							$anuncioCategory = $this->getCleanString($xml['Article'][$i]['strClassification']);
+							$anuncioName = $this->getCleanString($xml['Article'][$i]['strTitle']);
+							$anuncioAgency = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Agencia']);
+							$anuncioAdvertiser = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Anunciante']);
+							$anuncioProduct = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Producto']);
+							$anuncioBrand = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Marca']);
 							$anuncioSector = $xml['Article'][$i]['ArticleCard']['Sector'];
 							$anuncioOtherFields = $xml['Article'][$i]['ArticleCard']['OtherFields'];
 							$anuncioImage = $xml['Article'][$i]['ArticleHead']['Resource']['ResourceURL'];
@@ -112,7 +112,10 @@ class CampaignController extends ResourceController
 							$v = 'valor'.$j;
 							while(isset($anuncioOtherFields[$c]))
 							{
-								$anuncio->addOtherFields($this->getWithEntities($anuncioOtherFields[$c]), $this->getWithEntities($anuncioOtherFields[$v]));
+								if(trim($anuncioOtherFields[$c]) != '')
+								{
+									$anuncio->addOtherFields($this->getCleanString($anuncioOtherFields[$c]), $this->getCleanString($anuncioOtherFields[$v]));
+								}
 								$j++;
 								$c = 'campo'.$j;
 								$v = 'valor'.$j;
@@ -287,9 +290,8 @@ class CampaignController extends ResourceController
 		return $event;
 	}
 	
-	public function getWithEntities($string)
+	public function getCleanString($string)
 	{
-		//return htmlentities($string, ENT_SUBSTITUTE, 'ISO-8859-15');
 		return utf8_encode($string);
 	}
 }
