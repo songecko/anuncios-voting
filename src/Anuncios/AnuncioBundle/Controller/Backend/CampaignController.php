@@ -123,7 +123,18 @@ class CampaignController extends ResourceController
 							
 							$anuncio->setImage($anuncioImage);
 							
-							//$resources = new Resource();
+							//Resources
+							$anuncioResources = $xml['Article']['0']['ArticleContent']['Resources'];
+							foreach($anuncioResources as $anuncioResource)
+							{
+								$resources = new Resource();
+								$resources->setAnuncio($anuncio);
+								$resources->setType($anuncioResource['ResourceTypeName']);
+								$resources->setLink($anuncioResource['ResourceURL']);
+								$resources->setName($anuncioResource['ResourceName']);
+								
+								$manager->persist($resources);
+							}
 							
 							$manager->persist($anuncio);
 						}
@@ -254,14 +265,9 @@ class CampaignController extends ResourceController
 							
 							$anuncio->setImage($anuncioImage);
 							
-							/*$anuncioResources = $xml['Article']['0']['ArticleContent']['Resources'];
-							$quantityResources = count($anuncioResources['Resource']);
-							echo $quantityResources;
-							die;
+							$anuncioResources = $xml['Article']['0']['ArticleContent']['Resources'];
 							foreach($anuncioResources as $anuncioResource)
 							{
-								print_r($anuncioResource);
-								die;
 								$resources = new Resource();
 								$resources->setAnuncio($anuncio);
 								$resources->setType($anuncioResource['ResourceTypeName']);
@@ -269,7 +275,7 @@ class CampaignController extends ResourceController
 								$resources->setName($anuncioResource['ResourceName']);
 								
 								$manager->persist($resources);
-							}*/
+							}
 							
 							$manager->persist($anuncio);
 						}
