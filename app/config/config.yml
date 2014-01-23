@@ -110,6 +110,10 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Anuncios\AnuncioBundle\Entity\Category
+        anuncios.user:
+            driver: doctrine/orm
+            classes:
+                model: Anuncios\AnuncioBundle\Entity\User
                 
 fos_user:
     db_driver: orm

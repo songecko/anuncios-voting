@@ -46,6 +46,7 @@ gecko.backend:
         anuncio.index:   "Anuncios"
         sector.index:   "Sector"
         category.index: "Categorias"
+        user.index:      "Usuarios"
         slider.index:   "Slider de Inicio"
         sv.index:   "Valores Compartidos"
         
@@ -68,6 +69,11 @@ gecko.backend:
         index_header:  "Categorias"
         update_header: "Editar categoria"
         create_header: "Nueva categoria"
+        
+    user:
+        index_header:  "Usuarios"
+        update_header: "Editar usuario"
+        create_header: "Nuevo usuario"
 
     slider:
         index_header:  "Slider de Inicio"

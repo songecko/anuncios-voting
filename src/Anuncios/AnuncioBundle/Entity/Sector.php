@@ -12,6 +12,7 @@ class Sector
 {
     private $id;
     private $name;
+    private $sectorId;
 	private $anuncios;
 	private $createdAt;
 	private $updatedAt;
@@ -27,7 +28,19 @@ class Sector
     
     	return $this;
     }
-
+    
+    public function setSectorId($sectorId)
+    {
+    	$this->sectorId = $sectorId;
+    
+    	return $this;
+    }
+    
+    public function getSectorId()
+    {
+    	return $this->sectorId;
+    }
+    
     public function setName($name)
     {
         $this->name = $name;

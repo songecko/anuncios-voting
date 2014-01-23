@@ -59,6 +59,17 @@ class LoadAnuncioData implements FixtureInterface
     	
     	$manager->persist($userUsuario);
     	
+    	$userJurado2 = new User();
+    	$userJurado2->setUserId(4);
+    	$userJurado2->setUsername('pruebas3@pruebas.es');
+    	$userJurado2->setEmail('pruebas3@pruebas.es');
+    	$userJurado2->setPlainPassword('123456');
+    	$userJurado2->setEnabled(true);
+    	$userJurado2->setRoles(array('ROLE_USER'));
+    	$userJurado2->setIsJurado(true);
+    	
+    	$manager->persist($userJurado2);
+    	
     	$campaign = new Campaign();
     	$campaign->setName('Campaña 1');
     	$campaign->setIsActive(true);

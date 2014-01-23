@@ -11,13 +11,13 @@ class SectorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('id', 'text', array(
-        		'required' => true,
-        		'label'    => 'ID'
-        ))
         ->add('name', 'text', array(
         		'required' => true,
         		'label'    => 'Nombre'
+        ))
+        ->add('sectorId', 'text', array(
+        		'required' => true,
+        		'label'    => 'Sector ID'
         ));
     }
 

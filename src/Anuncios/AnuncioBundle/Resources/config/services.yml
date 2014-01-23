@@ -57,3 +57,8 @@ services:
         class: Anuncios\AnuncioBundle\Form\Type\CategoryType
         tags:
             - { name: form.type, alias: anuncios_category }
+
+    anuncios.form.type.user:
+        class: Anuncios\AnuncioBundle\Form\Type\UserType
+        tags:
+            - { name: form.type, alias: anuncios_user }

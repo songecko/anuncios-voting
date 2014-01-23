@@ -48,6 +48,11 @@ class BackendMenuBuilder
         		'route' => 'anuncios_anuncio_backend_category_index',
         		'labelAttributes' => array('icon' => 'icon-barcode'),
         ))->setLabel("Categorias");
+
+        $menu->addChild('user', array(
+        		'route' => 'anuncios_anuncio_backend_user_index',
+        		'labelAttributes' => array('icon' => 'icon-barcode'),
+        ))->setLabel("Usuarios");
         
         return $menu;
     }

@@ -11,6 +11,9 @@ Anuncios\AnuncioBundle\Entity\Sector:
         name:
             type: string
             length: 255
+        sectorId:
+            type: integer
+            nullable: true
         createdAt:
             column: created_at
             type: datetime
