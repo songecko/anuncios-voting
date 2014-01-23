@@ -290,6 +290,6 @@ class CampaignController extends ResourceController
 	public function getWithEntities($string)
 	{
 		//return htmlentities($string, ENT_SUBSTITUTE, 'ISO-8859-15');
-		return htmlspecialchars($string);
+		return htmlspecialchars($string, ENT_SUBSTITUTE, 'ISO-8859-15');
 	}
 }
