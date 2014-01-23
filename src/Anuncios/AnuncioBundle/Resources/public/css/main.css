@@ -8,8 +8,8 @@
 
 #header ul.date {
 	float: left;
-	width: 270px;
-	margin: 25px 0 0 70px;
+	width: 240px;
+	margin: 25px 0 0 20px;
 	font-size: 12px;
 }
 
@@ -54,25 +54,53 @@
 	font-weight: bold;
 }
 
-#mainMenu li:hover {
+#mainMenu li:hover, #mainMenu li.active {
 	border-bottom: 3px solid #000000;
 	padding-bottom: 5px;
 }
 
-#mainMenu li:hover a {
+#mainMenu li:hover a, #mainMenu li.active a {
 	color: #000000;
 	text-decoration: none;
 }
 
 #content section {
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
-#content section h2 {
+#content section .title {
+	margin-bottom: 20px;
+	position: relative;	
+}
+
+#content section .title img {
+	display: block;
+}
+
+#content section .title h2 {
+	position: absolute;
+	top: 48px;
+	font-family: "lubalgraph_bk_btbook", Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	font-size: 70px;
+	font-weight: normal;
+	text-transform: capitalize;
+	margin-left: 30px;
+}
+
+#content h2, #content h3 {
 	margin: 0;
 	color: #d5242a;
 	font-weight: bold;
 	text-transform: uppercase;
+}
+
+#content h3 {
+	font-size: 18px;
+}
+
+#content h4 {
+	color: #000000;
 }
 
 #content .anunciosList .list {
@@ -81,13 +109,35 @@
 
 #content .anunciosList .anuncio {
 	float: left;
-	width: 226px;
+	width: 220px;
+	height: 230px;
 	margin: 0 20px 35px 0;
+}
+
+#content .anunciosList .anuncio .imageWrapper
+{
+	display: block;
+	position: relative;
+}
+
+#content .anunciosList .anuncio .imageWrapper span {
+	background: url(../images/vote-flag.png) no-repeat;
+	width: 52px;
+	height: 52px;
+	position: absolute;
+	right: 0;
+}
+#content .anunciosList .anuncio .imageWrapper span.voted {
+	background: url(../images/voted-flag.png) no-repeat;
+}
+#content .anunciosList .anuncio .imageWrapper img {
+	width: 100%;
 }
 
 #content .anunciosList .anuncio p.sector {
 	text-transform: uppercase;
 	margin-bottom: 3px;
+	height: 34px;
 }
 
 #content .anunciosList .anuncio p.name {
@@ -102,6 +152,18 @@
 
 #content .anunciosList .anuncio p.subname {
 	margin: 0;
+}
+
+#content .marchaRanking p {
+	font-size: 18px;
+}
+
+#content .marchaRanking p .number {
+	color: #6e6e6e;
+}
+
+#content .marchaRanking p .categoryName {
+	font-size: 14px;
 }
 
 #content .anuncioShow .picture {
@@ -188,4 +250,43 @@
 
 #content .anuncioShow .attributes p span {
 	color: #000000;
+}
+
+#content table.ranking {
+	width: 100%;
+	margin-top: 30px;
+}
+
+#content table.ranking th {
+	background: #eaeaea;
+	font-weight: normal;
+	text-align: center;
+	height: 36px;
+	border-right: 1px solid #FFFFFF;
+}
+
+#content table.ranking tr {
+	border-bottom: 1px solid #eaeaea;
+}
+
+#content table.ranking td {
+	padding: 16px 20px;
+}
+
+#content table.ranking td.number {
+	text-align: center;
+	color: #d5242a;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#content table.ranking td.details a {
+	margin-left: 35px;
+	font-size: 18px;
+}
+
+#content table.ranking td.votes {
+	text-align: center;
+	font-size: 28px;
+	color: #d4d4d4;
 }

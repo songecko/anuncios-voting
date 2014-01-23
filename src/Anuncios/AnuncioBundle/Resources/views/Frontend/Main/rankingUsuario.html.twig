@@ -2,11 +2,35 @@
 
 {% block content %}
 <section class="anunciosList clearfix">
-<h2>RANKING {{ category.name|upper }}</h2>
+	<div class="title">
+		<img src="{{ asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
+		<h2>Rankings</h2>
+	</div>
 	
-{% set i = 0 %}
-{% for usuario in rankingUsuario %}
-	{% set i = i + 1 %}
-	<p><a href="{{ path('anuncios_anuncio_show', {'id': usuario.id}) }}">0{{ i }}. {{ usuario.name }} - {{ usuario.agency }}</a></p>
-{% endfor %}
-{% endblock %}
+	<div class="row">
+		<div class="col-md-8">
+			<h2>{{ category.name }}</h2>
+			
+			<table class="ranking">
+				<tr>
+					<th width="10%">#</th>
+					<th width="70%">Anuncio</th>
+					<th width="20%">Votos</th>
+				</tr>
+				{% for anuncio in rankingUsuario %}
+				<tr>
+					<td class="number">0{{ loop.index }}</td>
+					<td class="details">
+						<img src="{{ anuncio.image }}" width="60">
+						<a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}">{{ anuncio.name }}</a>
+					</td>
+					<td class="votes">{{ anuncio.votoUsuario }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+</section>
+{% endblock %}	

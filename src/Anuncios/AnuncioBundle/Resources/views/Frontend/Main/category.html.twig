@@ -2,30 +2,22 @@
 
 {% block content %}
 <section class="anunciosList clearfix">
-	<h2>{{ category.name }}</h2>
+	<div class="title">
+		<img src="{{ asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
+		<h2>{{ category.name }}</h2>
+	</div>
 	
-	<div class="list">
+	<div class="list clearfix">
 		{% for anuncio in anuncios %}
-		<div class="anuncio">
-			<p class="sector">{{ anuncio.sector }}</p>
-			<a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}"><img src="{{ anuncio.image }}"></a>
-			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}">{{ anuncio.name }}</a></p>
-			<p class="subname">{{ anuncio.agency }}</p>
-		</div>
+		{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
 		{% endfor %}
 	</div>
 	
 	
-	<h2>ULTIMOS ANUNCIOS EN {{ category.name|upper }} VOTADOS</h2>
-	
-	<div class="list">
-		{% for lastAnuncioVoteByCategory in lastAnunciosVoteByCategory %}
-		<div class="anuncio">
-			<p class="sector">{{ lastAnuncioVoteByCategory.sector }}</p>
-			<a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByCategory.id}) }}"><img src="{{ lastAnuncioVoteByCategory.image }}"></a>
-			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByCategory.id}) }}">{{ lastAnuncioVoteByCategory.name }}</a></p>
-			<p class="subname">{{ lastAnuncioVoteByCategory.agency }}</p>
-		</div>
+	<h3>Anuncios mas votados en {{ category.name }} este més</h3>
+	<div class="list clearfix">
+		{% for anuncio in lastAnunciosVoteByCategory %}
+		{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
 		{% endfor %}
 	</div>
 </section>

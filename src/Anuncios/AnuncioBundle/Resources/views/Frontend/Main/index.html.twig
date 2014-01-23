@@ -2,52 +2,60 @@
 
 {% block content %}
 <section class="anunciosList clearfix">
-	<h2>SECCIONES POR VOTAR</h2>
-	
-	<div class="list">
-		{% for leftAnuncioVoteByUser in leftAnunciosVoteByUser %}
-		<div class="anuncio">
-			<p class="sector">{{ leftAnuncioVoteByUser.sector }}</p>
-			<a href="{{ path('anuncios_anuncio_show', {'id': leftAnuncioVoteByUser.id}) }}"><img src="{{ leftAnuncioVoteByUser.image }}"></a>
-			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': leftAnuncioVoteByUser.id}) }}">{{ leftAnuncioVoteByUser.name }}</a></p>
-			<p class="subname">{{ leftAnuncioVoteByUser.agency }}</p>
-		</div>
-		{% endfor %}
-	</div>
-
-	
-	<h2>SECCIONES QUE HAS VOTADO</h2>
-	
-	<div class="list">
-		{% for lastAnuncioVoteByUser in lastAnunciosVoteByUser %}
-		<div class="anuncio">
-			<p class="sector">{{ lastAnuncioVoteByUser.sector }}</p>
-			<a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByUser.id}) }}"><img src="{{ lastAnuncioVoteByUser.image }}"></a>
-			<p class="name"><a href="{{ path('anuncios_anuncio_show', {'id': lastAnuncioVoteByUser.id}) }}">{{ lastAnuncioVoteByUser.name }}</a></p>
-			<p class="subname">{{ lastAnuncioVoteByUser.agency }}</p>
-		</div>
-		{% endfor %}
+	<div class="title">
+		<img src="{{ asset('bundles/anunciosanuncio/images/title_home.jpg') }}">
 	</div>
 	
-	
-	<h2>RANKING DE VOTANTES</h2>
-	
-	{% set i = 0 %}
-	{% for usuario in rankingUsuario %}
-		{% if usuario != null %}
-			{% set i = i + 1 %}
-			<p><a href="{{ path('anuncios_anuncio_ranking_usuario', {'id': usuario.category.id}) }}">0{{ i }}. {{ usuario.name }} - {{ usuario.category.name }}</a></p>
-		{% endif %}
-	{% endfor %}
-	
-	
-	<h2>RANKING DE JURADO</h2>
+	<div class="row">
+		<div class="col-md-8">
+			<h3>SECCIONES POR VOTAR</h3>
+			<div class="list clearfix">
+				{% for anuncio in leftAnunciosVoteByUser %}
+				{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
+				{% endfor %}
+			</div>
 
-	{% set i = 0 %}
-	{% for jurado in rankingJurado %}
-		{% if jurado != null %}
-			{% set i = i + 1 %}
-			<p><a href="{{ path('anuncios_anuncio_ranking_jurado', {'id': jurado.category.id}) }}">0{{ i }}. {{ jurado.name }} - {{ jurado.category.name }}</a></p>
-		{% endif %}
-	{% endfor %}
+	
+			<h3>SECCIONES QUE HAS VOTADO</h3>
+			<div class="list clearfix">
+				{% for anuncio in lastAnunciosVoteByUser %}
+				{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4">
+			<h3>Marcha de las votaciones</h3>
+			
+			<h4>Voto popular</h4>
+			<div class="marchaRanking">
+			{% set i = 0 %}
+			{% for usuario in rankingUsuario %}
+				{% if usuario != null %}
+					{% set i = i + 1 %}
+					<p><a href="{{ path('anuncios_anuncio_ranking_usuario', {'id': usuario.category.id}) }}">
+						<span class="number">0{{ i }}</span>. 
+						{{ usuario.name }} - 
+						<span class="categoryName">{{ usuario.category.name }}</span>
+					</a></p>
+				{% endif %}
+			{% endfor %}
+			</div>	
+	
+			<h4>Voto del jurado</h4>
+			<div class="marchaRanking">
+			{% set i = 0 %}
+			{% for jurado in rankingJurado %}
+				{% if jurado != null %}
+					{% set i = i + 1 %}
+					<p><a href="{{ path('anuncios_anuncio_ranking_jurado', {'id': jurado.category.id}) }}">
+						<span class="number">0{{ i }}</span>. 
+						{{ jurado.name }} - 
+						<span class="categoryName">{{ jurado.category.name }}</span>
+					</a></p>
+				{% endif %}
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
 {% endblock %}

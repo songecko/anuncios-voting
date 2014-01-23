@@ -48,7 +48,7 @@ class CampaignController extends ResourceController
 						'Mes' => $form->get('month')->getData(),
 						'serviceID' => 'becht34p'
 				));
-				
+				ldd($client->response);
 				//En el proyecto indicar al usuario que hubo un problema
 				if ($client->fault) 
 				{
@@ -70,12 +70,12 @@ class CampaignController extends ResourceController
 						for($i = 0; $i < $quantity; $i++) 
 						{
 							$anuncioCampaign = $form->getData();
-							$anuncioCategory = $xml['Article'][$i]['strClassification'];
-							$anuncioName = $xml['Article'][$i]['strTitle'];
-							$anuncioAgency = $xml['Article'][$i]['ArticleCard']['Agencia'];
-							$anuncioAdvertiser = $xml['Article'][$i]['ArticleCard']['Anunciante'];
-							$anuncioProduct = $xml['Article'][$i]['ArticleCard']['Producto'];
-							$anuncioBrand = $xml['Article'][$i]['ArticleCard']['Marca'];
+							$anuncioCategory = $this->getWithEntities($xml['Article'][$i]['strClassification']);
+							$anuncioName = $this->getWithEntities($xml['Article'][$i]['strTitle']);
+							$anuncioAgency = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Agencia']);
+							$anuncioAdvertiser = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Anunciante']);
+							$anuncioProduct = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Producto']);
+							$anuncioBrand = $this->getWithEntities($xml['Article'][$i]['ArticleCard']['Marca']);
 							$anuncioSector = $xml['Article'][$i]['ArticleCard']['Sector'];
 							$anuncioOtherFields = $xml['Article'][$i]['ArticleCard']['OtherFields'];
 							$anuncioImage = $xml['Article'][$i]['ArticleHead']['Resource']['ResourceURL'];
@@ -112,7 +112,7 @@ class CampaignController extends ResourceController
 							$v = 'valor'.$j;
 							while(isset($anuncioOtherFields[$c]))
 							{
-								$anuncio->addOtherFields(htmlentities($anuncioOtherFields[$c], ENT_SUBSTITUTE, 'ISO-8859-15'), htmlentities($anuncioOtherFields[$v], ENT_SUBSTITUTE, 'ISO-8859-15'));
+								$anuncio->addOtherFields($this->getWithEntities($anuncioOtherFields[$c]), $this->getWithEntities($anuncioOtherFields[$v]));
 								$j++;
 								$c = 'campo'.$j;
 								$v = 'valor'.$j;
@@ -195,8 +195,6 @@ class CampaignController extends ResourceController
 					} 
 					else 
 					{
-						/*print_r($result);
-						die;*/
 						//En el proyecto, parsear la respuesta
 						$xml = $result['GetXMLDocPremiosResult']['ArticleSet'];
 						$quantity = count($xml['Article']);
@@ -287,5 +285,10 @@ class CampaignController extends ResourceController
 		}
 	
 		return $event;
+	}
+	
+	public function getWithEntities($string)
+	{
+		return htmlentities($string, ENT_SUBSTITUTE, 'ISO-8859-15');
 	}
 }
