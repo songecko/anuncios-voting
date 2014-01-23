@@ -48,7 +48,7 @@ class CampaignController extends ResourceController
 						'Mes' => $form->get('month')->getData(),
 						'serviceID' => 'becht34p'
 				));
-				
+				//ldd($client->response);
 				//En el proyecto indicar al usuario que hubo un problema
 				if ($client->fault) 
 				{
@@ -124,16 +124,27 @@ class CampaignController extends ResourceController
 							$anuncio->setImage($anuncioImage);
 							
 							//Resources
-							$anuncioResources = $xml['Article']['0']['ArticleContent']['Resources'];
-							foreach($anuncioResources as $anuncioResource)
+							$anuncioResources = $xml['Article'][$i]['ArticleContent']['Resources'];
+							if(is_array($anuncioResources))
 							{
-								$resources = new Resource();
-								$resources->setAnuncio($anuncio);
-								$resources->setType($anuncioResource['ResourceTypeName']);
-								$resources->setLink($anuncioResource['ResourceURL']);
-								$resources->setName($anuncioResource['ResourceName']);
-								
-								$manager->persist($resources);
+								foreach($anuncioResources as $anuncioResource)
+								{
+									$xmlResources = $anuncioResource;
+									if(isset($xmlResources['ResourceTypeName']))
+									{
+										$xmlResources = array($xmlResources);
+									}
+									
+									foreach ($xmlResources as $xmlResource)
+									{
+										$resource = new Resource();
+										$resource->setAnuncio($anuncio);
+										$resource->setType($xmlResource['ResourceTypeName']);
+										$resource->setLink($xmlResource['ResourceURL']);
+										$resource->setName($this->getCleanString($xmlResource['ResourceName']));
+										$manager->persist($resource);
+									}
+								}
 							}
 							
 							$manager->persist($anuncio);
@@ -142,6 +153,7 @@ class CampaignController extends ResourceController
 				}
 			}
 		}
+		
 		$event = $this->dispatchEvent('pre_create', $resource);
 
         if (!$event->isStopped()) {
