@@ -289,12 +289,7 @@ class CampaignController extends ResourceController
 	
 	public function getWithEntities($string)
 	{
-		$entities = htmlentities($string, ENT_QUOTES, 'ISO-8859-1');
-		
-		$text= html_entity_decode($entities,ENT_QUOTES,"ISO-8859-1"); #NOTE: UTF-8 does not work!
-		$text= preg_replace('/&#(\d+);/me',"chr(\\1)",$text); #decimal notation
-		$text= preg_replace('/&#x([a-f0-9]+);/mei',"chr(0x\\1)",$text);  #hex notation
-		return $text;
+		return htmlentities($string, ENT_SUBSTITUTE, 'ISO-8859-15');
 		
 	}
 }
