@@ -48,7 +48,7 @@ class CampaignController extends ResourceController
 						'Mes' => $form->get('month')->getData(),
 						'serviceID' => 'becht34p'
 				));
-				ldd($client->response);
+				
 				//En el proyecto indicar al usuario que hubo un problema
 				if ($client->fault) 
 				{
@@ -86,8 +86,8 @@ class CampaignController extends ResourceController
 							
 							$sector = $this->getDoctrine()
 								->getRepository('AnunciosAnuncioBundle:Sector')
-								->find($anuncioSector);
-
+								->findOneBySectorId($anuncioSector);
+							
 							if(!$category)
 							{
 								$category = new Category();
