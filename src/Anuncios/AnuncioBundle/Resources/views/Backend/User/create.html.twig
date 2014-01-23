@@ -1,0 +1,23 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li><a href="{{ path('anuncios_anuncio_backend_user_index') }}">{{ 'gecko.backend.breadcrumb.user.index'|trans }}</a></li>
+    <li>{{ 'gecko.backend.breadcrumb.new'|trans }}</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="icon-plus-sign"></i> {{ 'gecko.backend.user.create_header'|trans|raw }}</h1>
+</div>
+
+{{ form_errors(form) }}
+
+<form action="{{ path('anuncios_anuncio_backend_user_create') }}" method="post" class="form-horizontal" enctype="multipart/form-data" novalidate>
+    {% include 'AnunciosAnuncioBundle:Backend/User:_form.html.twig' %}
+    {{ create() }}
+</form>
+{% endblock %}
