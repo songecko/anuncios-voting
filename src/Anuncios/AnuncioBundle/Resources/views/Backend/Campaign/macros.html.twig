@@ -11,6 +11,8 @@
             <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.name'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.is_active'|trans) }}</th>
+            <th>{{ sylius_resource_sort('name', 'gecko.backend.date_begin'|trans) }}</th>
+            <th>{{ sylius_resource_sort('name', 'gecko.backend.date_end'|trans) }}</th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +26,8 @@
             {% else %}
             	<td>No</td>
             {% endif %}
+            <td>{{ campaign.dateBegin|date('d-m-y') }}</td>
+            <td>{{ campaign.dateEnd|date('d-m-y') }}</td>
             <td>
                 <div class="pull-right">
                     {{ buttons.edit(path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id})) }}

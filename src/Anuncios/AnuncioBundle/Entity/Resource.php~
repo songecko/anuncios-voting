@@ -102,7 +102,7 @@ class Resource
     
     public function getResourceType()
     {
-    	if($this->getType() == 'image')
+    	if($this->getType() == 'Imagen')
     	{
     		return 'image/jpeg';
     	}

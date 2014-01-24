@@ -100,6 +100,17 @@ class User extends BaseUser
         return $this->surname;
     }
     
+    public function isAnuncioVoted($anuncioId)
+    {
+    	foreach($this->getVoting() as $voting)
+    	{
+    		if($voting->getAnuncio()->getId() == $anuncioId)
+    			return true;
+    	}
+    	
+    	return false;
+    }
+    
     public function setCreatedAt($createdAt)
     {
     	$this->createdAt = $createdAt;
