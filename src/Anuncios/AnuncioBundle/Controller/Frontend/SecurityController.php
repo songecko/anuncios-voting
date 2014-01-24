@@ -71,7 +71,7 @@ class SecurityController extends Controller
 						
 						$user = $this->getDoctrine()
 							->getRepository('AnunciosAnuncioBundle:User')
-							->findOneByUserId($userId);
+							->findOneByUsername($_POST['username']);
 						
 						if(!$user)
 						{
