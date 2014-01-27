@@ -78,8 +78,9 @@ class AnuncioRepository extends EntityRepository
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
 				WHERE a.campaign = :campaign AND a.category = :category AND a.id IN (
-					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v ORDER BY v.createdAt DESC
-				)'
+					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v
+				)
+				ORDER BY a.votoJurado+a.votoUsuario DESC, a.name'
 		)->setParameters(array(
 				'campaign' => $campaign,
 				'category' => $category
@@ -146,5 +147,24 @@ class AnuncioRepository extends EntityRepository
 				'category' => $category
 		))
 		->getResult();
+	}
+	
+	public function getAnunciosFinalByCategory($category, $month, $year)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.category = :category AND a.campaign IN (
+					SELECT c.id FROM AnunciosAnuncioBundle:Campaign c WHERE c.month = :month AND
+					c.year = :year
+				)
+				ORDER BY a.votoJurado+a.votoUsuario DESC'
+		)->setParameters(array(
+				'category' => $category,
+				'month'    => $month,
+				'year'     => $year
+		))->setMaxResults(1)
+		->getOneOrNullResult();
 	}
 }

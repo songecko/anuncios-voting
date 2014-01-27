@@ -25,6 +25,23 @@ class CampaignController extends ResourceController
 			{
 				$this->getXmlDocPremios($form->get('month')->getData(), $form->get('year')->getData(), $form->getData());
 			}
+			
+			if($form->get('month')->getData() == null && $form->get('year')->getData() != null)
+			{
+				$anunciosFinalistas = $this->getAnunciosFinal($form->get('year')->getData());
+				
+				foreach($anunciosFinalistas as $anuncioFinalista)
+				{
+					if($anuncioFinalista != null)
+					{
+						$anuncio = clone $anuncioFinalista;
+						$anuncio->setCampaign($form->getData());
+						$manager->persist($anuncio);
+					}
+				}
+				
+				$manager->flush();
+			}
 		}
 		
 		$event = $this->dispatchEvent('pre_create', $resource);
@@ -55,7 +72,25 @@ class CampaignController extends ResourceController
 			{
 				$this->getXmlDocPremios($form->get('month')->getData(), $form->get('year')->getData(), $form->getData());
 			}
+			
+			if($form->get('month')->getData() == null && $form->get('year')->getData() != null)
+			{
+				$anunciosFinalistas = $this->getAnunciosFinal($form->get('year')->getData());
+			
+				foreach($anunciosFinalistas as $anuncioFinalista)
+				{
+					if($anuncioFinalista != null)
+					{
+						$anuncio = clone $anuncioFinalista;
+						$anuncio->setCampaign($form->getData());
+						$manager->persist($anuncio);
+					}
+				}
+			
+				$manager->flush();
+			}
 		}
+		
 		$event = $this->dispatchEvent('pre_create', $resource);
 	
 		if (!$event->isStopped()) 
@@ -124,7 +159,7 @@ class CampaignController extends ResourceController
 				$quantity = count($xml['Article']);
 				for($i = 0; $i < $quantity; $i++)
 				{
-					$anuncioCampaign = $data;
+					$anuncioCampaign = $campaign;
 					$anuncioCategory = $this->getCleanString($xml['Article'][$i]['strClassification']);
 					$anuncioName = $this->getCleanString($xml['Article'][$i]['strTitle']);
 					$anuncioAgency = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Agencia']);
@@ -207,5 +242,24 @@ class CampaignController extends ResourceController
 				}
 			}
 		}
+	}
+	
+	public function getAnunciosFinal($year)
+	{
+		$categories = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->findAll();
+		
+		foreach($categories as $category)
+		{
+			for($i = 1; $i <= 12; $i++)
+			{
+				$finalistas[] = $this->getDoctrine()
+					->getRepository('AnunciosAnuncioBundle:Anuncio')
+					->getAnunciosFinalByCategory($category, $i, $year);
+			}
+		}
+		
+		return $finalistas;
 	}
 }
