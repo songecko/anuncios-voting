@@ -80,7 +80,7 @@ class CampaignController extends ResourceController
 							$anuncioOtherFields = $xml['Article'][$i]['ArticleCard']['OtherFields'];
 							if(isset($xml['Article'][$i]['ArticleHead']))
 							{
-								$anuncioImage = $xml['Article'][$i]['ArticleHead']['Resource']['ResourceURL'];								echo 2;die;
+								$anuncioImage = $xml['Article'][$i]['ArticleHead']['Resource']['ResourceURL'];
 							}
 							
 							$category = $this->getDoctrine()
