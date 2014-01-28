@@ -78,7 +78,7 @@ class CampaignController extends ResourceController
 							$anuncioBrand = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Marca']);
 							$anuncioSector = $xml['Article'][$i]['ArticleCard']['Sector'];
 							$anuncioOtherFields = $xml['Article'][$i]['ArticleCard']['OtherFields'];
-							if(isset($xml['Article'][$i]['ArticleHead']))
+							if(is_array($xml['Article'][$i]['ArticleHead']))
 							{
 								$anuncioImage = $xml['Article'][$i]['ArticleHead']['Resource']['ResourceURL'];
 							}
