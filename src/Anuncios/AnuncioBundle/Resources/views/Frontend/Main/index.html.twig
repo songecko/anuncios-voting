@@ -55,6 +55,9 @@
 				{% endif %}
 			{% endfor %}
 			</div>
+			{% if(hasVotingByCampaign/categories|length == 3) %}
+				<p style="color: red">Has llegado al limite de votos para esta campaña</p>
+			{% endif %}
 		</div>
 	</div>
 </section>

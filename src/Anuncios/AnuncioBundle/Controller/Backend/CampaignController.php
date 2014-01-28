@@ -166,7 +166,10 @@ class CampaignController extends ResourceController
 					$anuncioAdvertiser = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Anunciante']);
 					$anuncioProduct = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Producto']);
 					$anuncioBrand = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Marca']);
-					$anuncioSector = $xml['Article'][$i]['ArticleCard']['Sector'];
+					if(is_array($xml['Article'][$i]['ArticleHead']))
+					{
+						$anuncioSector = $xml['Article'][$i]['ArticleCard']['Sector'];
+					}
 					$anuncioOtherFields = $xml['Article'][$i]['ArticleCard']['OtherFields'];
 					if(is_array($xml['Article'][$i]['ArticleHead']))
 					{
