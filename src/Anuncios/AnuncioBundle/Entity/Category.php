@@ -4,6 +4,7 @@ namespace Anuncios\AnuncioBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use SplFileInfo;
 
 /**
  * Category
@@ -12,6 +13,8 @@ class Category
 {
     private $id;
     private $name;
+    private $headlineImage;
+    private $headlineImageFile;
     private $anuncios;
     private $createdAt;
     private $updatedAt;
@@ -20,7 +23,36 @@ class Category
     {
         return $this->id;
     }
-
+    public function hasFile()
+    {
+    	return null !== $this->headlineImageFile;
+    }
+    
+    public function getheadlineImageFile()
+    {
+    	return $this->headlineImageFile;
+    }
+    
+    public function setFile(SplFileInfo $headlineImageFile)
+    {
+    	$this->headlineImageFile = $headlineImageFile;
+    }
+    
+    public function hasPath()
+    {
+    	return null !== $this->headlineImage;
+    }
+    
+    public function getPath()
+    {
+    	return $this->headlineImage;
+    }
+    
+    public function setPath($headlineImage)
+    {
+    	$this->headlineImage = $headlineImage;
+    }
+    
     public function setName($name)
     {
         $this->name = $name;
