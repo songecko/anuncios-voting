@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3872b82dea41d37b8d732eb987654ef1",
+    "hash": "edf4c2a92af6b338745530b4ab37b588",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -185,7 +185,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -646,7 +646,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1307,12 +1307,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "a01503c7a95a84fe0fa10822876866e01a1bbeed"
+                "reference": "b72a040c6501ff1205669086a145b830c39932d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/a01503c7a95a84fe0fa10822876866e01a1bbeed",
-                "reference": "a01503c7a95a84fe0fa10822876866e01a1bbeed",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/b72a040c6501ff1205669086a145b830c39932d3",
+                "reference": "b72a040c6501ff1205669086a145b830c39932d3",
                 "shasum": ""
             },
             "require": {
@@ -1382,7 +1382,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2014-01-20 15:44:30"
+            "time": "2014-01-28 08:20:10"
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
@@ -1630,17 +1630,17 @@
         },
         {
             "name": "liip/imagine-bundle",
-            "version": "v0.17.0",
+            "version": "v0.18.0",
             "target-dir": "Liip/ImagineBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "47e2b2bb04594a433d1c12f52b207127dc686093"
+                "reference": "cb56b14a5c218cd7d99c82ea016ac274ba6f8ade"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/47e2b2bb04594a433d1c12f52b207127dc686093",
-                "reference": "47e2b2bb04594a433d1c12f52b207127dc686093",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/cb56b14a5c218cd7d99c82ea016ac274ba6f8ade",
+                "reference": "cb56b14a5c218cd7d99c82ea016ac274ba6f8ade",
                 "shasum": ""
             },
             "require": {
@@ -1681,7 +1681,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2013-12-04 09:43:45"
+            "time": "2014-01-29 09:55:23"
         },
         {
             "name": "monolog/monolog",
@@ -2780,17 +2780,17 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.3.4",
+            "version": "v2.3.5",
             "target-dir": "Symfony/Bundle/SwiftmailerBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/SwiftmailerBundle.git",
-                "reference": "f5e5d12629c26a835c7aa1d74e2e041486b92d93"
+                "reference": "fcefa9dbd5a1ed20547b0f8a2afd5ad6837ea321"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/f5e5d12629c26a835c7aa1d74e2e041486b92d93",
-                "reference": "f5e5d12629c26a835c7aa1d74e2e041486b92d93",
+                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/fcefa9dbd5a1ed20547b0f8a2afd5ad6837ea321",
+                "reference": "fcefa9dbd5a1ed20547b0f8a2afd5ad6837ea321",
                 "shasum": ""
             },
             "require": {
@@ -2831,7 +2831,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2013-08-22 13:32:58"
+            "time": "2013-11-21 12:29:01"
         },
         {
             "name": "symfony/symfony",
