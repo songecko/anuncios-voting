@@ -13,7 +13,7 @@
 {% block content %}
 <div class="page-header">
     <div class="actions-menu">
-        {#%{{ buttons.create(path('anuncios_anuncio_backend_user_create'), 'gecko.backend.create'|trans) }} %#}
+        {{ buttons.create(path('anuncios_anuncio_backend_user_create'), 'gecko.backend.create'|trans) }} 
     </div>
     <h1><i class="icon-user"></i> {{ 'gecko.backend.user.index_header'|trans|raw }}</h1>
 </div>
