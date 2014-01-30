@@ -39,7 +39,7 @@ class LoadAnuncioData implements FixtureInterface
     	
     	$userJurado = new User();
     	$userJurado->setUserId(2);
-    	$userJurado->setUsername('jurado');
+    	$userJurado->setUsername('jurado@anuncio.com');
     	$userJurado->setEmail('jurado@anuncio.com');
     	$userJurado->setPlainPassword('123456');
     	$userJurado->setEnabled(true);
@@ -50,7 +50,7 @@ class LoadAnuncioData implements FixtureInterface
     	
     	$userUsuario = new User();
     	$userUsuario->setUserId(3);
-    	$userUsuario->setUsername('usuario');
+    	$userUsuario->setUsername('usuario@anuncio.com');
     	$userUsuario->setEmail('usuario@anuncio.com');
     	$userUsuario->setPlainPassword('123456');
     	$userUsuario->setEnabled(true);
