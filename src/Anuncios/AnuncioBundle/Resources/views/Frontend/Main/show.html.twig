@@ -6,7 +6,7 @@
 	<p class="subname">{{ category.name }}</p>
 	
 	<div class="details row">
-		<div class="col-md-8">
+		<div class="col-md-7">
 			<div class="picture">
 				<img src="{{ anuncio.image }}" />
 				<div class="overlay"></div>
@@ -17,7 +17,7 @@
 							<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
 						{% else %}
 							{% if(hasVotingByCategory >= 3) %}
-								<p style="color: red">Has llegado al limite de votos para esta categoria</p>
+								<a href="#" class="voteButton" onclick="alert('Has llegado al limite de votos para esta categoria.');return false;">Votar</a>
 							{% else %}
 								<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>
 							{% endif %}
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 attributes">
+		<div class="col-md-4 col-md-offset-1 attributes">
 			<p><span>Agencia:</span> {{ anuncio.agency }}</p>
 			<p><span>Anunciante:</span> {{ anuncio.advertiser }}</p>
 			<p><span>Producto:</span> {{ anuncio.product }}</p>

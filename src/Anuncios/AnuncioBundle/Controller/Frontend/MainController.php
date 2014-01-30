@@ -111,7 +111,13 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
     	
-    	if($hasVoting)
+    	$campaignActive = $this->getActiveCampaign();
+    	
+    	$hasVotingByCategory = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:User')
+    		->hasVotingByCategory($campaignActive, $anuncio->getCategory());
+    	
+    	if($hasVoting || $hasVotingByCategory >= 3)
     	{
     		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
     				'id'  => $id
