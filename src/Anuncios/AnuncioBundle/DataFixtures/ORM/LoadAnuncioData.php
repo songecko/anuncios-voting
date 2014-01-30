@@ -3,8 +3,14 @@
 namespace Anuncios\AnuncioBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Faker\Factory as FakerFactory;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Anuncios\AnuncioBundle\Entity\User;
 use Anuncios\AnuncioBundle\Entity\Campaign;
 use Anuncios\AnuncioBundle\Entity\Category;
@@ -12,10 +18,10 @@ use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Resource;
 use Anuncios\AnuncioBundle\Entity\Sector;
 
-class LoadAnuncioData implements FixtureInterface
+class LoadAnuncioData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
 	protected $faker;
-        
+    protected $container;    
     /**
     * Constructor.
     */
@@ -23,7 +29,22 @@ class LoadAnuncioData implements FixtureInterface
     {
         $this->faker = FakerFactory::create();
     }
-	
+    
+    public function setContainer(ContainerInterface $container = null)
+    {
+    	$this->container = $container;
+    }
+    
+    protected function get($id)
+    {
+    	return $this->container->get($id);
+    }
+    
+    public function getOrder()
+    {
+    	return 4;
+    }    
+    
     public function load(ObjectManager $manager)
     {
     	$userAdmin = new User();
@@ -74,9 +95,9 @@ class LoadAnuncioData implements FixtureInterface
     	$campaign->setName('Campaña 1');
     	$campaign->setIsActive(true);
     	
-    	$manager->persist($campaign);
+    	$manager->persist($campaign);    	
     	
-    	$categories1 = new Category();
+        $categories1 = new Category();
     	$categories2 = new Category();
     	$categories3 = new Category();
     	$categories4 = new Category();
