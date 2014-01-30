@@ -26,8 +26,8 @@
             {% else %}
             	<td>No</td>
             {% endif %}
-            <td>{{ campaign.dateBegin|localizeddate('long', 'none', null, null, "dd'/'MM'/'yyyy") }}</td>
-            <td>{{ campaign.dateEnd|localizeddate('long', 'none', null, null, "dd'/'MM'/'yyyy") }}</td>
+            <td>-{#{ campaign.dateBegin|localizeddate('long', 'none', null, null, "dd'/'MM'/'yyyy") }#}</td>
+            <td>-{#{ campaign.dateEnd|localizeddate('long', 'none', null, null, "dd'/'MM'/'yyyy") }#}</td>
             <td>
                 <div class="pull-right">
                     {{ buttons.edit(path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id})) }}
