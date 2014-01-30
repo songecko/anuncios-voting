@@ -8,6 +8,7 @@ vendor/*
 web/uploads/*
 web/bundles/*
 web/media/*
+composer.lock
 
 # Configuration files
 app/config/parameters.ini
