@@ -16,7 +16,7 @@
 						{% if(hasVoting) %}
 							<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
 						{% else %}
-							{% if(hasVotingByCategory >= 3) %}
+							{% if(hasVotingByCategory) %}
 								<a href="#" class="voteButton" onclick="alert('Has llegado al limite de votos para esta categoria.');return false;">Votar</a>
 							{% else %}
 								<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>

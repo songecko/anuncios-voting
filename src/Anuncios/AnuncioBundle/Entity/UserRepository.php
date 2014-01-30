@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
-	public function hasVotingByCategory($campaign, $category)
+	public function hasVotingByCategory($campaign, $category, $user)
 	{
 		return $this->getEntityManager()
 		->createQuery(
@@ -20,11 +20,22 @@ class UserRepository extends EntityRepository
 				FROM AnunciosAnuncioBundle:User u 
 				INNER JOIN AnunciosAnuncioBundle:Voting v WITH u.id = v.user
 				INNER JOIN AnunciosAnuncioBundle:Anuncio a WITH a.id = v.anuncio 
-				WHERE a.campaign = :campaign AND a.category = :category'
+				WHERE a.campaign = :campaign AND a.category = :category AND u.id = :user'
 		)->setParameters(array(
 			'campaign' => $campaign,
-			'category' => $category
+			'category' => $category,
+			'user'     => $user
 		))
 		->getSingleScalarResult();
+	}
+	
+	public function isCompleteVoting($campaign, $category, $user)
+	{
+		if($this->hasVotingByCategory($campaign, $category, $user) >= 3)
+		{
+			return true;
+		}
+		
+		return false;
 	}
 }

@@ -18,22 +18,28 @@ class MainController extends BaseFrontendController
 			->getRepository('AnunciosAnuncioBundle:Category')
 			->findAll();
 		
-		$leftAnunciosVoteByUser = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), 6);
-		
 		$lastAnunciosVoteByUser = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
 			->getLastAnunciosVoteByUser($campaignActive, $this->getUser(), 5);
 		
+		$leftAnunciosVoteByUser = array();
+		
 		$hasVotingByCampaign = 0;
 		
 		foreach($categories as $category)
-		{	
-			$hasVotingByCampaign += $hasVotingByCategory = $this->getDoctrine()
+		{
+			$hasVotingByCategory = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:User')
-				->hasVotingByCategory($campaignActive, $category);
+				->isCompleteVoting($campaignActive, $category, $this->getUser());
+			
+			if($hasVotingByCategory == false)
+			{
+				$leftAnunciosVoteByUser[] = $this->getDoctrine()
+					->getRepository('AnunciosAnuncioBundle:Anuncio')
+					->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
+			}
 		}
+		$leftAnunciosVoteByUser = array_filter($leftAnunciosVoteByUser);
 		
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array(
     			'activeCampaign'            => $campaignActive,
@@ -86,7 +92,7 @@ class MainController extends BaseFrontendController
 
     	$hasVotingByCategory = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:User')
-    		->hasVotingByCategory($campaignActive, $category);
+    		->isCompleteVoting($campaignActive, $category, $user->getId());
     	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array(
     			'anuncio'             => $anuncio, 
@@ -107,6 +113,8 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->find($id);	
     	
+    	$category = $anuncio->getCategory();
+    	
     	$hasVoting = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
@@ -115,9 +123,9 @@ class MainController extends BaseFrontendController
     	
     	$hasVotingByCategory = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:User')
-    		->hasVotingByCategory($campaignActive, $anuncio->getCategory());
+    		->isCompleteVoting($campaignActive, $category, $user->getId());
     	
-    	if($hasVoting || $hasVotingByCategory >= 3)
+    	if($hasVoting || $hasVotingByCategory)
     	{
     		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
     				'id'  => $id

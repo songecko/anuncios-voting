@@ -27,15 +27,13 @@ class AnuncioRepository extends EntityRepository
 		->getResult();
 	}
 	
-	public function getLeftAnunciosVoteByUser($campaign, $user, $limit)
+	public function getLeftAnunciosVoteByUser($campaign, $user, $category)
 	{
 		return $this->getEntityManager()
 		->createQuery(
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
-				WHERE a.campaign = :campaign AND a.category IN (
-					SELECT c.id FROM AnunciosAnuncioBundle:Category as c
-				)
+				WHERE a.campaign = :campaign AND a.category = :category
 				AND a.id NOT IN (
 					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v WHERE v.user = :user
 				)
@@ -43,10 +41,10 @@ class AnuncioRepository extends EntityRepository
 				ORDER BY a.name'
 		)->setParameters(array(
 				'campaign' => $campaign,
-				'user' => $user
-		))
-		->setMaxResults($limit)
-		->getResult();
+				'user' => $user,
+				'category' => $category
+		))->setMaxResults(1)
+		->getOneOrNullResult();
 	}
 	
 	public function getLastAnunciosVoteByUser($campaign, $user, $limit)

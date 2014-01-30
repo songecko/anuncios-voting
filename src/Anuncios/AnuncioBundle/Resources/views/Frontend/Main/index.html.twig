@@ -6,7 +6,7 @@
 		<img src="{{ asset('bundles/anunciosanuncio/images/title_home.jpg') }}">
 	</div>
 	
-	{% if(hasVotingByCampaign/categories|length == 3) %}
+	{% if(leftAnunciosVoteByUser is empty) %}
 		<p style="color: red">Has llegado al limite de votos para esta campaña</p>
 	{% endif %}
 			
@@ -15,7 +15,9 @@
 			<h3>SECCIONES POR VOTAR</h3>
 			<div class="list clearfix">
 				{% for anuncio in leftAnunciosVoteByUser %}
-				{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
+				{% if(anuncio != null) %}
+					{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
+				{% endif %}
 				{% endfor %}
 			</div>
 

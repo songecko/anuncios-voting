@@ -14,6 +14,7 @@ class Category implements ImageInterface
 {
     private $id;
     private $name;
+    private $slug;
     private $headlineImage;
     private $headlineImageFile;
     private $anuncios;
@@ -137,5 +138,15 @@ class Category implements ImageInterface
     public function getUpdatedAt()
     {
     	return $this->updatedAt;
+    }
+    
+    public function getSlug()
+    {
+    	return $this->slug;
+    }
+    
+    public function setSlug($slug)
+    {
+    	$this->slug = $slug;
     }
 }
