@@ -19,11 +19,11 @@
         <tr id="{{ category.id }}">
             <td>{{ category.id }}</td>
             <td>{{ category.name }}</td>
-            {% if category.hasPath %}
             <td>
+            {% if category.hasPath %}
                  <img src="{{ category.headlineImage|imagine_filter('gecko_image_90x60') }}" />
-            </td>
             {% endif %}
+            </td>
             <td>
                 <div class="pull-right">
                     {{ buttons.edit(path('anuncios_anuncio_backend_category_update', {'id': category.id})) }}
