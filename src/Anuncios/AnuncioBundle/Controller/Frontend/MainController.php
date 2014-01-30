@@ -15,7 +15,7 @@ class MainController extends Controller
 	{
 		$campaignActive = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Campaign')
-			->findOneByIsActive(true);
+			->getCampaignActive();
 		
 		$categories = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Category')
@@ -29,6 +29,8 @@ class MainController extends Controller
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
 			->getLastAnunciosVoteByUser($campaignActive, $this->getUser(), 5);
 		
+		$hasVotingByCampaign = 0;
+		
 		foreach($categories as $category)
 		{
 			$rankingJurado[] = $this->getDoctrine()
@@ -38,21 +40,27 @@ class MainController extends Controller
 			$rankingUsuario[] = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Anuncio')
 				->getAnunciosVoteByUsuario($campaignActive, $category);
+			
+			$hasVotingByCampaign += $hasVotingByCategory = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:User')
+				->hasVotingByCategory($campaignActive, $category);
 		}
 		
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array(
     			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
     			'lastAnunciosVoteByUser'    => $lastAnunciosVoteByUser,
     			'rankingJurado'             => $rankingJurado,
-    			'rankingUsuario'            => $rankingUsuario
+    			'rankingUsuario'            => $rankingUsuario,
+    			'categories'                => $categories,
+    			'hasVotingByCampaign'       => $hasVotingByCampaign
     	));
 	}
     
     public function categoryAction($id)
     {
     	$campaignActive = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Campaign')
-    		->findOneByIsActive(true);
+			->getRepository('AnunciosAnuncioBundle:Campaign')
+			->getCampaignActive();
     	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
@@ -85,8 +93,8 @@ class MainController extends Controller
     	$resources = $anuncio->getResources();
     	
     	$campaignActive = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Campaign')
-    		->findOneByIsActive(true);
+			->getRepository('AnunciosAnuncioBundle:Campaign')
+			->getCampaignActive();
     	
     	$hasVoting = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Voting')
@@ -214,8 +222,8 @@ class MainController extends Controller
     public function rankingJuradoAction($id)
     {
     	$campaignActive = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Campaign')
-    		->findOneByIsActive(true);
+			->getRepository('AnunciosAnuncioBundle:Campaign')
+			->getCampaignActive();
     	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
@@ -234,8 +242,8 @@ class MainController extends Controller
     public function rankingUsuarioAction($id)
     {
     	$campaignActive = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Campaign')
-    		->findOneByIsActive(true);
+			->getRepository('AnunciosAnuncioBundle:Campaign')
+			->getCampaignActive();
     	 
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')

@@ -13,6 +13,8 @@ class Campaign
     private $id;
     private $name;
     private $isActive;
+    private $dateBegin;
+    private $dateEnd;
     private $month;
     private $year;
     private $anuncios;
@@ -122,5 +124,29 @@ class Campaign
     public function getYear()
     {
         return $this->year;
+    }
+
+    public function setDateBegin($dateBegin)
+    {
+        $this->dateBegin = $dateBegin;
+    
+        return $this;
+    }
+
+    public function getDateBegin()
+    {
+        return $this->dateBegin;
+    }
+
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+    
+        return $this;
+    }
+    
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
     }
 }

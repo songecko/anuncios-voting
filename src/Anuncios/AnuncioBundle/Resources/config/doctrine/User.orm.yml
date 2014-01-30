@@ -12,6 +12,7 @@ Anuncios\AnuncioBundle\Entity\User:
         userId:
             type: integer
             column: user_id
+            nullable: true
         name:
             type: string
             length: 255
@@ -36,7 +37,11 @@ Anuncios\AnuncioBundle\Entity\User:
             nullable: true
             gedmo:
               timestampable:
-                on: update
+                on: update   
+    attributeOverride:     
+        password:
+            type: string  
+            nullable: true
     oneToMany:
         voting:
             targetEntity: Voting

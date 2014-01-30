@@ -18,6 +18,18 @@ class CampaignType extends AbstractType
         ->add('isActive', 'checkbox', array(
         		'label'    => 'Activo?'
         ))
+        ->add('dateBegin', 'date', array(
+        		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Dia'),
+        		'format' => 'dd-MMMM-yyyy',
+        		'years' => range(date('Y'), date('Y')+10),
+        		'label'    => 'Inicio',
+        ))
+        ->add('dateEnd', 'date', array(
+        		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Dia'),
+        		'format' => 'dd-MMMM-yyyy',
+        		'years' => range(date('Y'), date('Y')+10),
+        		'label'    => 'Fin'
+        ))
         ->add('month', 'choice', array(
         		'empty_value' => 'Mes',
     			'empty_data'  => null,
@@ -47,7 +59,11 @@ class CampaignType extends AbstractType
         				'2017' => '2017',
         				'2018' => '2018',
         				'2019' => '2019',
-        				'2020' => '2020'
+        				'2020' => '2020',
+        				'2021' => '2021',
+        				'2022' => '2022',
+        				'2023' => '2023',
+        				'2024' => '2024'
         		),
         		'label'       => false
         ));

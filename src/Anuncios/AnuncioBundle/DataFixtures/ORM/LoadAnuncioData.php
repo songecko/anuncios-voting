@@ -114,7 +114,7 @@ class LoadAnuncioData implements FixtureInterface
     	{
 	        $anuncio = new Anuncio();
 	        $anuncio->setCampaign($campaign);
-	    	$anuncio->setCategory($category['1']);
+	    	$anuncio->setCategory($category[$i]);
 	    	$anuncio->setSector($sector[$i]);
 	    	$anuncio->setName($this->faker->word);
 	    	$anuncio->setAgency($this->faker->word);

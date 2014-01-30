@@ -1,5 +1,5 @@
 <div class="anuncio">
-	<p class="sector">{{ anuncio.sector }}</p>
+	<p class="sector">{{ anuncio.category.name }}</p>
 	<a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}" class="imageWrapper">
 		<span class="flag{{ app.user.isAnuncioVoted(anuncio.id)?' voted':'' }}"></span>
 		<img src="{{ anuncio.image }}">

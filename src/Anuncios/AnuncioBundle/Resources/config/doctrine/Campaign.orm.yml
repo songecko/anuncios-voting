@@ -1,5 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Campaign:
     type: entity
+    repositoryClass: Anuncios\AnuncioBundle\Entity\CampaignRepository
     table: campaign
     fields:
         id:
@@ -13,6 +14,14 @@ Anuncios\AnuncioBundle\Entity\Campaign:
         isActive:
             type: boolean
             column: is_active
+        dateBegin:
+            type: date
+            column: date_begin
+            nullable: true
+        dateEnd:
+            type: date
+            column: date_end
+            nullable: true
         month:
             type: integer
             nullable: true
