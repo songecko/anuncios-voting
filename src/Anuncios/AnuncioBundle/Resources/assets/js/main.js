@@ -42,4 +42,9 @@ $(document).ready(function()
 		
 		var gallery = blueimp.Gallery(resourcesItems);
 	});
+	
+	$(".categorySelector select").change(function() 
+	{
+		  window.location = $(this).val();
+	});
 });

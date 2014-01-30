@@ -6,6 +6,10 @@
 		<img src="{{ asset('bundles/anunciosanuncio/images/title_home.jpg') }}">
 	</div>
 	
+	{% if(hasVotingByCampaign/categories|length == 3) %}
+		<p style="color: red">Has llegado al limite de votos para esta campaña</p>
+	{% endif %}
+			
 	<div class="row">
 		<div class="col-md-8">
 			<h3>SECCIONES POR VOTAR</h3>
@@ -26,38 +30,11 @@
 		<div class="col-md-4">
 			<h3>Marcha de las votaciones</h3>
 			
-			<h4>Voto popular</h4>
-			<div class="marchaRanking">
-			{% set i = 0 %}
-			{% for usuario in rankingUsuario %}
-				{% if usuario != null %}
-					{% set i = i + 1 %}
-					<p><a href="{{ path('anuncios_anuncio_ranking_usuario', {'id': usuario.category.id}) }}">
-						<span class="number">0{{ i }}</span>. 
-						{{ usuario.name }} - 
-						<span class="categoryName">{{ usuario.category.name }}</span>
-					</a></p>
-				{% endif %}
-			{% endfor %}
-			</div>	
-	
-			<h4>Voto del jurado</h4>
-			<div class="marchaRanking">
-			{% set i = 0 %}
-			{% for jurado in rankingJurado %}
-				{% if jurado != null %}
-					{% set i = i + 1 %}
-					<p><a href="{{ path('anuncios_anuncio_ranking_jurado', {'id': jurado.category.id}) }}">
-						<span class="number">0{{ i }}</span>. 
-						{{ jurado.name }} - 
-						<span class="categoryName">{{ jurado.category.name }}</span>
-					</a></p>
-				{% endif %}
-			{% endfor %}
-			</div>
-			{% if(hasVotingByCampaign/categories|length == 3) %}
-				<p style="color: red">Has llegado al limite de votos para esta campaña</p>
-			{% endif %}
+			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:rankingPreview', { 
+					'activeCampaign': activeCampaign,
+					'categories' : categories 
+				})) 
+			}}
 		</div>
 	</div>
 </section>

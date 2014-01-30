@@ -29,25 +29,16 @@ class MainController extends BaseFrontendController
 		$hasVotingByCampaign = 0;
 		
 		foreach($categories as $category)
-		{
-			$rankingJurado[] = $this->getDoctrine()
-				->getRepository('AnunciosAnuncioBundle:Anuncio')
-				->getAnunciosVoteByJurado($campaignActive, $category);
-			
-			$rankingUsuario[] = $this->getDoctrine()
-				->getRepository('AnunciosAnuncioBundle:Anuncio')
-				->getAnunciosVoteByUsuario($campaignActive, $category);
-			
+		{	
 			$hasVotingByCampaign += $hasVotingByCategory = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:User')
 				->hasVotingByCategory($campaignActive, $category);
 		}
 		
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array(
+    			'activeCampaign'            => $campaignActive,
     			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
     			'lastAnunciosVoteByUser'    => $lastAnunciosVoteByUser,
-    			'rankingJurado'             => $rankingJurado,
-    			'rankingUsuario'            => $rankingUsuario,
     			'categories'                => $categories,
     			'hasVotingByCampaign'       => $hasVotingByCampaign
     	));
@@ -216,17 +207,24 @@ class MainController extends BaseFrontendController
     {
     	$campaignActive = $this->getActiveCampaign();
     	
+    	$categories = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Category')
+    		->findAll();
+    	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
     		->find($id);
     	
-    	$rankingJurado = $this->getDoctrine()
+    	$rankingAnuncios = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->getAllAnunciosVoteByJurado($campaignActive, $category);
     	
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingJurado.html.twig', array(
-    			'category'      => $category,
-    			'rankingJurado' => $rankingJurado
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingUsuario.html.twig', array(
+    			'activeCampaign' => $campaignActive,
+    			'categories'     => $categories,
+    			'category'       => $category,
+    			'rankingAnuncios' => $rankingAnuncios,
+    			'route'          => 'anuncios_anuncio_ranking_jurado'
     	));
     }
     
@@ -234,17 +232,24 @@ class MainController extends BaseFrontendController
     {
     	$campaignActive = $this->getActiveCampaign();
     	 
+    	$categories = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Category')
+    		->findAll();
+    	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
     		->find($id);
     	 
-    	$rankingUsuario = $this->getDoctrine()
+    	$rankingAnuncios = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->getAllAnunciosVoteByUsuario($campaignActive, $category);
     	 
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingUsuario.html.twig', array(
+    			'activeCampaign' => $campaignActive,
+    			'categories'     => $categories,
     			'category'       => $category,
-    			'rankingUsuario' => $rankingUsuario
+    			'rankingAnuncios' => $rankingAnuncios,
+    			'route'          => 'anuncios_anuncio_ranking_usuario'
     	));
     }	
 }

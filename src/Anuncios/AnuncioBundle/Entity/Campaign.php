@@ -114,6 +114,14 @@ class Campaign
         return $this->month;
     }
 
+    public function getPeriodName()
+    {
+    	$months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+    	$monthName = $months[$this->getMonth() - 1];
+    	
+    	return $monthName." del ".$this->getYear();
+    }
+    
     public function setYear($year)
     {
         $this->year = $year;

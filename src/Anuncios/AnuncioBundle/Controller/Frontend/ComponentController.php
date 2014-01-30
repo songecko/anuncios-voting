@@ -20,4 +20,33 @@ class ComponentController extends Controller
 				'id'         => $id
 		));
 	}
+	
+	public function rankingPreviewAction($activeCampaign, $categories = null)
+	{
+		if(!$categories) 
+		{
+			$categories = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Category')
+				->findAll();
+		}
+		
+		$rankingJurado = array();
+		$rankingUsuario = array();
+		
+		foreach($categories as $category)
+		{
+			$rankingJurado[] = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Anuncio')
+			->getAnunciosVoteByJurado($activeCampaign, $category);
+				
+			$rankingUsuario[] = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Anuncio')
+			->getAnunciosVoteByUsuario($activeCampaign, $category);
+		}
+		
+		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_rankingPreview.html.twig', array(
+			'rankingJurado' => $rankingJurado,
+			'rankingUsuario' => $rankingUsuario
+		));
+	}
 }
