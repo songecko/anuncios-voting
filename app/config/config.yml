@@ -90,6 +90,9 @@ liip_imagine:
         gecko_gallery:
             filters:
                 thumbnail: { size: [250, 250], mode: outbound }
+        anuncios_category_headline:
+            filters:
+                thumbnail: { size: [960, 173], mode: outbound }
     
 sylius_resource:
     resources:

@@ -3,7 +3,7 @@
 {% block content %}
 <section class="anunciosList clearfix">
 	<div class="title">
-		<img src="{{ asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
+		<img src="{{ category.headlineImage?category.headlineImage|imagine_filter('anuncios_category_headline'):asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
 		<h2>{{ category.name }}</h2>
 	</div>
 	
