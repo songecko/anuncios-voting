@@ -56,7 +56,7 @@ class SecurityController extends BaseFrontendController
 				else
 				{
 					//En el proyecto, parsear la respuesta e indicar al usuario si es correcto o no
-					$result = json_decode($result['JsonDoLoginResult']);
+					$result = json_decode(utf8_encode($result['JsonDoLoginResult']));
 					if($result->result == 'KO')
 					{
 						$error = true;
