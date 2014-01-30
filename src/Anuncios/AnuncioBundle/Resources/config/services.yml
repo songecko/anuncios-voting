@@ -29,6 +29,8 @@ services:
         tags:
             - { name: kernel.event_listener, event: anuncios.anuncio.pre_create, method: uploadImage }
             - { name: kernel.event_listener, event: anuncios.anuncio.pre_update, method: uploadImage }
+            - { name: kernel.event_listener, event: anuncios.category.pre_create, method: uploadImage }
+            - { name: kernel.event_listener, event: anuncios.category.pre_update, method: uploadImage }
     
     anuncios_anuncio.backend.menu_builder:
         class: Anuncios\AnuncioBundle\Menu\BackendMenuBuilder

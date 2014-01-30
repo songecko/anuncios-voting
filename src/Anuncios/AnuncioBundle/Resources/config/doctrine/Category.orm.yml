@@ -12,6 +12,7 @@ Anuncios\AnuncioBundle\Entity\Category:
             type: string
             length: 255
         headlineImage:
+            column: headline_image
             type: string
             length: 255
         createdAt:

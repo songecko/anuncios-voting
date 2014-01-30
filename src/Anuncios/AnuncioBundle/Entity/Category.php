@@ -5,11 +5,12 @@ namespace Anuncios\AnuncioBundle\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use SplFileInfo;
+use Anuncios\AnuncioBundle\Model\ImageInterface;
 
 /**
  * Category
  */
-class Category
+class Category implements ImageInterface 
 {
     private $id;
     private $name;
@@ -23,12 +24,23 @@ class Category
     {
         return $this->id;
     }
+    
+    public function getheadlineImageFile()
+    {
+    	return $this->headlineImageFile;
+    }
+    
+    public function setheadlineImageFile($headlineImageFile)
+    {
+    	$this->headlineImageFile = $headlineImageFile;
+    }
+    
     public function hasFile()
     {
     	return null !== $this->headlineImageFile;
     }
     
-    public function getheadlineImageFile()
+    public function getFile()
     {
     	return $this->headlineImageFile;
     }
