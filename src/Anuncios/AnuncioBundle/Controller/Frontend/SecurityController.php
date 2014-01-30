@@ -2,14 +2,13 @@
 
 namespace Anuncios\AnuncioBundle\Controller\Frontend;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anuncios\AnuncioBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
-class SecurityController extends Controller
+class SecurityController extends BaseFrontendController
 {
 	public function loginAction()
 	{

@@ -2,20 +2,17 @@
 
 namespace Anuncios\AnuncioBundle\Controller\Frontend;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Voting;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class MainController extends Controller
+class MainController extends BaseFrontendController
 {	
 	public function indexAction()
 	{
-		$campaignActive = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Campaign')
-			->getCampaignActive();
+		$campaignActive = $this->getActiveCampaign();
 		
 		$categories = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Category')
@@ -58,9 +55,7 @@ class MainController extends Controller
     
     public function categoryAction($id)
     {
-    	$campaignActive = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Campaign')
-			->getCampaignActive();
+    	$campaignActive = $this->getActiveCampaign();
     	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
@@ -92,9 +87,7 @@ class MainController extends Controller
     	$category = $anuncio->getCategory();
     	$resources = $anuncio->getResources();
     	
-    	$campaignActive = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Campaign')
-			->getCampaignActive();
+    	$campaignActive = $this->getActiveCampaign();
     	
     	$hasVoting = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Voting')
@@ -221,9 +214,7 @@ class MainController extends Controller
     
     public function rankingJuradoAction($id)
     {
-    	$campaignActive = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Campaign')
-			->getCampaignActive();
+    	$campaignActive = $this->getActiveCampaign();
     	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
@@ -241,9 +232,7 @@ class MainController extends Controller
     
     public function rankingUsuarioAction($id)
     {
-    	$campaignActive = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Campaign')
-			->getCampaignActive();
+    	$campaignActive = $this->getActiveCampaign();
     	 
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
@@ -257,5 +246,5 @@ class MainController extends Controller
     			'category'       => $category,
     			'rankingUsuario' => $rankingUsuario
     	));
-    }
+    }	
 }

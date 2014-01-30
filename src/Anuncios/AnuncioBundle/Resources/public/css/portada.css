@@ -46,3 +46,7 @@ body.portada #content form button {
 	border: none;
 	margin: 20px auto 0 auto;
 }
+
+body.portada #content form.disabled button {
+	background: url(../images/enterButton-disabled.png) no-repeat;
+}

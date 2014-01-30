@@ -12,7 +12,7 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
-            
+                    
     gecko.knp_gaufrette.filesystem:
         class: Gaufrette\Filesystem
         factory_service:  knp_gaufrette.filesystem_map
@@ -32,6 +32,12 @@ services:
             - { name: kernel.event_listener, event: anuncios.category.pre_create, method: uploadImage }
             - { name: kernel.event_listener, event: anuncios.category.pre_update, method: uploadImage }
     
+    anuncios_anuncio.frontend.listener:
+        class: Anuncios\AnuncioBundle\EventListener\FrontendListener
+        arguments: ["@service_container", "@controller_resolver"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+            
     anuncios_anuncio.backend.menu_builder:
         class: Anuncios\AnuncioBundle\Menu\BackendMenuBuilder
         arguments: ["@knp_menu.factory"]
