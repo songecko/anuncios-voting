@@ -25,12 +25,22 @@ class Category implements ImageInterface
         return $this->id;
     }
     
-    public function getheadlineImageFile()
+    public function getHeadlineImage()
+    {
+    	return $this->headlineImage;
+    }
+    
+    public function setHeadlineImage($headlineImage)
+    {
+    	$this->headlineImage = $headlineImage;
+    }
+    
+    public function getHeadlineImageFile()
     {
     	return $this->headlineImageFile;
     }
     
-    public function setheadlineImageFile($headlineImageFile)
+    public function setHeadlineImageFile($headlineImageFile)
     {
     	$this->headlineImageFile = $headlineImageFile;
     }

@@ -21,7 +21,7 @@
             <td>{{ category.name }}</td>
             {% if category.hasPath %}
             <td>
-                 <img src="{{ category.path|imagine_filter('gecko_image_90x60') }}" />
+                 <img src="{{ category.headlineImage|imagine_filter('gecko_image_90x60') }}" />
             </td>
             {% endif %}
             <td>
