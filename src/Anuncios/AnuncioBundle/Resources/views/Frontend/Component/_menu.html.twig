@@ -4,5 +4,5 @@
 {% else %}
 	<li>
 {% endif %}
-    <a href="{{ path('anuncios_anuncio_category', {'id': category.id }) }}">{{ category.name }}</a></li>
+    <a href="{{ path('anuncios_anuncio_category', {'id': category.id, 'slug': category.slug }) }}">{{ category.name }}</a></li>
 {% endfor %}

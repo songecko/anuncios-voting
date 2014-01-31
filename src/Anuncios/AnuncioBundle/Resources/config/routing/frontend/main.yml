@@ -11,11 +11,11 @@ anuncios_anuncio_index:
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:index }
 
 anuncios_anuncio_category:
-    pattern:  /categoria/{id}
+    pattern:  /categoria/{slug}/{id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:category }
     
 anuncios_anuncio_show:
-    pattern:  /anuncio/{id}
+    pattern:  /categoria/{slug}/anuncio/{anuncio_id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:show }
     
 anuncios_anuncio_vote:

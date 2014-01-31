@@ -4,13 +4,30 @@ namespace Anuncios\AnuncioBundle\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anuncios\AnuncioBundle\Entity\Category;
+use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class ComponentController extends Controller
 {
-	public function menuAction($id)
+	public function menuAction($request)
 	{
+		$id = $request->get('id');
+		
+		if(!$id)
+		{
+			$anuncio_id = $request->get('anuncio_id');
+			if($anuncio_id)
+			{
+				$anuncio = $this->getDoctrine()
+					->getRepository('AnunciosAnuncioBundle:Anuncio')
+					->find($anuncio_id);
+				
+				$id = $anuncio->getCategory()->getId();
+			}
+			
+		}
+		
 		$categories = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Category')
 			->findAll();

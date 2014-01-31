@@ -16,15 +16,6 @@ Anuncios\AnuncioBundle\Entity\Category:
             type: string
             length: 255
             nullable: true
-        slug:
-            column: slug
-            type: string
-            unique: true
-            nullable: true
-            gedmo:
-                slug:
-                    fields: [ name ]
-                    unique: true
         createdAt:
             column: created_at
             type: datetime
@@ -38,9 +29,6 @@ Anuncios\AnuncioBundle\Entity\Category:
             gedmo:
               timestampable:
                 on: update
-    indexes:
-        search_idx:
-            columns: slug
     oneToMany:
         anuncios:
             targetEntity: Anuncio

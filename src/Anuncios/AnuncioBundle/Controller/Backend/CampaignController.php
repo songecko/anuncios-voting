@@ -67,12 +67,7 @@ class CampaignController extends ResourceController
 		$manager = $this->getDoctrine()->getManager();
 	
 		if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->bind($request)->isValid())
-		{
-			if($form->get('month')->getData() != null && $form->get('year')->getData() != null)
-			{
-				$this->getXmlDocPremios($form->get('month')->getData(), $form->get('year')->getData(), $form->getData());
-			}
-			
+		{	
 			if($form->get('month')->getData() == null && $form->get('year')->getData() != null)
 			{
 				$anunciosFinalistas = $this->getAnunciosFinal($form->get('year')->getData());

@@ -38,7 +38,7 @@
     			</ul>
     		</div>
     		<ul id="mainMenu" class="clearfix">
-    			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:menu', { 'id': app.request.get('id') })) }}     
+    			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:menu', { 'request': app.request })) }}     
     		</ul>
     		
     		<div id="content">

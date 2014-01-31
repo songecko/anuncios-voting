@@ -73,13 +73,13 @@ class MainController extends BaseFrontendController
     	));
     }
     
-	public function showAction($id)
+	public function showAction($anuncio_id)
     {
     	$user = $this->getUser();
     	
     	$anuncio = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->find($id);
+    		->find($anuncio_id);
     	
     	$category = $anuncio->getCategory();
     	$resources = $anuncio->getResources();
