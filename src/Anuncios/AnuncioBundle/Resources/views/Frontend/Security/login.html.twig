@@ -6,7 +6,12 @@
 	<img src="{{ asset('bundles/anunciosanuncio/images/portada-vota-ultimo-mes.jpg') }}" class="title img-responsive">
 	<form action="{{ path("anuncios_anuncio_login") }}" method="post">
 		{% if(error) %}
-		<p class="error">{{ message }}</p>
+		<p class="error">
+			{{ message }}
+		</p>
+		<p class="error">
+			<a href="http://www.anuncios.com/Users/passwordReminder.aspx">¿Ha olvidado la contraseña?</a>
+		</p>
 		{% endif %}
 		<fieldset>
 			<p><input type="text" name="username" placeholder="Usuario"></p>

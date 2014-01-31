@@ -24,8 +24,6 @@ class MainController extends BaseFrontendController
 		
 		$leftAnunciosVoteByUser = array();
 		
-		$hasVotingByCampaign = 0;
-		
 		foreach($categories as $category)
 		{
 			$hasVotingByCategory = $this->getDoctrine()
@@ -45,13 +43,14 @@ class MainController extends BaseFrontendController
     			'activeCampaign'            => $campaignActive,
     			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
     			'lastAnunciosVoteByUser'    => $lastAnunciosVoteByUser,
-    			'categories'                => $categories,
-    			'hasVotingByCampaign'       => $hasVotingByCampaign
+    			'categories'                => $categories
     	));
 	}
     
     public function categoryAction($id)
     {
+    	$user = $this->getUser();
+    	
     	$campaignActive = $this->getActiveCampaign();
     	
     	$category = $this->getDoctrine()
@@ -66,10 +65,15 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->getLastAnunciosVoteByCategory($campaignActive, $category, 5);
     	
+    	$hasVotingByCategory = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:User')
+    		->isCompleteVoting($campaignActive, $category, $user->getId());
+    	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array(
     			'category'                   => $category, 
     			'anuncios'                   => $anuncios,
-    			'lastAnunciosVoteByCategory' => $lastAnunciosVoteByCategory
+    			'lastAnunciosVoteByCategory' => $lastAnunciosVoteByCategory,
+    			'hasVotingByCategory'        => $hasVotingByCategory
     	));
     }
     

@@ -7,6 +7,10 @@
 		<h2>{{ category.name }}</h2>
 	</div>
 	
+	{% if(hasVotingByCategory) %}
+		<p style="color: red">Has llegado al limite de votos para esta categoria</p>
+	{% else %}
+	
 	<div class="list clearfix">
 		{% for anuncio in anuncios %}
 		{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
