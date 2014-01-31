@@ -132,7 +132,8 @@ class MainController extends BaseFrontendController
     	if($hasVoting || $hasVotingByCategory)
     	{
     		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
-    				'id'  => $id
+    				'slug' => $category->getSlug(),
+    				'anuncio_id'  => $id
     		)));
     	}
     	
@@ -164,7 +165,8 @@ class MainController extends BaseFrontendController
     	);
     	
     	return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
-    				'id'  => $id
+    				'slug' => $category->getSlug(),
+    				'anuncio_id'  => $id
     	)));
     }
     
@@ -185,7 +187,8 @@ class MainController extends BaseFrontendController
     	if(!$hasVoting)
     	{
     		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
-    				'id'  => $id
+    				'slug' => $anuncio->getCategory()->getSlug(),
+    				'anuncio_id'  => $id
     		)));
     	}
     	
@@ -217,7 +220,8 @@ class MainController extends BaseFrontendController
     	);
     	 
     	return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
-    				'id'  => $id
+    				'slug' => $anuncio->getCategory()->getSlug(),
+    				'anuncio_id'  => $id
     	)));
     }
     
