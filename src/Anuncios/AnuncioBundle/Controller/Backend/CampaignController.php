@@ -237,6 +237,9 @@ class CampaignController extends ResourceController
 								$manager->persist($resource);
 							}
 						}
+					}else 
+					{
+						//echo "Anuncio '".htmlentities($anuncio->getName())."': \t\tVacio el atributo [ArticleContent] -> [Resource] del xml <br>";
 					}
 					
 					$manager->persist($anuncio);
