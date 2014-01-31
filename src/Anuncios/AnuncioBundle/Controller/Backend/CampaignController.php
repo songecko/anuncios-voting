@@ -237,7 +237,7 @@ class CampaignController extends ResourceController
 								$resource = new Resource();
 								$resource->setAnuncio($anuncio);
 								$resource->setType($xmlResource['ResourceTypeName']);
-								$resource->setLink($xmlResource['ResourceURL']);
+								$resource->setLink(html_entity_decode($xmlResource['ResourceURL']));
 								$resource->setName($this->getCleanString($xmlResource['ResourceName']));
 								$manager->persist($resource);
 							}

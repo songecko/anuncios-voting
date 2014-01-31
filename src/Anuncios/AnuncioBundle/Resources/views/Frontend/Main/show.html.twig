@@ -48,9 +48,9 @@
 			{% for resource in resources %}
             	{
                    title: '{{ resource.name }}',
-                   href: '{{ resource.link }}',
+                   href: '{{ resource.link|raw }}',
                    type: '{{ resource.getResourceType }}',
-                   thumbnail: '{{ resource.link }}'
+                   thumbnail: '{{ resource.link|raw }}'
                 },
             {% endfor %}
             ];
