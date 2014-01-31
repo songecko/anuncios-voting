@@ -35,7 +35,7 @@
 					<td class="number">0{{ loop.index }}</td>
 					<td class="details">
 						<img src="{{ anuncio.image }}" width="60">
-						<a href="{{ path('anuncios_anuncio_show', {'id': anuncio.id}) }}">{{ anuncio.name }}</a>
+						<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}">{{ anuncio.name }}</a>
 					</td>
 					<td class="votes">{{ anuncio.votoUsuario }}</td>
 				</tr>
