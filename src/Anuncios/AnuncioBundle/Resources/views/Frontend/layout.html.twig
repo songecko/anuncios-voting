@@ -26,7 +26,7 @@
     		<div id="header" class="clearfix">
     			<a href="{{ path('anuncios_anuncio_index') }}"><img src="{{ asset('bundles/anunciosanuncio/images/logo.png') }}" class="logo" /></a>
     			<ul class="date clearfix">
-    				<li>{#{ "now"|localizeddate('long', 'none', null, null, "EEEE, dd 'de' MMMM 'de' yyyy ") }#}</li>
+    				<li>{{ "now"|localizeddate('long', 'none', null, null, "EEEE, dd 'de' MMMM 'de' yyyy ") }}</li>
     				<li><a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/fb-icon.png') }}" /></a></li>
     				<li><a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/tw-icon.png') }}" /></a></li>
     			</ul>

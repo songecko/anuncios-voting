@@ -30,6 +30,7 @@ class Anuncio implements ImageInterface
     private $votoUsuario;
     private $createdAt;
     private $updatedAt;
+    private $anuncioId;
 
     public function getId()
     {
@@ -301,5 +302,17 @@ class Anuncio implements ImageInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    
+    public function setAnuncioId($anuncioId)
+    {
+    	$this->anuncioId = $anuncioId;
+    
+    	return $this;
+    }
+    
+    public function getAnuncioId()
+    {
+    	return $this->anuncioId;
     }
 }

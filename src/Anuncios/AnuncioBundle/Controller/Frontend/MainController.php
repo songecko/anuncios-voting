@@ -98,12 +98,23 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:User')
     		->isCompleteVoting($campaignActive, $category, $user->getId());
     	
+    	$externalResource = null;
+    	
+    	foreach($resources as $resource)
+    	{
+    		if($resource->getType() == 'External')
+    		{
+    			$externalResource = $resource;
+    		}
+    	}
+    	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array(
     			'anuncio'             => $anuncio, 
     			'category'            => $category, 
     			'resources'           => $resources, 
     			'hasVoting'           => $hasVoting,
-    			'hasVotingByCategory' => $hasVotingByCategory
+    			'hasVotingByCategory' => $hasVotingByCategory,
+    			'externalResource'    => $externalResource
     	));
     }
     

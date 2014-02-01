@@ -12,7 +12,14 @@
 				<div class="overlay"></div>
 				<div class="overlayContent">
 					<div class="actions clearfix">
-						<a href="#" class="viewResourcesButton">Ver Pieza</a>
+						<a 
+							{% if(externalResource) %}
+								href="http://{{ externalResource.link }}" class="viewResourceExternalButton" target="blank"
+							{% else %}
+								href="#" class="viewResourcesButton"
+							{% endif %}
+						 	>Ver Pieza
+						</a>
 						{% if(hasVoting) %}
 							<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
 						{% else %}

@@ -225,6 +225,7 @@
 #content .anuncioShow .picture .overlayContent .actions > a:last-child {
 	margin-right: 0;
 }
+#content .anuncioShow .picture .overlayContent .actions > a.viewResourceExternalButton,
 #content .anuncioShow .picture .overlayContent .actions > a.viewResourcesButton {
 	background: #8d8d8d;
 }

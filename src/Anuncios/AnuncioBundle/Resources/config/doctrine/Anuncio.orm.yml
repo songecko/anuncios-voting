@@ -51,6 +51,10 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
             gedmo:
               timestampable:
                 on: update
+        anuncioId:
+            column: anuncio_id
+            type: integer
+            nullable: true
     manyToOne:
         category:
             targetEntity: Category

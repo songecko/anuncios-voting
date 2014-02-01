@@ -155,6 +155,7 @@ class CampaignController extends ResourceController
 				for($i = 0; $i < $quantity; $i++)
 				{
 					$anuncioCampaign = $campaign;
+					$anuncioAnuncioId = $xml['Article'][$i]['intArticleID'];
 					$anuncioCategory = $this->getCleanString($xml['Article'][$i]['strClassification']);
 					$anuncioName = $this->getCleanString($xml['Article'][$i]['strTitle']);
 					$anuncioAgency = $this->getCleanString($xml['Article'][$i]['ArticleCard']['Agencia']);
@@ -197,6 +198,7 @@ class CampaignController extends ResourceController
 					$anuncio->setAdvertiser($anuncioAdvertiser);
 					$anuncio->setProduct($anuncioProduct);
 					$anuncio->setBrand($anuncioBrand);
+					$anuncio->setAnuncioId($anuncioAnuncioId);
 					
 					$j = 1;
 					$c = 'campo'.$j;
@@ -239,7 +241,20 @@ class CampaignController extends ResourceController
 						}
 					}else 
 					{
-						//echo "Anuncio '".htmlentities($anuncio->getName())."': \t\tVacio el atributo [ArticleContent] -> [Resource] del xml <br>";
+						$anuncioExternalDetail = $xml['Article'][$i]['ArticleCard']['OtherFields']['ExternalDetail'];
+						if(!empty($anuncioExternalDetail))
+						{
+							$resource = new Resource();
+							$resource->setAnuncio($anuncio);
+							$resource->setType('External');
+							$resource->setLink($anuncioExternalDetail);
+							$resource->setName($anuncioName);
+							$manager->persist($resource);
+						}
+						else
+						{
+							//echo "Anuncio '".htmlentities($anuncio->getName())."': \t\tVacio el atributo [ArticleContent] -> [Resource] del xml <br>";
+						}
 					}
 					
 					$manager->persist($anuncio);
