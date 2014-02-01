@@ -12,7 +12,7 @@ web/admin/js/*
 web/uploads/*
 web/bundles/*
 web/media/*
-*composer.lock
+/composer.lock
 
 # Configuration files
 app/config/parameters.ini
