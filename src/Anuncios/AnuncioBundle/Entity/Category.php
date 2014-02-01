@@ -154,13 +154,7 @@ class Category implements ImageInterface
 	  $text = trim($text, '-');
 	
 	  // transliterate
-	  $ascii = '';
-	  for ($i = 0; $i < strlen($text); $i++)
-	  {
-	  	$ascii += ord($text[$i]);
-	  }
-	  $text = $ascii;
-	  //$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+	  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
 	
 	  // lowercase
 	  $text = strtolower($text);
