@@ -7,16 +7,14 @@
 	<form action="{{ path("anuncios_anuncio_login") }}" method="post">
 		{% if(error) %}
 		<p class="error">
-			{{ message }}
-		</p>
-		<p class="error">
-			<a href="http://www.anuncios.com/Users/passwordReminder.aspx">¿Ha olvidado la contraseña?</a>
+			{{ message }}. <a href="http://www.anuncios.com/Users/passwordReminder.aspx">¿Ha olvidado la contraseña?</a>
 		</p>
 		{% endif %}
 		<fieldset>
 			<p><input type="text" name="username" placeholder="Usuario"></p>
-			<p><input type="password" name="password" placeholder="Contraseña"></p>	
+			<p><input type="password" name="password" placeholder="Contraseña"></p>
+				
+			<button type="submit" name="send"></button>
 		</fieldset>
-		<button type="submit" name="send"></button>
 	</form>
 {% endblock %}

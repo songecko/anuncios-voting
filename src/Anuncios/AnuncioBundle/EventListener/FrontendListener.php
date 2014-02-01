@@ -44,6 +44,7 @@ class FrontendListener
             }else 
             {
             	$controller->setActiveCampaign($activeCampaign);
+            	$this->container->get('twig')->addGlobal('activeCampaign', $activeCampaign);
             }
         }
     }

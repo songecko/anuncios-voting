@@ -60,7 +60,7 @@ class SecurityController extends BaseFrontendController
 					if($result->result == 'KO')
 					{
 						$error = true;
-						$message = "Usuario o contraseña invalida";
+						$message = "Usuario o contraseña inválidos";
 					}
 					else
 					{

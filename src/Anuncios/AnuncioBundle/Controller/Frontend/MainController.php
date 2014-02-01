@@ -252,7 +252,7 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->getAllAnunciosVoteByJurado($campaignActive, $category);
     	
-    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingUsuario.html.twig', array(
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingJurado.html.twig', array(
     			'activeCampaign' => $campaignActive,
     			'categories'     => $categories,
     			'category'       => $category,

@@ -13,6 +13,7 @@
         {% block stylesheets %}
         {% stylesheets output='css/frontend.min.css' filter='cssrewrite'
             'bundles/anunciosanuncio/css/bootstrap.min.css'
+            '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
             'bundles/anunciosanuncio/css/blueimp-gallery.min.css'
             'bundles/anunciosanuncio/css/base.css'
             'bundles/anunciosanuncio/css/main.css'
@@ -25,17 +26,25 @@
     	<div class="container">
     		<div id="header" class="clearfix">
     			<a href="{{ path('anuncios_anuncio_index') }}"><img src="{{ asset('bundles/anunciosanuncio/images/logo.png') }}" class="logo" /></a>
-    			<ul class="date clearfix">
-    				<li>{{ "now"|localizeddate('long', 'none', null, null, "EEEE, dd 'de' MMMM 'de' yyyy ") }}</li>
-    				<li><a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/fb-icon.png') }}" /></a></li>
-    				<li><a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/tw-icon.png') }}" /></a></li>
-    			</ul>
-    			<ul class="menu clearfix">
-    				<li><a href="{{ path('anuncios_anuncio_logout') }}">Terminar sesión</a></li>
-    				<li><a href="http://www.publicacionesprofesionales.es/politica-privacidad.htm" target="blank">Política de privacidad</a></li>
-    				<li><a href="http://www.publicacionesprofesionales.es/politica-cookies.htm" target="blank">Política de cookies</a></li>
-    				<li><a href="{{ asset('bundles/anunciosanuncio/mecanica.pdf') }}" target="_blank">¿Cómo votar?</a></li>
-    			</ul>
+    			<div class="siteDate">
+	    			<ul class="date clearfix">
+	    				<li>{{ "now"|localizeddate('long', 'none', null, null, "EEEE, dd 'de' MMMM 'de' yyyy ") }}</li>
+	    				<li><a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/fb-icon.png') }}" /></a></li>
+	    				<li><a href="#"><img src="{{ asset('bundles/anunciosanuncio/images/tw-icon.png') }}" /></a></li>
+	    			</ul>
+	    			<p class="period">Período de votación: {{ activeCampaign.getPeriodName }}</p>
+    			</div>
+    			<div class="access">
+	    			<ul class="menu clearfix">
+	    				<li><a href="http://www.publicacionesprofesionales.es/politica-privacidad.htm" target="blank">Política de privacidad</a></li>
+	    				<li><a href="http://www.publicacionesprofesionales.es/politica-cookies.htm" target="blank">Política de cookies</a></li>
+	    				<li><a href="{{ asset('bundles/anunciosanuncio/mecanica.pdf') }}" target="_blank">¿Cómo votar?</a></li>
+	    			</ul>
+	    			<ul class="user clearfix">
+	    				<li><a href="{{ path('anuncios_anuncio_logout') }}">Terminar sesión</a></li>
+	    				<li><i class="icon-user"></i> Hola {{ app.user.fullname }}</li>
+	    			</ul>
+    			</div>
     		</div>
     		<ul id="mainMenu" class="clearfix">
     			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:menu', { 'request': app.request })) }}     

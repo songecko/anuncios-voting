@@ -9,6 +9,7 @@
     <thead>
         <tr>
             <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
+            <th>Nombre y apellido</th>
             <th>{{ sylius_resource_sort('username', 'Nombre Usuario') }}</th>
             <th>{{ sylius_resource_sort('email', 'Email') }}</th>
             <th>{{ sylius_resource_sort('isjurado', 'Es Jurado?') }}</th>
@@ -19,6 +20,7 @@
         {% for user in users %}
         <tr id="{{ user.id }}">
             <td>{{ user.id }}</td>
+            <td>{{ user.fullname }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             {% if user.isjurado %}

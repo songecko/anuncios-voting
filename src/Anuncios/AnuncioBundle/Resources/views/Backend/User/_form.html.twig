@@ -1,12 +1,12 @@
 {{ form_errors(form) }}
 <div class="row">
-    <div class="col-md-6 row-split">
-		{{ form_row(form.username) }}
+    <div class="col-md-6">
+		{{ form_row(form.name) }}
+		{{ form_row(form.surname) }}
     </div>
-    <div class="col-md-6 row-split">
+    <div class="col-md-6">
+    	{{ form_row(form.username) }}
 		{{ form_row(form.email) }}
-    </div>
-    <div class="col-md-6 row-split">
 		{{ form_row(form.isjurado) }}
     </div>
 </div>

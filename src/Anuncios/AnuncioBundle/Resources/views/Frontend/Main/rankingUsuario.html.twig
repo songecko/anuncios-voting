@@ -1,56 +1,21 @@
-{% extends 'AnunciosAnuncioBundle:Frontend:layout.html.twig' %}
+{% extends 'AnunciosAnuncioBundle:Frontend/Main:baseRanking.html.twig' %}
 
-{% block content %}
-<section class="anunciosList clearfix">
-	<div class="title">
-		<img src="{{ asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
-		<h2>Rankings</h2>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-7">
-			<h2>Período: {{ activeCampaign.getPeriodName }}</h2>
-			
-			<div class="row">
-				<div class="col-md-4">
-					<h4>Categoría: {{ category.name }}</h4>
-				</div>
-				<div class="col-md-8 categorySelector">
-					<select name="category">
-						{% for cat in categories %}
-						<option value="{{ path(route, {'id': cat.id}) }}"{{ cat.id == category.id?' selected':'' }}>{{ cat.name }}</option>
-						{% endfor %}
-					</select>
-					<h4>Cambiar a:</h4>
-				</div>
-			</div>
-			<table class="ranking">
-				<tr>
-					<th width="10%">#</th>
-					<th width="70%">Anuncio</th>
-					<th width="20%">Votos</th>
-				</tr>
-				{% for anuncio in rankingAnuncios %}
-				<tr>
-					<td class="number">0{{ loop.index }}</td>
-					<td class="details">
-						<img src="{{ anuncio.image }}" width="60">
-						<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}">{{ anuncio.name }}</a>
-					</td>
-					<td class="votes">{{ anuncio.votoUsuario }}</td>
-				</tr>
-				{% endfor %}
-			</table>
-		</div>
-		<div class="col-md-4 col-md-offset-1">
-			<h3>Marcha de las votaciones</h3>
-			
-			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:rankingPreview', { 
-					'activeCampaign': activeCampaign,
-					'categories' : categories
-				})) 
-			}}
-		</div>
-	</div>
-</section>
+{% block rankingTable %}
+<table class="ranking">
+	<tr>
+		<th width="10%">#</th>
+		<th width="70%">Anuncio</th>
+		<th width="20%">Votos</th>
+	</tr>
+	{% for anuncio in rankingAnuncios %}
+	<tr>
+		<td class="number">0{{ loop.index }}</td>
+		<td class="details">
+			<img src="{{ anuncio.image }}" width="60">
+			<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}">{{ anuncio.name }}</a>
+		</td>
+		<td class="votes">{{ anuncio.votoUsuario }}</td>
+	</tr>
+	{% endfor %}
+</table>
 {% endblock %}	

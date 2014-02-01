@@ -18,12 +18,21 @@ body.portada #content .title {
 }
 
 body.portada #content form {
-	width: 260px;
 	margin: 30px 0 0 20px
 }
 
+body.portada #content form fieldset {
+	width: 260px;
+}
+
 body.portada #content form .error {
-	color: #e42739;
+	color: #d50000;
+	font-size: 14px;
+}
+
+body.portada #content form .error a {
+	color: #d50000;
+	text-decoration: underline;
 }
 
 body.portada #content form fieldset p {

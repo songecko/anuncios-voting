@@ -19,9 +19,17 @@ class UserType extends AbstractType
         		'required' => true,
         		'label'    => 'Email'
         ))
+        ->add('name', 'text', array(
+        		'required' => true,
+        		'label'    => 'Nombre'
+        ))
+        ->add('surname', 'text', array(
+        		'required' => false,
+        		'label'    => 'Apellido'
+        ))
         ->add('isjurado', 'checkbox', array(
         		'required' => true,
-        		'label'    => 'Es Jurado'
+        		'label'    => 'Es Jurado?'
         ));
     }
 

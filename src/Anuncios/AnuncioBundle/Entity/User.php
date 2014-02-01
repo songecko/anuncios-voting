@@ -20,6 +20,17 @@ class User extends BaseUser
     private $createdAt;
     private $updatedAt;
 
+
+    public function __construct()
+    {
+        $this->voting = new \Doctrine\Common\Collections\ArrayCollection();
+        
+        $this->createdAt = new DateTime('now');
+        $this->isJurado = false;
+        
+        parent::__construct();
+    }
+    
     public function getId()
     {
         return $this->id;
@@ -35,16 +46,6 @@ class User extends BaseUser
     public function getIsJurado()
     {
         return $this->isJurado;
-    }
-
-    public function __construct()
-    {
-        $this->voting = new \Doctrine\Common\Collections\ArrayCollection();
-        
-        $this->createdAt = new DateTime('now');
-        $this->isJurado = false;
-        
-        parent::__construct();
     }
     
     public function addVoting(\Anuncios\AnuncioBundle\Entity\Voting $voting)
@@ -98,6 +99,11 @@ class User extends BaseUser
     public function getSurname()
     {
         return $this->surname;
+    }
+    
+    public function getFullname()
+    {
+    	return $this->getName().' '.$this->getSurname();	
     }
     
     public function isAnuncioVoted($anuncioId)
