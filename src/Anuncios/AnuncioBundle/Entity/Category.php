@@ -155,7 +155,7 @@ class Category implements ImageInterface
   		// transliterate
   		if (function_exists('iconv'))
   		{
-  			$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+  			//$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
   		}
   		
   		$unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
