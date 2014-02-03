@@ -32,3 +32,9 @@ anuncios_anuncio_backend_campaign_delete:
         _controller: anuncios.controller.campaign:deleteAction
         _sylius:
             redirect: anuncios_anuncio_backend_campaign_index
+            
+anuncios_anuncio_backend_campaign_finalistas:
+    pattern: /{id}/finalistas
+    methods: [GET]
+    defaults:
+        _controller: anuncios.controller.campaign:finalistasAction

@@ -44,6 +44,7 @@ gecko.backend:
     breadcrumb:
         new:           "Nuevo"
         edit:          "Editar"
+        finalistas:    "Finalistas"
         campaign.index:   "Campañas"
         anuncio.index:   "Anuncios"
         sector.index:   "Sector"

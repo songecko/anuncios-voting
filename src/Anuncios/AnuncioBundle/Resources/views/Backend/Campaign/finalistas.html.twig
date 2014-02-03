@@ -1,0 +1,41 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li><a href="{{ path('anuncios_anuncio_backend_campaign_index') }}">{{ 'gecko.backend.breadcrumb.campaign.index'|trans }}</a></li>
+    <li>{{ 'gecko.backend.breadcrumb.finalistas'|trans }}</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<h3>{{ campaign.name }}</h3>
+<div class="rankingPreview">
+	<h4>Finalistas popular</h4>
+	<div class="marchaRanking">
+	{% set i = 0 %}
+	{% for usuario in finalistasUsuario %}
+		{% if usuario != null %}
+			{% set i = i + 1 %}
+			<p><span class="number">0{{ i }}</span>. 
+				<span class="categoryName">{{ usuario.category.name }}</span> - 
+				{{ usuario.name }}
+			</p>
+		{% endif %}
+	{% endfor %}
+	</div>
+	
+	<h4>Finalistas jurado</h4>
+	<div class="marchaRanking">
+	{% set i = 0 %}
+	{% for jurado in finalistasJurado %}
+		{% if jurado != null %}
+			{% set i = i + 1 %}
+			<p><span class="number">0{{ i }}</span>. 
+				<span class="categoryName">{{ jurado.category.name }}</span> - 
+				{{ jurado.name }}
+			</p>
+		{% endif %}
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}

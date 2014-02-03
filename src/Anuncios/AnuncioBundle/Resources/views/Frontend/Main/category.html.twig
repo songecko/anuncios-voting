@@ -18,7 +18,7 @@
 	</div>
 	
 	
-	<h3>Anuncios mas votados en {{ category.name }} este més</h3>
+	<h3>Anuncios más votados en {{ category.name }} este mes</h3>
 	<div class="list clearfix">
 		{% for anuncio in lastAnunciosVoteByCategory %}
 		{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}

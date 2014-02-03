@@ -12,6 +12,7 @@
 			
 	<div class="row">
 		<div class="col-md-8">
+		{% if(leftAnunciosVoteByUser is not empty) %}
 			<h3>SECCIONES POR VOTAR</h3>
 			<div class="list clearfix">
 				{% for anuncio in leftAnunciosVoteByUser %}
@@ -20,14 +21,16 @@
 				{% endif %}
 				{% endfor %}
 			</div>
+		{% endif %}
 
-	
+		{% if(lastAnunciosVoteByUser is not empty) %}
 			<h3>SECCIONES QUE HAS VOTADO</h3>
 			<div class="list clearfix">
 				{% for anuncio in lastAnunciosVoteByUser %}
 				{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
 				{% endfor %}
 			</div>
+		{% endif %}
 		</div>
 		<div class="col-md-4">
 			<h3>Marcha de las votaciones</h3>

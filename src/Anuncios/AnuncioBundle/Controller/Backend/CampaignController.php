@@ -99,6 +99,37 @@ class CampaignController extends ResourceController
 		return $event;
 	}
 	
+	public function finalistasAction($id)
+	{
+		$campaign = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Campaign')
+			->find($id);
+		
+		$categories = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->findAll();
+		
+		$finalistasUsuario = array();
+		$finalistasJurado = array();
+		
+		foreach($categories as $category)
+		{
+			$finalistasJurado[] = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAnunciosVoteByJurado($campaign, $category);
+				
+			$finalistasUsuario[] = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAnunciosVoteByUsuario($campaign, $category);
+		}
+		
+		return $this->render('AnunciosAnuncioBundle:Backend/Campaign:finalistas.html.twig', array(
+				'campaign'   => $campaign,
+				'finalistasUsuario' => $finalistasUsuario,
+				'finalistasJurado'  => $finalistasJurado
+		));	
+	}
+	
 	public function getCleanString($string)
 	{
 		return utf8_encode($string);
