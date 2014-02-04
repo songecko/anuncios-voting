@@ -2,15 +2,14 @@
 
 namespace Anuncios\AnuncioBundle\Entity;
 
-use SplFileInfo;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Anuncios\AnuncioBundle\Model\ImageInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Anuncio
  */
-class Anuncio implements ImageInterface
+class Anuncio
 {
     private $id;
     private $name;
@@ -47,24 +46,13 @@ class Anuncio implements ImageInterface
     	return $this->file;
     }
     
-    public function setFile(SplFileInfo $file)
+    public function setFile(File $file)
     {
     	$this->file = $file;
-    }
-    
-    public function hasPath()
-    {
-    	return null !== $this->image;
-    }
-    
-    public function getPath()
-    {
-    	return $this->image;
-    }
-    
-    public function setPath($image)
-    {
-    	$this->image = $image;
+    	
+    	if ($this->image) {
+    		$this->setUpdatedAt(new \DateTime('now'));
+    	}
     }
 
     public function setName($name)

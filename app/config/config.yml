@@ -69,17 +69,29 @@ swiftmailer:
     spool:     { type: memory }
 
 knp_gaufrette:
+    stream_wrapper: ~
     adapters:
-        gecko_image:
+        gecko_images:
             local:
-                directory:  %kernel.root_dir%/../web/media/image
+                directory:  %kernel.root_dir%/../web/media/images
                 create:     true
     filesystems:
-        gecko_image:
-            adapter: gecko_image
+        gecko_images_fs:
+            adapter: gecko_images
 
+vich_uploader:
+    db_driver: orm # or mongodb
+    gaufrette: true
+    storage:   vich_uploader.storage.gaufrette
+    mappings:
+        anuncio_image:
+            uri_prefix:         /images/anuncios
+            upload_destination: gecko_images_fs
+            delete_on_remove:   true
+            delete_on_update:   true
+            
 liip_imagine:
-    data_root: %kernel.root_dir%/../web/media/image
+    data_root: %kernel.root_dir%/../web/media/images
     filter_sets:
         gecko_image_business:
             filters:

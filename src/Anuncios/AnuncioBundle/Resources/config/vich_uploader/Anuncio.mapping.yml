@@ -1,0 +1,4 @@
+Anuncios\AnuncioBundle\Entity\Anuncio:
+    file:
+        mapping:           anuncio_image
+        filename_property: image

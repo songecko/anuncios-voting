@@ -94,6 +94,10 @@ class LoadAnuncioData extends AbstractFixture implements FixtureInterface, Conta
     	$campaign = new Campaign();
     	$campaign->setName('Campaña 1');
     	$campaign->setIsActive(true);
+    	$campaign->setDateBegin(new \DateTime("now"));
+    	$campaign->setDateEnd(new \DateTime("+7 day"));
+    	$campaign->setMonth(date('n'));
+    	$campaign->setYear(date('Y'));
     	
     	$manager->persist($campaign);    	
     	

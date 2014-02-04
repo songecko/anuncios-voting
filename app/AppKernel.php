@@ -30,6 +30,7 @@ class AppKernel extends Kernel
         	new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
         	new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         	new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+        	new Vich\UploaderBundle\VichUploaderBundle(),
         	new Liip\ImagineBundle\LiipImagineBundle(),
         	new FOS\UserBundle\FOSUserBundle(),
         	new NoiseLabs\Bundle\NuSOAPBundle\NoiseLabsNuSOAPBundle(),

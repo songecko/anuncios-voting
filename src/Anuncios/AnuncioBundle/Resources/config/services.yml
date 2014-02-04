@@ -27,8 +27,6 @@ services:
         class: %gecko.listener.image_upload.class%
         arguments: ["@gecko.image_uploader"]
         tags:
-            - { name: kernel.event_listener, event: anuncios.anuncio.pre_create, method: uploadImage }
-            - { name: kernel.event_listener, event: anuncios.anuncio.pre_update, method: uploadImage }
             - { name: kernel.event_listener, event: anuncios.category.pre_create, method: uploadImage }
             - { name: kernel.event_listener, event: anuncios.category.pre_update, method: uploadImage }
     
