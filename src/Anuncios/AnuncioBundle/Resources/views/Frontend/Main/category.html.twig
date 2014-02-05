@@ -3,7 +3,7 @@
 {% block content %}
 <section class="anunciosList clearfix">
 	<div class="title">
-		<img src="{{ category.headlineImage?category.headlineImage|imagine_filter('anuncios_category_headline'):asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
+		<img src="{{ category.image?category.image|imagine_filter('anuncios_category_headline'):asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
 		<h2>{{ category.name }}</h2>
 	</div>
 	
@@ -17,12 +17,13 @@
 		{% endfor %}
 	</div>
 	
-	
-	<h3>Anuncios más votados en {{ category.name }} este mes</h3>
-	<div class="list clearfix">
-		{% for anuncio in lastAnunciosVoteByCategory %}
-		{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
-		{% endfor %}
-	</div>
+	{% if(lastAnunciosVoteByCategory is not empty) %}
+		<h3>Anuncios más votados en {{ category.name }} este mes</h3>
+		<div class="list clearfix">
+			{% for anuncio in lastAnunciosVoteByCategory %}
+			{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
+			{% endfor %}
+		</div>
+	{% endif %}
 </section>
 {% endblock %}

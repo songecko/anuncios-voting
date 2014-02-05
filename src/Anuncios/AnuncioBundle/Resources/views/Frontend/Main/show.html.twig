@@ -20,20 +20,24 @@
 							{% endif %}
 						 	>Ver Pieza
 						</a>
-						{% if(hasVoting) %}
-							<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
-						{% else %}
-							{% if(hasVotingByCategory) %}
-								<a href="#" class="voteButton" onclick="alert('Has llegado al limite de votos para esta categoria.');return false;">Votar</a>
+						{% if(category.getIsAnual == false) %}
+							{% if(hasVoting) %}
+								<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
 							{% else %}
-								<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>
+								{% if(hasVotingByCategory) %}
+									<a href="#" class="voteButton" onclick="alert('Has llegado al limite de votos para esta categoria.');return false;">Votar</a>
+								{% else %}
+									<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>
+								{% endif %}
 							{% endif %}
 						{% endif %}
 					</div>
+					{% if(category.getIsAnual == false) %}
 					<div class="info">
 						<!-- <p>Ranking: 0</p> -->
 						<p>Votos: {{ anuncio.votoJurado+anuncio.votoUsuario }}</p>
-					</div>				
+					</div>
+					{% endif %}				
 				</div>
 			</div>
 		</div>

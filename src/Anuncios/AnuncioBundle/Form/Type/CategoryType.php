@@ -15,6 +15,9 @@ class CategoryType extends AbstractType
         		'required' => true,
         		'label'    => 'Nombre'
         ))
+        ->add('isAnual', 'checkbox', array(
+        		'label'    => 'Anual?'
+        ))
         ->add('file', 'file', array(
         		'label' => 'Imagen Titular'
         ));

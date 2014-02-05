@@ -15,6 +15,7 @@ class Category
     private $name;
     private $image;
     private $file;
+    private $isAnual;
     private $anuncios;
     private $createdAt;
     private $updatedAt;
@@ -22,6 +23,18 @@ class Category
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function setIsAnual($isAnual)
+    {
+    	$this->isAnual = $isAnual;
+    
+    	return $this;
+    }
+    
+    public function getIsAnual()
+    {
+    	return $this->isAnual;
     }
     
 	public function setImage($image)
@@ -70,6 +83,7 @@ class Category
     public function __construct()
     {
         $this->anuncios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->isAnual = false;
         $this->createdAt = new DateTime('now');
     }
 

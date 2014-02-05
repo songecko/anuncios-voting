@@ -27,6 +27,24 @@ class AnuncioRepository extends EntityRepository
 		->getResult();
 	}
 	
+	public function getAnunciosByCategoryAnual($category, $year)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
+				WHERE a.campaign IN (
+					SELECT c.id FROM AnunciosAnuncioBundle:Campaign c WHERE c.year = :year
+				) 
+				AND a.category = :category
+				ORDER BY a.votoJurado+a.votoUsuario DESC, a.name'
+		)->setParameters(array(
+				'category' => $category,
+				'year'     => $year
+		))
+		->getResult();
+	}
+	
 	public function getLeftAnunciosVoteByUser($campaign, $user, $category)
 	{
 		return $this->getEntityManager()

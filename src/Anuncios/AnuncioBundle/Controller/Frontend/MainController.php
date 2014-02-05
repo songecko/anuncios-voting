@@ -16,7 +16,7 @@ class MainController extends BaseFrontendController
 		
 		$categories = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Category')
-			->findAll();
+			->getCategoriesWithoutAnual();
 		
 		$lastAnunciosVoteByUser = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
@@ -57,9 +57,18 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:Category')
     		->find($id);
     	
-    	$anuncios = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->getAnunciosByCategory($campaignActive, $category);
+    	if($category->getIsAnual())
+    	{
+    		$anuncios = $this->getDoctrine()
+    			->getRepository('AnunciosAnuncioBundle:Anuncio')
+    			->getAnunciosByCategoryAnual($category, date('Y'));
+    	}
+    	else
+    	{
+	    	$anuncios = $this->getDoctrine()
+	    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+	    		->getAnunciosByCategory($campaignActive, $category);
+    	}
     	
     	$lastAnunciosVoteByCategory = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
@@ -140,7 +149,7 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:User')
     		->isCompleteVoting($campaignActive, $category, $user->getId());
     	
-    	if($hasVoting || $hasVotingByCategory)
+    	if($hasVoting || $hasVotingByCategory || $category->getIsAnual())
     	{
     		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
     				'slug' => $category->getSlug(),
@@ -241,8 +250,8 @@ class MainController extends BaseFrontendController
     	$campaignActive = $this->getActiveCampaign();
     	
     	$categories = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Category')
-    		->findAll();
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->getCategoriesWithoutAnual();
     	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
@@ -266,8 +275,8 @@ class MainController extends BaseFrontendController
     	$campaignActive = $this->getActiveCampaign();
     	 
     	$categories = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Category')
-    		->findAll();
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->getCategoriesWithoutAnual();
     	
     	$category = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')

@@ -1,5 +1,6 @@
 Anuncios\AnuncioBundle\Entity\Category:
     type: entity
+    repositoryClass: Anuncios\AnuncioBundle\Entity\CategoryRepository
     table: category
     id:
         id:
@@ -15,6 +16,9 @@ Anuncios\AnuncioBundle\Entity\Category:
             type: string
             length: 255
             nullable: true
+        isAnual:
+            type: boolean
+            column: is_anual
         createdAt:
             column: created_at
             type: datetime
