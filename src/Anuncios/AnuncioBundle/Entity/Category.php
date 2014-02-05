@@ -4,18 +4,17 @@ namespace Anuncios\AnuncioBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use SplFileInfo;
-use Anuncios\AnuncioBundle\Model\ImageInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Category
  */
-class Category implements ImageInterface 
+class Category
 {
     private $id;
     private $name;
-    private $headlineImage;
-    private $headlineImageFile;
+    private $image;
+    private $file;
     private $anuncios;
     private $createdAt;
     private $updatedAt;
@@ -25,54 +24,35 @@ class Category implements ImageInterface
         return $this->id;
     }
     
-    public function getHeadlineImage()
+	public function setImage($image)
     {
-    	return $this->headlineImage;
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
     
-    public function setHeadlineImage($headlineImage)
+	public function hasFile()
     {
-    	$this->headlineImage = $headlineImage;
-    }
-    
-    public function getHeadlineImageFile()
-    {
-    	return $this->headlineImageFile;
-    }
-    
-    public function setHeadlineImageFile($headlineImageFile)
-    {
-    	$this->headlineImageFile = $headlineImageFile;
-    }
-    
-    public function hasFile()
-    {
-    	return null !== $this->headlineImageFile;
+    	return null !== $this->file;
     }
     
     public function getFile()
     {
-    	return $this->headlineImageFile;
+    	return $this->file;
     }
     
-    public function setFile(SplFileInfo $headlineImageFile)
+    public function setFile(File $file)
     {
-    	$this->headlineImageFile = $headlineImageFile;
-    }
-    
-    public function hasPath()
-    {
-    	return null !== $this->headlineImage;
-    }
-    
-    public function getPath()
-    {
-    	return $this->headlineImage;
-    }
-    
-    public function setPath($headlineImage)
-    {
-    	$this->headlineImage = $headlineImage;
+    	$this->file = $file;
+    	
+    	if ($this->image) {
+    		$this->setUpdatedAt(new \DateTime('now'));
+    	}
     }
     
     public function setName($name)

@@ -1,0 +1,4 @@
+Anuncios\AnuncioBundle\Entity\Category:
+    file:
+        mapping:           category_image
+        filename_property: image

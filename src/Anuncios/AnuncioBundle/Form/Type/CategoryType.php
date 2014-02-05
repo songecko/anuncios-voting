@@ -15,7 +15,7 @@ class CategoryType extends AbstractType
         		'required' => true,
         		'label'    => 'Nombre'
         ))
-        ->add('headlineImageFile', 'file', array(
+        ->add('file', 'file', array(
         		'label' => 'Imagen Titular'
         ));
     }

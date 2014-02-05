@@ -89,6 +89,11 @@ vich_uploader:
             upload_destination: gecko_images_fs
             delete_on_remove:   true
             delete_on_update:   true
+        category_image:
+            uri_prefix:         /images/category
+            upload_destination: gecko_images_fs
+            delete_on_remove:   true
+            delete_on_update:   true
             
 liip_imagine:
     data_root: %kernel.root_dir%/../web/media/images

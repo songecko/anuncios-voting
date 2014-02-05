@@ -10,8 +10,6 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
             - NotBlank: ~
         brand:
             - NotBlank: ~
-        otherFields:
-            - NotBlank: ~
 
 Anuncios\AnuncioBundle\Entity\Campaign:
     properties:
