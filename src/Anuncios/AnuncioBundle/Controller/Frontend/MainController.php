@@ -266,7 +266,8 @@ class MainController extends BaseFrontendController
     			'categories'     => $categories,
     			'category'       => $category,
     			'rankingAnuncios' => $rankingAnuncios,
-    			'route'          => 'anuncios_anuncio_ranking_jurado'
+    			'route'          => 'anuncios_anuncio_ranking_jurado',
+    			'rankingTitle'   => 'Voto del Jurado'
     	));
     }
     
@@ -291,7 +292,8 @@ class MainController extends BaseFrontendController
     			'categories'     => $categories,
     			'category'       => $category,
     			'rankingAnuncios' => $rankingAnuncios,
-    			'route'          => 'anuncios_anuncio_ranking_usuario'
+    			'route'          => 'anuncios_anuncio_ranking_usuario',
+    			'rankingTitle'   => 'Voto Popular'
     	));
     }	
 }

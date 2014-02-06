@@ -21,11 +21,21 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
         {% endblock %}
+        
+        <script type="text/javascript"> 
+        	var googletag = googletag || {}; googletag.cmd = googletag.cmd || []; (function() { var gads = document.createElement('script'); gads.async = true; gads.type = 'text/javascript'; var useSSL = 'https:' == document.location.protocol; gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js' ; var node = document.getElementsByTagName('script')[0]; node.parentNode.insertBefore(gads, node);})();
+        	googletag.cmd.push(function() {
+            		googletag.defineSlot('/2322551/lb.premios.anuncios.com', [728, 90], 'div-gpt-ad-1391422927909-0').addService(googletag.pubads()); 
+            		googletag.pubads().setTargeting("premiosZon","home"); 
+            		googletag.pubads().enableSingleRequest();
+        			googletag.enableServices();
+        	});
+        </script>
     </head>
     <body>
     	<div class="container">
     		<div id="header" class="clearfix">
-    			<a href="{{ path('anuncios_anuncio_index') }}"><img src="{{ asset('bundles/anunciosanuncio/images/logo.png') }}" class="logo" /></a>
+    			<a href="http://www.anuncios.com/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/logo.png') }}" class="logo" /></a>
     			<div class="siteDate">
 	    			<ul class="date clearfix">
 	    				<li>{{ "now"|localizeddate('long', 'none', null, null, "EEEE, dd 'de' MMMM 'de' yyyy ") }}</li>

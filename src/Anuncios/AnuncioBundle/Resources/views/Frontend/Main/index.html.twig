@@ -6,6 +6,11 @@
 		<img src="{{ asset('bundles/anunciosanuncio/images/title_home.jpg') }}">
 	</div>
 	
+	<!-- lb.premios.anuncios.com -->
+	<div id="div-gpt-ad-1391422927909-0" class="adBanner" style="width:728px; height:90px;">
+		<script type="text/javascript">googletag.cmd.push(function() { googletag.display('div-gpt-ad-1391422927909-0'); });</script>
+	</div>
+
 	{% if(leftAnunciosVoteByUser is empty) %}
 	<p class="message">Has completado tus votos en todas las categorías</p>
 	{% endif %}
@@ -13,8 +18,8 @@
 	<div class="row">
 		<div class="col-md-8">
 		{% if(leftAnunciosVoteByUser is not empty) %}
-			<h3>SECCIONES POR VOTAR</h3>
-			<div class="list clearfix">
+			<h3>CATEGORÍAS POR VOTAR</h3>
+			<div class="list size-2 clearfix">
 				{% for anuncio in leftAnunciosVoteByUser %}
 				{% if(anuncio != null) %}
 					{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
@@ -24,8 +29,8 @@
 		{% endif %}
 
 		{% if(lastAnunciosVoteByUser is not empty) %}
-			<h3>SECCIONES QUE HAS VOTADO</h3>
-			<div class="list clearfix">
+			<h3>CATEGORÍAS QUE HAS VOTADO</h3>
+			<div class="list size-2 clearfix">
 				{% for anuncio in lastAnunciosVoteByUser %}
 				{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
 				{% endfor %}

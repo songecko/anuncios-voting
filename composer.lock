@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d4252114121a033f25e8b8b8379c1298",
+    "hash": "23cf442fee2cba29528f424a973cda0f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1757,12 +1757,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/noiselabs/NoiselabsNuSOAPBundle.git",
-                "reference": "ff18964f6ff51e1f75ec5e7a486cc2dab8c97eea"
+                "reference": "5f4057b77b3ce1799840d2aad651475f71afa415"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/noiselabs/NoiselabsNuSOAPBundle/zipball/ff18964f6ff51e1f75ec5e7a486cc2dab8c97eea",
-                "reference": "ff18964f6ff51e1f75ec5e7a486cc2dab8c97eea",
+                "url": "https://api.github.com/repos/noiselabs/NoiselabsNuSOAPBundle/zipball/5f4057b77b3ce1799840d2aad651475f71afa415",
+                "reference": "5f4057b77b3ce1799840d2aad651475f71afa415",
                 "shasum": ""
             },
             "require": {
@@ -1783,8 +1783,8 @@
             "authors": [
                 {
                     "name": "Vítor Brandão",
-                    "email": "noisebleed@noiselabs.org",
-                    "homepage": "http://blog.noiselabs.org"
+                    "email": "vitor@noiselabs.org",
+                    "homepage": "http://noiselabs.org"
                 }
             ],
             "description": "Symfony2 bundle for NuSOAP - SOAP Toolkit for PHP",
@@ -1794,7 +1794,7 @@
                 "soap",
                 "symfony"
             ],
-            "time": "2013-11-26 00:12:48"
+            "time": "2014-02-05 14:07:22"
         },
         {
             "name": "nusphere/nusoap",

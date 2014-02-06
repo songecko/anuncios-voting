@@ -2,6 +2,10 @@
 	margin-top: 20px;
 }
 
+#content section .adBanner {
+	margin: 0 auto 20px auto;
+}
+
 #content section .message {
 	background: #3dc63d;
 	color: #FFFFFF;
@@ -50,11 +54,17 @@
 	margin-top: 20px;
 }
 
-#content .anunciosList .anuncio {
+#content .anunciosList .list .anuncio {
 	float: left;
 	width: 220px;
 	height: 230px;
 	margin: 0 20px 35px 0;
+}
+
+#content .anunciosList .list.size-2 .anuncio {
+	width: 185px;
+	height: 220px;
+	margin-bottom: 10px;
 }
 
 #content .anunciosList .anuncio .imageWrapper
@@ -155,6 +165,10 @@
 #content .anuncioShow .picture .overlayContent .info {
 	width: 295px;
 	margin: 0 auto;
+}
+
+#content .anuncioShow .picture .overlayContent.oneLine .actions {
+	width: 150px;
 }
 
 #content .anuncioShow .picture .overlayContent .actions > a {

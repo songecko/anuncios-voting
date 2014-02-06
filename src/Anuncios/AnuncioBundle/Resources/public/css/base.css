@@ -127,7 +127,6 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	width: 100%;
 	border-top: 1px solid #737373;
 	border-bottom: 1px solid #737373;
-	padding: 0 8px;
 	font-size: 12px;
 }
 
@@ -138,9 +137,23 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	font-weight: bold;
 }
 
+#mainMenu li.logoIcon {
+	padding: 0;
+	margin-right: 8px;
+}
+	
+#mainMenu li.logoIcon img {
+	height: 33px;
+}
+
 #mainMenu li:hover, #mainMenu li.active {
 	border-bottom: 3px solid #000000;
 	padding-bottom: 5px;
+}
+
+#mainMenu li.logoIcon:hover {
+	padding-bottom: 0px;
+	border: none;
 }
 
 #mainMenu li:hover a, #mainMenu li.active a {

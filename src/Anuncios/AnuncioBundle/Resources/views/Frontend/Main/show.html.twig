@@ -10,7 +10,7 @@
 			<div class="picture">
 				<img src="{{ anuncio.image }}" />
 				<div class="overlay"></div>
-				<div class="overlayContent">
+				<div class="overlayContent{{ (category.getIsAnual)?' oneLine':'' }}">
 					<div class="actions clearfix">
 						<a 
 							{% if(externalResource) %}

@@ -6,9 +6,7 @@
 		{% if usuario != null %}
 			{% set i = i + 1 %}
 			<p><a href="{{ path('anuncios_anuncio_ranking_usuario', {'id': usuario.category.id}) }}">
-				<span class="number">01</span>. 
-				<span class="categoryName">{{ usuario.category.name }}</span> - 
-				{{ usuario.name }} 
+				<span class="categoryName">{{ usuario.category.name }}</span> - {{ usuario.name }} 
 			</a></p>
 		{% endif %}
 	{% endfor %}
@@ -21,9 +19,7 @@
 		{% if jurado != null %}
 			{% set i = i + 1 %}
 			<p><a href="{{ path('anuncios_anuncio_ranking_jurado', {'id': jurado.category.id}) }}">
-				<span class="number">01</span>. 
-				<span class="categoryName">{{ jurado.category.name }}</span> - 
-				{{ jurado.name }}
+				<span class="categoryName">{{ jurado.category.name }}</span> - {{ jurado.name }}
 			</a></p>
 		{% endif %}
 	{% endfor %}
