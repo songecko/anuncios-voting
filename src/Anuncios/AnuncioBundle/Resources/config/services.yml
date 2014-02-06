@@ -12,16 +12,6 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
-                    
-    gecko.knp_gaufrette.filesystem:
-        class: Gaufrette\Filesystem
-        factory_service:  knp_gaufrette.filesystem_map
-        factory_method:   get
-        arguments: [ "gecko_image" ]
-    
-    gecko.image_uploader:
-        class: %gecko.image_uploader.class%
-        arguments: ["@gecko.knp_gaufrette.filesystem"]
     
     anuncios_anuncio.frontend.listener:
         class: Anuncios\AnuncioBundle\EventListener\FrontendListener
