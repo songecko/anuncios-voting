@@ -11,6 +11,10 @@
 		<p class="message">Has completado tus votos disponibles para esta categoría.</p>
 	{% endif %}
 	
+	{% if(category.isAnual) %}
+		<p class="message">Esta categoría se votará una sola vez al año. Mientras, disfruta de los trabajos.</p>
+	{% endif %}
+	
 	<div class="list clearfix">
 		{% for anuncio in anuncios %}
 		{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}

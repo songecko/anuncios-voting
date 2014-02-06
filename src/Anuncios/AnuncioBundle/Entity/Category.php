@@ -15,6 +15,7 @@ class Category
     private $name;
     private $image;
     private $file;
+    private $deleteFile;
     private $isAnual;
     private $anuncios;
     private $createdAt;
@@ -65,6 +66,19 @@ class Category
     	
     	if ($this->image) {
     		$this->setUpdatedAt(new \DateTime('now'));
+    	}
+    }
+    
+    public function getDeleteFile()
+    {
+    	return $this->deleteFile;
+    }
+    
+    public function setDeleteFile($deleteFile)
+    {
+    	if($deleteFile)
+    	{
+    		$this->setImage(null);
     	}
     }
     

@@ -18,6 +18,9 @@ class CategoryType extends AbstractType
         ->add('isAnual', 'checkbox', array(
         		'label'    => 'Anual?'
         ))
+        ->add('deleteFile', 'checkbox', array(
+        		'label'    => 'Eliminar Imagen'
+        ))
         ->add('file', 'file', array(
         		'label' => 'Imagen Titular'
         ));

@@ -1,0 +1,45 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="icon-dashboard"></i> {{ 'gecko.backend.dashboard.header'|trans }} <small>{{ 'gecko.backend.dashboard.subheader'|trans }}</small></h1>
+</div>
+
+{% if campaign != null %}
+{% if(closed) %}
+<h3>Ultima campaña cerrada: <a href="{{ path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id}) }}">{{ campaign.name }}</a></h3>
+<h4>Finalistas:</h4>
+{% else %}
+<h3>Campaña en curso: <a href="{{ path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id}) }}">{{ campaign.name }}</a></h3>
+<h4>Marcha de las votaciones:</h4>
+{% endif %}
+<div class="row">
+	<div class="col-md-6">
+		<h4>Voto popular</h4>
+		<div class="marchaRanking">
+		{% for usuario in rankingUsuario %}
+			{% if usuario != null %}
+				<p><span class="categoryName">{{ usuario.category.name }}</span> - 
+					{{ usuario.name }} 
+				</p>
+			{% endif %}
+		{% endfor %}
+		</div>
+	</div>	
+	<div class="col-md-6">
+		<h4>Voto del jurado</h4>
+		<div class="marchaRanking">
+		{% for jurado in rankingJurado %}
+			{% if jurado != null %}
+				<p><span class="categoryName">{{ jurado.category.name }}</span> - 
+					{{ jurado.name }}
+				</p>
+			{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+</div>
+{% else %}
+<h1>Proximamente se abrira una nueva votacion</h1>
+{% endif %}
+{% endblock %}

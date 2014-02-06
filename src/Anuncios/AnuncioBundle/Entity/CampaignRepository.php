@@ -23,4 +23,16 @@ class CampaignRepository extends EntityRepository
 		)->setMaxResults(1)
 		->getOneOrNullResult();
 	}
+	
+	public function getLastActiveCampaignClosed()
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT c
+				FROM AnunciosAnuncioBundle:Campaign c
+				WHERE c.isActive = 1 AND
+				CURRENT_DATE() > c.dateEnd'
+		)->setMaxResults(1)
+		->getOneOrNullResult();
+	}
 }

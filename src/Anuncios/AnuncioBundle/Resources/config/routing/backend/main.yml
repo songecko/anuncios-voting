@@ -1,3 +1,7 @@
+gecko_backend_dashboard:
+    pattern: /dashboard
+    defaults: { _controller: AnunciosAnuncioBundle:Backend/Dashboard:main }
+
 anuncios_anuncio_backend_campaign:
     resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/campaign.yml
     prefix: /campaign

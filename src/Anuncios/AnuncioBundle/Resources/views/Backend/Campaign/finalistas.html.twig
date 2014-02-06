@@ -8,34 +8,32 @@
 {% endblock %}
 
 {% block content %}
-<h3>{{ campaign.name }}</h3>
-<div class="rankingPreview">
-	<h4>Finalistas popular</h4>
-	<div class="marchaRanking">
-	{% set i = 0 %}
-	{% for usuario in finalistasUsuario %}
-		{% if usuario != null %}
-			{% set i = i + 1 %}
-			<p><span class="number">0{{ i }}</span>. 
-				<span class="categoryName">{{ usuario.category.name }}</span> - 
-				{{ usuario.name }}
-			</p>
-		{% endif %}
-	{% endfor %}
+<a href="{{ path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id}) }}">{{ campaign.name }}</a></h3>
+<div class="row">
+	<div class="col-md-6">
+		<h4>Finalistas popular</h4>
+		<div class="marchaRanking">
+		{% for usuario in finalistasUsuario %}
+			{% if usuario != null %}
+				<p><span class="categoryName">{{ usuario.category.name }}</span> - 
+					{{ usuario.name }}
+				</p>
+			{% endif %}
+		{% endfor %}
+		</div>
 	</div>
 	
-	<h4>Finalistas jurado</h4>
-	<div class="marchaRanking">
-	{% set i = 0 %}
-	{% for jurado in finalistasJurado %}
-		{% if jurado != null %}
-			{% set i = i + 1 %}
-			<p><span class="number">0{{ i }}</span>. 
-				<span class="categoryName">{{ jurado.category.name }}</span> - 
-				{{ jurado.name }}
-			</p>
-		{% endif %}
-	{% endfor %}
+	<div class="col-md-6">
+		<h4>Finalistas jurado</h4>
+		<div class="marchaRanking">
+		{% for jurado in finalistasJurado %}
+			{% if jurado != null %}
+				<p><span class="categoryName">{{ jurado.category.name }}</span> - 
+					{{ jurado.name }}
+				</p>
+			{% endif %}
+		{% endfor %}
+		</div>
 	</div>
 </div>
 {% endblock %}
