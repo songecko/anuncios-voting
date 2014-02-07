@@ -6,7 +6,8 @@ anuncios_anuncio_backend_user_index:
         _sylius:
             template: AnunciosAnuncioBundle:Backend/User:index.html.twig
             paginate: 100
-            
+            filterable: true
+
 anuncios_anuncio_backend_user_create:
     pattern: /new
     methods: [GET, POST]
