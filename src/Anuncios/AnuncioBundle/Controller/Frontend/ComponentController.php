@@ -12,20 +12,23 @@ class ComponentController extends Controller
 {
 	public function menuAction($request)
 	{
-		$id = $request->get('id');
+		$id = 0;
 		
-		if(!$id)
+		if(in_array($request->get('_route'), array('anuncios_anuncio_category')))
 		{
-			$anuncio_id = $request->get('anuncio_id');
-			if($anuncio_id)
-			{
-				$anuncio = $this->getDoctrine()
-					->getRepository('AnunciosAnuncioBundle:Anuncio')
-					->find($anuncio_id);
-				
-				$id = $anuncio->getCategory()->getId();
-			}
+			$id = $request->get('id');
 			
+			if(!$id)
+			{
+				try {
+					$anuncio_id = $request->get('anuncio_id');
+					$anuncio = $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->find($anuncio_id);	
+					$id = $anuncio->getCategory()->getId();
+				}catch (\Exception $e)
+				{}
+			}
 		}
 		
 		$categories = $this->getDoctrine()
@@ -64,6 +67,40 @@ class ComponentController extends Controller
 		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_rankingPreview.html.twig', array(
 			'rankingJurado' => $rankingJurado,
 			'rankingUsuario' => $rankingUsuario
+		));
+	}
+	
+	public function googleTagHeaderAction($request)
+	{
+		$googleTagTargeting = "home";
+		
+		if(in_array($request->get('_route'), array('anuncios_anuncio_category')))
+		{
+			try {
+				$categoryId = $request->get('id');
+				$category = $this->getDoctrine()
+					->getRepository('AnunciosAnuncioBundle:Category')
+					->find($categoryId);
+				$googleTagTargeting = $category->getName();
+			}catch (\Exception $e)
+			{}
+		}else if(in_array($request->get('_route'), array('anuncios_anuncio_show')))
+		{
+			try {
+				$anuncioId = $request->get('anuncio_id');
+				$anuncio = $this->getDoctrine()
+					->getRepository('AnunciosAnuncioBundle:Anuncio')
+					->find($anuncioId);
+				$googleTagTargeting = $anuncio->getCategory()->getName();
+			}catch (\Exception $e)
+			{}
+		}else if(!in_array($request->get('_route'), array('anuncios_anuncio_index')))
+		{
+			$googleTagTargeting = "default";
+		}
+		
+		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_googleTagHeader.html.twig', array(
+				'googleTagTargeting' => $googleTagTargeting
 		));
 	}
 }

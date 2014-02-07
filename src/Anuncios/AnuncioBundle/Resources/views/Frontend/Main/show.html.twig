@@ -2,6 +2,8 @@
 
 {% block content %}
 <section class="anuncioShow">
+	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}
+	
 	<h2>{{ anuncio.name }}</h2>
 	<p class="subname">{{ category.name }}</p>
 	

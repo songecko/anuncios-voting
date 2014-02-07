@@ -7,6 +7,8 @@
 		<h2>{{ category.name }}</h2>
 	</div>
 	
+	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}
+	
 	{% if(hasVotingByCategory) %}
 		<p class="message">Has completado tus votos disponibles para esta categoría.</p>
 	{% endif %}
