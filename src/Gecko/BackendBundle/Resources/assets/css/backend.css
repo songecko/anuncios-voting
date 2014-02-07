@@ -1,4 +1,8 @@
 /* General. */
+html, body {
+	height: 100%;
+}
+
 body {
     color: #5a5a5a;
     font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -241,6 +245,7 @@ th a:visited {
     margin-right: 0;
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 .main-container .col-md-10 {
     padding-right: 0;
@@ -268,6 +273,9 @@ th a:visited {
 }
 #sidebar a:visited {
     color: #999;
+}
+#sidebar li {
+	margin-top: 5px;
 }
 #sidebar li a:hover {
     color: #fff;

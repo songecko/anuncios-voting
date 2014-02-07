@@ -31,12 +31,12 @@ class BackendMenuBuilder
 
         $menu->addChild('campaign', array(
         		'route' => 'anuncios_anuncio_backend_campaign_index',
-        		'labelAttributes' => array('icon' => 'icon-barcode'),
+        		'labelAttributes' => array('icon' => 'icon-bullseye'),
         ))->setLabel("Campañas");
         
         $menu->addChild('anuncio', array(
             'route' => 'anuncios_anuncio_backend_anuncio_index',
-            'labelAttributes' => array('icon' => 'icon-barcode'),
+            'labelAttributes' => array('icon' => 'icon-facetime-video'),
         ))->setLabel("Anuncios");
         
         /*$menu->addChild('sector', array(
@@ -46,12 +46,12 @@ class BackendMenuBuilder
         
         $menu->addChild('category', array(
         		'route' => 'anuncios_anuncio_backend_category_index',
-        		'labelAttributes' => array('icon' => 'icon-barcode'),
+        		'labelAttributes' => array('icon' => 'icon-sitemap'),
         ))->setLabel("Categorias");
 
         $menu->addChild('user', array(
         		'route' => 'anuncios_anuncio_backend_user_index',
-        		'labelAttributes' => array('icon' => 'icon-barcode'),
+        		'labelAttributes' => array('icon' => 'icon-user'),
         ))->setLabel("Usuarios");
         
         return $menu;
