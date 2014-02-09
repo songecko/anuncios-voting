@@ -56,6 +56,9 @@ a:visited {
     color: #1abb9c;
 }
 
+.form-filter label {
+	width: auto;
+}
 
 /* Buttons. */
 .btn {
@@ -244,7 +247,7 @@ th a:visited {
     margin-top: 50px;
     margin-right: 0;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
 }
 .main-container .col-md-10 {

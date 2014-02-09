@@ -1,13 +1,14 @@
 parameters:
-    gecko.backend.controller.dashboard.class: Gecko\BackendBundle\Controller\DashboardController
+    gecko.backend.controller.form.class:  Gecko\BackendBundle\Controller\FormController
     gecko.backend.controller.security.class:  Gecko\BackendBundle\Controller\SecurityController
 
 services:
-    gecko.backend.controller.dashboard:
-        class: %gecko.backend.controller.dashboard.class%
+    gecko.backend.controller.form:
+        class: %gecko.backend.controller.form.class%
+        scope: request
         calls:
             - [setContainer, [@service_container]]
-
+            
     gecko.backend.controller.security:
         class: %gecko.backend.controller.security.class%
         calls:

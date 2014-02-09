@@ -1,12 +1,20 @@
-body.portada {
-	max-height: 100%;
+html, body {
+	height: 100%;
 }
 
 body.portada .container {
-	max-height: 100%;
-	padding-top: 5%;
+	padding-top: 4%;
 }
 
+body.portada .container > .row {
+	height: 70%;
+}
+
+body.portada .container > .patrocinios {
+	padding-top: 20px;
+	height: 30%;
+}
+	
 body.portada .trofeo {
 	max-height: 80%;
 	margin: 0 auto;
@@ -58,4 +66,13 @@ body.portada #content form button {
 
 body.portada #content form.disabled button {
 	background: url(../images/enterButton-disabled.png) no-repeat;
+}
+
+body.portada .container > .patrocinios a {
+	float: right;
+	margin-left: 20px;
+}
+
+body.portada .container > .patrocinios img {
+	height: 60px;
 }

@@ -56,3 +56,8 @@ services:
         class: Anuncios\AnuncioBundle\Form\Type\UserType
         tags:
             - { name: form.type, alias: anuncios_user }
+            
+    anuncios.form.type.filter.user:
+        class: Anuncios\AnuncioBundle\Form\Type\Filter\UserFilterType
+        tags:
+            - { name: form.type, alias: anuncios_user_filter }
