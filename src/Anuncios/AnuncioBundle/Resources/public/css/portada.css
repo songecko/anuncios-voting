@@ -2,21 +2,22 @@ html, body {
 	height: 100%;
 }
 
+body.portada h4 {
+	font-family: 'lubalgraph_bk_btbook', Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
 body.portada .container {
-	padding-top: 4%;
+	width: 90%;
+	padding-top: 2%;
 }
 
 body.portada .container > .row {
 	height: 70%;
 }
-
-body.portada .container > .patrocinios {
-	padding-top: 20px;
-	height: 30%;
-}
 	
 body.portada .trofeo {
-	max-height: 80%;
+	max-height: 70%;
 	margin: 0 auto;
 	float: right;
 }
@@ -26,7 +27,8 @@ body.portada #content .title {
 }
 
 body.portada #content form {
-	margin: 30px 0 0 20px
+	margin: 30px 0 0 20px;
+	float: left;
 }
 
 body.portada #content form fieldset {
@@ -68,11 +70,30 @@ body.portada #content form.disabled button {
 	background: url(../images/enterButton-disabled.png) no-repeat;
 }
 
+body.portada .container > .patrocinios {
+	padding-top: 20px;
+	height: 30%;
+}
+
 body.portada .container > .patrocinios a {
-	float: right;
-	margin-left: 20px;
+	float: left;
+	margin-right: 20px;
 }
 
 body.portada .container > .patrocinios img {
-	height: 60px;
+	height: 100px;
+}
+
+body.portada .patrocinioPrincipal {
+	float: left;
+	max-width: 400px;
+	margin: 50px 0 0 20px;
+}
+
+body.portada .patrocinioPrincipal h4 {
+	text-align: center;
+}
+
+body.portada .patrocinioPrincipal img {
+	width: 100%;
 }
