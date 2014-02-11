@@ -61,3 +61,13 @@ services:
         class: Anuncios\AnuncioBundle\Form\Type\Filter\UserFilterType
         tags:
             - { name: form.type, alias: anuncios_user_filter }
+
+    anuncios.form.type.filter.category:
+        class: Anuncios\AnuncioBundle\Form\Type\Filter\CategoryFilterType
+        tags:
+            - { name: form.type, alias: anuncios_category_filter }
+
+    anuncios.form.type.filter.anuncio:
+        class: Anuncios\AnuncioBundle\Form\Type\Filter\AnuncioFilterType
+        tags:
+            - { name: form.type, alias: anuncios_anuncio_filter }

@@ -6,6 +6,7 @@ anuncios_anuncio_backend_anuncio_index:
         _sylius:
             template: AnunciosAnuncioBundle:Backend/Anuncio:index.html.twig
             paginate: 100
+            filterable: true
             
 anuncios_anuncio_backend_anuncio_create:
     pattern: /new

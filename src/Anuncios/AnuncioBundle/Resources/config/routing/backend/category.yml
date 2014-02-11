@@ -6,7 +6,8 @@ anuncios_anuncio_backend_category_index:
         _sylius:
             template: AnunciosAnuncioBundle:Backend/Category:index.html.twig
             paginate: 100
-            
+            filterable: true
+
 anuncios_anuncio_backend_category_create:
     pattern: /new
     methods: [GET, POST]

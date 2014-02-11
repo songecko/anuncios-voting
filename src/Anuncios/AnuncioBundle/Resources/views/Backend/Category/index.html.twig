@@ -18,8 +18,7 @@
     <h1><i class="icon-sitemap"></i> {{ 'gecko.backend.category.index_header'|trans|raw }}</h1>
 </div>
 
-{#% render(url('sylius_backend_user_filter_form', {'criteria': app.request.query.get('criteria')})) %#}
-
+{% render(controller('gecko.backend.controller.form:filterAction', {'type': 'anuncios_category_filter', 'template': 'AnunciosAnuncioBundle:Backend/Category:filterForm.html.twig'})) %}
 {{ list(categories)  }}
 {{ pagination(categories) }}
 

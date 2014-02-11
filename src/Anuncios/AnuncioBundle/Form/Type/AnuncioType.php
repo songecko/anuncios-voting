@@ -41,6 +41,10 @@ class AnuncioType extends AbstractType
         ))
         ->add('file', 'file', array(
         		'label' => 'Imagen'
+        ))
+        ->add('anuncioId', 'text', array(
+        		'required' => true,
+        		'label'    => 'Anuncio ID'
         ));
     }
 
