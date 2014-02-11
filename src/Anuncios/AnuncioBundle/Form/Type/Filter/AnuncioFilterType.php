@@ -19,11 +19,15 @@ class AnuncioFilterType extends AbstractType
         ))
         ->add('campaign', 'entity', array(
         		'class'    => 'AnunciosAnuncioBundle:Campaign',
-        		'label'    => 'Campaña'
+        		'label'    => 'Campaña',
+        		'required' => false,
+        		'empty_value' => 'Campaña'
         ))
         ->add('category', 'entity', array(
         		'class'    => 'AnunciosAnuncioBundle:Category',
-        		'label'    => 'Categoria'
+        		'label'    => 'Categoria',
+        		'required' => false,
+        		'empty_value' => 'Categoría'
         ));
     }
 

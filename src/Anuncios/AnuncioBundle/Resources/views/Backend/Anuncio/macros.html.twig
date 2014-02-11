@@ -9,8 +9,10 @@
     <thead>
         <tr>
             <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
+            <th>{{ sylius_resource_sort('anuncioId', 'WebService ID'|trans) }}</th>
+            <th>{{ sylius_resource_sort('campaign', 'Campaña') }}</th>
+            <th>{{ sylius_resource_sort('category', 'Categoría') }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.name'|trans) }}</th>
-            <th>{{ sylius_resource_sort('anuncioId', 'Anuncio ID'|trans) }}</th>
             <th>{{ sylius_resource_sort('image', 'Imagen'|trans) }}</th>
             <th></th>
         </tr>
@@ -19,11 +21,23 @@
         {% for anuncio in anuncios %}
         <tr id="{{ anuncio.id }}">
             <td>{{ anuncio.id }}</td>
-            <td>{{ anuncio.name }}</td>
             <td>{{ anuncio.anuncioId }}</td>
+            <td>
+            	{% if anuncio.campaign %}
+            	{{ anuncio.campaign.name }}
+            	{% endif %}	
+            </td>
+            <td>
+            	{% if anuncio.category %}
+            	{{ anuncio.category.name }}
+            	{% endif %}
+            </td>
+            <td>{{ anuncio.name }}</td>
+            <td>
             {% if anuncio.hasFile %}
                  <img src="{{ anuncio.image|imagine_filter('gecko_image_90x60') }}" />
             {% endif %}
+            </td>
             <td>
                 <div class="pull-right">
                     {{ buttons.edit(path('anuncios_anuncio_backend_anuncio_update', {'id': anuncio.id})) }}
