@@ -5,16 +5,7 @@ html, body {
 
 body.portada h1 {
 	font-family: 'lubalgraph_md_btmedium', Arial, Helvetica, sans-serif;
-	font-size: 85px;	
-}
-
-body.portada h1.title {
-	color: #868686;
-	line-height: 70px;
-}
-
-body.portada h1.title span.big {
-	font-size: 100px;
+	font-size: 75px;	
 }
 
 body.portada h4 {
@@ -25,7 +16,7 @@ body.portada h4 {
 
 body.portada .container {
 	width: 90%;
-	padding-top: 2%;
+	padding-top: 1%;
 }
 
 body.portada .container > .row {
@@ -42,8 +33,15 @@ body.portada .trofeo {
 	float: right;
 }
 
-body.portada #content .title {
-	max-height: 40%;
+body.portada #content h1.title {
+	margin: 10px 0 0 0;
+	color: #868686;
+	line-height: 60px;
+}
+
+
+body.portada #content h1.title span.big {
+	font-size: 95px;
 }
 
 body.portada #content form {
@@ -102,7 +100,7 @@ body.portada .container > .patrocinios a {
 }
 
 body.portada .container > .patrocinios img {
-	height: 100px;
+	height: 90px;
 }
 
 body.portada .patrocinioPrincipal {
