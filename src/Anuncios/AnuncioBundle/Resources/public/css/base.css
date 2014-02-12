@@ -67,6 +67,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     padding: 0 60px;
     max-width: 920px;
     text-align: center;
+    width: 100%;
 }
 
 .blueimp-gallery > .slides > .slide > .text-content iframe {
@@ -76,6 +77,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	border: 0px none;
 }
 
+.blueimp-gallery > .slides > .slide-loading > .slide-content {
+	opacity: 1 !important;
+}
 #header {
 	margin: 10px 0 25px 0;
 	height: 60px;
