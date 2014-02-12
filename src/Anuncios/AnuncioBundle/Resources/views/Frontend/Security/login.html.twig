@@ -3,7 +3,7 @@
 {% block title %}Ingresar - Votación Anuncios.com{% endblock %}
 
 {% block content %}
-	<img src="{{ asset('bundles/anunciosanuncio/images/portada-vota-ultimo-mes.jpg') }}" class="title img-responsive">
+	<h1 class="title"><span class="big">Vota</span><br> Los Anuncios<br> del Año 2014</h1>
 	<form action="{{ path("anuncios_anuncio_login") }}" method="post">
 		{% if(error) %}
 		<p class="error">
