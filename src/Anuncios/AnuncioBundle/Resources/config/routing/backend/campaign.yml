@@ -38,3 +38,10 @@ anuncios_anuncio_backend_campaign_finalistas:
     methods: [GET]
     defaults:
         _controller: anuncios.controller.campaign:finalistasAction
+        
+anuncios_anuncio_backend_campaign_ranking:
+    pattern: /{id}/ranking/{type}
+    methods: [GET]
+    defaults:
+        _controller: anuncios.controller.campaign:rankingAction
+        type: 'usuarios'

@@ -130,6 +130,50 @@ class CampaignController extends ResourceController
 		));	
 	}
 	
+	public function rankingAction($id, $type)
+	{
+		$campaign = $this->getDoctrine()
+		->getRepository('AnunciosAnuncioBundle:Campaign')
+		->find($id);
+	
+		$categories = $this->getDoctrine()
+		->getRepository('AnunciosAnuncioBundle:Category')
+		->findAll();
+	
+		$ranking = array();
+	
+		$otherType = $type=='usuarios'?'jurados':'usuarios';
+		
+		foreach($categories as $category)
+		{
+			if($type == 'usuarios')
+			{
+				$catRanking = array(
+					'category' => $category,
+					'anuncios' =>  $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->getAllAnunciosVoteByUsuario($campaign, $category)
+				);
+			}else 
+			{
+				$catRanking = array(
+						'category' => $category,
+						'anuncios' =>  $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->getAllAnunciosVoteByJurado($campaign, $category)
+				);
+			}
+			$ranking[] = $catRanking;
+		}
+	
+		return $this->render('AnunciosAnuncioBundle:Backend/Campaign:ranking.html.twig', array(
+				'campaign'   => $campaign,
+				'ranking' => $ranking,
+				'type'  => $type,
+				'otherType' => $otherType
+		));
+	}
+	
 	public function getCleanString($string)
 	{
 		return utf8_encode($string);

@@ -21,3 +21,16 @@
         //$('select').select2();
     });
 })( jQuery );
+
+$(document).ready(function()
+{
+	$('table.table form').submit(function(e)
+	{
+		if(!confirm('Estás seguro?'))
+		{
+			e.preventDefault();
+			return false;
+		}
+	});
+	
+});

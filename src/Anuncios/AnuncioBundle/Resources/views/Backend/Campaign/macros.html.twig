@@ -30,8 +30,10 @@
             <td>{{ campaign.dateEnd|date("d-m-Y") }}</td>
             <td>
                 <div class="pull-right">
-                	{% if(("now"|date("d-m-Y") < campaign.dateBegin|date("d-m-Y")) or ("now"|date("d-m-Y") > campaign.dateEnd|date("d-m-Y"))) %}
+                	{% if(("now"|date("d-m-Y") > campaign.dateEnd|date("d-m-Y"))) %}
                 		{{ buttons.show(path('anuncios_anuncio_backend_campaign_finalistas', {'id': campaign.id}), "Ver finalistas") }}
+                	{% elseif ("now"|date("d-m-Y") > campaign.dateBegin|date("d-m-Y"))%}
+                		{{ buttons.show(path('anuncios_anuncio_backend_campaign_ranking', {'id': campaign.id}), "Ver ranking") }}
                 	{% endif %}
                     {{ buttons.edit(path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id})) }}
                     {{ buttons.delete(path('anuncios_anuncio_backend_campaign_delete', {'id': campaign.id})) }}

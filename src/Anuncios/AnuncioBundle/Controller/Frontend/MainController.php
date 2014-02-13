@@ -296,4 +296,11 @@ class MainController extends BaseFrontendController
     			'rankingTitle'   => 'Voto Popular'
     	));
     }	
+    
+    public function showResourceAction($resourceLink)
+    {    	 
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:showResource.html.twig', array(
+    			'resourceLink' => urldecode($resourceLink)
+    	));
+    }
 }

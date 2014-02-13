@@ -61,9 +61,13 @@
 			{% for resource in resources %}
             	{
                    title: '{{ resource.name }}',
+                   {% if(resource.getType == 'Audio MP3') %}
+                   href: '{{ path('anuncios_anuncio_show_resource', {'resourceLink': resource.link|raw|url_encode}) }}',
+                   {% else %}
                    href: '{{ resource.link|raw }}',
-                   type: '{{ resource.getResourceType }}',
-                   thumbnail: '{{ resource.link|raw }}'
+                   thumbnail: '{{ resource.link|raw }}',
+                   {% endif %}
+                   type: '{{ resource.getResourceType }}'
                 },
             {% endfor %}
             ];

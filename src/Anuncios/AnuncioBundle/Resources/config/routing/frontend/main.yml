@@ -18,6 +18,10 @@ anuncios_anuncio_show:
     pattern:  /categoria/{slug}/anuncio/{anuncio_id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:show }
     
+anuncios_anuncio_show_resource:
+    pattern:  /resource/{resourceLink}
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:showResource }
+    
 anuncios_anuncio_vote:
     pattern: /anuncio/{id}/votar
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:vote }

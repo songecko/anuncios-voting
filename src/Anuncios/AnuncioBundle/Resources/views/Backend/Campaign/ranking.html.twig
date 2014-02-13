@@ -1,0 +1,40 @@
+{% extends 'GeckoBackendBundle::layout.html.twig' %}
+
+{% block topbar %}
+<ol class="breadcrumb">
+    <li><a href="{{ path('anuncios_anuncio_backend_campaign_index') }}">{{ 'gecko.backend.breadcrumb.campaign.index'|trans }}</a></li>
+    <li>Rankings</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<h3>Campaña: <a href="{{ path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id}) }}">{{ campaign.name }}</a></h3>
+<div class="page-header">
+  <h1>Ranking de: {{ type }}</h1><a href="{{ path('anuncios_anuncio_backend_campaign_ranking', {'id': campaign.id, 'type': otherType }) }}"><small>Cambiar a: {{ otherType }}</small></a>
+</div>
+<ul class="nav nav-tabs">
+	{% for catRanking in ranking %}
+	<li{{ loop.index == 1?' class="active"':'' }}><a href="#cat{{ catRanking.category.id }}" data-toggle="tab">{{ catRanking.category.name }}</a></li>
+	{% endfor %}
+</ul>
+<div class="tab-content">
+	{% for catRanking in ranking %}
+	<div class="tab-pane{{ loop.index == 1?' active':'' }}" id="cat{{ catRanking.category.id }}">
+		<table class="table">
+		<tr>
+			<th>#</th>
+			<th>Nombre de anuncio</th>
+			<th>Votos</th>
+		</tr>
+		{% for anuncio in catRanking.anuncios %}
+		<tr>
+			<td class="number">0{{ loop.index }}</td>
+			<td class="details">{{ anuncio.name }}</td>
+			<td class="votes">{{ anuncio.votoUsuario }}</td>
+		</tr>
+		{% endfor %}
+		</table>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
