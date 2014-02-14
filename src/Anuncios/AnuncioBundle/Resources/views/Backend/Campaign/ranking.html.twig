@@ -30,7 +30,7 @@
 		<tr>
 			<td class="number">0{{ loop.index }}</td>
 			<td class="details">{{ anuncio.name }}</td>
-			<td class="votes">{{ anuncio.votoUsuario }}</td>
+			<td class="votes">{{ (type=='usuarios')?anuncio.votoUsuario:anuncio.votoJurado }}</td>
 		</tr>
 		{% endfor %}
 		</table>
