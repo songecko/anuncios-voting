@@ -11,6 +11,7 @@
             <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.name'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.is_active'|trans) }}</th>
+            <th>{{ sylius_resource_sort('name', 'gecko.backend.show_finalist'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.date_begin'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.date_end'|trans) }}</th>
             <th></th>
@@ -22,6 +23,11 @@
             <td>{{ campaign.id }}</td>
             <td>{{ campaign.name }}</td>
             {% if campaign.isActive %}
+            	<td>Si</td>
+            {% else %}
+            	<td>No</td>
+            {% endif %}
+            {% if campaign.showFinalist %}
             	<td>Si</td>
             {% else %}
             	<td>No</td>

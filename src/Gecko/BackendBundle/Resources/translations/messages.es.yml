@@ -26,6 +26,7 @@ gecko.backend:
     id:               "ID"
     name:             "Nombre"
     is_active:        "Activo?"
+    show_finalist:    "Mostrar Finalistas?"
     is_anual:         "Anual?"
     date_begin:       "Fecha Inicio"
     date_end:         "Fecha Fin"

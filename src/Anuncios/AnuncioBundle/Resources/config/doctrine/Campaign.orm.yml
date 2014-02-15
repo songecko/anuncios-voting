@@ -14,6 +14,9 @@ Anuncios\AnuncioBundle\Entity\Campaign:
         isActive:
             type: boolean
             column: is_active
+        showFinalist:
+            type: boolean
+            column: show_finalist
         dateBegin:
             type: date
             column: date_begin

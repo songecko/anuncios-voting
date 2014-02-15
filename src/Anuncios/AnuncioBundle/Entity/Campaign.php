@@ -13,6 +13,7 @@ class Campaign
     private $id;
     private $name;
     private $isActive;
+    private $showFinalist;
     private $dateBegin;
     private $dateEnd;
     private $month;
@@ -48,6 +49,18 @@ class Campaign
     public function getIsActive()
     {
         return $this->isActive;
+    }
+    
+    public function setShowFinalist($showFinalist)
+    {
+    	$this->showFinalist = $showFinalist;
+    
+    	return $this;
+    }
+    
+    public function getShowFinalist()
+    {
+    	return $this->showFinalist;
     }
 
     public function __construct()

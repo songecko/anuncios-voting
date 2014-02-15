@@ -18,6 +18,9 @@ class CampaignType extends AbstractType
         ->add('isActive', 'checkbox', array(
         		'label'    => 'Activo?'
         ))
+        ->add('showFinalist', 'checkbox', array(
+        		'label'    => 'Mostrar finalistas?'
+        ))
         ->add('dateBegin', 'date', array(
         		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Dia'),
         		'format' => 'dd-MMMM-yyyy',
