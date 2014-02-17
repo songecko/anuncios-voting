@@ -37,7 +37,7 @@
 					{% if(category.getIsAnual == false) %}
 					<div class="info">
 						<!-- <p>Ranking: 0</p> -->
-						<p>Votos: {{ anuncio.votoJurado+anuncio.votoUsuario }}</p>
+						<p>Votos: {{ app.user.isJurado?anuncio.votoJurado:anuncio.votoUsuario }}</p>
 					</div>
 					{% endif %}				
 				</div>

@@ -11,6 +11,8 @@
 	
 	{% if(hasVotingByCategory) %}
 		<p class="message">Has completado tus votos disponibles para esta categoría.</p>
+	{% else %}
+		<p class="message">Puedes votar hasta tres anuncios en tantas categorías como quieras antes del {{ activeCampaign.dateEnd|localizeddate('long', 'none', null, null, "dd 'de' MMMM 'de' yyyy") }}.</p>
 	{% endif %}
 	
 	{% if(category.isAnual) %}
