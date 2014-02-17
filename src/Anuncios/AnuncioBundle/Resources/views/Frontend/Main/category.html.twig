@@ -9,14 +9,12 @@
 	
 	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}
 	
-	{% if(hasVotingByCategory) %}
+	{% if(category.isAnual) %}
+		<p class="message">Esta categoría se votará una sola vez al año. Mientras, disfruta de los trabajos.</p>
+	{% elseif(hasVotingByCategory) %}
 		<p class="message">Has completado tus votos disponibles para esta categoría.</p>
 	{% else %}
 		<p class="message">Puedes votar hasta tres anuncios en tantas categorías como quieras antes del {{ activeCampaign.dateEnd|localizeddate('long', 'none', null, null, "dd 'de' MMMM 'de' yyyy") }}.</p>
-	{% endif %}
-	
-	{% if(category.isAnual) %}
-		<p class="message">Esta categoría se votará una sola vez al año. Mientras, disfruta de los trabajos.</p>
 	{% endif %}
 	
 	<div class="list clearfix">
