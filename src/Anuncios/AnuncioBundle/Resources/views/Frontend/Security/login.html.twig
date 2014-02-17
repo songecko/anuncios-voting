@@ -3,18 +3,32 @@
 {% block title %}Ingresar - Votación Anuncios.com{% endblock %}
 
 {% block content %}
-	<h1 class="title"><span class="big">Vota</span><br> Los Anuncios<br> del Año 2014</h1>
-	<form action="{{ path("anuncios_anuncio_login") }}" method="post">
-		{% if(error) %}
-		<p class="error">
-			{{ message }}. <a href="http://www.anuncios.com/Users/passwordReminder.aspx">¿Ha olvidado la contraseña?</a>
-		</p>
-		{% endif %}
-		<fieldset>
-			<p><input type="text" name="username" placeholder="Usuario"></p>
-			<p><input type="password" name="password" placeholder="Contraseña"></p>
-				
-			<button type="submit" name="send"></button>
-		</fieldset>
-	</form>
+<h1 class="title"><span class="big">Vota</span><br> Los Anuncios<br> del Año 2014</h1>
+<div class="row">
+	<div class="col-md-4">
+		<form action="{{ path("anuncios_anuncio_login") }}" method="post">
+			{% if(error) %}
+			<p class="error">
+				{{ message }}. <a href="http://www.anuncios.com/Users/passwordReminder.aspx">¿Ha olvidado la contraseña?</a>
+			</p>
+			{% endif %}
+			<fieldset>
+				<p><input type="text" name="username" placeholder="Usuario"></p>
+				<p><input type="password" name="password" placeholder="Contraseña"></p>
+					
+				<button type="submit" name="send"></button>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-6">
+		<a href="http://www.anuncios.com/Users/passwordReminder.aspx" class="passwordReminder">Recordar contraseña</a>
+		<div class="patrocinioPrincipal">
+	        <h4>Patrocinador principal</h4>
+	        <a href="http://www.publiesp.es/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/it.png') }}" class="img-responsive"></a>
+	    </div>
+	</div>
+</div>
+<p class="infoVoting">Si recibes las newsletter gratuitas de Anuncios o Marketing News puedes votar. Usa el procedimiento para recordar contraseña. <a href="{{ asset('bundles/anunciosanuncio/comovotar.pdf') }}" target="_blank">Más info</a>.</p>
+	
+	
 {% endblock %}

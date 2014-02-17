@@ -45,9 +45,7 @@ body.portada #content h1.title span.big {
 }
 
 body.portada #content form {
-	width: 30%;
 	margin: 30px 0 0 20px;
-	float: left;
 }
 
 body.portada #content form fieldset {
@@ -89,6 +87,21 @@ body.portada #content form.disabled button {
 	background: url(../images/enterButton-disabled.png) no-repeat;
 }
 
+body.portada #content .passwordReminder {
+	font-family: 'lubalgraph_bk_btbook', Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+	display: block;
+	text-align: center;
+	margin-top: 40px;
+}
+
+body.portada #content .infoVoting {
+	font-family: 'lubalgraph_bk_btbook', Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+}
+
 body.portada .container > .patrocinios {
 	padding-top: 20px;
 	height: 30%;
@@ -104,9 +117,7 @@ body.portada .container > .patrocinios img {
 }
 
 body.portada .patrocinioPrincipal {
-	float: left;
-	max-width: 40%;
-	margin: 90px 0 0 20px;
+	margin: 40px 0 0 20px;
 }
 
 body.portada .patrocinioPrincipal h4 {
