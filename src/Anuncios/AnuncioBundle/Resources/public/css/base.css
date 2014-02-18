@@ -185,3 +185,17 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	color: #000000;
 	text-decoration: none;
 }
+
+.buttonLine {
+	font-family: "lubalgraph_md_btmedium", Arial, Helvetica, sans-serif;
+	font-size: 35px;
+	color: #D50000;
+	background: url(../images/buttonLineBackground.png) no-repeat;
+	background-position: bottom;
+	padding-bottom: 12px;
+}
+
+.buttonLine:hover {
+	color: #D50000;
+	text-decoration:none;
+}

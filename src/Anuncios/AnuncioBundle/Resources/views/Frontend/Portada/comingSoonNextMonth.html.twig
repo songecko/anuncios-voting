@@ -1,0 +1,56 @@
+{% extends 'AnunciosAnuncioBundle:Frontend:layoutPortada.html.twig' %}
+
+{% block title %}Próximamente nueva votación - Premios Anuncios.com{% endblock %}
+
+{% block content %}
+<h1 class="title"><span class="big">Los Anuncios del 2014.</span><br> Cerrada la votación del mes pasado.<br> Próximamente nueva votación.</h1>
+<div class="row">
+	<div class="col-md-4">
+		<form action="#" method="post" class="disabled">
+			{% if lastCampaignClosed.showFinalist %}
+			<a href="#" class="buttonLine" data-toggle="modal" data-target="#finalistModal">Ver finalistas</a>
+			{% else %}
+			<button type="submit" name="send"></button>
+			{% endif %}
+		</form>
+	</div>
+	<div class="col-md-6">
+		<div class="patrocinioPrincipal">
+	        <h4>Patrocinador principal</h4>
+	        <a href="http://www.publiesp.es/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/it.png') }}" class="img-responsive"></a>
+	    </div>
+	</div>
+</div>
+{% if lastCampaignClosed.showFinalist %}
+<!-- Modal finalistas -->
+<div class="modal fade" id="finalistModal" tabindex="-1" role="dialog" aria-labelledby="finalistModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Finalistas</h4>
+      		</div>
+      		<div class="modal-body">
+				<table class="table table-bordered table-hover">
+      				<tr>
+      					<th>CATEGORÍA</th>
+      					<th>FINALISTA DE VOTOS DE JURADOS</th>
+      					<th>FINALISTA DE VOTOS DE USUARIOS</th>
+      				</tr>
+      				{% for categoryFinalist in categoryFinalists %}
+      				<tr>
+      					<th>{{ (categoryFinalist.category)?categoryFinalist.category.name:'-' }}</th>
+      					<td>{{ (categoryFinalist.finalistJurado)?categoryFinalist.finalistJurado.name:'-' }}</td>
+      					<td>{{ (categoryFinalist.finalistUsuario)?categoryFinalist.finalistUsuario.name:'-' }}</td>
+      				</tr>
+      				{% endfor %}
+      			</table>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+{% endif %}
+{% endblock %}
