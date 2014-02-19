@@ -5,7 +5,7 @@ html, body {
 
 body.portada h1 {
 	font-family: 'lubalgraph_md_btmedium', Arial, Helvetica, sans-serif;
-	font-size: 75px;	
+	font-size: 60px;	
 }
 
 body.portada h4 {
@@ -41,7 +41,7 @@ body.portada #content h1.title {
 
 
 body.portada #content h1.title span.big {
-	font-size: 95px;
+	font-size: 80px;
 }
 
 body.portada #content form {

@@ -23,14 +23,14 @@
             <td>{{ campaign.id }}</td>
             <td>{{ campaign.name }}</td>
             {% if campaign.isActive %}
-            	<td>Si</td>
+            	<td><span class="label label-success">Si</span></td>
             {% else %}
-            	<td>No</td>
+            	<td><span class="label label-default">No</span></td>
             {% endif %}
             {% if campaign.showFinalist %}
-            	<td>Si</td>
+            	<td><span class="label label-success">Si</span></td>
             {% else %}
-            	<td>No</td>
+            	<td><span class="label label-default">No</span></td>
             {% endif %}
             <td>{{ campaign.dateBegin|date("d-m-Y") }}</td>
             <td>{{ campaign.dateEnd|date("d-m-Y") }}</td>

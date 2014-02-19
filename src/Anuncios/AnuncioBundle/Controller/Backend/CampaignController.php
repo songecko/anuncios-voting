@@ -107,7 +107,7 @@ class CampaignController extends ResourceController
 		
 		$categories = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Category')
-			->findAll();
+			->getCategoriesWithoutAnual();
 		
 		$finalistasUsuario = array();
 		$finalistasJurado = array();
@@ -140,10 +140,10 @@ class CampaignController extends ResourceController
 		->getRepository('AnunciosAnuncioBundle:Category')
 		->findAll();
 	
-		$ranking = array();
-	
 		$otherType = $type=='usuarios'?'jurados':'usuarios';
 		
+		//Ranking
+		$ranking = array();
 		foreach($categories as $category)
 		{
 			if($type == 'usuarios')
@@ -165,13 +165,142 @@ class CampaignController extends ResourceController
 			}
 			$ranking[] = $catRanking;
 		}
+		
+		//Hay Empates?
+		$categoriesWithoutAnual = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->getCategoriesWithoutAnual();
+		$drawCategories = false;
+		foreach($categoriesWithoutAnual as $category)
+		{
+			$anunciosUsuarios = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAllAnunciosVoteByUsuario($campaign, $category);
+			$anunciosJurados = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAllAnunciosVoteByJurado($campaign, $category);
+			
+			$maxVote = 0;
+			foreach ($anunciosUsuarios as $anuncio)
+			{
+				if($anuncio->getVotoUsuario() > $maxVote)
+				{
+					$maxVote = $anuncio->getVotoUsuario();
+				}else if($anuncio->getVotoUsuario() == $maxVote)
+				{
+					$drawCategories = true;
+					break;
+				}else if ($anuncio->getVotoUsuario() < $maxVote)
+				{
+					break;
+				}
+			}
+			
+			$maxVote = 0;
+			foreach ($anunciosJurados as $anuncio)
+			{
+				if($anuncio->getVotoJurado() > $maxVote)
+				{
+					$maxVote = $anuncio->getVotoJurado();
+				}else if($anuncio->getVotoJurado() == $maxVote)
+				{
+					$drawCategories = true;
+					break;
+				}else if ($anuncio->getVotoJurado() < $maxVote)
+				{
+					break;
+				}
+			}
+		}
 	
 		return $this->render('AnunciosAnuncioBundle:Backend/Campaign:ranking.html.twig', array(
 				'campaign'   => $campaign,
 				'ranking' => $ranking,
+				'drawCategories' => $drawCategories,
 				'type'  => $type,
 				'otherType' => $otherType
 		));
+	}
+	
+	public function desdrawingAction($id)
+	{
+		$campaign = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Campaign')
+			->find($id);
+		
+		$categoriesWithoutAnual = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->getCategoriesWithoutAnual();
+		
+		foreach($categoriesWithoutAnual as $category)
+		{
+			$anunciosUsuarios = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAllAnunciosVoteByUsuario($campaign, $category);
+			$anunciosJurados = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Anuncio')
+				->getAllAnunciosVoteByJurado($campaign, $category);
+				
+			
+			//Chequear en usuarios
+			$maxVote = 0;
+			$anunciosDrawedOnCategory = array();
+			foreach ($anunciosUsuarios as $anuncio)
+			{
+				if($anuncio->getVotoUsuario() > $maxVote)
+				{
+					$maxVote = $anuncio->getVotoUsuario();
+					$anunciosDrawedOnCategory[] = $anuncio;
+				}else if($anuncio->getVotoUsuario() == $maxVote)
+				{
+					$anunciosDrawedOnCategory[] = $anuncio;
+				}else if ($anuncio->getVotoUsuario() < $maxVote)
+				{
+					break;
+				}
+			}
+			
+			$this->desdrawAnuncios($anunciosDrawedOnCategory, 'usuarios');
+				
+			//Chequear en jurados
+			$maxVote = 0;
+			$anunciosDrawedOnCategory = array();
+			foreach ($anunciosJurados as $anuncio)
+			{
+				if($anuncio->getVotoJurado() > $maxVote)
+				{
+					$maxVote = $anuncio->getVotoJurado();
+				}else if($anuncio->getVotoJurado() == $maxVote)
+				{
+					$anunciosDrawedOnCategory[] = $anuncio;
+				}else if ($anuncio->getVotoJurado() < $maxVote)
+				{
+					break;
+				}
+			}
+			
+			$this->desdrawAnuncios($anunciosDrawedOnCategory, 'jurados');
+		}
+		
+		$this->getDoctrine()->getManager()->flush();
+		
+		return $this->redirectToRoute('anuncios_anuncio_backend_campaign_ranking', array('id' => $id));
+	}
+	
+	public function desdrawAnuncios($anuncios, $type = 'usuarios')
+	{
+		if(count($anuncios) > 0)
+		{
+			if($anuncio = $anuncios[array_rand($anuncios)])
+			{
+				if($type == 'usuarios')
+				{
+					$anuncio->setVotoUsuario($anuncio->getVotoUsuario() + 1);
+				}else {
+					$anuncio->setVotoJurado($anuncio->getVotoJurado() + 1);
+				}
+			}
+		}
 	}
 	
 	public function getCleanString($string)

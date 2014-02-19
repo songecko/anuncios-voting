@@ -45,3 +45,9 @@ anuncios_anuncio_backend_campaign_ranking:
     defaults:
         _controller: anuncios.controller.campaign:rankingAction
         type: 'usuarios'
+        
+anuncios_anuncio_backend_campaign_desdrawing:
+    pattern: /{id}/desdrawing
+    methods: [GET]
+    defaults:
+        _controller: anuncios.controller.campaign:desdrawingAction    

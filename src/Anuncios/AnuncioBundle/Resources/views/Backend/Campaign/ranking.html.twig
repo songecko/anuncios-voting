@@ -9,6 +9,12 @@
 
 {% block content %}
 <h3>Campaña: <a href="{{ path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id}) }}">{{ campaign.name }}</a></h3>
+{% if(drawCategories) %}
+<div class="alert alert-danger">
+	<strong>¡Atención!</strong> Hay anuncios empatados, asegurate de generar el desempate antes de publicar los finalistas. 
+	<a href="{{ path('anuncios_anuncio_backend_campaign_desdrawing', {'id': campaign.id}) }}" class="alert-link">Generar ahora</a>.
+</div>
+{% endif %}
 <div class="page-header">
   <h1>Ranking de: {{ type }}</h1><a href="{{ path('anuncios_anuncio_backend_campaign_ranking', {'id': campaign.id, 'type': otherType }) }}"><small>Cambiar a: {{ otherType }}</small></a>
 </div>
