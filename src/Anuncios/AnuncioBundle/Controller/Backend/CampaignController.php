@@ -289,7 +289,7 @@ class CampaignController extends ResourceController
 	
 	public function desdrawAnuncios($anuncios, $type = 'usuarios')
 	{
-		if(count($anuncios) > 0)
+		if(count($anuncios) > 1)
 		{
 			if($anuncio = $anuncios[array_rand($anuncios)])
 			{
