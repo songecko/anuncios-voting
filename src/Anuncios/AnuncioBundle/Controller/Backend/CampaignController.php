@@ -6,6 +6,7 @@ use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Anuncios\AnuncioBundle\Entity\Resource;
+use Anuncios\AnuncioBundle\Entity\Voting;
 
 class CampaignController extends ResourceController
 {
@@ -181,34 +182,40 @@ class CampaignController extends ResourceController
 				->getAllAnunciosVoteByJurado($campaign, $category);
 			
 			$maxVote = 0;
-			foreach ($anunciosUsuarios as $anuncio)
+			if(count($anunciosUsuarios) > 1)
 			{
-				if($anuncio->getVotoUsuario() > $maxVote)
+				foreach ($anunciosUsuarios as $anuncio)
 				{
-					$maxVote = $anuncio->getVotoUsuario();
-				}else if($anuncio->getVotoUsuario() == $maxVote)
-				{
-					$drawCategories = true;
-					break;
-				}else if ($anuncio->getVotoUsuario() < $maxVote)
-				{
-					break;
+					if($anuncio->getVotoUsuario() > $maxVote)
+					{
+						$maxVote = $anuncio->getVotoUsuario();
+					}else if($anuncio->getVotoUsuario() == $maxVote)
+					{
+						$drawCategories = true;
+						break;
+					}else if ($anuncio->getVotoUsuario() < $maxVote)
+					{
+						break;
+					}
 				}
 			}
 			
 			$maxVote = 0;
-			foreach ($anunciosJurados as $anuncio)
+			if(count($anunciosJurados) > 1)
 			{
-				if($anuncio->getVotoJurado() > $maxVote)
+				foreach ($anunciosJurados as $anuncio)
 				{
-					$maxVote = $anuncio->getVotoJurado();
-				}else if($anuncio->getVotoJurado() == $maxVote)
-				{
-					$drawCategories = true;
-					break;
-				}else if ($anuncio->getVotoJurado() < $maxVote)
-				{
-					break;
+					if($anuncio->getVotoJurado() > $maxVote)
+					{
+						$maxVote = $anuncio->getVotoJurado();
+					}else if($anuncio->getVotoJurado() == $maxVote)
+					{
+						$drawCategories = true;
+						break;
+					}else if ($anuncio->getVotoJurado() < $maxVote)
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -282,6 +289,7 @@ class CampaignController extends ResourceController
 			$this->desdrawAnuncios($anunciosDrawedOnCategory, 'jurados');
 		}
 		
+		//Save the changes of the desdraw entities
 		$this->getDoctrine()->getManager()->flush();
 		
 		return $this->redirectToRoute('anuncios_anuncio_backend_campaign_ranking', array('id' => $id));
@@ -295,11 +303,41 @@ class CampaignController extends ResourceController
 			{
 				if($type == 'usuarios')
 				{
-					$anuncio->setVotoUsuario($anuncio->getVotoUsuario() + 1);
+					$this->doGoldenVote($anuncio, $type);				
 				}else {
-					$anuncio->setVotoJurado($anuncio->getVotoJurado() + 1);
+					$this->doGoldenVote($anuncio, $type);
 				}
 			}
+		}
+	}
+	
+	public function doGoldenVote($anuncio, $type = 'usuarios')
+	{
+		$manager = $this->getDoctrine()->getManager();
+		
+		$isVotoUsuario = ($type == 'usuarios');
+		
+		//doing the vote to the anuncio
+		if($isVotoUsuario)
+		{
+			$anuncio->setVotoUsuario($anuncio->getVotoUsuario() + 1);
+		}else {
+			$anuncio->setVotoJurado($anuncio->getVotoJurado() + 1);
+		}
+		
+		//searching the golden user
+		$golderVoteUsername = $isVotoUsuario?'voto-oro-popular':'voto-oro-jurado';		
+		$goldenUser = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:User')
+			->findOneByUsername($golderVoteUsername);
+		
+		if($goldenUser)
+		{
+			$voting = new Voting();
+			$voting->setUser($goldenUser);
+			$voting->setAnuncio($anuncio);
+			 
+			$manager->persist($voting);
 		}
 	}
 	
