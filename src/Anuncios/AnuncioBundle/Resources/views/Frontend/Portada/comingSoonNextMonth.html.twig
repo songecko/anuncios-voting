@@ -3,9 +3,9 @@
 {% block title %}Próximamente nueva votación - Premios Anuncios.com{% endblock %}
 
 {% block content %}
-<h1 class="title"><span class="big">Los Anuncios del 2014.</span><br> Cerrada la votación del mes pasado.<br> Próximamente nueva votación.</h1>
+<h1 class="title"><span class="big">Los Anuncios del año 2014.</span><br> Próxima votación en breve.</h1>
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-5 col-xs-5">
 		<form action="#" method="post" class="disabled">
 			{% if lastCampaignClosed.showFinalist %}
 			<a href="#" class="buttonLine" data-toggle="modal" data-target="#finalistModal">Ver finalistas</a>
@@ -14,7 +14,7 @@
 			{% endif %}
 		</form>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6 col-xs-6">
 		<div class="patrocinioPrincipal">
 	        <h4>Patrocinador principal</h4>
 	        <a href="http://www.publiesp.es/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/it.png') }}" class="img-responsive"></a>

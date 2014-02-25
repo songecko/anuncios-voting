@@ -188,7 +188,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 .buttonLine {
 	font-family: "lubalgraph_md_btmedium", Arial, Helvetica, sans-serif;
-	font-size: 35px;
+	font-size: 30px;
 	color: #D50000;
 	background: url(../images/buttonLineBackground.png) no-repeat;
 	background-position: bottom;
