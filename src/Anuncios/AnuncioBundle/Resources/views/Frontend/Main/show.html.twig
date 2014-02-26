@@ -34,7 +34,7 @@
 							{% endif %}
 						{% endif %}
 					</div>
-					{% if(category.getIsAnual == false) %}
+					{% if(category.getIsAnual == false and app.user) %}
 					<div class="info">
 						<!-- <p>Ranking: 0</p> -->
 						<p>Votos: {{ app.user.isJurado?anuncio.votoJurado:anuncio.votoUsuario }}</p>

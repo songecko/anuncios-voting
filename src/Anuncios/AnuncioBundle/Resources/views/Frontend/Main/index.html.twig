@@ -19,7 +19,7 @@
 			<div class="list size-2 clearfix">
 				{% for anuncio in leftAnunciosVoteByUser %}
 				{% if(anuncio != null) %}
-					{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
+					{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio, 'goToCategory': true} %}
 				{% endif %}
 				{% endfor %}
 			</div>
@@ -29,7 +29,7 @@
 			<h3>CATEGORÍAS QUE HAS VOTADO</h3>
 			<div class="list size-2 clearfix">
 				{% for anuncio in lastAnunciosVoteByUser %}
-				{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}
+				{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio, 'goToCategory': true} %}
 				{% endfor %}
 			</div>
 		{% endif %}

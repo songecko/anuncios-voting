@@ -42,10 +42,12 @@
 	    				<li><a href="http://www.publicacionesprofesionales.es/politica-cookies.htm" target="blank">Política de cookies</a></li>
 	    				<li><a href="http://www.anuncios.com/premios/2014" target="_blank">¿Cómo votar?</a></li>
 	    			</ul>
+	    			{% if app.user %}
 	    			<ul class="user clearfix">
 	    				<li><a href="{{ path('anuncios_anuncio_logout') }}">Terminar sesión</a></li>
 	    				<li><i class="icon-user"></i> Hola {{ app.user.fullname }}</li>
 	    			</ul>
+	    			{% endif %}
     			</div>
     		</div>
     		<ul id="mainMenu" class="clearfix">

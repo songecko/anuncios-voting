@@ -1,7 +1,11 @@
 <div class="anuncio">
 	<p class="sector"><a href="{{ path('anuncios_anuncio_category', {'id': anuncio.category.id, 'slug': anuncio.category.slug}) }}">{{ anuncio.category.name }}</a></p>
+	{% if goToCategory is defined and goToCategory == true %}
+	<a href="{{ path('anuncios_anuncio_category', {'id': anuncio.category.id, 'slug': anuncio.category.slug}) }}" class="imageWrapper">
+	{% else %}
 	<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}" class="imageWrapper">
-		{% if(anuncio.category.getIsAnual == false) %}
+	{% endif %}
+		{% if(anuncio.category.getIsAnual == false and app.user) %}
 			<span class="flag{{ app.user.isAnuncioVoted(anuncio.id)?' voted':'' }}"></span>
 		{% endif %}
 		<img src="{{ anuncio.image }}">

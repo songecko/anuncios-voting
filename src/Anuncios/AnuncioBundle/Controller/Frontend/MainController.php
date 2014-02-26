@@ -74,9 +74,14 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->getLastAnunciosVoteByCategory($campaignActive, $category, 5);
     	
-    	$hasVotingByCategory = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:User')
-    		->isCompleteVoting($campaignActive, $category, $user->getId());
+    	$hasVotingByCategory = array();
+    	
+    	if($user)
+    	{
+	    	$hasVotingByCategory = $this->getDoctrine()
+	    		->getRepository('AnunciosAnuncioBundle:User')
+	    		->isCompleteVoting($campaignActive, $category, $user->getId());
+    	}
     	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array(
     			'category'                   => $category, 
@@ -99,14 +104,19 @@ class MainController extends BaseFrontendController
     	
     	$campaignActive = $this->getActiveCampaign();
     	
-    	$hasVoting = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Voting')
-    		->hasVoting($user->getId(), $anuncio->getId());
-
-    	$hasVotingByCategory = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:User')
-    		->isCompleteVoting($campaignActive, $category, $user->getId());
+    	$hasVoting = $hasVotingByCategory = false;
     	
+    	if($user)
+    	{
+	    	$hasVoting = $this->getDoctrine()
+	    		->getRepository('AnunciosAnuncioBundle:Voting')
+	    		->hasVoting($user->getId(), $anuncio->getId());
+	
+	    	$hasVotingByCategory = $this->getDoctrine()
+	    		->getRepository('AnunciosAnuncioBundle:User')
+	    		->isCompleteVoting($campaignActive, $category, $user->getId());
+    	}
+    	    	
     	$externalResource = null;
     	
     	foreach($resources as $resource)

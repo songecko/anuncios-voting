@@ -35,7 +35,7 @@ security:
                 use_referer: true
             logout:
                 path: /logout
-                target: /login
+                target: /
             anonymous: true
             context:   anuncios
             
@@ -47,4 +47,4 @@ security:
         
         - { path: ^/media.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/.*, role: ROLE_USER }
+        - { path: /votar, role: ROLE_USER }
