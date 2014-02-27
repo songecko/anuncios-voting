@@ -35,13 +35,15 @@
 		{% endif %}
 		</div>
 		<div class="col-md-4">
-			<h3>Marcha de las votaciones</h3>
-			
+			<h3>Marcha de las votaciones</h3>			
 			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:rankingPreview', { 
 					'activeCampaign': activeCampaign,
 					'categories' : categories 
 				})) 
 			}}
+			
+			<h3>Finalistas de meses anteriores</h3>			
+			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:previousFinalists')) }}
 		</div>
 	</div>
 	
@@ -54,7 +56,7 @@
        				<h4 class="modal-title" id="myModalLabel">Publicidad</h4>
      			</div>
      			<div class="modal-body">
-      				<div id="div-gpt-ad-1392615522948-0" style="width:1px; height:1px;">
+      				<div id="div-gpt-ad-1392615522948-0" style="width:999px; height:523px;">
 						<script type="text/javascript">
 							googletag.cmd.push(function() { googletag.display('div-gpt-ad-1392615522948-0'); });
 						</script>

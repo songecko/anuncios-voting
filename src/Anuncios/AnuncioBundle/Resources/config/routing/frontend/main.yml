@@ -37,3 +37,7 @@ anuncios_anuncio_ranking_usuario:
 anuncios_anuncio_ranking_jurado:
     pattern: /ranking/jurado/{id}
     defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:rankingJurado }
+    
+anuncios_anuncio_finalists:
+    pattern: /finalistas/{month}
+    defaults: { _controller: AnunciosAnuncioBundle:Frontend/Main:finalists }

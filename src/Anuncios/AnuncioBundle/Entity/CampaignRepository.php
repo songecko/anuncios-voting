@@ -35,4 +35,20 @@ class CampaignRepository extends EntityRepository
 		)->setMaxResults(1)
 		->getOneOrNullResult();
 	}
+	
+	public function getCampaignWithMonthAndYear($month, $year)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT c
+				FROM AnunciosAnuncioBundle:Campaign c
+				WHERE c.month = :month AND c.year = :year'
+		)
+		->setParameters(array(
+				'month' => $month,
+				'year'  => $year
+		))
+		->setMaxResults(1)
+		->getOneOrNullResult();
+	}
 }

@@ -107,6 +107,10 @@
 	margin: 0;
 }
 
+#content .rankingPreview {
+	margin-bottom: 50px;
+}
+
 #content .rankingPreview h4 {
 	text-transform: uppercase;
 	font-size: 16px;
@@ -125,6 +129,19 @@
 	font-size: 14px;
 }
 
+#content .previousFinalists {
+	margin-top: 15px;	
+}
+
+#content .previousFinalists ul li {
+	font-size: 14px;
+}
+
+#content .previousFinalists ul li a {
+	color: #000000;
+	font-weight: bold;
+}
+	
 #content .anuncioShow .subname {
 	text-transform: uppercase;
 }
@@ -276,4 +293,12 @@
 	text-align: center;
 	font-size: 28px;
 	color: #d4d4d4;
+}
+
+#content #adsModal .modal-dialog {
+	width: 1002px;
+}
+
+#content #adsModal .modal-dialog .modal-body {
+	padding: 0;
 }

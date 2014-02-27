@@ -29,13 +29,15 @@
 			{% block rankingTable %}{% endblock %}
 		</div>
 		<div class="col-md-4 col-md-offset-1">
-			<h3>Marcha de las votaciones</h3>
-			
+			<h3>Marcha de las votaciones</h3>			
 			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:rankingPreview', { 
 					'activeCampaign': activeCampaign,
 					'categories' : categories
 				})) 
 			}}
+			
+			<h3>Finalistas de meses anteriores</h3>			
+			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:previousFinalists')) }}
 		</div>
 	</div>
 </section>

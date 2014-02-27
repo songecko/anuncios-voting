@@ -70,6 +70,15 @@ class ComponentController extends Controller
 		));
 	}
 	
+	public function previousFinalistsAction()
+	{	
+		$currentMonth = date('n');
+		
+		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_previousFinalists.html.twig', array(
+			'currentMonth' => $currentMonth
+		));
+	}
+	
 	public function googleTagHeaderAction($request)
 	{
 		$googleTagTargeting = "home";

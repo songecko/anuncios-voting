@@ -1,0 +1,17 @@
+<div class="previousFinalists row">
+	<ul class="col-md-6">
+		{% for month in 1..12 %}
+		{% if month == 7  %}
+		</ul>
+		<ul class="col-md-6">
+		{% endif %}
+		<li>
+			{% if month < currentMonth  %}
+			<a href="{{ path('anuncios_anuncio_finalists', {'month': month}) }}">{{ ("28-"~month~"-14")|localizeddate('long', 'none', null, null, "MMMM")|capitalize }}</a>
+			{% else %}
+			{{ ("28-"~month~"-14")|localizeddate('long', 'none', null, null, "MMMM")|capitalize }}
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+</div>

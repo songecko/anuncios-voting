@@ -310,6 +310,38 @@ class MainController extends BaseFrontendController
     	));
     }	
     
+    public function finalistsAction($month)
+    {
+    	$campaign = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Campaign')
+    		->getCampaignWithMonthAndYear($month, date("Y"));
+    	
+    	$categories = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Category')
+    		->getCategoriesWithoutAnual();
+    	
+    	$finalistasUsuario = array();
+    	$finalistasJurado = array();
+    	
+    	foreach($categories as $category)
+    	{
+    		$finalistasJurado[] = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+    		->getAnunciosVoteByJurado($campaign, $category);
+    	
+    		$finalistasUsuario[] = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Anuncio')
+    		->getAnunciosVoteByUsuario($campaign, $category);
+    	}
+    	
+    	return $this->render('AnunciosAnuncioBundle:Frontend/Main:finalists.html.twig', array(
+    			'campaign'   => $campaign,
+    			'categories'     => $categories,
+    			'finalistasUsuario' => $finalistasUsuario,
+    			'finalistasJurado'  => $finalistasJurado
+    	));
+    }
+    
     public function showResourceAction($resourceLink)
     {    	 
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:showResource.html.twig', array(

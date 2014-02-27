@@ -1,0 +1,61 @@
+{% extends 'AnunciosAnuncioBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+<section class="anunciosList clearfix">
+	<div class="title">
+		<img src="{{ asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
+		<h2>Finalistas</h2>
+	</div>
+	
+	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}
+	
+	<div class="row">
+		<div class="col-md-7">
+			<h2>Voto Popular</h2>
+			<table class="ranking">
+				<tr>
+					<th width="30%">Categoría</th>
+					<th width="70%">Anuncio</th>
+				</tr>
+				{% for anuncio in finalistasUsuario if anuncio %}
+				<tr>
+					<td class="category">{{ anuncio.category.name }}</td>
+					<td class="details">
+						<img src="{{ anuncio.image }}" width="60">
+						<a href="#">{{ anuncio.name }}</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<br><br>
+			<h2>Voto Jurados</h2>
+			<table class="ranking">
+				<tr>
+					<th width="30%">Categoría</th>
+					<th width="70%">Anuncio</th>
+				</tr>
+				{% for anuncio in finalistasJurado if anuncio %}
+				<tr>
+					<td class="category">{{ anuncio.category.name }}</td>
+					<td class="details">
+						<img src="{{ anuncio.image }}" width="60">
+						<a href="#">{{ anuncio.name }}</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div class="col-md-4 col-md-offset-1">
+			<h3>Marcha de las votaciones</h3>			
+			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:rankingPreview', { 
+					'activeCampaign': activeCampaign,
+					'categories' : categories
+				})) 
+			}}
+			
+			<h3>Finalistas de meses anteriores</h3>			
+			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:previousFinalists')) }}
+		</div>
+	</div>
+</section>
+{% endblock %}
