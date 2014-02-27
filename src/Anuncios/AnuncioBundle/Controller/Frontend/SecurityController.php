@@ -100,9 +100,25 @@ class SecurityController extends BaseFrontendController
 						$event = new InteractiveLoginEvent($request, $token);
 						$this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 						
-						return $this->redirect($this->generateUrl('anuncios_anuncio_index'));
+						
+						if($referer = $request->getSession()->get('referer', null))
+						{
+							$redirectUrl = $referer;
+							$request->getSession()->set('referer', null);
+						}else {
+							$redirectUrl = $this->generateUrl('anuncios_anuncio_index');
+						}
+						
+						return $this->redirect($redirectUrl);
 					}
 				}
+			}
+		}else{
+			$request = $this->get("request");
+			$referer = $request->headers->get('referer');
+			if($referer)
+			{
+				$request->getSession()->set('referer', $referer);
 			}
 		}
 		return $this->render('AnunciosAnuncioBundle:/Frontend/Security:login.html.twig', array(

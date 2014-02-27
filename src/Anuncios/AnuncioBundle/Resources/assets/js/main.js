@@ -47,4 +47,6 @@ $(document).ready(function()
 	{
 		  window.location = $(this).val();
 	});
+	
+	$('#adsModal').modal();
 });

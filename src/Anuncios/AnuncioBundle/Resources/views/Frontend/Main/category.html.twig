@@ -14,7 +14,7 @@
 	{% elseif(hasVotingByCategory) %}
 		<p class="message">Has completado tus votos disponibles para esta categoría.</p>
 	{% else %}
-		<p class="message">PUEDES VOTAR HASTA TRES ANUNCIOS POR CATEGORÍA EN TODAS LAS SESIONES QUE NECESITES ANTES DEL {{ activeCampaign.dateEnd|localizeddate('long', 'none', null, null, "dd 'de' MMMM 'de' yyyy") }}.</p>
+		<p class="message">PUEDES VOTAR HASTA TRES ANUNCIOS POR CATEGORÍA EN TODAS LAS SESIONES QUE NECESITES ANTES DEL {{ activeCampaign.dateEnd|localizeddate('long', 'none', null, null, "dd 'de' MMMM") }}.</p>
 	{% endif %}
 	
 	<div class="list clearfix">
