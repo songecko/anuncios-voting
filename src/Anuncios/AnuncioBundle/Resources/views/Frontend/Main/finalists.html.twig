@@ -4,7 +4,7 @@
 <section class="anunciosList clearfix">
 	<div class="title">
 		<img src="{{ asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
-		<h2>Finalistas</h2>
+		<h2>Finalistas de {{ ("28-"~campaign.month~"-14")|localizeddate('long', 'none', null, null, "MMMM")|capitalize }}</h2>
 	</div>
 	
 	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}
