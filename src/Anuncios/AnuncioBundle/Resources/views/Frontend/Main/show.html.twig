@@ -14,14 +14,14 @@
 				<div class="overlay"></div>
 				<div class="overlayContent{{ (category.getIsAnual)?' oneLine':'' }}">
 					<div class="actions clearfix">
-						<a 
-							{% if(externalResource) %}
-								href="http://{{ externalResource.link }}" class="viewResourceExternalButton" target="blank"
-							{% else %}
-								href="#" class="viewResourcesButton"
-							{% endif %}
-						 	>Ver Pieza
-						</a>
+						{% if resources|length > 0 %}
+						<a href="#" class="viewResourcesButton">Ver Pieza</a>
+						{% endif %}
+						
+						{% if(externalResource) %}
+						<a href="http://{{ externalResource.link }}" class="viewResourceExternalButton" target="blank">Ver Pieza Externa</a>
+						{% endif %}
+						
 						{% if(category.getIsAnual == false) %}
 							{% if(hasVoting) %}
 								<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
@@ -39,7 +39,7 @@
 						<!-- <p>Ranking: 0</p> -->
 						<p>Votos: {{ app.user.isJurado?anuncio.votoJurado:anuncio.votoUsuario }}</p>
 					</div>
-					{% endif %}				
+					{% endif %}		
 				</div>
 			</div>
 		</div>

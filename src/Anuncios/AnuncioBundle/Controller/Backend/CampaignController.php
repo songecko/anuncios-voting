@@ -22,11 +22,13 @@ class CampaignController extends ResourceController
 		
 		if ($request->isMethod('POST') && $form->bind($request)->isValid())
 		{
+			//Campaña final
 			if($form->get('month')->getData() != null && $form->get('year')->getData() != null)
 			{
 				$this->getXmlDocPremios($form->get('month')->getData(), $form->get('year')->getData(), $form->getData());
 			}
 			
+			//Campaña anual
 			if($form->get('month')->getData() == null && $form->get('year')->getData() != null)
 			{
 				$anunciosFinalistas = $this->getAnunciosFinal($form->get('year')->getData());
@@ -473,12 +475,15 @@ class CampaignController extends ResourceController
 				
 							foreach ($xmlResources as $xmlResource)
 							{
-								$resource = new Resource();
-								$resource->setAnuncio($anuncio);
-								$resource->setType($xmlResource['ResourceTypeName']);
-								$resource->setLink(html_entity_decode($xmlResource['ResourceURL']));
-								$resource->setName($this->getCleanString($xmlResource['ResourceName']));
-								$manager->persist($resource);
+								if(isset($xmlResource['ResourceURL']) && trim($xmlResource['ResourceURL']) != '')
+								{
+									$resource = new Resource();
+									$resource->setAnuncio($anuncio);
+									$resource->setType($xmlResource['ResourceTypeName']);
+									$resource->setLink(html_entity_decode($xmlResource['ResourceURL']));
+									$resource->setName($this->getCleanString($xmlResource['ResourceName']));
+									$manager->persist($resource);
+								}
 							}
 						}
 					}else 

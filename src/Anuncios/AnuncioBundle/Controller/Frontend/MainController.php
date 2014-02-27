@@ -119,18 +119,21 @@ class MainController extends BaseFrontendController
     	    	
     	$externalResource = null;
     	
+    	$auxResources = array();
     	foreach($resources as $resource)
     	{
-    		if($resource->getType() == 'External')
+    		if($resource->getType() == 'External' || $resource->getType() == 'Remote Resource File')
     		{
     			$externalResource = $resource;
+    		}else{
+    			$auxResources[] = $resource;
     		}
     	}
     	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:show.html.twig', array(
     			'anuncio'             => $anuncio, 
     			'category'            => $category, 
-    			'resources'           => $resources, 
+    			'resources'           => $auxResources, 
     			'hasVoting'           => $hasVoting,
     			'hasVotingByCategory' => $hasVotingByCategory,
     			'externalResource'    => $externalResource
