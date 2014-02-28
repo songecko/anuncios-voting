@@ -4,7 +4,7 @@
 <section class="anunciosList clearfix">
 	<div class="title">
 		<img src="{{ asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
-		<h2>Finalistas de {{ ("28-"~campaign.month~"-14")|localizeddate('long', 'none', null, null, "MMMM")|capitalize }}</h2>
+		<h2 class="withoutCapitalize">Finalistas de {{ ("28-"~campaign.month~"-14")|localizeddate('long', 'none', null, null, "MMMM") }}</h2>
 	</div>
 	
 	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}
@@ -22,7 +22,7 @@
 					<td class="category">{{ anuncio.category.name }}</td>
 					<td class="details">
 						<img src="{{ anuncio.image }}" width="60">
-						<a href="#">{{ anuncio.name }}</a>
+						<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}">{{ anuncio.name }}</a>
 					</td>
 				</tr>
 				{% endfor %}
@@ -39,7 +39,7 @@
 					<td class="category">{{ anuncio.category.name }}</td>
 					<td class="details">
 						<img src="{{ anuncio.image }}" width="60">
-						<a href="#">{{ anuncio.name }}</a>
+						<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}">{{ anuncio.name }}</a>
 					</td>
 				</tr>
 				{% endfor %}

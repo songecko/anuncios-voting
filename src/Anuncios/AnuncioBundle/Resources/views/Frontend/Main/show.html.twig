@@ -19,10 +19,11 @@
 						{% endif %}
 						
 						{% if(externalResource) %}
-						<a href="http://{{ externalResource.link }}" class="viewResourceExternalButton" target="blank">Ver Pieza Externa</a>
+						<a href="{{ (externalResource.link[:4] == 'http')?externalResource.link:'http://'~externalResource.link }}" class="viewResourceExternalButton" target="blank">Ver Pieza Externa</a>
 						{% endif %}
 						
-						{% if(category.getIsAnual == false) %}
+						{% if anuncio.campaign.id == activeCampaign.id %}
+						{%   if(category.getIsAnual == false) %}
 							{% if(hasVoting) %}
 								<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
 							{% else %}
@@ -32,6 +33,7 @@
 									<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>
 								{% endif %}
 							{% endif %}
+						{%   endif %}
 						{% endif %}
 					</div>
 					{% if(category.getIsAnual == false and app.user) %}

@@ -26,6 +26,13 @@ blueimp.Gallery.prototype.textFactory = function (obj, callback) {
     return $element[0];
 };
 
+var bannerModalInterval;
+
+function hideBannerModal(){
+	clearInterval(bannerModalInterval);
+	$('#adsModal').modal('hide');
+}
+
 $(document).ready(function()
 {
 	$(".anuncioShow .picture").hover(function()
@@ -48,5 +55,8 @@ $(document).ready(function()
 		  window.location = $(this).val();
 	});
 	
+	//Banner Modal
 	$('#adsModal').modal();
+	
+	bannerModalInterval = setInterval(hideBannerModal, 4000);
 });

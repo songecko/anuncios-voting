@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends BaseFrontendController
 {	
-	public function indexAction()
+	public function indexAction(Request $request)
 	{
 		$campaignActive = $this->getActiveCampaign();
 		
@@ -39,11 +39,25 @@ class MainController extends BaseFrontendController
 		}
 		$leftAnunciosVoteByUser = array_filter($leftAnunciosVoteByUser);
 		
+		//Publicidad
+		$showBannerModal = true;
+		if($previousBannerModalTime = $request->getSession()->get('banner_modal_time', null))
+		{
+			if($previousBannerModalTime > strtotime('now -1 second'))
+			{
+				//minus a day
+				$showBannerModal = false;
+			}
+		}else { //first time
+			$request->getSession()->set('banner_modal_time', strtotime('now'));
+		}
+		
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:index.html.twig', array(
     			'activeCampaign'            => $campaignActive,
     			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
     			'lastAnunciosVoteByUser'    => $lastAnunciosVoteByUser,
-    			'categories'                => $categories
+    			'categories'                => $categories,
+    			'showBannerModal'           => $showBannerModal
     	));
 	}
     
@@ -143,6 +157,7 @@ class MainController extends BaseFrontendController
     public function voteAction($id)
     {
     	$user = $this->getUser();
+    	$campaignActive = $this->getActiveCampaign();
     	 
     	$manager = $this->getDoctrine()->getManager();
     	
@@ -150,13 +165,14 @@ class MainController extends BaseFrontendController
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->find($id);	
     	
+    	if($anuncio->getCampaign()->getId() != $campaignActive->getId())
+    		throw $this->createNotFoundException();
+    	
     	$category = $anuncio->getCategory();
     	
     	$hasVoting = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Voting')
     		->hasVoting($user->getId(), $anuncio->getId());
-    	
-    	$campaignActive = $this->getActiveCampaign();
     	
     	$hasVotingByCategory = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:User')
@@ -206,12 +222,16 @@ class MainController extends BaseFrontendController
     public function desvoteAction($id)
     {
     	$user = $this->getUser();
+    	$campaignActive = $this->getActiveCampaign();
     	
     	$manager = $this->getDoctrine()->getManager();
     	 
     	$anuncio = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
     		->find($id);
+    	
+    	if($anuncio->getCampaign()->getId() != $campaignActive->getId())
+    		throw $this->createNotFoundException();
     	
     	$hasVoting = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Voting')
