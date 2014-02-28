@@ -43,7 +43,7 @@ class MainController extends BaseFrontendController
 		$showBannerModal = true;
 		if($previousBannerModalTime = $request->getSession()->get('banner_modal_time', null))
 		{
-			if($previousBannerModalTime > strtotime('now -1 second'))
+			if($previousBannerModalTime > strtotime('now -1 day'))
 			{
 				//minus a day
 				$showBannerModal = false;
