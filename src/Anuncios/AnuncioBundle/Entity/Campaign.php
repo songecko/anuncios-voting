@@ -170,4 +170,9 @@ class Campaign
     {
         return $this->dateEnd;
     }
+    
+    public function isClosed()
+    {
+    	return (strtotime("now-1 second") > $this->getDateEnd()->format('U'));
+    }
 }

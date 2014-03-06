@@ -72,10 +72,19 @@ class ComponentController extends Controller
 	
 	public function previousFinalistsAction()
 	{	
-		$currentMonth = date('n');
+		$monthCampaigns = array();
+		
+		for ($month=1; $month <= 12; $month++)
+		{
+			$campaign = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Campaign')
+				->getCampaignWithMonthAndYear($month, date("Y"));
+			
+			$monthCampaigns[$month] = $campaign;
+		} 
 		
 		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_previousFinalists.html.twig', array(
-			'currentMonth' => $currentMonth
+			'monthCampaigns' => $monthCampaigns
 		));
 	}
 	

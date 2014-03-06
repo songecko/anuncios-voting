@@ -15,6 +15,7 @@
             'bundles/anunciosanuncio/css/bootstrap.min.css'
             '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
             'bundles/anunciosanuncio/css/blueimp-gallery.min.css'
+            'bundles/anunciosanuncio/css/jquery.countdown.css'
             'bundles/anunciosanuncio/css/base.css'
             'bundles/anunciosanuncio/css/main.css'
         %}
@@ -48,6 +49,10 @@
 	    				<li><i class="icon-user"></i> Hola {{ app.user.fullname }}</li>
 	    			</ul>
 	    			{% endif %}
+	    			<div class="countdownContainer clearfix">
+		    			<div id="countdown" data-date-end="{{ activeCampaign.getDateEnd|date('Y/m/d') }}"></div>
+	    				<div class="text">Quedan: </div>
+	    			</div>
     			</div>
     		</div>
     		<ul id="mainMenu" class="clearfix">
@@ -74,7 +79,10 @@
         {% javascripts output='js/frontend.min.js'
             '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery-1.10.1.min.js'
             '@AnunciosAnuncioBundle/Resources/assets/js/vendor/bootstrap.min.js'
-            '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery.blueimp-gallery.min.js'
+            '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery.blueimp-gallery.min.js'            
+            '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery.plugin.min.js'
+            '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery.countdown.min.js'
+            '@AnunciosAnuncioBundle/Resources/assets/js/vendor/jquery.countdown-es.js'
             '@AnunciosAnuncioBundle/Resources/assets/js/main.js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>

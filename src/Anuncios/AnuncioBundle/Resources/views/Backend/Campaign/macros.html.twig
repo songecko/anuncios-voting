@@ -36,12 +36,12 @@
             <td>{{ campaign.dateEnd|date("d-m-Y") }}</td>
             <td>
                 <div class="pull-right">
-                	{% if(("now-1 day"|date("U") > campaign.dateEnd|date("U"))) %}
+                	{% if(campaign.isClosed) %}
                 	{{ buttons.show(path('anuncios_anuncio_backend_campaign_finalistas', {'id': campaign.id}), "Ver finalistas") }}
                 	{% endif %}
                 	{{ buttons.show(path('anuncios_anuncio_backend_campaign_ranking', {'id': campaign.id}), "Ver ranking") }}
                     {{ buttons.edit(path('anuncios_anuncio_backend_campaign_update', {'id': campaign.id})) }}
-                    {% if(("now-1 day"|date("U") < campaign.dateEnd|date("U"))) %}
+                    {% if(campaign.isClosed == false) %}
                     {{ buttons.delete(path('anuncios_anuncio_backend_campaign_delete', {'id': campaign.id})) }}
                     {% endif %}
                 </div>

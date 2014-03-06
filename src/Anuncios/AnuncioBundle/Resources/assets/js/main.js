@@ -59,4 +59,9 @@ $(document).ready(function()
 	$('#adsModal').modal();
 	
 	bannerModalInterval = setInterval(hideBannerModal, 4000);
+	
+	//Countdown
+	var dateEnd = $('#countdown').data('dateEnd');
+	var campaignDateEnd = new Date(dateEnd);
+	$('#countdown').countdown({until: campaignDateEnd});
 });

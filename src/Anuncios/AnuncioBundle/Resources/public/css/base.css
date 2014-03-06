@@ -203,3 +203,34 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .withoutCapitalize {
 	text-transform: none !important;
 }
+
+.countdownContainer {
+	margin-top: 10px;
+}
+
+.countdownContainer .text {
+	float: right;
+	margin-right: 10px;
+	line-height: 33px;
+}
+
+#countdown {
+	width: 210px;
+	border: none;
+	background: none;
+	float: right;
+}
+
+#countdown .countdown-section {
+	width: 24.5%;
+	background-color: #eee;
+	border: 1px solid #ccc;	
+}
+
+#countdown .countdown-amount {
+	font-size: 12px;
+}
+
+#countdown .countdown-period {
+	font-size: 10px;
+}
