@@ -54,6 +54,11 @@ class BackendMenuBuilder
         		'labelAttributes' => array('icon' => 'icon-user'),
         ))->setLabel("Usuarios");
         
+        $menu->addChild('configuration', array(
+        		'route' => 'anuncios_anuncio_backend_configuration_index',
+        		'labelAttributes' => array('icon' => 'icon-cog'),
+        ))->setLabel("Configuraciones");
+        
         return $menu;
     }
 }

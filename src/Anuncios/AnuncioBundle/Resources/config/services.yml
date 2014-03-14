@@ -31,7 +31,12 @@ services:
         scope: request # needed as we have the request as a dependency here
         tags:
             - { name: knp_menu.menu, alias: backend_main_menu } # The alias is what is used to retrieve the menu
-            
+     
+    anuncios.form.type.configuration:
+        class: Anuncios\AnuncioBundle\Form\Type\ConfigurationType
+        tags:
+            - { name: form.type, alias: anuncios_configuration }
+                   
     anuncios.form.type.anuncio:
         class: Anuncios\AnuncioBundle\Form\Type\AnuncioType
         tags:

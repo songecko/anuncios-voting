@@ -1,0 +1,8 @@
+anuncios_anuncio_backend_configuration_index:
+    pattern: /
+    defaults: { _controller: AnunciosAnuncioBundle:Backend/Configuration:index }
+
+anuncios_anuncio_backend_configuration_update:
+    pattern: /edit
+    methods: [GET, PUT, POST]
+    defaults: { _controller: AnunciosAnuncioBundle:Backend/Configuration:update }
