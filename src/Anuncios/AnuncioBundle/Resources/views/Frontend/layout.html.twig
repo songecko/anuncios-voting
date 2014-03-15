@@ -50,7 +50,7 @@
 	    			</ul>
 	    			{% endif %}
 	    			<div class="countdownContainer clearfix">
-		    			<div id="countdown" data-date-end="{{ activeCampaign.getDateEnd|date('Y/m/d') }}"></div>
+		    			<div id="countdown" data-date-end="{{ (activeCampaign.getDateEnd|date('Y/m/d')  ~ "+ 1 day")|date('Y/m/d') }}"></div>
 	    				<div class="text">Quedan: </div>
 	    			</div>
     			</div>
