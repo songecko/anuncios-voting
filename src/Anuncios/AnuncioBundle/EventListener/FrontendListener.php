@@ -35,6 +35,9 @@ class FrontendListener
             $activeCampaign = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Campaign')
 				->getCampaignActive();
+            $configuration = $this->getDoctrine()
+            	->getRepository('AnunciosAnuncioBundle:Configuration')
+            	->findOneBy(array());
             
             if(!$activeCampaign)
             {
@@ -44,7 +47,9 @@ class FrontendListener
             }else 
             {
             	$controller->setActiveCampaign($activeCampaign);
+            	$controller->setConfiguration($configuration);
             	$this->container->get('twig')->addGlobal('activeCampaign', $activeCampaign);
+            	$this->container->get('twig')->addGlobal('configuration', $configuration);
             }
         }
     }

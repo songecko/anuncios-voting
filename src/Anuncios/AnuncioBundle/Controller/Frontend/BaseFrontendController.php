@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class BaseFrontendController extends Controller 
 {
 	protected $activeCampaign;
+	protected $configuration;
 	
 	public function setActiveCampaign($campaign)
 	{
@@ -23,5 +24,22 @@ class BaseFrontendController extends Controller
 		}
 		
 		return $this->activeCampaign;
+	}
+	
+	public function setConfiguration($configuration)
+	{
+		$this->configuration = $configuration;
+	}
+	
+	public function getConfiguration()
+	{
+		if(!$this->configuration)
+		{
+			$this->configuration = $this->getDoctrine()
+            	->getRepository('AnunciosAnuncioBundle:Configuration')
+            	->findOneBy(array());
+		}
+	
+		return $this->configuration;
 	}
 }

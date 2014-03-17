@@ -3,7 +3,7 @@
 {% block content %}
 <section class="anunciosList clearfix">
 	<div class="title">
-		<img src="{{ asset('bundles/anunciosanuncio/images/title_home.jpg') }}">
+		<img src="{{ configuration?configuration.titleHomeImage|imagine_filter('anuncios_category_headline'):asset('bundles/anunciosanuncio/images/title_category.jpg') }}">
 	</div>
 	
 	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}

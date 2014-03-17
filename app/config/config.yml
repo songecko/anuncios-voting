@@ -134,6 +134,11 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Anuncios\AnuncioBundle\Entity\User
+        anuncios.configuration:
+            driver: doctrine/orm
+            classes:
+                model: Anuncios\AnuncioBundle\Entity\Configuration
+                controller: Anuncios\AnuncioBundle\Controller\Backend\ConfigurationController
                 
 fos_user:
     db_driver: orm

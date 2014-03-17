@@ -1,0 +1,4 @@
+Anuncios\AnuncioBundle\Entity\Configuration:
+    titleHomeImageFile:
+        mapping:           anuncio_image
+        filename_property: titleHomeImage

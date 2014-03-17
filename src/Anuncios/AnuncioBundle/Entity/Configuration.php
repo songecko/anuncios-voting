@@ -39,6 +39,21 @@ class Configuration
     	return $this->titleHomeImage;
     }
     
+    public function hasFile()
+    {
+    	return $this->hasTitleHomeImageFile();
+    }
+    
+    public function getFile()
+    {
+    	return $this->getTitleHomeImageFile();
+    }
+    
+    public function setFile(File $file)
+    {
+    	$this->setTitleHomeImageFile($file);
+    }
+
     public function hasTitleHomeImageFile()
     {
     	return null !== $this->titleHomeImageFile;
@@ -52,12 +67,12 @@ class Configuration
     public function setTitleHomeImageFile(File $file)
     {
     	$this->titleHomeImageFile = $file;
-    	
+    	 
     	if ($this->titleHomeImage) {
     		$this->setUpdatedAt(new \DateTime('now'));
     	}
     }
-
+    
     public function getCreatedAt()
     {
         return $this->createdAt;

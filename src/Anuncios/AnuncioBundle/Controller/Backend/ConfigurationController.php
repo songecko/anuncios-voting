@@ -4,25 +4,49 @@ namespace Anuncios\AnuncioBundle\Controller\Backend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anuncios\AnuncioBundle\Entity\Configuration;
+use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Backend configuration controller.
  *
  */
-class ConfigurationController extends Controller
+class ConfigurationController extends ResourceController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {   	
-    	$configuration = $this->getConfiguration();
-    	
-    	$configurationForm = $this->createForm('anuncios_configuration', $configuration);
+    	$configuration = $this->getConfigurationObject();    	
+    	$configurationForm = $this->getForm($configuration);
     	
         return $this->render('AnunciosAnuncioBundle:Backend/Configuration:index.html.twig', array(
         	'form' => $configurationForm->createView(),
         ));
     }
     
-    protected function getConfiguration()
+    public function updateAction(Request $request)
+    {
+    	$configuration = $this->getConfigurationObject();    	
+    	$configurationForm = $this->getForm($configuration);
+    
+    	if ($request->isMethod('POST') && $configurationForm->bind($request)->isValid()) 
+    	{
+    		if($configuration->getId())
+    		{
+	    		$event = $this->update($configuration);
+    		}else
+    		{
+	    		$event = $this->create($configuration);
+    		}
+    		
+            if (!$event->isStopped()) {
+                $this->setFlash('success', 'update');
+            }
+    	}
+        
+    	return $this->redirectTo($configuration);
+    }
+    
+    protected function getConfigurationObject()
     {
     	$configuration = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Configuration')
@@ -30,7 +54,7 @@ class ConfigurationController extends Controller
     	
     	if(!$configuration)
     	{
-    		$configuration = new Configuration();
+    		$configuration = $this->createNew();
     	}
     	
     	return $configuration;
