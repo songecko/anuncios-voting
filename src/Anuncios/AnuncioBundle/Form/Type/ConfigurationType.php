@@ -13,6 +13,10 @@ class ConfigurationType extends AbstractType
         $builder
         ->add('titleHomeImageFile', 'file', array(
         		'label' => 'Imagen titular del Home'
+        ))
+        ->add('newPassword', 'password', array(
+        		"mapped" => false,
+        		'label' => 'Modificar password'
         ));
     }
 

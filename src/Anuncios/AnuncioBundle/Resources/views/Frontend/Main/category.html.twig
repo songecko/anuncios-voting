@@ -9,7 +9,7 @@
 	
 	{{ include('AnunciosAnuncioBundle:Frontend/Partial:_googleTag.html.twig') }}
 	
-	{% if(category.isAnual) %}
+	{% if(category.isAnual and not activeCampaign.isAnual) %}
 		<p class="message">Esta categoría se votará una sola vez al año. Mientras, disfruta de los trabajos.</p>
 	{% elseif(hasVotingByCategory) %}
 		<p class="message">Has completado tus votos disponibles para esta categoría.</p>

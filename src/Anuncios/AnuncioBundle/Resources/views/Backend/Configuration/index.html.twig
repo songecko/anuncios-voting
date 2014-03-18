@@ -12,10 +12,12 @@
 	{{ form_errors(form) }}
 	<div class="row">
     	<div class="col-md-6 row-split">
-		{% if(form.vars.value and form.vars.value.titleHomeImage) %}
-    	<a href="{{ form.vars.value.titleHomeImage|imagine_filter('anuncios_category_headline') }}" target="_blank"><img class="img-polaroid" src="{{ form.vars.value.titleHomeImage|imagine_filter('gecko_image_90x60') }}" alt="" /></a>
-    	{% endif %}
-        {{ form_row(form.titleHomeImageFile) }}
+			{% if(form.vars.value and form.vars.value.titleHomeImage) %}
+	    	<a href="{{ form.vars.value.titleHomeImage|imagine_filter('anuncios_category_headline') }}" target="_blank"><img class="img-polaroid" src="{{ form.vars.value.titleHomeImage|imagine_filter('gecko_image_90x60') }}" alt="" /></a>
+	    	{% endif %}
+	        {{ form_row(form.titleHomeImageFile) }}
+	        <br><br>
+	        {{ form_row(form.newPassword) }}
     	</div>
         
     	<div class="col-md-6">

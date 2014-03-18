@@ -38,6 +38,8 @@ class CampaignController extends ResourceController
 					if($anuncioFinalista != null)
 					{
 						$anuncio = clone $anuncioFinalista;
+						$anuncio->setVotoUsuario(0);
+						$anuncio->setVotoJurado(0);
 						$anuncio->setCampaign($form->getData());
 						$manager->persist($anuncio);
 					}

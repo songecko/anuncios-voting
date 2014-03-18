@@ -30,12 +30,28 @@ class ConfigurationController extends ResourceController
     
     	if ($request->isMethod('POST') && $configurationForm->bind($request)->isValid()) 
     	{
+    		//Configuration itself
     		if($configuration->getId())
     		{
 	    		$event = $this->update($configuration);
     		}else
     		{
 	    		$event = $this->create($configuration);
+    		}
+    		
+    		$values = $request->get('anuncios_configuration');
+    		
+    		//Password
+    		if($values && isset($values['newPassword']) && trim($values['newPassword'] != ''))
+    		{
+    			$password = $values['newPassword'];
+    			$user = $this->get('security.context')->getToken()->getUser();
+    			if($user)
+    			{
+    				$user->setPlainPassword($password);
+	    			$this->get('fos_user.user_manager')->updateUser($user);
+    			}
+    			
     		}
     		
             if (!$event->isStopped()) {

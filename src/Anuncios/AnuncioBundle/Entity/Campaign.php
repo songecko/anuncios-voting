@@ -129,8 +129,14 @@ class Campaign
 
     public function getPeriodName()
     {
-    	$months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-    	$monthName = $months[$this->getMonth() - 1];
+    	if($this->getMonth())
+    	{   		
+    		$months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+    		$monthName = $months[$this->getMonth() - 1];
+    	}else 
+    	{
+    		$monthName = 'Final';
+    	}
     	
     	return $monthName." del ".$this->getYear();
     }
@@ -174,5 +180,10 @@ class Campaign
     public function isClosed()
     {
     	return (strtotime("now-1 second") > $this->getDateEnd()->format('U'));
+    }
+    
+    public function isAnual()
+    {
+    	return (!$this->getMonth())?true:false;
     }
 }
