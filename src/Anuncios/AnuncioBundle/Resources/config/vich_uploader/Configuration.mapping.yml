@@ -2,3 +2,9 @@ Anuncios\AnuncioBundle\Entity\Configuration:
     titleHomeImageFile:
         mapping:           anuncio_image
         filename_property: titleHomeImage
+    logoHomeFile:
+        mapping:           anuncio_image
+        filename_property: logoHome
+    faviconFile:
+        mapping:           anuncio_image
+        filename_property: favicon

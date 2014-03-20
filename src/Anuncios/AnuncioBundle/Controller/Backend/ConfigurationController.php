@@ -30,6 +30,8 @@ class ConfigurationController extends ResourceController
     
     	if ($request->isMethod('POST') && $configurationForm->bind($request)->isValid()) 
     	{
+    		$configuration->setUpdatedAt(new \DateTime('now'));
+    		
     		//Configuration itself
     		if($configuration->getId())
     		{

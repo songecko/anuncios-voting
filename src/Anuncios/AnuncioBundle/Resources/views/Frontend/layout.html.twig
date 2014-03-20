@@ -7,7 +7,7 @@
         <meta name="description" content="Votacion de anuncios.com">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ configuration?asset("media/images/" ~ configuration.favicon):asset('favicon.ico') }}" />
         
 		{# stylesheets... #}
         {% block stylesheets %}

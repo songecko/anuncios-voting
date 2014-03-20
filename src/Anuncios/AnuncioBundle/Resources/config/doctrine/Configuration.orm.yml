@@ -10,7 +10,13 @@ Anuncios\AnuncioBundle\Entity\Configuration:
     fields:
         titleHomeImage:
             type: string
+            length: 255
+        logoHome:
+            type: string
             length: 255 
+        favicon:
+            type: string
+            length: 255  
         createdAt:
             column: created_at
             type: datetime

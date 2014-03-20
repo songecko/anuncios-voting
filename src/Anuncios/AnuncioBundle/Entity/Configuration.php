@@ -14,6 +14,10 @@ class Configuration
     private $id;
     private $titleHomeImage;
     private $titleHomeImageFile;
+    private $logoHome;
+    private $logoHomeFile;
+    private $favicon;
+    private $faviconFile;
     private $createdAt;
     private $updatedAt;
 
@@ -27,6 +31,7 @@ class Configuration
         return $this->id;
     }
 
+    /** TITLE HOME IMAGE **/
     public function setTitleHomeImage($image)
     {
     	$this->titleHomeImage = $image;
@@ -37,21 +42,6 @@ class Configuration
     public function getTitleHomeImage()
     {
     	return $this->titleHomeImage;
-    }
-    
-    public function hasFile()
-    {
-    	return $this->hasTitleHomeImageFile();
-    }
-    
-    public function getFile()
-    {
-    	return $this->getTitleHomeImageFile();
-    }
-    
-    public function setFile(File $file)
-    {
-    	$this->setTitleHomeImageFile($file);
     }
 
     public function hasTitleHomeImageFile()
@@ -73,6 +63,72 @@ class Configuration
     	}
     }
     
+    
+    /** LOGO HOME **/
+    public function setLogoHome($logo)
+    {
+    	$this->logoHome = $logo;
+    
+    	return $this;
+    }
+    
+    public function getLogoHome()
+    {
+    	return $this->logoHome;
+    }
+    
+    public function hasLogoHomeFile()
+    {
+    	return null !== $this->logoHomeFile;
+    }
+    
+    public function getLogoHomeFile()
+    {
+    	return $this->logoHomeFile;
+    }
+    
+    public function setLogoHomeFile(File $file)
+    {
+    	$this->logoHomeFile = $file;
+    
+    	if ($this->logoHome) {
+    		$this->setUpdatedAt(new \DateTime('now'));
+    	}
+    }
+    
+    
+    /** FAVICON **/
+    public function setFavicon($favicon)
+    {
+    	$this->favicon = $favicon;
+    
+    	return $this;
+    }
+    
+    public function getFavicon()
+    {
+    	return $this->favicon;
+    }
+    
+    public function hasFaviconFile()
+    {
+    	return null !== $this->faviconFile;
+    }
+    
+    public function getFaviconFile()
+    {
+    	return $this->faviconFile;
+    }
+    
+    public function setFaviconFile(File $file)
+    {
+    	$this->faviconFile = $file;
+    
+    	if ($this->favicon) {
+    		$this->setUpdatedAt(new \DateTime('now'));
+    	}
+    } 
+     
     public function getCreatedAt()
     {
         return $this->createdAt;

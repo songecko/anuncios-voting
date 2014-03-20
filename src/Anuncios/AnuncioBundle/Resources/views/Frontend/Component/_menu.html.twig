@@ -1,5 +1,5 @@
 <li class="logoIcon">
-	<a href="{{ path('anuncios_anuncio_index') }}"><img alt="Premios Anuncios.com" src="{{ asset('bundles/anunciosanuncio/images/logoIcon.png') }}"></a>
+	<a href="{{ path('anuncios_anuncio_index') }}"><img alt="Premios Anuncios.com" src="{{ configuration?asset("media/images/" ~ configuration.logoHome):asset('bundles/anunciosanuncio/images/logoIcon.png') }}"></a>
 </li>
 {% for category in categories %}
 {% if id == category.id %}

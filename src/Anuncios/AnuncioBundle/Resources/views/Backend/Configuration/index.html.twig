@@ -17,14 +17,24 @@
 	    	{% endif %}
 	        {{ form_row(form.titleHomeImageFile) }}
 	        <br><br>
-	        {{ form_row(form.newPassword) }}
+	        {% if(form.vars.value and form.vars.value.logoHome) %}
+	    	<a href="{{ form.vars.value.logoHome|imagine_filter('gecko_gallery') }}" target="_blank"><img class="img-polaroid" src="{{ form.vars.value.logoHome|imagine_filter('gecko_image_90x60') }}" alt="" /></a>
+	    	{% endif %}
+	        {{ form_row(form.logoHomeFile) }}
+	        <br><br>
+	        {% if(form.vars.value and form.vars.value.favicon) %}
+	    	<a href="{{ form.vars.value.favicon|imagine_filter('gecko_gallery') }}" target="_blank"><img class="img-polaroid" src="{{ form.vars.value.favicon|imagine_filter('gecko_image_90x60') }}" alt="" /></a>
+	    	{% endif %}
+	        {{ form_row(form.faviconFile) }}
     	</div>
         
     	<div class="col-md-6">
+    		{{ form_row(form.newPassword) }}	        
 		</div>
 	</div>
 	{{ form_rest(form) }}
 	
+	<br><br>
 	<div class="form-actions">
     	<button type="submit" class="btn btn-primary btn-lg"><i class="icon-save"></i> {{ 'sylius.save_changes'|trans }}</button>
 	</div>

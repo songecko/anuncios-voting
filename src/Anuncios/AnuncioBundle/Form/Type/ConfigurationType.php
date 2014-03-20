@@ -14,6 +14,12 @@ class ConfigurationType extends AbstractType
         ->add('titleHomeImageFile', 'file', array(
         		'label' => 'Imagen titular del Home'
         ))
+        ->add('logoHomeFile', 'file', array(
+        		'label' => 'Logo del home'
+        ))
+        ->add('faviconFile', 'file', array(
+        		'label' => 'Favicon'
+        ))
         ->add('newPassword', 'password', array(
         		"mapped" => false,
         		'label' => 'Modificar password'
