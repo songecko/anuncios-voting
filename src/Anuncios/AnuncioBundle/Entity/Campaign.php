@@ -179,7 +179,7 @@ class Campaign
     
     public function isClosed()
     {
-    	return (strtotime("now-1 second") > $this->getDateEnd()->format('U'));
+    	return (strtotime("now - 1 day") > $this->getDateEnd()->format('U'));
     }
     
     public function isAnual()
