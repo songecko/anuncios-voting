@@ -16,25 +16,34 @@ class MainController extends BaseFrontendController
 		
 		$categories = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Category')
-			->getCategoriesWithoutAnual();
+			->findAll();
 		
 		$lastAnunciosVoteByUser = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
 			->getLastAnunciosVoteByUser($campaignActive, $this->getUser(), 5);
 		
 		$leftAnunciosVoteByUser = array();
+		$newAnunciosAnualCategory = array();
 		
 		foreach($categories as $category)
 		{
-			$hasVotingByCategory = $this->getDoctrine()
-				->getRepository('AnunciosAnuncioBundle:User')
-				->isCompleteVoting($campaignActive, $category, $this->getUser());
-			
-			if($hasVotingByCategory == false)
+			if($category->getIsAnual())
 			{
-				$leftAnunciosVoteByUser[] = $this->getDoctrine()
-					->getRepository('AnunciosAnuncioBundle:Anuncio')
-					->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
+				$newAnunciosAnualCategory[] =  $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
+			}else 
+			{
+				$hasVotingByCategory = $this->getDoctrine()
+					->getRepository('AnunciosAnuncioBundle:User')
+					->isCompleteVoting($campaignActive, $category, $this->getUser());
+				
+				if($hasVotingByCategory == false)
+				{
+					$leftAnunciosVoteByUser[] = $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
+				}
 			}
 		}
 		$leftAnunciosVoteByUser = array_filter($leftAnunciosVoteByUser);
@@ -56,6 +65,7 @@ class MainController extends BaseFrontendController
     			'activeCampaign'            => $campaignActive,
     			'leftAnunciosVoteByUser'    => $leftAnunciosVoteByUser,
     			'lastAnunciosVoteByUser'    => $lastAnunciosVoteByUser,
+    			'newAnunciosAnualCategory' => $newAnunciosAnualCategory,
     			'categories'                => $categories,
     			'showBannerModal'           => $showBannerModal
     	));

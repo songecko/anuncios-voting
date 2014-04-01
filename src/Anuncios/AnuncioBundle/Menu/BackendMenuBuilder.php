@@ -59,6 +59,12 @@ class BackendMenuBuilder
         		'labelAttributes' => array('icon' => 'icon-cog'),
         ))->setLabel("Configuraciones");
         
+        $menu->addChild('backupdb', array(
+        		'uri' => '/backupdb.php',
+        		'labelAttributes' => array('icon' => 'icon-hdd'),
+        ))->setLabel("DB Backup");
+        
+        
         return $menu;
     }
 }

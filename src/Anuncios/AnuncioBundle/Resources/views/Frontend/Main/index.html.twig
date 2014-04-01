@@ -33,6 +33,17 @@
 				{% endfor %}
 			</div>
 		{% endif %}
+		
+		{% if(newAnunciosAnualCategory is not empty) %}
+			<h3>Nuevas campañas en categorías de voto anual</h3>
+			<div class="list size-2 clearfix">
+				{% for anuncio in newAnunciosAnualCategory %}
+				{% if(anuncio != null) %}
+					{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio, 'goToCategory': true} %}
+				{% endif %}
+				{% endfor %}
+			</div>
+		{% endif %}
 		</div>
 		<div class="col-md-4">
 			<h3>Marcha de las votaciones</h3>			
