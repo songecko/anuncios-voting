@@ -43,7 +43,7 @@ class ComponentController extends Controller
 	
 	public function rankingPreviewAction($activeCampaign, $categories = null)
 	{
-		if(!$categories) 
+		if(!$categories || $activeCampaign->isAnual()) 
 		{
 			$categories = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Category')
@@ -57,11 +57,11 @@ class ComponentController extends Controller
 		{
 			$rankingJurado[] = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getAnunciosVoteByJurado($activeCampaign, $category);
+ 			->getAnunciosVoteByJurado($activeCampaign, $category, $activeCampaign->isAnual()?$this->getUser():false);
 				
 			$rankingUsuario[] = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getAnunciosVoteByUsuario($activeCampaign, $category);
+			->getAnunciosVoteByUsuario($activeCampaign, $category, $activeCampaign->isAnual()?$this->getUser():false);
 		}
 		
 		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_rankingPreview.html.twig', array(

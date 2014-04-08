@@ -27,7 +27,7 @@ class MainController extends BaseFrontendController
 		
 		foreach($categories as $category)
 		{
-			if($category->getIsAnual())
+			if(!$campaignActive->isAnual() && $category->getIsAnual())
 			{
 				$newAnunciosAnualCategory[] =  $this->getDoctrine()
 						->getRepository('AnunciosAnuncioBundle:Anuncio')
@@ -46,7 +46,7 @@ class MainController extends BaseFrontendController
 				}
 			}
 		}
-		$leftAnunciosVoteByUser = array_filter($leftAnunciosVoteByUser);
+		//$leftAnunciosVoteByUser = array_filter($leftAnunciosVoteByUser);
 		
 		//Publicidad
 		$showBannerModal = true;
@@ -83,15 +83,23 @@ class MainController extends BaseFrontendController
     	
     	if($category->getIsAnual())
     	{
-    		$anuncios = $this->getDoctrine()
-    			->getRepository('AnunciosAnuncioBundle:Anuncio')
-    			->getAnunciosByCategoryAnual($category, date('Y'));
+    		if($campaignActive->isAnual())
+    		{
+    			$anuncios = $this->getDoctrine()
+    				->getRepository('AnunciosAnuncioBundle:Anuncio')
+    				->getAnunciosByCategory($campaignActive, $category, $campaignActive->isAnual()?$user:false);
+    		}else 
+    		{    			
+	    		$anuncios = $this->getDoctrine()
+	    			->getRepository('AnunciosAnuncioBundle:Anuncio')
+	    			->getAnunciosByCategoryAnual($category, date('Y'));
+    		}
     	}
     	else
     	{
 	    	$anuncios = $this->getDoctrine()
 	    		->getRepository('AnunciosAnuncioBundle:Anuncio')
-	    		->getAnunciosByCategory($campaignActive, $category);
+	    		->getAnunciosByCategory($campaignActive, $category, $campaignActive->isAnual()?$user:false);
     	}
     	
     	$lastAnunciosVoteByCategory = $this->getDoctrine()
@@ -104,7 +112,7 @@ class MainController extends BaseFrontendController
     	{
 	    	$hasVotingByCategory = $this->getDoctrine()
 	    		->getRepository('AnunciosAnuncioBundle:User')
-	    		->isCompleteVoting($campaignActive, $category, $user->getId());
+	    		->isCompleteVoting($campaignActive, $category, $user);
     	}
     	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:category.html.twig', array(
@@ -138,7 +146,7 @@ class MainController extends BaseFrontendController
 	
 	    	$hasVotingByCategory = $this->getDoctrine()
 	    		->getRepository('AnunciosAnuncioBundle:User')
-	    		->isCompleteVoting($campaignActive, $category, $user->getId());
+	    		->isCompleteVoting($campaignActive, $category, $user);
     	}
     	    	
     	$externalResource = null;
@@ -186,9 +194,9 @@ class MainController extends BaseFrontendController
     	
     	$hasVotingByCategory = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:User')
-    		->isCompleteVoting($campaignActive, $category, $user->getId());
+    		->isCompleteVoting($campaignActive, $category, $user);
     	
-    	if($hasVoting || $hasVotingByCategory || $category->getIsAnual())
+    	if($hasVoting || $hasVotingByCategory || ($category->getIsAnual() && !$campaignActive->isAnual()))
     	{
     		return $this->redirect($this->generateUrl('anuncios_anuncio_show', array(
     				'slug' => $category->getSlug(),
@@ -302,7 +310,7 @@ class MainController extends BaseFrontendController
     	
     	$rankingAnuncios = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->getAllAnunciosVoteByJurado($campaignActive, $category);
+    		->getAllAnunciosVoteByJurado($campaignActive, $category, $campaignActive->isAnual()?$this->getUser():false);
     	
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingJurado.html.twig', array(
     			'activeCampaign' => $campaignActive,
@@ -328,7 +336,7 @@ class MainController extends BaseFrontendController
     	 
     	$rankingAnuncios = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->getAllAnunciosVoteByUsuario($campaignActive, $category);
+    		->getAllAnunciosVoteByUsuario($campaignActive, $category, $campaignActive->isAnual()?$this->getUser():false);
     	 
     	return $this->render('AnunciosAnuncioBundle:Frontend/Main:rankingUsuario.html.twig', array(
     			'activeCampaign' => $campaignActive,

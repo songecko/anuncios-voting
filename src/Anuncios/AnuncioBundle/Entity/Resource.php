@@ -18,6 +18,14 @@ class Resource
     private $createdAt;
     private $updatedAt;
 
+    public function __clone() 
+    {
+    	if ($this->id) {
+    		$this->id = null;
+    		$this->createdAt = new DateTime('now');
+    	}
+    }
+    
     public function __construct()
     {
     	$this->createdAt = new DateTime('now');

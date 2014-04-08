@@ -30,6 +30,10 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
         image:
             type: string
             length: 255
+        finalistType:
+            type: string
+            length: 255
+            nullable: true
         votoJurado:
             type: integer
             nullable: true

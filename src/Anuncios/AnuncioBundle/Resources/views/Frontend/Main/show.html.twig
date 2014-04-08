@@ -23,7 +23,7 @@
 						{% endif %}
 						
 						{% if anuncio.campaign.id == activeCampaign.id %}
-						{%   if(category.getIsAnual == false) %}
+						{%   if(category.getIsAnual == false or activeCampaign.isAnual) %}
 							{% if(hasVoting) %}
 								<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
 							{% else %}
@@ -36,7 +36,7 @@
 						{%   endif %}
 						{% endif %}
 					</div>
-					{% if(category.getIsAnual == false and app.user) %}
+					{% if((category.getIsAnual == false and not activeCampaign.isAnual) and app.user) %}
 					<div class="info">
 						<!-- <p>Ranking: 0</p> -->
 						<p>Votos: {{ app.user.isJurado?anuncio.votoJurado:anuncio.votoUsuario }}</p>

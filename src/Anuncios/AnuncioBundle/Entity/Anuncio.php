@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Anuncio
 {
+	const FINALIST_TYPE_JURADO = 'jurado';
+	const FINALIST_TYPE_USUARIO = 'usuario';
+	
     private $id;
     private $name;
     private $agency;
@@ -22,6 +25,7 @@ class Anuncio
     private $file;
     private $category;
     private $campaign;
+    private $finalistType;
     private $sector;
     private $resources;
     private $voting;
@@ -31,6 +35,16 @@ class Anuncio
     private $updatedAt;
     private $anuncioId;
 
+    public function __clone()
+    {
+    	if ($this->id) 
+    	{
+    		$this->id = null;
+    		$this->createdAt = new DateTime('now');
+    		$this->resources = clone $this->resources;
+    	}
+    }
+    
     public function getId()
     {
         return $this->id;
@@ -215,6 +229,22 @@ class Anuncio
         return $this->campaign;
     }
 
+    public function setFinalistType($finalistType)
+    {
+    	if (!in_array($finalistType, array(self::FINALIST_TYPE_JURADO, self::FINALIST_TYPE_USUARIO))) {
+    		throw new \InvalidArgumentException("Invalid finalist type");
+    	}
+    	
+    	$this->finalistType = $finalistType;
+    
+    	return $this;
+    }
+    
+    public function getFinalistType()
+    {
+    	return $this->finalistType;
+    }
+    
     public function setSector(\Anuncios\AnuncioBundle\Entity\Sector $sector = null)
     {
     	$this->sector = $sector;

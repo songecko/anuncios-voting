@@ -37,11 +37,8 @@ class CampaignController extends ResourceController
 				{
 					if($anuncioFinalista != null)
 					{
-						$anuncio = clone $anuncioFinalista;
-						$anuncio->setVotoUsuario(0);
-						$anuncio->setVotoJurado(0);
-						$anuncio->setCampaign($form->getData());
-						$manager->persist($anuncio);
+						$anuncioFinalista->setCampaign($form->getData());
+						$manager->persist($anuncioFinalista);
 					}
 				}
 				
@@ -73,7 +70,7 @@ class CampaignController extends ResourceController
 	
 		if (($request->isMethod('PUT') || $request->isMethod('POST')) && $form->bind($request)->isValid())
 		{	
-			if($form->get('month')->getData() == null && $form->get('year')->getData() != null)
+			/*if($form->get('month')->getData() == null && $form->get('year')->getData() != null)
 			{
 				$anunciosFinalistas = $this->getAnunciosFinal($form->get('year')->getData());
 			
@@ -88,7 +85,7 @@ class CampaignController extends ResourceController
 				}
 			
 				$manager->flush();
-			}
+			}*/
 		}
 		
 		$event = $this->dispatchEvent('pre_create', $resource);
@@ -518,16 +515,53 @@ class CampaignController extends ResourceController
 			->getRepository('AnunciosAnuncioBundle:Category')
 			->findAll();
 		
+		$finalistas = array();
 		foreach($categories as $category)
 		{
-			for($i = 1; $i <= 12; $i++)
+			if($category->getIsAnual())
 			{
-				$finalistas[] = $this->getDoctrine()
-					->getRepository('AnunciosAnuncioBundle:Anuncio')
-					->getAnunciosFinalByCategory($category, $i, $year);
+				$anuncios = $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->getAnunciosByCategoryAnual($category, $year);
+				
+				foreach ($anuncios as $anuncio)
+				{
+					$finalistas[] = $anuncio;
+				}
+			}else
+			{
+				for($month = 1; $month <= 12; $month++)
+				{
+					$finalistaJurado = $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->getAnunciosFinalJuradoByCategory($category, $month, $year);
+					$finalistaUsuario = $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:Anuncio')
+						->getAnunciosFinalUsuarioByCategory($category, $month, $year);
+					
+					if($finalistaJurado)	
+					{
+						$finalistaJurado->setFinalistType(Anuncio::FINALIST_TYPE_JURADO);
+						$finalistas[] = $finalistaJurado;						
+					}					
+					if($finalistaUsuario)
+					{
+						$finalistaUsuario->setFinalistType(Anuncio::FINALIST_TYPE_USUARIO);
+						$finalistas[] = $finalistaUsuario;
+					}
+				}
 			}
 		}
 		
-		return $finalistas;
+		$anunciosFinal = array();
+		foreach ($finalistas as $finalista)
+		{
+			$anuncioFinal = clone $finalista;
+			$anuncioFinal->setVotoUsuario(0);
+			$anuncioFinal->setVotoJurado(0);
+			$anunciosFinal[] = $anuncioFinal;
+		}
+		
+		return $anunciosFinal;
 	}
 }

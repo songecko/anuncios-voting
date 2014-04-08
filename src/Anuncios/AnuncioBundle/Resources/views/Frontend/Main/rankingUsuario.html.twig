@@ -4,8 +4,12 @@
 <table class="ranking">
 	<tr>
 		<th width="10%">#</th>
+		{% if(activeCampaign.isAnual) %}
+		<th width="90%">Anuncio</th>
+		{% else %}
 		<th width="70%">Anuncio</th>
 		<th width="20%">Votos</th>
+		{% endif %}
 	</tr>
 	{% for anuncio in rankingAnuncios %}
 	<tr>
@@ -14,7 +18,9 @@
 			<img src="{{ anuncio.image }}" width="60">
 			<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}">{{ anuncio.name }}</a>
 		</td>
+		{% if(activeCampaign.isAnual == false) %}
 		<td class="votes">{{ anuncio.votoUsuario }}</td>
+		{% endif %}
 	</tr>
 	{% endfor %}
 </table>

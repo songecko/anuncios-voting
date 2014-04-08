@@ -5,7 +5,7 @@
 	{% else %}
 	<a href="{{ path('anuncios_anuncio_show', {'anuncio_id': anuncio.id, 'slug': anuncio.category.slug}) }}" class="imageWrapper">
 	{% endif %}
-		{% if(anuncio.category.getIsAnual == false and app.user) %}
+		{% if((anuncio.category.getIsAnual == false or activeCampaign.isAnual) and app.user) %}
 			<span class="flag{{ app.user.isAnuncioVoted(anuncio.id)?' voted':'' }}"></span>
 		{% endif %}
 		<img src="{{ anuncio.image }}">
