@@ -235,11 +235,16 @@ class AnuncioRepository extends EntityRepository
 		->createQuery(
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
+				LEFT JOIN AnunciosAnuncioBundle:Campaign c WITH c.id = a.campaign
+				WHERE c.month = :month AND c.year = :year
+				ORDER BY a.votoUsuario DESC'
+				/*'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
 				WHERE a.category = :category AND a.campaign IN (
 					SELECT c.id FROM AnunciosAnuncioBundle:Campaign c WHERE c.month = :month AND
 					c.year = :year
 				)
-				ORDER BY a.votoUsuario DESC'
+				ORDER BY a.votoUsuario DESC'*/
 		)->setParameters(array(
 				'category' => $category,
 				'month'    => $month,
