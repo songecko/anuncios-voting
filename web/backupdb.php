@@ -51,14 +51,13 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
 	}
 
 	//save file
-	$filename = 'backup-db.sql';	
-	$handle = fopen($filename,'w+');
-	fwrite($handle,$return);
-	fclose($handle);
+	$filename = 'backup-db.sql';
+	$path = "uploads/".$filename;
+	file_put_contents($path, $return);
 	
 	header("Content-disposition: attachment; filename=".$filename);
 	header("Content-type: text/plain");
-	readfile($filename);
+	readfile($path);
 }
 
 backup_tables('localhost','root','123456','anuncios');

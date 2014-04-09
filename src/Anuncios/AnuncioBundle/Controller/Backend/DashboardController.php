@@ -29,9 +29,18 @@ class DashboardController extends Controller
     		
     		$closed = true;
     	}
-    	$categories = $this->getDoctrine()
+    	
+    	if($campaign->isAnual())
+    	{
+    		$categories = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
-    		->getCategoriesWithoutAnual();
+    		->findAll();
+    	}else 
+    	{
+    		$categories = $this->getDoctrine()
+    			->getRepository('AnunciosAnuncioBundle:Category')
+    			->getCategoriesWithoutAnual();
+    	}
     	
     	$rankingUsuario = array();
     	$rankingJurado = array();
@@ -39,12 +48,12 @@ class DashboardController extends Controller
     	foreach($categories as $category)
     	{
     		$rankingJurado[] = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->getAnunciosVoteByJurado($campaign, $category);
+    			->getRepository('AnunciosAnuncioBundle:Anuncio')
+    			->getAnunciosVoteByJurado($campaign, $category);
     	
     		$rankingUsuario[] = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->getAnunciosVoteByUsuario($campaign, $category);
+    			->getRepository('AnunciosAnuncioBundle:Anuncio')
+    			->getAnunciosVoteByUsuario($campaign, $category);
     	}
     	
         return $this->render('AnunciosAnuncioBundle:Backend/Dashboard:main.html.twig', array(

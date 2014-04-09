@@ -22,7 +22,7 @@ class CampaignController extends ResourceController
 		
 		if ($request->isMethod('POST') && $form->bind($request)->isValid())
 		{
-			//Campaña final
+			//Campaña mensual
 			if($form->get('month')->getData() != null && $form->get('year')->getData() != null)
 			{
 				$this->getXmlDocPremios($form->get('month')->getData(), $form->get('year')->getData(), $form->getData());
@@ -394,6 +394,9 @@ class CampaignController extends ResourceController
 			{
 				//En el proyecto, parsear la respuesta
 				$xml = $result['GetXMLDocPremiosResult']['ArticleSet'];
+				
+				file_put_contents("uploads/c".$year."_".$month.".log", $client->response);
+				
 				$quantity = count($xml['Article']);
 				for($i = 0; $i < $quantity; $i++)
 				{
