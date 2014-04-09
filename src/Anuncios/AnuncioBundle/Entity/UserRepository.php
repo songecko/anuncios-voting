@@ -38,7 +38,7 @@ class UserRepository extends EntityRepository
 	
 	public function isCompleteVoting($campaign, $category, $user)
 	{
-		if($this->hasVotingByCategory($campaign, $category, $user) >= 3)
+		if($user && $this->hasVotingByCategory($campaign, $category, $user) >= 3)
 		{
 			return true;
 		}

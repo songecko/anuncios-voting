@@ -85,6 +85,7 @@ Anuncios\AnuncioBundle\Entity\Anuncio:
         resources:
             targetEntity: Resource
             mappedBy: anuncio
+            cascade: ["persist"]
         voting:
             targetEntity: Voting
             mappedBy: anuncio

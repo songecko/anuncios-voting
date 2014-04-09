@@ -41,7 +41,13 @@ class Anuncio
     	{
     		$this->id = null;
     		$this->createdAt = new DateTime('now');
-    		$this->resources = clone $this->resources;
+    		$clonedResources = new \Doctrine\Common\Collections\ArrayCollection();
+    		foreach ($this->resources as $resource)
+    		{
+	    		$clonedResources[] = clone $resource;
+	    		$resource->setAnuncio($this);
+    		}
+    		$this->resources = $clonedResources;
     	}
     }
     
