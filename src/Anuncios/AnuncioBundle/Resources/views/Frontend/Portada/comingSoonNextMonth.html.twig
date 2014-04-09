@@ -8,7 +8,7 @@
 	<div class="col-md-5 col-xs-5">
 		<form action="#" method="post" class="disabled">
 			{% if lastCampaignClosed.showFinalist %}
-			<a href="#" class="buttonLine" data-toggle="modal" data-target="#finalistModal">Ver finalistas</a>
+			<a href="http://www.anuncios.com/premios/{{ lastCampaignClosed.year }}/seleccionados" target="_blank" class="buttonLine">Ver finalistas</a>
 			{% else %}
 			<button type="submit" name="send"></button>
 			{% endif %}

@@ -15,7 +15,7 @@
 				<div class="overlayContent{{ (category.getIsAnual)?' oneLine':'' }}">
 					<div class="actions clearfix">
 						{% if resources|length > 0 %}
-						<a href="#" class="viewResourcesButton">Ver Pieza</a>
+						<a href="#" class="viewResourcesButton">{{ (category.name|lower == "radio")?"Pieza":"Ver Pieza" }}</a>
 						{% endif %}
 						
 						{% if(externalResource) %}
