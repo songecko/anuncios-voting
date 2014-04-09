@@ -236,7 +236,7 @@ class AnuncioRepository extends EntityRepository
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
 				LEFT JOIN AnunciosAnuncioBundle:Campaign c WITH c.id = a.campaign
-				WHERE c.month = :month AND c.year = :year
+				WHERE a.category = :category AND c.month = :month AND c.year = :year
 				ORDER BY a.votoUsuario DESC'
 				/*'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
