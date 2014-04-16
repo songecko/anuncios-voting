@@ -12,6 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class VotingRepository extends EntityRepository
 {
+	public function votesOnYear($year)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT v
+			FROM AnunciosAnuncioBundle:Voting v
+			WHERE v.createdAt BETWEEN \''.$year.'-01-01\' AND \''.($year+1).'-01-01\'
+			ORDER BY v.createdAt ASC'
+		)->setParameters(array(
+		))
+		->getResult();
+	}
+	
 	public function hasVoting($user, $anuncio)
 	{
 		return $this->getEntityManager()

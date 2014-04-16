@@ -40,6 +40,23 @@
 	</div>
 </div>
 {% else %}
-<h1>Proximamente se abrira una nueva votacion</h1>
+<h3>Proximamente se abrira una nueva votacion</h3>
+{% endif %}
+
+<br><br><br>
+{% if votesPerMonth|length > 0 %}
+<h4>Evolución de votos por mes del año {{ currentYear }}</h4>
+<table class="table">
+  <tr>
+    <th>Mes</th>
+    <th>Cantidad de votos</th>
+  </tr>
+  {% for month,votes in votesPerMonth %}
+  <tr>
+    <td>{{ month }}</td>
+    <td>{{ votes }}</td>
+  </tr>
+  {% endfor %}
+</table>
 {% endif %}
 {% endblock %}

@@ -18,6 +18,7 @@ services:
         arguments: ["@service_container", "@controller_resolver"]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             
     anuncios_anuncio.backend.menu_builder:
         class: Anuncios\AnuncioBundle\Menu\BackendMenuBuilder

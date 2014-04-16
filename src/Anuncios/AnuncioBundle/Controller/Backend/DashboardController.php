@@ -30,37 +30,61 @@ class DashboardController extends Controller
     		$closed = true;
     	}
     	
-    	if($campaign->isAnual())
-    	{
-    		$categories = $this->getDoctrine()
-    		->getRepository('AnunciosAnuncioBundle:Category')
-    		->findAll();
-    	}else 
-    	{
-    		$categories = $this->getDoctrine()
-    			->getRepository('AnunciosAnuncioBundle:Category')
-    			->getCategoriesWithoutAnual();
-    	}
-    	
+    	$categories = array();
     	$rankingUsuario = array();
     	$rankingJurado = array();
+    	$currentYear = date("Y");
+    	$months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
     	
-    	foreach($categories as $category)
+    	if($campaign)
     	{
-    		$rankingJurado[] = $this->getDoctrine()
-    			->getRepository('AnunciosAnuncioBundle:Anuncio')
-    			->getAnunciosVoteByJurado($campaign, $category);
-    	
-    		$rankingUsuario[] = $this->getDoctrine()
-    			->getRepository('AnunciosAnuncioBundle:Anuncio')
-    			->getAnunciosVoteByUsuario($campaign, $category);
+	    	if($campaign->isAnual())
+	    	{
+	    		$categories = $this->getDoctrine()
+	    		->getRepository('AnunciosAnuncioBundle:Category')
+	    		->findAll();
+	    	}else 
+	    	{
+	    		$categories = $this->getDoctrine()
+	    			->getRepository('AnunciosAnuncioBundle:Category')
+	    			->getCategoriesWithoutAnual();
+	    	}
+	    	
+	    	foreach($categories as $category)
+	    	{
+	    		$rankingJurado[] = $this->getDoctrine()
+	    			->getRepository('AnunciosAnuncioBundle:Anuncio')
+	    			->getAnunciosVoteByJurado($campaign, $category);
+	    	
+	    		$rankingUsuario[] = $this->getDoctrine()
+	    			->getRepository('AnunciosAnuncioBundle:Anuncio')
+	    			->getAnunciosVoteByUsuario($campaign, $category);
+	    	}
     	}
+    	
+    	$votesOnYear = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Voting')
+    		->votesOnYear($currentYear);
+
+    	$votesPerMonth = array();
+    	foreach ($votesOnYear as $vote)
+    	{
+    		$month = $months[$vote->getCreatedAt()->format('n')];
+    		
+    		if(!isset($votesPerMonth[$month]))
+    			$votesPerMonth[$month] = 0;
+    		
+    		$votesPerMonth[$month] = $votesPerMonth[$month]+1; 
+    	}
+    	//$votesPerMonth = ksort($votesPerMonth);    	
     	
         return $this->render('AnunciosAnuncioBundle:Backend/Dashboard:main.html.twig', array(
         	'campaign'   => $campaign,
 			'rankingUsuario' => $rankingUsuario,
 			'rankingJurado'  => $rankingJurado,
-        	'closed'         => $closed
+        	'closed'         => $closed,
+        	'currentYear'    => $currentYear,
+        	'votesPerMonth'  => $votesPerMonth
         ));
     }
 }
