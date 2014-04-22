@@ -24,7 +24,7 @@
 	</div>
 	
 	{% if(lastAnunciosVoteByCategory is not empty) %}
-		<h3>Anuncios más votados en {{ category.name }} este mes</h3>
+		<h3>Anuncios más votados en {{ category.name }}{{ (activeCampaign.isAnual)?'':' este mes' }}</h3>
 		<div class="list clearfix">
 			{% for anuncio in lastAnunciosVoteByCategory %}
 			{% include 'AnunciosAnuncioBundle:Frontend/Partial:_anuncio.html.twig' with {'anuncio': anuncio} %}

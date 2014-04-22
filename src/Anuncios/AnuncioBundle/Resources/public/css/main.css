@@ -186,7 +186,7 @@
 }
 
 #content .anuncioShow .picture .overlayContent.oneLine .actions {
-	width: 152px;
+	width: 100%;
 }
 
 #content .anuncioShow .picture .overlayContent .actions > a {

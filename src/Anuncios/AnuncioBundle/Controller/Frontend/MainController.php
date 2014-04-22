@@ -20,7 +20,7 @@ class MainController extends BaseFrontendController
 		
 		$lastAnunciosVoteByUser = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Anuncio')
-			->getLastAnunciosVoteByUser($campaignActive, $this->getUser(), 5);
+			->getLastAnunciosVoteByUser($campaignActive, $this->getUser(), 10);
 		
 		$leftAnunciosVoteByUser = array();
 		$newAnunciosAnualCategory = array();
