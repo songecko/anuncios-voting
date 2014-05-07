@@ -154,7 +154,7 @@ class CampaignController extends ResourceController
 					'category' => $category,
 					'anuncios' =>  $this->getDoctrine()
 						->getRepository('AnunciosAnuncioBundle:Anuncio')
-						->getAllAnunciosVoteByUsuario($campaign, $category)
+						->getAllAnunciosVoteByUsuario($campaign, $category, $campaign->isAnual())
 				);
 			}else 
 			{
@@ -162,7 +162,7 @@ class CampaignController extends ResourceController
 						'category' => $category,
 						'anuncios' =>  $this->getDoctrine()
 						->getRepository('AnunciosAnuncioBundle:Anuncio')
-						->getAllAnunciosVoteByJurado($campaign, $category)
+						->getAllAnunciosVoteByJurado($campaign, $category, $campaign->isAnual())
 				);
 			}
 			$ranking[] = $catRanking;

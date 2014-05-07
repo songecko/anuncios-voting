@@ -175,10 +175,10 @@ class AnuncioRepository extends EntityRepository
 		->getOneOrNullResult();
 	}
 	
-	public function getAllAnunciosVoteByJurado($campaign, $category, $user = false)
+	public function getAllAnunciosVoteByJurado($campaign, $category, $isAnual = false)
 	{
 		$anualSql = '';
-		if($campaign->isAnual() && $user)
+		if($campaign->isAnual() && $isAnual)
 		{
 			$anualSql .= " AND (a.finalistType = '".Anuncio::FINALIST_TYPE_JURADO."' OR a.finalistType IS NULL)";
 		}
@@ -196,10 +196,10 @@ class AnuncioRepository extends EntityRepository
 		->getResult();
 	}
 	
-	public function getAllAnunciosVoteByUsuario($campaign, $category, $user = false)
+	public function getAllAnunciosVoteByUsuario($campaign, $category, $isAnual = false)
 	{
 		$anualSql = '';
-		if($campaign->isAnual() && $user)
+		if($campaign->isAnual() && $isAnual)
 		{
 			$anualSql .= " AND (a.finalistType = '".Anuncio::FINALIST_TYPE_USUARIO."' OR a.finalistType IS NULL)";
 		}
