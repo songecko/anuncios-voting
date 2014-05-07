@@ -108,15 +108,22 @@ class AnuncioRepository extends EntityRepository
 		->getResult();
 	}
 	
-	public function getLastAnunciosVoteByCategory($campaign, $category, $limit)
+	public function getLastAnunciosVoteByCategory($campaign, $category, $limit, $user = false)
 	{
+		$anualSql = '';
+		if($campaign->isAnual() && $user)
+		{
+			$finalistType = $user->getIsJurado()?Anuncio::FINALIST_TYPE_JURADO:Anuncio::FINALIST_TYPE_USUARIO;
+			$anualSql .= " AND (a.finalistType = '".$finalistType."' OR a.finalistType IS NULL)";
+		}
+		
 		return $this->getEntityManager()
 		->createQuery(
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
 				WHERE a.campaign = :campaign AND a.category = :category AND a.id IN (
 					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v
-				)
+				)'.$anualSql.'
 				ORDER BY a.votoJurado+a.votoUsuario DESC, a.name'
 		)->setParameters(array(
 				'campaign' => $campaign,

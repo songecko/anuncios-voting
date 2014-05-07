@@ -104,7 +104,7 @@ class MainController extends BaseFrontendController
     	
     	$lastAnunciosVoteByCategory = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Anuncio')
-    		->getLastAnunciosVoteByCategory($campaignActive, $category, 5);
+    		->getLastAnunciosVoteByCategory($campaignActive, $category, 5, $user);
     	
     	$hasVotingByCategory = array();
     	
