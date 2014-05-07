@@ -545,30 +545,35 @@ class CampaignController extends ResourceController
 					
 					if($finalistaJurado)	
 					{
+						$finalistaJurado = clone $finalistaJurado;
 						$finalistaJurado->setFinalistType(Anuncio::FINALIST_TYPE_JURADO);
+						$finalistaJurado->setVotoUsuario(0);
+						$finalistaJurado->setVotoJurado(0);
 						$finalistas[] = $finalistaJurado;						
 					}					
 					if($finalistaUsuario)
 					{
+						$finalistaUsuario = clone $finalistaUsuario;
 						$finalistaUsuario->setFinalistType(Anuncio::FINALIST_TYPE_USUARIO);
+						$finalistaUsuario->setVotoUsuario(0);
+						$finalistaUsuario->setVotoJurado(0);
 						$finalistas[] = $finalistaUsuario;
 					}
-					echo "Usuario: ".$finalistaUsuario->getName()." <br>";
-					echo "Jurado: ".$finalistaJurado->getName()." <br>";
+					//echo "Usuario: ".$finalistaUsuario->getName()." <br>";
+					//echo "Jurado: ".$finalistaJurado->getName()." <br>";
 				}
-				die;
+				//die;
 			}
 		}
 		
-		$anunciosFinal = array();
+		/*$anunciosFinal = array();
 		foreach ($finalistas as $finalista)
 		{
 			$anuncioFinal = clone $finalista;
-			$anuncioFinal->setVotoUsuario(0);
-			$anuncioFinal->setVotoJurado(0);
+			
 			$anunciosFinal[] = $anuncioFinal;
-		}
+		}*/
 		
-		return $anunciosFinal;
+		return $finalistas;
 	}
 }
