@@ -535,7 +535,6 @@ class CampaignController extends ResourceController
 			{
 				for($month = 1; $month <= 12; $month++)
 				{
-					echo "Mes ".$month." <br><br>";
 					$finalistaJurado = $this->getDoctrine()
 						->getRepository('AnunciosAnuncioBundle:Anuncio')
 						->getAnunciosFinalJuradoByCategory($category, $month, $year);
@@ -559,20 +558,9 @@ class CampaignController extends ResourceController
 						$finalistaUsuario->setVotoJurado(0);
 						$finalistas[] = $finalistaUsuario;
 					}
-					//echo "Usuario: ".$finalistaUsuario->getName()." <br>";
-					//echo "Jurado: ".$finalistaJurado->getName()." <br>";
 				}
-				//die;
 			}
 		}
-		
-		/*$anunciosFinal = array();
-		foreach ($finalistas as $finalista)
-		{
-			$anuncioFinal = clone $finalista;
-			
-			$anunciosFinal[] = $anuncioFinal;
-		}*/
 		
 		return $finalistas;
 	}
