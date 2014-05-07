@@ -535,6 +535,7 @@ class CampaignController extends ResourceController
 			{
 				for($month = 1; $month <= 12; $month++)
 				{
+					echo "Mes ".$month." <br><br>";
 					$finalistaJurado = $this->getDoctrine()
 						->getRepository('AnunciosAnuncioBundle:Anuncio')
 						->getAnunciosFinalJuradoByCategory($category, $month, $year);
@@ -552,7 +553,10 @@ class CampaignController extends ResourceController
 						$finalistaUsuario->setFinalistType(Anuncio::FINALIST_TYPE_USUARIO);
 						$finalistas[] = $finalistaUsuario;
 					}
+					echo "Usuario: ".$finalistaUsuario->getName()." <br>";
+					echo "Jurado: ".$finalistaJurado->getName()." <br>";
 				}
+				die;
 			}
 		}
 		
