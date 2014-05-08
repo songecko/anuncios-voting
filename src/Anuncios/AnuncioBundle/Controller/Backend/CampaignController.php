@@ -107,9 +107,17 @@ class CampaignController extends ResourceController
 			->getRepository('AnunciosAnuncioBundle:Campaign')
 			->find($id);
 		
-		$categories = $this->getDoctrine()
+		if($campaign->isAnual())
+		{
+			$categories = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Category')
+			->findAll();
+		}else
+		{
+			$categories = $this->getDoctrine()
 			->getRepository('AnunciosAnuncioBundle:Category')
 			->getCategoriesWithoutAnual();
+		}
 		
 		$finalistasUsuario = array();
 		$finalistasJurado = array();
@@ -138,9 +146,17 @@ class CampaignController extends ResourceController
 		->getRepository('AnunciosAnuncioBundle:Campaign')
 		->find($id);
 	
-		$categories = $this->getDoctrine()
-		->getRepository('AnunciosAnuncioBundle:Category')
-		->findAll();
+		if($campaign->isAnual())
+		{
+			$categories = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Category')
+				->findAll();			
+		}else
+		{
+			$categories = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Category')
+				->getCategoriesWithoutAnual();
+		}
 	
 		$otherType = $type=='usuarios'?'jurados':'usuarios';
 		
@@ -169,11 +185,8 @@ class CampaignController extends ResourceController
 		}
 		
 		//Hay Empates?
-		$categoriesWithoutAnual = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Category')
-			->getCategoriesWithoutAnual();
 		$drawCategories = false;
-		foreach($categoriesWithoutAnual as $category)
+		foreach($categories as $category)
 		{
 			$anunciosUsuarios = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Anuncio')
@@ -236,11 +249,19 @@ class CampaignController extends ResourceController
 			->getRepository('AnunciosAnuncioBundle:Campaign')
 			->find($id);
 		
-		$categoriesWithoutAnual = $this->getDoctrine()
-			->getRepository('AnunciosAnuncioBundle:Category')
-			->getCategoriesWithoutAnual();
+		if($campaign->isAnual())
+		{
+			$categoriesToCheckDraw = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Category')
+				->findAll();
+		}else
+		{
+			$categoriesToCheckDraw = $this->getDoctrine()
+				->getRepository('AnunciosAnuncioBundle:Category')
+				->getCategoriesWithoutAnual();
+		}
 		
-		foreach($categoriesWithoutAnual as $category)
+		foreach($categoriesToCheckDraw as $category)
 		{
 			$anunciosUsuarios = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Anuncio')
@@ -529,10 +550,11 @@ class CampaignController extends ResourceController
 				
 				foreach ($anuncios as $anuncio)
 				{
-					$finalistas[] = $anuncio;
+					$finalistas[] = $this->getClonedAnuncio($anuncio, Anuncio::FINALIST_TYPE_JURADO);
+					$finalistas[] = $this->getClonedAnuncio($anuncio, Anuncio::FINALIST_TYPE_USUARIO);
 				}
 			}else
-			{
+			{		
 				$formatter = \IntlDateFormatter::create(
 						'es',
 						\IntlDateFormatter::LONG,
@@ -553,26 +575,30 @@ class CampaignController extends ResourceController
 					
 					if($finalistaJurado)	
 					{
-						$finalistaJurado = clone $finalistaJurado;
-						$finalistaJurado->setFinalistType(Anuncio::FINALIST_TYPE_JURADO);
-						$finalistaJurado->setName($finalistaJurado->getName()." [".$formatter->format(mktime(0, 0, 0, $month, 2, 1970))."]");
-						$finalistaJurado->setVotoUsuario(0);
-						$finalistaJurado->setVotoJurado(0);
-						$finalistas[] = $finalistaJurado;						
+						$clonedAnuncio = $this->getClonedAnuncio($finalistaJurado, Anuncio::FINALIST_TYPE_JURADO);
+						$clonedAnuncio->setName($clonedAnuncio->getName()." [".$formatter->format(mktime(0, 0, 0, $month, 2, 1970))."]");
+						$finalistas[] = $clonedAnuncio;
 					}					
 					if($finalistaUsuario)
 					{
-						$finalistaUsuario = clone $finalistaUsuario;
-						$finalistaUsuario->setFinalistType(Anuncio::FINALIST_TYPE_USUARIO);
-						$finalistaUsuario->setName($finalistaUsuario->getName()." [".$formatter->format(mktime(0, 0, 0, $month, 2, 1970))."]");
-						$finalistaUsuario->setVotoUsuario(0);
-						$finalistaUsuario->setVotoJurado(0);
-						$finalistas[] = $finalistaUsuario;
+						$clonedAnuncio = $this->getClonedAnuncio($finalistaJurado, Anuncio::FINALIST_TYPE_USUARIO);
+						$clonedAnuncio->setName($clonedAnuncio->getName()." [".$formatter->format(mktime(0, 0, 0, $month, 2, 1970))."]");
+						$finalistas[] = $clonedAnuncio;
 					}
 				}
 			}
 		}
 		
 		return $finalistas;
+	}
+	
+	private function getClonedAnuncio($anuncio, $finalistType)
+	{
+		$clonedAnuncio = clone $anuncio;
+		$clonedAnuncio->setFinalistType($finalistType);
+		$clonedAnuncio->setVotoUsuario(0);
+		$clonedAnuncio->setVotoJurado(0);
+		
+		return $clonedAnuncio;		
 	}
 }
