@@ -225,6 +225,7 @@ class AnuncioRepository extends EntityRepository
 				FROM AnunciosAnuncioBundle:Anuncio a
 				LEFT JOIN AnunciosAnuncioBundle:Campaign c WITH c.id = a.campaign
 				WHERE a.category = :category AND c.month = :month AND c.year = :year
+					AND (a.finalistType = '.Anuncio::FINALIST_TYPE_JURADO.' OR a.finalistType IS NULL)
 				ORDER BY a.votoJurado DESC'
 		)->setParameters(array(
 				'category' => $category,
@@ -242,6 +243,7 @@ class AnuncioRepository extends EntityRepository
 				FROM AnunciosAnuncioBundle:Anuncio a
 				LEFT JOIN AnunciosAnuncioBundle:Campaign c WITH c.id = a.campaign
 				WHERE a.category = :category AND c.month = :month AND c.year = :year
+				AND (a.finalistType = '.Anuncio::FINALIST_TYPE_USUARIO.' OR a.finalistType IS NULL)
 				ORDER BY a.votoUsuario DESC'
 		)->setParameters(array(
 				'category' => $category,
