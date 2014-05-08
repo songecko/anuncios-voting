@@ -581,7 +581,7 @@ class CampaignController extends ResourceController
 					}					
 					if($finalistaUsuario)
 					{
-						$clonedAnuncio = $this->getClonedAnuncio($finalistaJurado, Anuncio::FINALIST_TYPE_USUARIO);
+						$clonedAnuncio = $this->getClonedAnuncio($finalistaUsuario, Anuncio::FINALIST_TYPE_USUARIO);
 						$clonedAnuncio->setName($clonedAnuncio->getName()." [".$formatter->format(mktime(0, 0, 0, $month, 2, 1970))."]");
 						$finalistas[] = $clonedAnuncio;
 					}
