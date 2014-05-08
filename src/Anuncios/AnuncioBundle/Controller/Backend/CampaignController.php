@@ -533,6 +533,15 @@ class CampaignController extends ResourceController
 				}
 			}else
 			{
+				$formatter = \IntlDateFormatter::create(
+						'es',
+						\IntlDateFormatter::LONG,
+						\IntlDateFormatter::NONE,
+						\DateTimeZone::UTC, // Doesn't matter
+						\IntlDateFormatter::GREGORIAN,
+						'MMM'
+				);
+				
 				for($month = 1; $month <= 12; $month++)
 				{
 					$finalistaJurado = $this->getDoctrine()
@@ -546,6 +555,7 @@ class CampaignController extends ResourceController
 					{
 						$finalistaJurado = clone $finalistaJurado;
 						$finalistaJurado->setFinalistType(Anuncio::FINALIST_TYPE_JURADO);
+						$finalistaJurado->setName($finalistaJurado->getName()." [".$formatter->format(mktime(0, 0, 0, $month, 2, 1970))."]");
 						$finalistaJurado->setVotoUsuario(0);
 						$finalistaJurado->setVotoJurado(0);
 						$finalistas[] = $finalistaJurado;						
@@ -554,6 +564,7 @@ class CampaignController extends ResourceController
 					{
 						$finalistaUsuario = clone $finalistaUsuario;
 						$finalistaUsuario->setFinalistType(Anuncio::FINALIST_TYPE_USUARIO);
+						$finalistaUsuario->setName($finalistaUsuario->getName()." [".$formatter->format(mktime(0, 0, 0, $month, 2, 1970))."]");
 						$finalistaUsuario->setVotoUsuario(0);
 						$finalistaUsuario->setVotoJurado(0);
 						$finalistas[] = $finalistaUsuario;
