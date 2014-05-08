@@ -244,10 +244,10 @@ class CampaignController extends ResourceController
 		{
 			$anunciosUsuarios = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Anuncio')
-				->getAllAnunciosVoteByUsuario($campaign, $category);
+				->getAllAnunciosVoteByUsuario($campaign, $category, $campaign->isAnual());
 			$anunciosJurados = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Anuncio')
-				->getAllAnunciosVoteByJurado($campaign, $category);
+				->getAllAnunciosVoteByJurado($campaign, $category, $campaign->isAnual());
 				
 			
 			//Chequear en usuarios
