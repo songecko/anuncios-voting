@@ -51,4 +51,19 @@ class CampaignRepository extends EntityRepository
 		->setMaxResults(1)
 		->getOneOrNullResult();
 	}
+	
+	public function getFinalCampaignOfYear($year)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT c
+				FROM AnunciosAnuncioBundle:Campaign c
+				WHERE c.month IS NULL AND c.year = :year'
+		)
+		->setParameters(array(
+				'year'  => $year
+		))
+		->setMaxResults(1)
+		->getOneOrNullResult();
+	}
 }

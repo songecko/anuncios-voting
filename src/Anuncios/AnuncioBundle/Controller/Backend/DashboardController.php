@@ -66,17 +66,38 @@ class DashboardController extends Controller
     		->getRepository('AnunciosAnuncioBundle:Voting')
     		->votesOnYear($currentYear);
 
+    	/*$finalCampaign = $this->getDoctrine()
+    		->getRepository('AnunciosAnuncioBundle:Campaign')
+    		->getFinalCampaignOfYear($currentYear);*/
+    	
     	$votesPerMonth = array();
     	foreach ($votesOnYear as $vote)
     	{
-    		$month = $months[$vote->getCreatedAt()->format('n')];
-    		
+    		$monthNumber = $vote->getCreatedAt()->format('n');
+    		$month = $months[$monthNumber-1];
+    		    		
     		if(!isset($votesPerMonth[$month]))
     			$votesPerMonth[$month] = 0;
     		
     		$votesPerMonth[$month] = $votesPerMonth[$month]+1; 
     	}
-    	//$votesPerMonth = ksort($votesPerMonth);    	
+
+    	/*$votesOnFinal = null;
+    	if($finalCampaign)
+    	{
+    		$votesOnFinal = 0;
+    		$monthNumber = $finalCampaign->getDateBegin()->format('n');
+    		if($monthNumber != 1)
+    		{
+    			$month = $months[$monthNumber-1];
+    			if(isset($votesPerMonth[$month]))
+    			{
+    				$votesOnFinal = $votesPerMonth[$month];
+    				unset($votesPerMonth[$month]);
+    			}
+    		}
+    		
+    	}*/
     	
         return $this->render('AnunciosAnuncioBundle:Backend/Dashboard:main.html.twig', array(
         	'campaign'   => $campaign,
