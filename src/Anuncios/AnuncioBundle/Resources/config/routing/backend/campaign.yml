@@ -5,6 +5,8 @@ anuncios_anuncio_backend_campaign_index:
         _controller: anuncios.controller.campaign:indexAction
         _sylius:
             template: AnunciosAnuncioBundle:Backend/Campaign:index.html.twig
+            sorting: 
+                createdAt: desc
             paginate: 100
             
 anuncios_anuncio_backend_campaign_create:

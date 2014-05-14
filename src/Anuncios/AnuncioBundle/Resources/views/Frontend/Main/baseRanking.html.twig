@@ -37,7 +37,10 @@
 			}}
 			
 			<h3>Finalistas de meses anteriores</h3>			
-			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:previousFinalists')) }}
+			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:previousFinalists', {
+					'activeCampaign': activeCampaign
+				})) 
+			}}
 		</div>
 	</div>
 </section>

@@ -18,7 +18,16 @@
         </tr>
     </thead>
     <tbody>
+    	{% set year = 0 %}
         {% for campaign in campaigns %}
+        {% if year != campaign.year %}
+		{% 		set year = campaign.year %}
+		<tr>
+			<td colspan="7" style="text-align: center; font-size: 26px; font-weight: bold; text-transform: uppercase;">
+				Temporada {{ year }}
+			</td>
+		</tr>
+        {% endif %}
         <tr id="{{ campaign.id }}">
             <td>{{ campaign.id }}</td>
             <td>{{ campaign.name }}</td>

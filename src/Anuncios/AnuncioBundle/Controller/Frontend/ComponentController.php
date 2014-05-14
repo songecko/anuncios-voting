@@ -70,15 +70,17 @@ class ComponentController extends Controller
 		));
 	}
 	
-	public function previousFinalistsAction()
+	public function previousFinalistsAction($activeCampaign = null)
 	{	
 		$monthCampaigns = array();
+		
+		$year = ($activeCampaign)?$activeCampaign->getYear():date("Y");
 		
 		for ($month=1; $month <= 12; $month++)
 		{
 			$campaign = $this->getDoctrine()
 				->getRepository('AnunciosAnuncioBundle:Campaign')
-				->getCampaignWithMonthAndYear($month, date("Y"));
+				->getCampaignWithMonthAndYear($month, $year);
 			
 			$monthCampaigns[$month] = $campaign;
 		} 

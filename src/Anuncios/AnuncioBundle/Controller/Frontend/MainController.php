@@ -350,9 +350,12 @@ class MainController extends BaseFrontendController
     
     public function finalistsAction($month)
     {
+    	$activeCampaign = $this->getActiveCampaign();
+    	$year = ($activeCampaign)?$activeCampaign->getYear():date("Y");
+    	
     	$campaign = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Campaign')
-    		->getCampaignWithMonthAndYear($month, date("Y"));
+    		->getCampaignWithMonthAndYear($month, $year);
     	
     	$categories = $this->getDoctrine()
     		->getRepository('AnunciosAnuncioBundle:Category')
