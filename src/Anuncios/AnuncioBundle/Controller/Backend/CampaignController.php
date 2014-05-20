@@ -301,6 +301,7 @@ class CampaignController extends ResourceController
 					$maxVote = $anuncio->getVotoJurado();
 				}else if($anuncio->getVotoJurado() == $maxVote)
 				{
+					ld($anuncio);
 					$anunciosDrawedOnCategory[] = $anuncio;
 				}else if ($anuncio->getVotoJurado() < $maxVote)
 				{
@@ -308,6 +309,7 @@ class CampaignController extends ResourceController
 				}
 			}
 			
+			ldd($anunciosDrawedOnCategory);
 			$this->desdrawAnuncios($anunciosDrawedOnCategory, 'jurados');
 		}
 		
