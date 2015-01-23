@@ -1,7 +1,5 @@
 {% extends 'GeckoBackendBundle::layout.html.twig' %}
 
-{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
-
 {% block topbar %}
 <ol class="breadcrumb">
     <li><a href="{{ path('anuncios_anuncio_backend_campaign_index') }}">{{ 'gecko.backend.breadcrumb.campaign.index'|trans }}</a></li>
@@ -18,6 +16,9 @@
 
 <form action="{{ path('anuncios_anuncio_backend_campaign_import') }}" method="post" class="form-horizontal" enctype="multipart/form-data" novalidate>
     {% include 'AnunciosAnuncioBundle:Backend/Campaign:_import_form.html.twig' %}
-    {{ create() }}
+    <div class="form-actions">
+    	<button type="submit" class="btn btn-primary btn-lg"><i class="icon-ok"></i> {{ 'Importar' }}</button>
+    	<a href="{{ app.request.headers.get('referer') }}" class="btn btn-danger btn-lg"><i class="icon-remove"></i> {{ 'sylius.cancel'|trans }}</a>
+	</div>
 </form>
 {% endblock %}
