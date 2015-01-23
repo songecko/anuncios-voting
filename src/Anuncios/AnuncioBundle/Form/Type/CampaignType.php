@@ -24,13 +24,13 @@ class CampaignType extends AbstractType
         ->add('dateBegin', 'date', array(
         		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Dia'),
         		'format' => 'dd-MMMM-yyyy',
-        		'years' => range(date('Y'), date('Y')+10),
+        		'years' => range(date('Y')-1, date('Y')+10),
         		'label'    => 'Inicio',
         ))
         ->add('dateEnd', 'date', array(
         		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Dia'),
         		'format' => 'dd-MMMM-yyyy',
-        		'years' => range(date('Y'), date('Y')+10),
+        		'years' => range(date('Y')-1, date('Y')+10),
         		'label'    => 'Fin'
         ))
         ->add('month', 'choice', array(

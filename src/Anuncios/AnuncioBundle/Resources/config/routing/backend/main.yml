@@ -25,3 +25,7 @@ anuncios_anuncio_backend_user:
 anuncios_anuncio_backend_configuration:
     resource: @AnunciosAnuncioBundle/Resources/config/routing/backend/configuration.yml
     prefix: /configuraciones
+
+change_pass_user:
+    pattern: /change
+    defaults: { _controller: AnunciosAnuncioBundle:Backend/Change:main }
