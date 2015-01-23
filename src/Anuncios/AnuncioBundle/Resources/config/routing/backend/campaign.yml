@@ -18,6 +18,15 @@ anuncios_anuncio_backend_campaign_create:
             template: AnunciosAnuncioBundle:Backend/Campaign:create.html.twig
             redirect: anuncios_anuncio_backend_campaign_update
 
+anuncios_anuncio_backend_campaign_import:
+    pattern: /import
+    methods: [GET, POST]
+    defaults:
+        _controller: anuncios.controller.campaign:importAction
+        _sylius:
+            template: AnunciosAnuncioBundle:Backend/Campaign:import.html.twig
+            redirect: anuncios_anuncio_backend_campaign_index
+            
 anuncios_anuncio_backend_campaign_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]

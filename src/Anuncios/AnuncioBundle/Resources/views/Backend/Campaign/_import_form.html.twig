@@ -1,0 +1,21 @@
+{{ form_errors(form) }}
+<div class="row">
+    <div class="col-md-6 row-split">
+    	{{ form_row(form.campaign) }}
+    	<br>
+		{{ form_row(form.category) }}
+    </div>
+    
+    <div class="col-md-6">
+    <p style="font-weight: bold;">Anuncios</p>
+    	<div style="float: left;">
+        	{{ form_row(form.month) }}
+        </div>
+        <div>
+        	{{ form_row(form.year) }}
+        </div>
+    <br />
+    <p>- Seleccionar mes y año para agregar los Anuncios de la categoría a la Campaña seleccionada</p>
+    </div>
+</div>
+{{ form_rest(form) }}

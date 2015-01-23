@@ -47,6 +47,11 @@ services:
         class: Anuncios\AnuncioBundle\Form\Type\CampaignType
         tags:
             - { name: form.type, alias: anuncios_campaign }
+    
+    anuncios.form.type.campaign_import:
+        class: Anuncios\AnuncioBundle\Form\Type\ImportCampaignType
+        tags:
+            - { name: form.type, alias: anuncios_campaign_import }
             
     anuncios.form.type.sector:
         class: Anuncios\AnuncioBundle\Form\Type\SectorType
