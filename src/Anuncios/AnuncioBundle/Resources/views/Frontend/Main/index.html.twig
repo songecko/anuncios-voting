@@ -46,7 +46,7 @@
 		{% endif %}
 		</div>
 		<div class="col-md-4">
-			{% if activeCampaign.isAnual %}
+			{% if not activeCampaign.isAnual %}
 			<h3>Marcha de las votaciones</h3>			
 			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:rankingPreview', { 
 					'activeCampaign': activeCampaign,
