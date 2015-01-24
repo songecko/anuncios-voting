@@ -9,6 +9,7 @@ use Anuncios\AnuncioBundle\Entity\Resource;
 use Anuncios\AnuncioBundle\Entity\Voting;
 use Anuncios\AnuncioBundle\Form\Type\ImportCampaignType;
 use Symfony\Component\HttpFoundation\Request;
+use Anuncios\AnuncioBundle\Entity\Campaign;
 
 class CampaignController extends ResourceController
 {
@@ -496,82 +497,98 @@ class CampaignController extends ResourceController
 					
 					if($onlyCategory == null || ($onlyCategory->getName() == $category->getName()))
 					{
-						$anuncio = new Anuncio();
-						$anuncio->setCampaign($anuncioCampaign);
-						$anuncio->setCategory($category);
-						$anuncio->setSector($sector);
-						$anuncio->setName($anuncioName);
-						$anuncio->setAgency($anuncioAgency);
-						$anuncio->setAdvertiser($anuncioAdvertiser);
-						$anuncio->setProduct($anuncioProduct);
-						$anuncio->setBrand($anuncioBrand);
-						$anuncio->setAnuncioId($anuncioAnuncioId);
-						
-						$j = 1;
-						$c = 'campo'.$j;
-						$v = 'valor'.$j;
-						while(isset($anuncioOtherFields[$c]))
+						if(!$this->hasAnuncioIdInCampaign($anuncioAnuncioId, $anuncioCampaign))
 						{
-							if(trim($anuncioOtherFields[$c]) != '')
-							{
-								$anuncio->addOtherFields($this->getCleanString($anuncioOtherFields[$c]), $this->getCleanString($anuncioOtherFields[$v]));
-							}
+							$anuncio = new Anuncio();
+							$anuncio->setCampaign($anuncioCampaign);
+							$anuncio->setCategory($category);
+							$anuncio->setSector($sector);
+							$anuncio->setName($anuncioName);
+							$anuncio->setAgency($anuncioAgency);
+							$anuncio->setAdvertiser($anuncioAdvertiser);
+							$anuncio->setProduct($anuncioProduct);
+							$anuncio->setBrand($anuncioBrand);
+							$anuncio->setAnuncioId($anuncioAnuncioId);
 							
-							$j++;
+							$j = 1;
 							$c = 'campo'.$j;
 							$v = 'valor'.$j;
-						}
-						
-						$anuncio->setImage($anuncioImage);
-						
-						//Resources
-						$anuncioResources = $xml['Article'][$i]['ArticleContent']['Resources'];
-						if(is_array($anuncioResources))
-						{
-							foreach($anuncioResources as $anuncioResource)
+							while(isset($anuncioOtherFields[$c]))
 							{
-								$xmlResources = $anuncioResource;
-								if(isset($xmlResources['ResourceTypeName']))
+								if(trim($anuncioOtherFields[$c]) != '')
 								{
-									$xmlResources = array($xmlResources);
+									$anuncio->addOtherFields($this->getCleanString($anuncioOtherFields[$c]), $this->getCleanString($anuncioOtherFields[$v]));
 								}
-					
-								foreach ($xmlResources as $xmlResource)
+								
+								$j++;
+								$c = 'campo'.$j;
+								$v = 'valor'.$j;
+							}
+							
+							$anuncio->setImage($anuncioImage);
+							
+							//Resources
+							$anuncioResources = $xml['Article'][$i]['ArticleContent']['Resources'];
+							if(is_array($anuncioResources))
+							{
+								foreach($anuncioResources as $anuncioResource)
 								{
-									if(isset($xmlResource['ResourceURL']) && trim($xmlResource['ResourceURL']) != '')
+									$xmlResources = $anuncioResource;
+									if(isset($xmlResources['ResourceTypeName']))
 									{
-										$resource = new Resource();
-										$resource->setAnuncio($anuncio);
-										$resource->setType($xmlResource['ResourceTypeName']);
-										$resource->setLink(html_entity_decode($xmlResource['ResourceURL']));
-										$resource->setName($this->getCleanString($xmlResource['ResourceName']));
-										$manager->persist($resource);
+										$xmlResources = array($xmlResources);
+									}
+						
+									foreach ($xmlResources as $xmlResource)
+									{
+										if(isset($xmlResource['ResourceURL']) && trim($xmlResource['ResourceURL']) != '')
+										{
+											$resource = new Resource();
+											$resource->setAnuncio($anuncio);
+											$resource->setType($xmlResource['ResourceTypeName']);
+											$resource->setLink(html_entity_decode($xmlResource['ResourceURL']));
+											$resource->setName($this->getCleanString($xmlResource['ResourceName']));
+											$manager->persist($resource);
+										}
 									}
 								}
-							}
-						}else 
-						{
-							$anuncioExternalDetail = $xml['Article'][$i]['ArticleCard']['OtherFields']['ExternalDetail'];
-							if(!empty($anuncioExternalDetail))
+							}else 
 							{
-								$resource = new Resource();
-								$resource->setAnuncio($anuncio);
-								$resource->setType('External');
-								$resource->setLink($anuncioExternalDetail);
-								$resource->setName($anuncioName);
-								$manager->persist($resource);
+								$anuncioExternalDetail = $xml['Article'][$i]['ArticleCard']['OtherFields']['ExternalDetail'];
+								if(!empty($anuncioExternalDetail))
+								{
+									$resource = new Resource();
+									$resource->setAnuncio($anuncio);
+									$resource->setType('External');
+									$resource->setLink($anuncioExternalDetail);
+									$resource->setName($anuncioName);
+									$manager->persist($resource);
+								}
+								else
+								{
+									//echo "Anuncio '".htmlentities($anuncio->getName())."': \t\tVacio el atributo [ArticleContent] -> [Resource] del xml <br>";
+								}
 							}
-							else
-							{
-								//echo "Anuncio '".htmlentities($anuncio->getName())."': \t\tVacio el atributo [ArticleContent] -> [Resource] del xml <br>";
-							}
+							
+							$manager->persist($anuncio);
 						}
-						
-						$manager->persist($anuncio);
 					}
 				}
 			}
 		}
+	}
+	
+	private function hasAnuncioIdInCampaign($anuncioId, Campaign $campaign)
+	{
+		foreach($campaign->getAnuncios() as $anuncio)
+		{
+			if($anuncio->getAnuncioId() == $anuncioId)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public function getAnunciosFinal($year)

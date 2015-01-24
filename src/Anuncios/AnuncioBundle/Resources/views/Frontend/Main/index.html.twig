@@ -46,12 +46,14 @@
 		{% endif %}
 		</div>
 		<div class="col-md-4">
+			{% if activeCampaign.isAnual %}
 			<h3>Marcha de las votaciones</h3>			
 			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:rankingPreview', { 
 					'activeCampaign': activeCampaign,
 					'categories' : categories 
 				})) 
 			}}
+			{% endif %}
 			
 			<h3>Finalistas de meses anteriores</h3>			
 			{{ render(controller('AnunciosAnuncioBundle:Frontend/Component:previousFinalists', {
