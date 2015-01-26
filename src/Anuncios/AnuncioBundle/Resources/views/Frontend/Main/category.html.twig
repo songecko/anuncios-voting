@@ -23,7 +23,7 @@
 		{% endfor %}
 	</div>
 	
-	{% if(lastAnunciosVoteByCategory is not empty) %}
+	{% if not activeCampaign.isAnual and lastAnunciosVoteByCategory is not empty %}
 		<h3>Anuncios más votados en {{ category.name }}{{ (activeCampaign.isAnual)?'':' este mes' }}</h3>
 		<div class="list clearfix">
 			{% for anuncio in lastAnunciosVoteByCategory %}
