@@ -90,9 +90,11 @@ class MainController extends BaseFrontendController
     				->getAnunciosByCategory($campaignActive, $category, $campaignActive->isAnual()?$user:false);
     		}else 
     		{    			
+    			$year = (date('n')=='1')?date('Y')-1:date('Y');
+    			
 	    		$anuncios = $this->getDoctrine()
 	    			->getRepository('AnunciosAnuncioBundle:Anuncio')
-	    			->getAnunciosByCategoryAnual($category, date('Y'));
+	    			->getAnunciosByCategoryAnual($category, $year);
     		}
     	}
     	else

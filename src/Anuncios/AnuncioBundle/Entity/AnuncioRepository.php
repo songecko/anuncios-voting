@@ -41,7 +41,7 @@ class AnuncioRepository extends EntityRepository
 				'SELECT DISTINCT a
 				FROM AnunciosAnuncioBundle:Anuncio a
 				WHERE a.campaign IN (
-					SELECT c.id FROM AnunciosAnuncioBundle:Campaign c WHERE c.year = :year
+					SELECT c.id FROM AnunciosAnuncioBundle:Campaign c WHERE c.year = :year AND c.month IS NOT NULL
 				) 
 				AND a.category = :category
 				ORDER BY a.votoJurado+a.votoUsuario DESC, a.name'
