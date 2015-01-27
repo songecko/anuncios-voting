@@ -33,7 +33,7 @@ class DashboardController extends Controller
     	$categories = array();
     	$rankingUsuario = array();
     	$rankingJurado = array();
-    	$currentYear = date("Y");
+    	$currentYear = (date('n')=='1')?date('Y')-1:date('Y');
     	$months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
     	
     	if($campaign)
