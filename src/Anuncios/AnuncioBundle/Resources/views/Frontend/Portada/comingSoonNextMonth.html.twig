@@ -3,28 +3,26 @@
 {% block title %}Próximamente nueva votación - Premios Anuncios.com{% endblock %}
 
 {% block content %}
-<h1 class="title">
-	{% if lastCampaignClosed.isAnual %}
-	Los ganadores de Los Anuncios del Año se conocerán en la Gala de Entrega de Premios.
-	{% else %}
-	<span class="big">Los Anuncios del año 2014.</span><br> Pronto, nueva votación.
-	{% endif %}
-</h1>
 <div class="row">
-	<div class="col-md-5 col-xs-5">
+	<div class="col-sm-12">
+		<h1 class="title">
+			{% if lastCampaignClosed.isAnual %}
+			Los ganadores de Los Anuncios del Año se conocerán en la Gala de Entrega de Premios.
+			{% else %}
+			<span class="big">Los Anuncios del año 2015.</span><br> Pronto, nueva votación.
+			{% endif %}
+		</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
 		<form action="#" method="post" class="disabled">
 			{% if lastCampaignClosed.showFinalist %}
-			<a href="http://www.anuncios.com/premios/{{ lastCampaignClosed.year }}/seleccionados" target="_blank" class="buttonLine">Ver finalistas</a>
+			<a href="http://www.anuncios.com/premios/{{ lastCampaignClosed.year }}/seleccionados" target="_blank" class="buttonLine viewFinalist">Ver finalistas</a>
 			{% else %}
 			<button type="submit" name="send"></button>
 			{% endif %}
 		</form>
-	</div>
-	<div class="col-md-6 col-xs-6">
-		<div class="patrocinioPrincipal">
-	        <h4>Patrocinador principal</h4>
-	        <a href="http://www.publiesp.es/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/it.png') }}" class="img-responsive"></a>
-	    </div>
 	</div>
 </div>
 {% if lastCampaignClosed.showFinalist %}

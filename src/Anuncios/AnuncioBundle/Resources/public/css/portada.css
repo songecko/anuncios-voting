@@ -1,6 +1,6 @@
 html, body {
 	height: 100%;
-	overflow:hidden;
+	/*overflow:hidden;*/
 }
 
 body.portada h1 {
@@ -16,11 +16,11 @@ body.portada h4 {
 
 body.portada .container {
 	width: 90%;
-	padding-top: 1%;
+	padding: 0;
 }
 
 body.portada .container > .row {
-	height: 70%;
+	/*height: 70%;*/
 }
 
 body.portada .trofeoContainer {
@@ -34,18 +34,20 @@ body.portada .trofeo {
 }
 
 body.portada #content h1.title {
-	margin: 10px 0 0 0;
-	color: #868686;
-	line-height: 55px;
+	margin: 20px 0 0 0;
+	color: #000000;
+	line-height: 48px;
+	font-size: 40px;
+	text-align: center;
 }
 
 
 body.portada #content h1.title span.big {
-	font-size: 85px;
+	font-size: 46px;
 }
 
 body.portada #content form {
-	margin: 30px 0 0 20px;
+	margin: 20px 0 0 0;
 }
 
 body.portada #content form fieldset {
@@ -87,42 +89,62 @@ body.portada #content form.disabled button {
 	background: url(../images/enterButton-disabled.png) no-repeat;
 }
 
+body.portada #content .viewFinalist {
+	display: block;
+	text-align: center;
+	width: 100%;
+	text-decoration: none;
+}
+
 body.portada #content .passwordReminder {
 	font-family: 'lubalgraph_bk_btbook', Arial, Helvetica, sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	color: #000000;
 	display: block;
 	text-align: center;
-	margin-top: 40px;
+	margin-top: 10px;
 }
 
 body.portada #content .infoVoting {
 	font-family: 'lubalgraph_bk_btbook', Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	color: #000000;
+	margin-top: 20px;
 }
 
-body.portada .container > .patrocinios {
-	padding-top: 20px;
-	height: 30%;
+body.portada #patrociniosContent {
+	margin-top: -50px;
 }
 
-body.portada .container > .patrocinios a {
+body.portada .patrocinios .title, 
+body.portada .patrocinioPrincipal .title {
+	font-size: 18px;
+	font-family: 'lubalgraph_md_btmedium', Arial, Helvetica, sans-serif;
+	color: #000000;
+	margin-bottom: 15px;
+}
+
+body.portada .patrocinios .list > div {
+	width: 20%;
+	float: left;
+	padding: 0 20px 0 0;
+}
+
+/*body.portada .container > .patrocinios a {
 	float: left;
 	margin-right: 20px;
 }
 
 body.portada .container > .patrocinios img {
 	height: 90px;
-}
+}*/
 
 body.portada .patrocinioPrincipal {
-	margin: 40px 0 0 20px;
 }
 
-body.portada .patrocinioPrincipal h4 {
+/*body.portada .patrocinioPrincipal h4 {
 	text-align: center;
-}
+}*/
 
 body.portada .patrocinioPrincipal img {
 	/*width: 100%;*/

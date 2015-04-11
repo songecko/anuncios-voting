@@ -21,23 +21,48 @@
         {% endblock %}
     </head>
     <body class="portada">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-md-4 col-xs-4 trofeoContainer">
-    				<img src="{{ asset('bundles/anunciosanuncio/images/trofeo.png') }}" class="trofeo img-responsive">
+		<div class="row">
+				<div class="col-sm-12">
+					<img src="{{ asset('bundles/anunciosanuncio/images/portada_background.jpg') }}" class="img-responsive">
     			</div>
-    		
-    			<div id="content" class="col-md-8 col-xs-8">
+    		</div>
+    	<div class="container">    		
+    		<div id="patrociniosContent" class="row">
+    			<div class="col-sm-3 patrocinioPrincipal">
+    				<div class="row">
+    					<div class="col-sm-12 title">Patrocinador principal</div>
+    				</div>
+    				<div class="row">
+    					<div class="col-sm-12">
+    						<a href="http://www.publiesp.es/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/principal/publiespania.png') }}" class="img-responsive"></a>
+    					</div>
+    				</div>
+    			</div>
+	        	<div class="col-sm-6 col-sm-offset-3 patrocinios">
+	        		<div class="row">
+    					<div class="col-sm-12 title">Patrocinadores</div>
+    				</div>	
+	        		<div class="row list">
+	        			<div>
+			        		<a href="#" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/secundarios/guerrilla.jpg') }}" class="img-responsive"></a>
+	        			</div>
+	        			<div>
+	        				<a href="http://www.draftfcb.com/#!home" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/secundarios/draftfcb.png') }}" class="img-responsive"></a>
+	        			</div>
+	        			<div>
+	        				<a href="http://www.movierecord.com/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/secundarios/movierecord.png') }}" class="img-responsive"></a>
+	        			</div>
+	        			<div>
+	        				<a href="http://correos.es/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/secundarios/correos.png') }}" class="img-responsive"></a>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	        <div classs="row">    		
+    			<div id="content" class="col-sm-12">
 					{% block content %}
 	        		{% endblock %}
 	        	</div>
-	        </div>
-	        <div class="patrocinios">
-	        	<h4>Patrocinadores</h4>
-	        	<a href="#" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/guerrilla.jpg') }}"></a>
-	        	<a href="http://www.draftfcb.com/#!home" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/draftfcb.png') }}"></a>
-	        	<a href="http://www.movierecord.com/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/movierecord.png') }}"></a>
-	        	<a href="http://correos.es/" target="_blank"><img src="{{ asset('bundles/anunciosanuncio/images/patrocinios/correos.png') }}"></a>
 	        </div>
         </div>
         
