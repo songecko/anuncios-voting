@@ -1,0 +1,30 @@
+<div id="patrociniosContent" class="row">
+	<div class="col-sm-3 patrocinioPrincipal">
+		{% if patrociniosPrincipales|length > 0 %}
+		<div class="row">
+			<div class="col-sm-12 title">Patrocinador principal</div>
+		</div>
+		{% for img in patrociniosPrincipales %}
+		<div class="row">
+			<div class="col-sm-12">
+				<a href="{{ img['link'] }}" target="_blank"><img src="{{ asset(img['image']) }}" class="img-responsive"></a>
+			</div>
+		</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+	<div class="col-sm-6 col-sm-offset-3 patrocinios">
+		{% if patrociniosSecundarios|length > 0 %}
+		<div class="row">
+			<div class="col-sm-12 title">Patrocinadores</div>
+		</div>	
+		<div class="row list">
+			{% for img in patrociniosSecundarios %}
+			<div>
+				<a href="{{ img['link'] }}" target="_blank"><img src="{{ asset(img['image']) }}" class="img-responsive"></a>
+			</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+	</div>
+</div>

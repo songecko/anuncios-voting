@@ -7,15 +7,15 @@
 	<div class="col-sm-12">
 		<h1 class="title">
 			{% if lastCampaignClosed.isAnual %}
-			Los ganadores de Los Anuncios del Año se conocerán en la Gala de Entrega de Premios.
+			<span>Los ganadores de Los Anuncios del Año se conocerán en la Gala de Entrega de Premios.</span>
 			{% else %}
-			<span class="big">Los Anuncios del año 2015.</span><br> Pronto, nueva votación.
+			<span class="big">Los Anuncios del año 2015.</span><br><span> Pronto, nueva votación.</span>
 			{% endif %}
 		</h1>
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-4 col-sm-offset-4" style="background: #FFFFFF; padding: 0 1%;">
 		<form action="#" method="post" class="disabled">
 			{% if lastCampaignClosed.showFinalist %}
 			<a href="http://www.anuncios.com/premios/{{ lastCampaignClosed.year }}/seleccionados" target="_blank" class="buttonLine viewFinalist">Ver finalistas</a>

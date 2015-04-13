@@ -33,6 +33,12 @@ body.portada .trofeo {
 	float: right;
 }
 
+body.portada #content {
+	position: absolute;
+	top: 10%;
+	width: 100%;
+}
+
 body.portada #content h1.title {
 	margin: 20px 0 0 0;
 	color: #000000;
@@ -41,6 +47,9 @@ body.portada #content h1.title {
 	text-align: center;
 }
 
+body.portada #content h1.title span {
+	background: #FFFFFF;
+}
 
 body.portada #content h1.title span.big {
 	font-size: 46px;
@@ -105,7 +114,8 @@ body.portada #content .passwordReminder {
 	margin-top: 10px;
 }
 
-body.portada #content .infoVoting {
+body.portada #content .infoVoting,
+body.portada #subcontent .infoVoting {
 	font-family: 'lubalgraph_bk_btbook', Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	color: #000000;
@@ -113,7 +123,7 @@ body.portada #content .infoVoting {
 }
 
 body.portada #patrociniosContent {
-	margin-top: -50px;
+	margin-top: -10%;
 }
 
 body.portada .patrocinios .title, 
@@ -125,7 +135,7 @@ body.portada .patrocinioPrincipal .title {
 }
 
 body.portada .patrocinios .list > div {
-	width: 20%;
+	width: 25%;
 	float: left;
 	padding: 0 20px 0 0;
 }

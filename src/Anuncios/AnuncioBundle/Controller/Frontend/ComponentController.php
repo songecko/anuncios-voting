@@ -7,6 +7,7 @@ use Anuncios\AnuncioBundle\Entity\Category;
 use Anuncios\AnuncioBundle\Entity\Anuncio;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Finder\Finder;
 
 class ComponentController extends Controller
 {
@@ -121,6 +122,53 @@ class ComponentController extends Controller
 		
 		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_googleTagHeader.html.twig', array(
 				'googleTagTargeting' => $googleTagTargeting
+		));
+	}
+	
+	public function patrociniosAction($request)
+	{
+		$links = array(
+			'patrocinios/principales/publiespania.png' => 'http://www.publiesp.es/',
+			'patrocinios/secundarios/correos.png' => 'http://correos.es/',
+			'patrocinios/secundarios/draftfcb.png' => 'http://www.draftfcb.com/#!home',
+		);
+		
+		$finder = new Finder();
+		try {
+			$finder->files()->depth('== 0')->in('patrocinios/principales');
+		} catch (\Exception $e) {
+			$finder = array();
+		}
+		
+		$patrociniosPrincipales = array();
+		foreach($finder as $img)
+		{
+			$patrociniosPrincipales[] = array(
+				'link' => isset($links[$img->__toString()])?$links[$img->__toString()]:'#',
+				'image' => $img
+			);
+		}
+		
+		$finder = new Finder();
+		try {
+			$finder->files()->depth('== 0')->in('patrocinios/secundarios');
+		} catch (\Exception $e) {
+			$finder = array();
+		}
+		
+		$patrociniosSecundarios = array();
+		foreach($finder as $img)
+		{
+			$patrociniosSecundarios[] = array(
+				'link' => isset($links[$img->__toString()])?$links[$img->__toString()]:'#',
+				'image' => $img
+			);
+		}
+	
+		return $this->render('AnunciosAnuncioBundle:Frontend/Component:_patrocinios.html.twig', array(
+				'patrociniosPrincipales' => $patrociniosPrincipales,
+				'patrociniosSecundarios' => $patrociniosSecundarios,
+				'links' => $links
 		));
 	}
 }
