@@ -42,17 +42,17 @@ body.portada #content {
 body.portada #content h1.title {
 	margin: 20px 0 0 0;
 	color: #000000;
-	line-height: 48px;
-	font-size: 40px;
+	line-height: 58px;
+	font-size: 36px;
 	text-align: center;
 }
 
 body.portada #content h1.title span {
-	background: #FFFFFF;
+	/*background: #FFFFFF;*/
 }
 
 body.portada #content h1.title span.big {
-	font-size: 46px;
+	font-size: 42px;
 }
 
 body.portada #content form {
@@ -123,7 +123,7 @@ body.portada #subcontent .infoVoting {
 }
 
 body.portada #patrociniosContent {
-	margin-top: -10%;
+	margin-top: -15%;
 }
 
 body.portada .patrocinios .title, 
@@ -163,13 +163,13 @@ body.portada .patrocinioPrincipal img {
 @media only screen 
 and (max-width : 1024px) {
 	body.portada #content h1.title span.big {
-		font-size: 55px;
+		font-size: 38px;
 	}
 	body.portada h1 {
-		font-size: 35px;
+		font-size: 32px;
 	}
 	body.portada #content h1.title {
-		line-height: 35px;
+		line-height: 48px;
 	}
 	.buttonLine {
 		font-size: 20px;
