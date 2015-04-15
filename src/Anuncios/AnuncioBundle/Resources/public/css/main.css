@@ -180,17 +180,23 @@
 }
 
 #content .anuncioShow .picture .overlayContent .actions,
-#content .anuncioShow .picture .overlayContent .info {
+#content .anuncioShow .picture .overlayContent .info,
+#content .anuncioShow .actionsBottom {
 	/*width: 295px;*/
 	text-align: center;
 	margin: 0 auto;
+}
+
+#content .anuncioShow .actionsBottom {
+	padding: 10px;
 }
 
 #content .anuncioShow .picture .overlayContent.oneLine .actions {
 	width: 100%;
 }
 
-#content .anuncioShow .picture .overlayContent .actions > a {
+#content .anuncioShow .picture .overlayContent .actions > a,
+#content .anuncioShow .actionsBottom > a {
 	/*display: block;
 	width: 140px;
 	height: 45px;
@@ -205,23 +211,39 @@
 	padding: 10px 20px;
 }
 
-#content .anuncioShow .picture .overlayContent .actions > a.viewResourceExternalButton {
+#content .anuncioShow .actionsBottom > a {
+	line-height: 22px;
+	float: left;
+}
+
+#content .anuncioShow .picture .overlayContent .actions > a.viewResourceExternalButton,
+#content .anuncioShow .actionsBottom > a.viewResourceExternalButton {
 	width: 190px;
 }
 
-#content .anuncioShow .picture .overlayContent .actions > a:hover {
+#content .anuncioShow .picture .overlayContent .actions > a:hover,
+#content .anuncioShow .actionsBottom > a:hover {
 	text-decoration: none;
 }
 
-#content .anuncioShow .picture .overlayContent .actions > a:last-child {
+#content .anuncioShow .picture .overlayContent .actions > a:last-child,
+#content .anuncioShow .actionsBottom > a:last-child {
 	margin-right: 0;
 }
 #content .anuncioShow .picture .overlayContent .actions > a.viewResourceExternalButton,
-#content .anuncioShow .picture .overlayContent .actions > a.viewResourcesButton {
+#content .anuncioShow .actionsBottom > a.viewResourceExternalButton,
+#content .anuncioShow .picture .overlayContent .actions > a.viewResourcesButton,
+#content .anuncioShow .actionsBottom > a.viewResourcesButton {
 	background: #8d8d8d;
 }
-#content .anuncioShow .picture .overlayContent .actions > a.votedButton {
+#content .anuncioShow .picture .overlayContent .actions > a.votedButton,
+#content .anuncioShow .actionsBottom > a.votedButton {
 	background: #469c38;
+}
+
+#content .anuncioShow .actionsBottom > a:last-child {
+	margin-right: 0;
+	float: right;
 }
 
 #content .anuncioShow .picture .overlayContent .info {

@@ -127,12 +127,24 @@ class Campaign
         return $this->month;
     }
 
+    public function getMonthName()
+    {
+    	$monthName = '';
+    	
+    	if($this->getMonth())
+    	{
+    		$months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+    		$monthName = $months[$this->getMonth() - 1];
+    	}
+    	
+    	return $monthName;
+    }
+    
     public function getPeriodName()
     {
     	if($this->getMonth())
     	{   		
-    		$months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-    		$monthName = $months[$this->getMonth() - 1];
+    		$monthName = $this->getMonthName();
     	}else 
     	{
     		$monthName = 'Final';

@@ -11,7 +11,7 @@
 	
 	<div class="row">
 		<div class="col-md-7">
-			<h2>Voto Popular</h2>
+			<h2>Voto Popular {{ campaign.monthName }}</h2>
 			<table class="ranking">
 				<tr>
 					<th width="30%">Categoría</th>
@@ -28,7 +28,7 @@
 				{% endfor %}
 			</table>
 			<br><br>
-			<h2>Voto Jurados</h2>
+			<h2>Voto Jurados {{ campaign.monthName }}</h2>
 			<table class="ranking">
 				<tr>
 					<th width="30%">Categoría</th>

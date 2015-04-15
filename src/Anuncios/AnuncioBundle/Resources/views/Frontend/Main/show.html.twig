@@ -44,6 +44,29 @@
 					{% endif %}		
 				</div>
 			</div>
+			<div class="actionsBottom clearfix">
+				{% if resources|length > 0 %}
+				<a href="#" class="viewResourcesButton">{{ (category.name|lower == "radio")?"Pieza":"Ver Pieza" }}</a>
+				{% endif %}
+						
+				{% if(externalResource) %}
+				<a href="{{ (externalResource.link[:4] == 'http')?externalResource.link:'http://'~externalResource.link }}" class="viewResourceExternalButton" target="blank">Ver Pieza Externa</a>
+				{% endif %}
+						
+				{% if anuncio.campaign.id == activeCampaign.id %}
+					{%   if(category.getIsAnual == false or activeCampaign.isAnual) %}
+						{% if(hasVoting) %}
+				<a href="{{ path('anuncios_anuncio_desvote', {'id': anuncio.id}) }}" class="votedButton">Anular Voto</a>
+						{% else %}
+							{% if(hasVotingByCategory) %}
+				<a href="#" class="voteButton" onclick="alert('Has llegado al limite de votos para esta categoria.');return false;">Votar</a>
+							{% else %}
+				<a href="{{ path('anuncios_anuncio_vote', {'id': anuncio.id}) }}" class="voteButton">Votar</a>
+							{% endif %}
+						{% endif %}
+					{%   endif %}
+				{% endif %}
+			</div>
 		</div>
 		<div class="col-md-4 col-md-offset-1 attributes">
 			<p><span>Agencia:</span> {{ anuncio.agency }}</p>
