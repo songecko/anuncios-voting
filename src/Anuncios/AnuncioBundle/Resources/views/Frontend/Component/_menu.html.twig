@@ -1,7 +1,7 @@
 <li class="logoIcon">
 	<a href="{{ path('anuncios_anuncio_index') }}"><img alt="Premios Anuncios.com" src="{{ configuration?asset("media/images/" ~ configuration.logoHome):asset('bundles/anunciosanuncio/images/logoIcon.png') }}"></a>
 </li>
-{% for category in categories %}
+{% for category in categories if category.isActive %}
 {% if id == category.id %}
     <li class="active">
 {% else %}

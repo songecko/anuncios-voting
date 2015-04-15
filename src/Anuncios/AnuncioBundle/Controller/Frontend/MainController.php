@@ -27,22 +27,25 @@ class MainController extends BaseFrontendController
 		
 		foreach($categories as $category)
 		{
-			if(!$campaignActive->isAnual() && $category->getIsAnual())
+			if($category->getIsActive())
 			{
-				$newAnunciosAnualCategory[] =  $this->getDoctrine()
-						->getRepository('AnunciosAnuncioBundle:Anuncio')
-						->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
-			}else 
-			{
-				$hasVotingByCategory = $this->getDoctrine()
-					->getRepository('AnunciosAnuncioBundle:User')
-					->isCompleteVoting($campaignActive, $category, $this->getUser());
-				
-				if($hasVotingByCategory == false)
+				if(!$campaignActive->isAnual() && $category->getIsAnual())
 				{
-					$leftAnunciosVoteByUser[] = $this->getDoctrine()
-						->getRepository('AnunciosAnuncioBundle:Anuncio')
-						->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
+					$newAnunciosAnualCategory[] =  $this->getDoctrine()
+							->getRepository('AnunciosAnuncioBundle:Anuncio')
+							->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
+				}else 
+				{
+					$hasVotingByCategory = $this->getDoctrine()
+						->getRepository('AnunciosAnuncioBundle:User')
+						->isCompleteVoting($campaignActive, $category, $this->getUser());
+					
+					if($hasVotingByCategory == false)
+					{
+						$leftAnunciosVoteByUser[] = $this->getDoctrine()
+							->getRepository('AnunciosAnuncioBundle:Anuncio')
+							->getLeftAnunciosVoteByUser($campaignActive, $this->getUser(), $category);
+					}
 				}
 			}
 		}

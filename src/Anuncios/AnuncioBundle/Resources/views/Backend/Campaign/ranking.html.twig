@@ -29,12 +29,14 @@
 		<table class="table">
 		<tr>
 			<th>#</th>
+			<th>WS ID</th>
 			<th>Nombre de anuncio</th>
 			<th>Votos</th>
 		</tr>
 		{% for anuncio in catRanking.anuncios %}
 		<tr>
 			<td class="number">0{{ loop.index }}</td>
+			<td class="number">{{ anuncio.anuncioId }}</td>
 			<td class="details">{{ anuncio.name }}</td>
 			<td class="votes">{{ (type=='usuarios')?anuncio.votoUsuario:anuncio.votoJurado }}</td>
 		</tr>

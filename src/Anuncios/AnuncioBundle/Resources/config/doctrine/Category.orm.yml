@@ -19,6 +19,11 @@ Anuncios\AnuncioBundle\Entity\Category:
         isAnual:
             type: boolean
             column: is_anual
+        isActive:
+            type: boolean
+            column: is_active
+            options:
+                default: 1
         createdAt:
             column: created_at
             type: datetime

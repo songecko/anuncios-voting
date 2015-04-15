@@ -3,7 +3,7 @@
 	<div class="marchaRanking">
 	{% set i = 0 %}
 	{% for usuario in rankingUsuario %}
-		{% if usuario != null %}
+		{% if usuario != null and usuario.category.isActive %}
 			{% set i = i + 1 %}
 			<p><a href="{{ path('anuncios_anuncio_ranking_usuario', {'id': usuario.category.id}) }}">
 				<span class="categoryName">{{ usuario.category.name }}</span> - {{ usuario.name }} 
@@ -16,7 +16,7 @@
 	<div class="marchaRanking">
 	{% set i = 0 %}
 	{% for jurado in rankingJurado %}
-		{% if jurado != null %}
+		{% if jurado != null and jurado.category.isActive %}
 			{% set i = i + 1 %}
 			<p><a href="{{ path('anuncios_anuncio_ranking_jurado', {'id': jurado.category.id}) }}">
 				<span class="categoryName">{{ jurado.category.name }}</span> - {{ jurado.name }}

@@ -15,6 +15,7 @@ class PortadaController extends Controller
 		if($lastCampaignClosed)
 		{
 			$categoryfinalists = array();
+			
 			if($lastCampaignClosed->getShowFinalist() == true)
 			{
 				$categories = $this->getDoctrine()

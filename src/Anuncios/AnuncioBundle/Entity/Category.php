@@ -17,6 +17,7 @@ class Category
     private $file;
     private $deleteFile;
     private $isAnual;
+    private $isActive;
     private $anuncios;
     private $createdAt;
     private $updatedAt;
@@ -36,6 +37,18 @@ class Category
     public function getIsAnual()
     {
     	return $this->isAnual;
+    }
+    
+    public function setIsActive($isActive)
+    {
+    	$this->isActive = $isActive;
+    
+    	return $this;
+    }
+    
+    public function getIsActive()
+    {
+    	return $this->isActive;
     }
     
 	public function setImage($image)

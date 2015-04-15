@@ -11,6 +11,7 @@
             <th>{{ sylius_resource_sort('id', 'gecko.backend.id'|trans) }}</th>
             <th>{{ sylius_resource_sort('name', 'gecko.backend.name'|trans) }}</th>
             <th>{{ sylius_resource_sort('isAnual', 'gecko.backend.is_anual'|trans) }}</th>
+            <th>{{ sylius_resource_sort('isActive', 'Visible?') }}</th>
             <th>{{ sylius_resource_sort('headlineImage', 'Imagen Titular'|trans) }}</th>
             <th></th>
         </tr>
@@ -21,6 +22,11 @@
             <td>{{ category.id }}</td>
             <td>{{ category.name }}</td>
             {% if category.isAnual %}
+            	<td>Si</td>
+            {% else %}
+            	<td>No</td>
+            {% endif %}
+            {% if category.isActive %}
             	<td>Si</td>
             {% else %}
             	<td>No</td>

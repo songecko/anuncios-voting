@@ -22,13 +22,14 @@
 
 #content section .title img {
 	display: block;
+	width: 100%;
 }
 
 #content section .title h2 {
 	position: absolute;
 	top: 48px;
 	font-family: "lubalgraph_bk_btbook", Arial, Helvetica, sans-serif;
-	color: #FFFFFF;
+	color: #4F4F4F;
 	font-size: 70px;
 	font-weight: normal;
 	text-transform: capitalize;
