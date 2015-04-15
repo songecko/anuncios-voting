@@ -37,6 +37,8 @@ body.portada #content {
 	position: absolute;
 	top: 10%;
 	width: 100%;
+	background: rgba(255, 255, 255, 0.8);
+	padding: 25px 0;
 }
 
 body.portada #content h1.title {
