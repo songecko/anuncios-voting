@@ -61,7 +61,7 @@ class AnuncioRepository extends EntityRepository
 			$anualSql .= " AND (a.finalistType = '".$finalistType."' OR a.finalistType IS NULL)";
 		}
 		
-		return $this->getEntityManager()
+		$anuncio = $this->getEntityManager()
 		->createQuery(
 				'SELECT a
 				FROM AnunciosAnuncioBundle:Anuncio a
@@ -75,8 +75,29 @@ class AnuncioRepository extends EntityRepository
 				'campaign' => $campaign,
 				'user' => $user,
 				'category' => $category
-		))->setMaxResults(1)
-		->getOneOrNullResult();
+		))->setMaxResults(1)->getOneOrNullResult();
+		
+		if(!$anuncio)
+		{
+			$anuncio = $this->getEntityManager()
+			->createQuery(
+					'SELECT a
+				FROM AnunciosAnuncioBundle:Anuncio a
+				LEFT JOIN AnunciosAnuncioBundle:Campaign c WITH c.id = a.campaign
+				WHERE c.year = :year AND a.category = :category'.$anualSql.'
+				AND a.id NOT IN (
+					SELECT IDENTITY(v.anuncio) FROM AnunciosAnuncioBundle:Voting v WHERE v.user = :user
+				)
+				GROUP BY a.category
+				ORDER BY a.name'
+			)->setParameters(array(
+					'year' => $campaign->getYear(),
+					'user' => $user,
+					'category' => $category
+			))->setMaxResults(1)->getOneOrNullResult();			
+		}
+		
+		return $anuncio;
 	}
 	
 	public function getLastAnunciosVoteByUser($campaign, $user, $limit)
