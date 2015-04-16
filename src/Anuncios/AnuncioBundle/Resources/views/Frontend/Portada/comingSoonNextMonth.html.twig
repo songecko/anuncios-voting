@@ -9,7 +9,7 @@
 			{% if lastCampaignClosed.isAnual %}
 			<span>Los ganadores de Los Anuncios del Año se conocerán en la Gala de Entrega de Premios.</span>
 			{% else %}
-			<span class="big">Los Anuncios del año 2015.</span><br><span> Pronto, nueva votación.</span>
+			<span class="big">Los Anuncios del Año 2015.</span><br><span> Pronto, nueva votación.</span>
 			{% endif %}
 		</h1>
 	</div>
@@ -18,7 +18,7 @@
 	<div class="col-sm-4 col-sm-offset-4">
 		<form action="#" method="post" class="disabled">
 			{% if lastCampaignClosed.showFinalist %}
-			<a href="http://www.anuncios.com/premios/{{ lastCampaignClosed.year }}/seleccionados" target="_blank" class="buttonLine viewFinalist">Ver finalistas</a>
+			<a href="http://www.anuncios.com/premios" target="_blank" class="buttonLine viewFinalist">Ver finalistas</a>
 			{% else %}
 			<button type="submit" name="send"></button>
 			{% endif %}
