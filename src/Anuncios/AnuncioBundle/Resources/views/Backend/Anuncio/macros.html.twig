@@ -40,6 +40,9 @@
             </td>
             <td>
                 <div class="pull-right">
+                	<a href="{{ path('anuncios_anuncio_backend_anuncio_refresh', {'id': anuncio.id}) }}" class="btn btn-primary">
+    					<i class="icon-refresh"></i><span>Actualizar</span>
+					</a>
                     {{ buttons.edit(path('anuncios_anuncio_backend_anuncio_update', {'id': anuncio.id})) }}
                     {{ buttons.delete(path('anuncios_anuncio_backend_anuncio_delete', {'id': anuncio.id})) }}
                 </div>

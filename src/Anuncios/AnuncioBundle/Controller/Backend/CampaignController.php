@@ -95,6 +95,31 @@ class CampaignController extends ResourceController
         return $this->handleView($view);
 	}
 	
+	public function refreshAnuncioAction(Request $request)
+	{
+		$manager = $this->getDoctrine()->getManager();
+		
+		$id = $request->get('id');
+		$anuncio = $this->getDoctrine()
+			->getRepository('AnunciosAnuncioBundle:Anuncio')
+			->find($id);
+		
+		$month = $anuncio->getCampaign()->getMonth();
+		$year = $anuncio->getCampaign()->getYear();
+		
+		if($month && $year)
+		{
+			$this->getXmlDocPremios($month, $year, $anuncio->getCampaign(), null, $anuncio);
+			$manager->flush();
+			$this->get('session')->getFlashBag()->add('success', "Se ha actualizado el anuncio '".$anuncio->getName()."' correctamente.");
+		}else
+		{
+			$this->get('session')->getFlashBag()->add('warning', "No se pudo actualizar el anuncio.");			
+		}
+		
+		return $this->redirect($this->generateUrl('anuncios_anuncio_backend_anuncio_index'));
+	}
+	
 	public function update($resource)
 	{
 		parent::update($resource);
@@ -407,7 +432,7 @@ class CampaignController extends ResourceController
 		return utf8_encode($string);
 	}
 	
-	public function getXmlDocPremios($month, $year, $campaign, $onlyCategory = null)
+	public function getXmlDocPremios($month, $year, $campaign, $onlyCategory = null, $onlyProduct = null)
 	{
 		$manager = $this->getDoctrine()->getManager();
 		
@@ -497,9 +522,15 @@ class CampaignController extends ResourceController
 					
 					if($onlyCategory == null || ($onlyCategory->getName() == $category->getName()))
 					{
-						if(!$this->hasAnuncioIdInCampaign($anuncioAnuncioId, $anuncioCampaign))
+						if(($onlyProduct && $onlyProduct->getAnuncioId() == $anuncioAnuncioId) || !$this->hasAnuncioIdInCampaign($anuncioAnuncioId, $anuncioCampaign))
 						{
-							$anuncio = new Anuncio();
+							if($onlyProduct && $onlyProduct->getAnuncioId() == $anuncioAnuncioId)
+							{
+								$anuncio = $onlyProduct;
+							}else 
+							{								
+								$anuncio = new Anuncio();
+							}
 							$anuncio->setCampaign($anuncioCampaign);
 							$anuncio->setCategory($category);
 							$anuncio->setSector($sector);

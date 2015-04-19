@@ -33,3 +33,9 @@ anuncios_anuncio_backend_anuncio_delete:
         _controller: anuncios.controller.anuncio:deleteAction
         _sylius:
             redirect: anuncios_anuncio_backend_anuncio_index
+            
+anuncios_anuncio_backend_anuncio_refresh:
+    pattern: /{id}/refresh
+    methods: [GET]
+    defaults:
+        _controller: anuncios.controller.campaign:refreshAnuncioAction
