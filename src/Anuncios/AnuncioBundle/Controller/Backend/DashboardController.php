@@ -70,15 +70,26 @@ class DashboardController extends Controller
     		->getRepository('AnunciosAnuncioBundle:Campaign')
     		->getFinalCampaignOfYear($currentYear);*/
     	
-    	$votesPerMonth = array();
+    	$votesPerCampaign = array();
+    	$voters = array();
     	foreach ($votesOnYear as $vote)
     	{
-    		$monthNumber = $vote->getAnuncio()->getCampaign()->getPeriodName();
+    		$campaignId = $vote->getAnuncio()->getCampaign()->getId();
+    		$campaignName = $vote->getAnuncio()->getCampaign()->getPeriodName();
     		    		
-    		if(!isset($votesPerMonth[$monthNumber]))
-    			$votesPerMonth[$monthNumber] = 0;
+    		if(!isset($votesPerCampaign[$campaignId]))
+    		{
+    			$votesPerCampaign[$campaignId] = array('name' => $campaignName, 'totalVotes' => 0, 'totalVoters' => 0);
+    			$voters[$campaignId] = array();
+    		}
     		
-    		$votesPerMonth[$monthNumber] = $votesPerMonth[$monthNumber]+1; 
+    		$votesPerCampaign[$campaignId]['totalVotes'] = $votesPerCampaign[$campaignId]['totalVotes']+1;
+    		
+    		if(!in_array($vote->getUser()->getId(), $voters[$campaignId]))
+    		{
+    			$voters[$campaignId][] = $vote->getUser()->getId();
+	    		$votesPerCampaign[$campaignId]['totalVoters'] = $votesPerCampaign[$campaignId]['totalVoters']+1;    			
+    		}
     	}
 
     	/*$votesOnFinal = null;
@@ -104,7 +115,7 @@ class DashboardController extends Controller
 			'rankingJurado'  => $rankingJurado,
         	'closed'         => $closed,
         	'currentYear'    => $currentYear,
-        	'votesPerMonth'  => $votesPerMonth
+        	'votesPerCampaign'  => $votesPerCampaign
         ));
     }
 }
