@@ -73,13 +73,12 @@ class DashboardController extends Controller
     	$votesPerMonth = array();
     	foreach ($votesOnYear as $vote)
     	{
-    		$monthNumber = $vote->getCreatedAt()->format('n');
-    		$month = $months[$monthNumber-1];
+    		$monthNumber = $vote->getAnuncio()->getCampaign()->getPeriodName();
     		    		
-    		if(!isset($votesPerMonth[$month]))
-    			$votesPerMonth[$month] = 0;
+    		if(!isset($votesPerMonth[$monthNumber]))
+    			$votesPerMonth[$monthNumber] = 0;
     		
-    		$votesPerMonth[$month] = $votesPerMonth[$month]+1; 
+    		$votesPerMonth[$monthNumber] = $votesPerMonth[$monthNumber]+1; 
     	}
 
     	/*$votesOnFinal = null;

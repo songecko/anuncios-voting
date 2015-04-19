@@ -18,9 +18,11 @@ class VotingRepository extends EntityRepository
 		->createQuery(
 				'SELECT v
 			FROM AnunciosAnuncioBundle:Voting v
-			WHERE v.createdAt BETWEEN \''.$year.'-01-01\' AND \''.($year+1).'-01-01\'
-			ORDER BY v.createdAt ASC'
+			LEFT JOIN AnunciosAnuncioBundle:Anuncio a WITH a.id = v.anuncio
+			LEFT JOIN AnunciosAnuncioBundle:Campaign c WITH c.id = a.campaign
+			WHERE c.year = :year'
 		)->setParameters(array(
+			'year' => $year
 		))
 		->getResult();
 	}

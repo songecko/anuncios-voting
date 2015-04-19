@@ -45,18 +45,26 @@
 
 <br><br><br>
 {% if votesPerMonth|length > 0 %}
-<h4>Evolución de votos por mes del año {{ currentYear }}</h4>
+{% set hasVotesCurrentCampaign = false %}
+<h4>Evolución de votos del año {{ currentYear }}</h4>
 <table class="table">
   <tr>
-    <th>Mes</th>
+    <th>Campaña</th>
     <th>Cantidad de votos</th>
   </tr>
   {% for month,votes in votesPerMonth %}
+  {% set hasVotesCurrentCampaign = (month == campaign.periodName)?true:false  %}
   <tr>
     <td>{{ month }}</td>
     <td>{{ votes }}</td>
   </tr>
   {% endfor %}
+  {% if hasVotesCurrentCampaign == false %}
+  <tr>
+    <td>{{ campaign.periodName }}</td>
+    <td>0</td>
+  </tr>
+  {% endif %}
 </table>
 {% endif %}
 {% endblock %}
