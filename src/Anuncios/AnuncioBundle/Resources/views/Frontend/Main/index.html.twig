@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-md-8">
 		{% if(leftAnunciosVoteByUser is not empty) %}
-			<h3>CATEGORÍAS POR VOTAR</h3>
+			<h3>CATEGORÍAS POR VOTAR{{ activeCampaign.month?' MES '~activeCampaign.monthName:'' }}</h3>
 			<div class="list size-2 clearfix">
 				{% for anuncio in leftAnunciosVoteByUser %}
 				{% if(anuncio != null) %}
